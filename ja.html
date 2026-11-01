@@ -236,6 +236,8 @@ body.torche .fond .torche{opacity:1}
 .entree .date{margin:0;padding-top:.55em}
 .entree h3{font-family:var(--display);font-weight:400;font-size:clamp(1.45rem,2.6vw,2.1rem);margin:0 0 .55em;line-height:1.1;text-wrap:balance}
 .planches{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,26px);margin-top:1.5em;align-items:flex-start}
+.fiche-vente a{color:#E2C063;text-decoration:underline;text-underline-offset:3px}
+.fiche-vente a:hover{color:#FBEBB4}
 .original-it{margin:.8em 0 0;font-size:.8rem;color:var(--cendre)}
 .vignette.lien-doc{display:inline;color:#E2C063;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
 .vignette.lien-doc:hover{color:#FBEBB4}
@@ -700,7 +702,7 @@ dialog canvas.trace{position:absolute;z-index:5}
 .salon .mesure{position:absolute;height:0;border-left:1px solid rgba(255,255,255,.7);border-right:1px solid rgba(255,255,255,.7)}
 .salon .mesure::before{content:"";position:absolute;left:0;right:0;top:0;border-top:1px solid rgba(255,255,255,.7)}
 .salon .mesure span{position:absolute;left:50%;transform:translateX(-50%);top:.5em;font-size:.68rem;letter-spacing:.14em;color:#fff;white-space:nowrap;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.8)}
-.salon .legende{position:absolute;left:3%;top:3%;font-size:.88rem;color:#fff;letter-spacing:.02em;max-width:40ch;line-height:1.5;
+.salon .legende{position:absolute;z-index:4;left:3%;top:3%;font-size:.88rem;color:#fff;letter-spacing:.02em;max-width:40ch;line-height:1.5;
   background:rgba(7,12,24,.88);backdrop-filter:blur(8px);padding:.95em 1.15em;border-left:3px solid #D4AF37;box-shadow:0 14px 34px rgba(0,0,0,.5)}
 .salon .legende b{font-family:var(--display);font-weight:400;font-size:1.3rem;display:block;margin-bottom:.3em;line-height:1.15;
   background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
@@ -992,6 +994,23 @@ dialog canvas.trace{position:absolute;z-index:5}
     <p class="chapeau">オークション、展覧会、プレス。画像をクリックすると拡大します。</p>
     <ol class="journal">
       <li class="entree">
+        <p class="date">2026 年 11 月 1 日</p>
+        <div>
+          <h3>2 点の作品が Catawiki のオークションに</h3>
+          <div class="planches">
+            <button class="vignette" type="button" data-doc="catalogue/TB52.jpg" data-titre="Fanfan" data-det="TB52"><img src="catalogue/TB52.jpg" alt="Fanfan" width="291" height="350" loading="lazy"><small>Fanfan</small></button>
+            <button class="vignette" type="button" data-doc="catalogue/TB17.jpg" data-titre="Le Harem" data-det="TB17"><img src="catalogue/TB17.jpg" alt="Le Harem" width="350" height="237" loading="lazy"><small>Le Harem</small></button>
+          </div>
+          <p class="corps lisible">私の作品 2 点が、同社の専門家の選定を経て Catawiki のオークションに出品されています。開始価格は 1 ユーロです。</p>
+          <div class="fiche-vente">
+            <span><b>Fanfan</b>、2007 年、「レ・ノルマン」シリーズ、キャンバスにアクリル、47 × 38 cm。選定はフランスの有資格競売人で、サザビーズ・パリの鑑定部門に在籍した Caroline Bokobza。予想落札価格 600〜800 ユーロ、2026 年 11 月 5 日（木）22 時 45 分（パリ時間）終了。</span>
+            <span><a href="https://www.catawiki.com/fr/l/107748168-isa-sator-1963-fanfan" rel="noopener">Catawiki で「Fanfan」のロットを見る</a></span>
+            <span><b>Le Harem</b>、「千夜一夜」シリーズ、キャンバスにアクリル、90 × 130 cm。選定は Petra Skarupsky。予想落札価格 1,500〜1,800 ユーロ、2026 年 11 月 4 日（水）19 時 02 分（パリ時間）終了。</span>
+            <span><a href="https://www.catawiki.com/fr/l/107911215-isa-sator-le-harem-serie-les-1001-nuits" rel="noopener">Catawiki で「Le Harem」のロットを見る</a></span>
+          </div>
+        </div>
+      </li>
+      <li class="entree">
         <p class="date">2026 年 10 月 7 日</p>
         <div>
           <h3>「Smart Barby on a VIP」がオークションへ</h3>
@@ -1183,7 +1202,7 @@ const GRANDS=[35,59,64,71,81,82];
 /* photos qui ne montrent qu'un détail de la toile (sans ses bords) : pas de mise en scène possible */
 const DETAILS={35:1,59:1,81:1,82:1};
 /* dimensions connues (hauteur, largeur en cm) pour « chez vous » */
-const DIMS={1:[100,100],35:[145,175],59:[145,175],81:[145,175],82:[145,175],64:[130,90],71:[40,40],
+const DIMS={1:[100,100],17:[90,130],52:[47,38],35:[145,175],59:[145,175],81:[145,175],82:[145,175],64:[130,90],71:[40,40],
   19:[160,130],21:[175,160],23:[160,130],28:[160,130],31:[175,160],33:[100,100],36:[160,130],40:[110,95],44:[160,130],51:[92,66],77:[190,160],79:[160,130],80:[160,130]};
 const CAT={1:[1,"La Païva",350,347],2:[2,"AC-DC",350,233],3:[3,"Smart Barby Strong",213,302],4:[4,"Armageddon",350,234],5:[5,"U2",350,200],6:[6,"Women Leopard Baie des Citrons Noumea",350,198],7:[7,"La Forêt magique",350,182],8:[8,"La Jument ailée",263,350],9:[9,"Autoportrait d'Èze",290,350],10:[10,"Le Meilleur des mondes",344,350],11:[11,"Le Prince gourmand",350,217],12:[12,"Les Bouilleurs de crue",290,350],13:[13,"La Capucine",264,350],14:[14,"La Montre molle",350,225],15:[15,"Les Hippocampes",350,262],16:[16,"La Guerre des Roses",244,350],17:[17,"Le Harem",350,237],18:[18,"Blanche d'Antigny",350,341],19:[19,"Erectus",233,350],20:[20,"Les Remerciements de Bécassine",189,314],21:[21,"Guns and Roses",350,263],22:[22,"Nini Pattes en l'air",280,350],23:[23,"Le Jardin d'Eden",233,350],24:[24,"Satisfaction",233,350],25:[25,"Le Génie",277,350],26:[26,"L'Été, le temps des cerises",263,350],27:[27,"Les Torchons spatiaux",350,225],28:[28,"Ubus les Rébus",233,350],29:[29,"Vérité Sensualité, les Trois Grâces à Nouméa",350,197],30:[30,"Le Lièvre et la Tortue",350,226],31:[31,"La Distance Terre-Soleil",350,225],32:[32,"Thé pour tous",280,350],33:[33,"Gaby Deslys",350,350],34:[34,"En allant au marché",265,350],35:[35,"Le Manteau de Gaïa",760,428],36:[36,"L'Hôtel du Cul tourné",281,350],37:[37,"Balade au Bois de Boulogne",277,350],38:[38,"Les 4 Lascars",263,350],39:[39,"Apollonie Sabatier",350,349],40:[40,"Yvette Guilbert",248,350],41:[41,"Smart Barby on a Phone",287,350],42:[42,"Galipette",282,350],43:[43,"La Belle du Cotentin",295,350],44:[44,"Rien ne va plus",233,350],45:[45,"Bécassine à Pigalle",213,212],46:[46,"Le Cerf",263,305],47:[47,"La Fée Électricité, Loïe Fuller",282,350],48:[48,"Smart Barby Rose Bonbon",217,271],49:[49,"Le Cœur a ses raisons",273,350],50:[50,"Le Velouté",350,344],51:[51,"Le Baiser givré",246,350],52:[52,"Fanfan",291,350],53:[53,"Les Généaux",350,263],54:[54,"Le Baiser maure",246,350],55:[55,"Smart Barby Carnegie Hall",161,318],56:[56,"Smart Barby on a Phone II",159,314],57:[57,"Le Japonais",350,247],58:[58,"Smart Barby Cannes ou la Tropézienne",159,314],59:[59,"La Distance du Sator",760,428],60:[60,"Les Vaches normandes",350,242],61:[61,"Phaéton, le char du fils du Soleil par-dessus tête",244,350],62:[62,"La Chute 1",263,350],63:[63,"Les Chiens de l'Enfer",349,350],64:[64,"La Licorne",524,760],65:[65,"La Versaillaise",246,350],66:[66,"Dragon celte",240,350],67:[67,"La Victoire de Samothrace",263,350],68:[68,"Autoportrait Nouméa",254,350],69:[69,"Rize",213,266],70:[70,"L'Avenir de l'Homme",241,350],71:[71,"Le Grec",760,759],72:[72,"La Chute de Satan",245,350],73:[73,"La Chute de Satan 2",222,350],74:[74,"La Sirène bleue",331,263],75:[75,"Hélène",253,350],76:[76,"Le Dragon de l'Apocalypse",350,333],77:[77,"La Loba",263,350],78:[78,"Bicéphale",350,263],79:[79,"Les Archidrôlesses",280,350],80:[80,"Plus sur la même longueur d'onde",233,350],81:[81,"Rotation de Marcel",760,428],82:[82,"Hiéroglyphes et palimpsestes spatiaux",760,428]};
 
@@ -1283,24 +1302,24 @@ let courante=null;   /* {src, titre, h_cm, l_cm} */
    sur un meuble (tête de lit de 160, fauteuil club). Pour chaque intérieur : un emplacement préféré
    (au-dessus du canapé ou du lit) et, quand il existe, un pan de mur libre pour les grandes toiles. */
 const INTERIEURS={
-  salon:{nom:"リビング",legende:"リビングのソファの上に",
+  salon:{nom:"リビング",legende:"リビングのソファの上に",legendeLibre:"リビングのソファ右手の壁に",
     paysage:{src:"interieur-salon-paysage.jpg",w:2000,h:1125,k:311.5,sol:905,
-      dessus:{x:480,basPref:0.97,basMin:0.80,hautMax:2.48,largMax:2.4,fond:0.05},
-      libre:{x:1480,largMax:3.0,centreY:1.6,hautMax:2.48},
+      dessus:{x:480,basPref:0.97,basMin:0.90,hautMax:2.48,largMax:2.4,fond:0.05},
+      libre:{xg:1000,largMax:3.0,centreY:1.6,hautMax:2.48},
       devant:[[45,730],[55,668],[860,665],[898,715],[905,905],[45,905]],
-      deco:[{x:115,y:695,w:141,h:140,img:"deco/coussin.png",c:0,a:1,omb:1},{x:700,y:695,w:141,h:140,img:"deco/coussin.png",c:1,a:1,omb:1},{x:262,y:698,w:70,h:92,img:"deco/vase-tiges.png",nat:1},{x:263,y:790,w:69,h:93,img:"deco/vase.png",c:1,a:1,omb:1},{x:1064,y:564,w:130,h:170,img:"deco/vase-tiges.png",nat:1},{x:1067,y:734,w:126,h:171,img:"deco/vase.png",c:1,a:1,omb:1}]},
+      deco:[{x:115,y:675,w:141,h:140,img:"deco/coussin.png",c:0,a:1,omb:1},{x:700,y:675,w:141,h:140,img:"deco/coussin.png",c:1,a:1,omb:1},{x:262,y:698,w:70,h:92,img:"deco/vase-tiges.png",nat:1},{x:263,y:790,w:69,h:93,img:"deco/vase.png",c:1,a:1,omb:1},{x:1064,y:564,w:130,h:170,img:"deco/vase-tiges.png",nat:1,xl:1800},{x:1067,y:734,w:126,h:171,img:"deco/vase.png",c:1,a:1,omb:1,xl:1803}]},
     portrait:{src:"interieur-salon-portrait.jpg",w:1125,h:2015,k:461,sol:1490,
-      dessus:{x:370,basPref:0.92,basMin:0.75,hautMax:2.48,largMax:2.2,fond:0.05},
+      dessus:{x:370,basPref:0.92,basMin:0.85,hautMax:2.48,largMax:2.2,fond:0.05},
       devant:[[0,1195],[640,1195],[700,1275],[705,1490],[0,1490]],
       deco:[{x:505,y:1193,w:209,h:207,img:"deco/coussin.png",c:1,a:1,omb:1},{x:350,y:1193,w:209,h:207,img:"deco/coussin.png",c:0,a:1,omb:1},{x:832,y:984,w:193,h:252,img:"deco/vase-tiges.png",nat:1},{x:836,y:1236,w:187,h:254,img:"deco/vase.png",c:1,a:1,omb:1}]}},
-  chambre:{nom:"寝室",legende:"寝室の幅 160 cm のベッドの上に",
+  chambre:{nom:"寝室",legende:"寝室の幅 160 cm のベッドの上に",legendeLibre:"寝室のベッド脇の壁に",
     paysage:{src:"interieur-chambre.jpg",w:2000,h:1116,k:307.7,sol:914,
       dessus:{x:1007,basPref:1.22,basMin:1.05,hautMax:2.48,largMax:2.4,fond:0.5},
-      libre:{x:275,largMax:1.38,centreY:1.5,hautMax:2.48},
-      deco:[{x:716,y:616,w:567,h:154,img:"deco/chambre-tete.png",c:0,a:1.0},{x:925,y:662,w:139,h:138,img:"deco/coussin.png",c:1,a:1,omb:1},{x:700,y:797,w:277,h:178,img:"deco/plaid.png",c:0,a:1,omb:1}]},
+      libre:{xg:1360,largMax:2.0,centreY:1.5,hautMax:2.48},
+      deco:[{x:716,y:616,w:567,h:154,img:"deco/chambre-tete.png",c:0,a:1.0},{x:925,y:662,w:139,h:138,img:"deco/coussin.png",c:1,a:1,omb:1}]},
     portrait:{src:"interieur-chambre-portrait.jpg",w:1125,h:2015,k:300,sol:1430,
-      dessus:{x:565,basPref:1.35,basMin:1.18,hautMax:4.1,largMax:2.6,fond:0.55},
-      deco:[{x:284,y:1107,w:558,h:185,img:"deco/chambrep-tete.png",c:0,a:1.0},{x:497,y:1180,w:136,h:135,img:"deco/coussin.png",c:1,a:1,omb:1},{x:420,y:1471,w:270,h:173,img:"deco/plaid.png",c:0,a:1,omb:1}]}},
+      dessus:{x:565,basPref:1.35,basMin:1.18,hautMax:2.48,largMax:2.6,fond:0.55},
+      deco:[{x:284,y:1107,w:558,h:185,img:"deco/chambrep-tete.png",c:0,a:1.0},{x:497,y:1180,w:136,h:135,img:"deco/coussin.png",c:1,a:1,omb:1}]}},
   loft:{nom:"Loft",legende:"天井の高いロフトのレンガの壁に",
     paysage:{src:"interieur-loft-paysage.jpg",w:2000,h:1125,k:218,sol:1075,
       libre:{x:960,largMax:3.9,centreY:2.4,hautMax:4.3,fond:0.08},
@@ -1318,25 +1337,42 @@ const TEINTES={"adn-sator":"f","baiser-givre":"c","cochon-hurlant":"c","come-8":
 let interieurChoisi=null;        /* choix du visiteur, sinon automatique */
 
 function place(I,hm,lm){
-  /* renvoie {x, bas, note} en mètres : bas = hauteur du bord inférieur de la toile au-dessus du sol */
+  /* renvoie {x, bas, note} en mètres : bas = hauteur du bord inférieur de la toile au-dessus du sol.
+     Ordre : au-dessus du meuble si elle y tient ; sinon le pan de mur libre (à droite du canapé, à côté du lit) ;
+     en dernier recours seulement, posée au sol derrière le meuble. */
   const d=I.dessus, l=I.libre;
+  const xLibre=L=>l.xg!=null?l.xg+L*I.k/2:l.x;                       /* le mur libre se remplit depuis son bord gauche */
+  const surLibre=()=>{
+    if(!(l&&lm<=l.largMax&&hm<=l.hautMax-0.4)) return null;
+    const bas=Math.max(0.4, Math.min(l.centreY-hm/2, l.hautMax-hm));
+    return {x:xLibre(lm),bas,ok:true,libre:true,note:"空いた壁面に掛けています。"};
+  };
   if(d&&lm<=d.largMax){
-    const bande=d.hautMax-d.basMin;                                   /* mur libre au-dessus du meuble */
-    if(hm<=bande){ const bas=Math.max(d.basPref, Math.min(d.basMin+(bande-hm)/2, d.hautMax-hm-0.1)); return {x:d.x,bas,ok:true}; }
-    /* trop haute pour le pan de mur : elle descend derrière le meuble, posée au sol s'il le faut */
+    const bas=Math.min(d.basPref, d.hautMax-0.05-hm);                /* hauteur préférée, abaissée si le plafond l'impose */
+    if(bas>=d.basMin) return {x:d.x,bas,ok:true};                       /* sans jamais s'écraser sur le meuble */
+    const pl=surLibre(); if(pl) return pl;
+    /* trop haute pour tous les pans de mur : elle descend derrière le meuble, posée au sol s'il le faut */
     return {x:d.x,bas:Math.max(d.fond!=null?d.fond:0.3, d.hautMax-hm-0.1),ok:true,derriere:true,note:"壁面より高い作品：床に置き、家具の後ろに立てかけています。"};
   }
-  if(l&&lm<=l.largMax){
-    if(hm<=l.hautMax-0.4){ const bas=Math.max(0.4, Math.min(l.centreY-hm/2, l.hautMax-hm)); return {x:l.x,bas,ok:true,note:"空いた壁面に掛けています。"}; }
-    return {x:l.x,bas:Math.max(l.fond!=null?l.fond:0.3, l.hautMax-hm-0.1),ok:true,derriere:true,note:"壁面より高い作品：床に置き、家具の後ろに立てかけています。"};
-  }
-  const z=d||l; return {x:z.x,bas:Math.max(z.fond!=null?z.fond:0.3, z.hautMax-hm-0.1),ok:false,note:"壁面より高い作品：床に置き、家具の後ろに立てかけています。"};
+  const pl=surLibre(); if(pl) return pl;
+  if(l&&lm<=l.largMax) return {x:xLibre(lm),bas:Math.max(l.fond!=null?l.fond:0.3, l.hautMax-hm-0.1),ok:true,derriere:true,note:"壁面より高い作品：床に置き、家具の後ろに立てかけています。"};
+  const z=d||l; return {x:z.x!=null?z.x:xLibre(lm),bas:Math.max(z.fond!=null?z.fond:0.3, z.hautMax-hm-0.1),ok:false,note:"壁面より高い作品：床に置き、家具の後ろに立てかけています。"};
+}
+/* la photo à employer : la verticale sur téléphone, sauf si la toile n'y tient qu'au sol derrière le meuble alors
+   que la photo large sait l'accrocher ; la photo large est alors recadrée sur la toile */
+function photoPour(I,hm,lm,portrait){
+  if(!(portrait&&I.portrait)) return I.paysage;
+  const p1=place(I.portrait,hm,lm);
+  if(p1.ok&&!p1.derriere) return I.portrait;
+  const p2=place(I.paysage,hm,lm);
+  return (p2.ok&&!p2.derriere)?I.paysage:I.portrait;
 }
 function choisitInterieur(hm,lm,portrait){
   if(interieurChoisi) return interieurChoisi;
   const t=TEINTES[courante.cle]||"n";
   const pref = t==="f" ? ["chambre","salon","loft"] : t==="c" ? ["salon","loft","chambre"] : ["loft","salon","chambre"];
-  for(const n of pref){ const I=INTERIEURS[n]; const V=(portrait&&I.portrait)?I.portrait:I.paysage; if(place(V,hm,lm).ok) return n; }
+  for(const n of pref){ const I=INTERIEURS[n]; const V=photoPour(I,hm,lm,portrait); const p=place(V,hm,lm); if(p.ok&&!p.derriere) return n; }
+  for(const n of pref){ const I=INTERIEURS[n]; const V=photoPour(I,hm,lm,portrait); if(place(V,hm,lm).ok) return n; }
   return pref[0];
 }
 function dessineSalon(){
@@ -1347,12 +1383,14 @@ function dessineSalon(){
   const grand=Math.max(courante.h,courante.l)/100;
   const lm=rp>=1?grand:grand*rp, hm=rp>=1?grand/rp:grand;
   courante.lr=Math.round(lm*100); courante.hr=Math.round(hm*100);
-  const nomI=choisitInterieur(hm,lm,portrait), I=INTERIEURS[nomI], V=(portrait&&I.portrait)?I.portrait:I.paysage;
+  const nomI=choisitInterieur(hm,lm,portrait), I=INTERIEURS[nomI], V=photoPour(I,hm,lm,portrait);
   document.querySelectorAll("#choix-int button").forEach(b=>b.classList.toggle("actif",b.dataset.int===nomI));
   const sc=Math.max(r.width/V.w, r.height/V.h);                  /* cadrage « cover » de la photo */
-  const ox=(r.width-V.w*sc)/2; let oy=(r.height-V.h*sc)/2;
+  let ox=(r.width-V.w*sc)/2, oy=(r.height-V.h*sc)/2;
   const ppm=V.k*sc;                                                /* pixels par mètre à l'écran */
   const P=place(V,hm,lm);
+  /* le cadrage horizontal suit aussi la toile quand la photo déborde de l'écran (téléphone sur la photo large) */
+  if(V.w*sc>r.width+1){ const cx=ox+P.x*sc; if(cx<0.3*r.width||cx>0.7*r.width){ ox=r.width/2-P.x*sc; ox=Math.min(0, Math.max(r.width-V.w*sc, ox)); } }
   /* le cadrage vertical suit la toile : jamais coupée en haut ni en bas (la photo reste en « cover ») */
   const marge=0.07*r.height, yHautPx=V.sol-(P.bas+hm)*V.k, yBasPx=V.sol-P.bas*V.k;
   if(yHautPx*sc+oy<marge) oy=marge-yHautPx*sc;
@@ -1365,7 +1403,7 @@ function dessineSalon(){
   salon.style.backgroundPosition=ox.toFixed(1)+"px "+oy.toFixed(1)+"px";
   const pal=PALS[courante.cle]||["#C8321A","#F5A623"];
   /* objets recolorables : un masque exact de l'objet (PNG gris + alpha), teinté dans ses propres ombres */
-  const geo=d=>'left:'+(ox+d.x*sc).toFixed(1)+'px;top:'+(oy+d.y*sc).toFixed(1)+'px;width:'+(d.w*sc).toFixed(1)+'px;height:'+(d.h*sc).toFixed(1)+'px;';
+  const geo=d=>'left:'+(ox+((P.libre&&d.xl!=null)?d.xl:d.x)*sc).toFixed(1)+'px;top:'+(oy+d.y*sc).toFixed(1)+'px;width:'+(d.w*sc).toFixed(1)+'px;height:'+(d.h*sc).toFixed(1)+'px;';
   const deco=(V.deco||[]).map(d=>{
     if(d.nat) return '<img class="deco nat" style="'+geo(d)+'" src="'+d.img+'" alt="">';
     const ombre=d.omb?'<img class="deco ombre" style="'+geo(d)+'" src="'+d.img+'" alt="">':'';
@@ -1379,7 +1417,7 @@ function dessineSalon(){
       '<div class="toile"><img src="'+courante.src+'" alt=""></div><span class="flaque"></span></div>'+
     meuble+deco+
     (P.derriere?'':'<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.lr+' cm</span></div>')+
-    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>ご自宅に、実寸で</b>'+courante.hr+' × '+courante.lr+' cm, '+I.legende+'、ピクチャーライトの下に。室内は作品の色をまといます。下で別の部屋を選べます。'+(courante.estime?'<i>寸法未登録：目安として 100 cm で表示しています。</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
+    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>ご自宅に、実寸で</b>'+courante.hr+' × '+courante.lr+' cm, '+((P.libre&&I.legendeLibre)?I.legendeLibre:I.legende)+'、ピクチャーライトの下に。室内は作品の色をまといます。下で別の部屋を選べます。'+(courante.estime?'<i>寸法未登録：目安として 100 cm で表示しています。</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
   peintObjets(salon);
 }
 /* ---------- objets recolorés : peints dans un canvas (image × couleur, découpée par la transparence du PNG) ---------- */
