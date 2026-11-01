@@ -1,0 +1,1434 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Isa Sator, artiste peintre cotée Artprice, coloriste plasticienne visionnaire. Exposée à Paris, New York, Dubaï, Londres et Houston. Œuvres, séries, grands formats, catalogue, actualités et contact de l'atelier.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Isa Sator">
+<meta property="og:title" content="Isa Sator, artiste peintre">
+<meta property="og:description" content="Artiste cotée Artprice, coloriste plasticienne visionnaire. Couleur, énergie et talisman. Pour des âmes fortes.">
+<meta property="og:image" content="https://isa-sator.github.io/apercu.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://isa-sator.github.io/">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Isa Sator, artiste peintre">
+<meta name="twitter:description" content="Artiste cotée Artprice, coloriste plasticienne visionnaire. Couleur, énergie et talisman.">
+<meta name="twitter:image" content="https://isa-sator.github.io/apercu.jpg">
+<meta name="apple-mobile-web-app-title" content="Isa Sator">
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Isa Sator</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="theme-color" content="#070C18">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icone-180.png">
+<link rel="manifest" href="site.webmanifest">
+<style>
+/* Polices hébergées avec le site (licence SIL Open Font License, fichiers dans fonts/) : aucune dépendance à Google. */
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/bodoni-moda-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-400-italic.woff2") format("woff2")}
+@font-face{font-family:"Jost";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/jost-latin-300-normal.woff2") format("woff2")}
+@font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-latin-500-normal.woff2") format("woff2")}
+</style>
+<style>
+/* Une grande toile d'encre bleu nuit, travaillée à la brosse, sert de mur. L'emblème de
+   l'atelier brûle derrière en mode « screen ». Chaque toile est accrochée sous une applique
+   de laiton qui s'allume quand on arrive devant elle, et bascule légèrement sous le curseur. */
+:root{
+  --nuit:#070C18;
+  --nuit-2:#0C1426;
+  --ivoire:#F4EDE3;
+  --cendre:#B3A89D;
+  --trait:#243250;
+  --spot:#FFE9C7;        /* température du projecteur, halogène chaud */
+  --encre:#111;
+  --bleu:#2B4FC8;
+  --rouge:#E03A1E;
+  --orange:#F5A623;
+  --vert:#13A05E;
+  --eau:#5FB8A3;         /* vert d'eau du lexique */
+  --accent:var(--orange);
+  --display:"Bodoni Moda",Didot,"Bodoni MT",Georgia,serif;
+  --texte:"Jost",Futura,"Century Gothic",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+/* curseur : la pointe de pinceau (visuel AI Studio détouré), point de clic sur la pointe */
+@media(hover:hover) and (pointer:fine){
+  html,a,button,.oeuvre,.fiche,.serie-lien,.copier,.fermer{
+    cursor:url("palette-48.png") 3 1,auto;
+    cursor:-webkit-image-set(url("palette-48.png") 1x,url("palette-96.png") 2x) 3 1,auto;
+    cursor:image-set(url("palette-48.png") 1x,url("palette-96.png") 2x) 3 1,auto;
+  }
+}
+body{
+  background:var(--nuit);color:var(--ivoire);margin:0;
+  font-family:var(--texte);font-weight:300;line-height:1.65;
+  font-size:clamp(15px,1.05vw,17px);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+}
+img{display:block;max-width:100%}
+a{color:var(--ivoire);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:.28em;text-decoration-thickness:1px}
+:focus-visible{outline:2px solid var(--orange);outline-offset:4px}
+
+/* ---------- l'emblème qui brûle au fond ---------- */
+.fond{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:var(--nuit)}
+.fond .toile-fond{position:absolute;inset:-2%;background:url("fond-toile.jpg") center/cover no-repeat;transform:translateY(calc(var(--defile,0) * -1px))}
+@media(max-width:700px){.fond .toile-fond{background-image:url("fond-toile-m.jpg")}}
+.fond .halo{
+  position:absolute;left:50%;top:44%;width:min(215vw,1950px);aspect-ratio:942/1015;
+  transform:translate(-50%,-50%);
+  background:url("embleme.png") center/contain no-repeat;
+  mix-blend-mode:screen;opacity:.22;filter:blur(90px) saturate(1.5);
+  animation:respire 26s ease-in-out infinite;
+}
+.fond .net{
+  position:absolute;left:50%;top:44%;width:min(152vw,1420px);aspect-ratio:942/1015;
+  transform:translate(-50%,-50%);
+  background:url("embleme.png") center/contain no-repeat;
+  mix-blend-mode:screen;opacity:.05;filter:saturate(1.3);
+  animation:respire 26s ease-in-out infinite reverse;
+}
+.fond .voile{
+  position:absolute;inset:0;
+  background:radial-gradient(70% 60% at 46% 46%,rgba(7,12,24,.42) 0%,rgba(7,12,24,.3) 55%,rgba(7,12,24,.1) 85%,transparent 100%);
+}
+.fond .torche{
+  position:absolute;inset:0;opacity:0;transition:opacity .9s ease;mix-blend-mode:screen;
+  background:radial-gradient(380px circle at var(--tx,50%) var(--ty,40%),rgba(255,233,199,.16),rgba(255,233,199,.06) 42%,transparent 72%);
+}
+body.torche .fond .torche{opacity:1}
+@keyframes respire{0%,100%{transform:translate(-50%,-50%) scale(1) rotate(0deg)}50%{transform:translate(-50%,-50%) scale(1.07) rotate(5deg)}}
+
+.page{position:relative;z-index:1;overflow-x:clip}
+.gouttiere{padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.centre{max-width:1200px;margin-inline:auto;width:100%}
+.lisible{max-width:60ch}
+
+/* ---------- coups de pinceau sous les titres ---------- */
+.titre::after,.panneau h3::after{content:"";display:block;width:92px;height:12px;margin-top:.45em;background:var(--accent);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 92 12'%3E%3Cpath d='M1 7 C12 3 20 9 32 6 C44 3 52 9 64 5 C74 2 82 7 91 4 L91 8 C82 11 72 7 62 9 C50 11 42 6 30 9 C18 12 10 7 1 10 Z'/%3E%3C/svg%3E") no-repeat center/contain;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 92 12'%3E%3Cpath d='M1 7 C12 3 20 9 32 6 C44 3 52 9 64 5 C74 2 82 7 91 4 L91 8 C82 11 72 7 62 9 C50 11 42 6 30 9 C18 12 10 7 1 10 Z'/%3E%3C/svg%3E") no-repeat center/contain;
+  filter:drop-shadow(0 0 8px var(--accent))}
+#artiste{--accent:var(--rouge)} #atelier{--accent:var(--rouge)} #grands{--accent:var(--orange)} #oeuvres{--accent:var(--eau)}
+#series{--accent:var(--bleu)} #catalogue{--accent:var(--orange)} .bio{--accent:var(--eau)} #contact{--accent:var(--rouge)}
+.titre,.marque span{
+  background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 30%,#B8902A 50%,#F1D27E 68%,#9E7A1E 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;
+  filter:drop-shadow(0 2px 10px rgba(0,0,0,.55))}
+.titre a{color:inherit}
+.titre.dore{display:inline-block;
+  background-image:linear-gradient(100deg,transparent 0 40%,rgba(255,255,255,.85) 50%,transparent 60% 100%),linear-gradient(170deg,#FBEBB4 0%,#E2C063 30%,#B8902A 50%,#F1D27E 68%,#9E7A1E 100%);
+  background-size:260% 100%,100% 100%;background-position:120% 0,0 0;background-repeat:no-repeat;
+  animation:reflet 1.8s ease .2s 1}
+@keyframes reflet{0%{background-position:120% 0,0 0}100%{background-position:-120% 0,0 0}}
+
+/* ---------- jalons : bandeau défilant sous l'ouverture ---------- */
+.jalons{border-block:1px solid var(--trait);background:rgba(7,12,24,.62);backdrop-filter:blur(3px);overflow:hidden;position:relative;padding:.95em 0}
+.jalons::before,.jalons::after{content:"";position:absolute;top:0;bottom:0;width:min(90px,12vw);z-index:2;pointer-events:none}
+.jalons::before{left:0;background:linear-gradient(to right,rgba(7,12,24,.96),transparent)}
+.jalons::after{right:0;background:linear-gradient(to left,rgba(7,12,24,.96),transparent)}
+.jalons .file{display:flex;width:max-content;animation:defile 80s linear infinite}
+.jalons:hover .file{animation-play-state:paused}
+.jalons ul{list-style:none;margin:0;padding:0;display:flex}
+.jalons li{white-space:nowrap;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;padding:0 1.3em;color:var(--cendre);display:flex;align-items:center;gap:2.6em}
+.jalons li b{font-weight:400;background-image:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);-webkit-background-clip:text;background-clip:text;color:transparent}
+.jalons li::after{content:"✦";color:#C9A227;opacity:.75;font-size:.8em}
+@keyframes defile{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.jalons .file{animation:none;width:auto}.jalons ul{flex-wrap:wrap;justify-content:center;row-gap:.6em}.jalons ul+ul{display:none}}
+
+/* ---------- l'artiste : portrait noir et blanc, parole, presse ---------- */
+.artiste .deux{display:grid;gap:clamp(26px,4vw,64px);grid-template-columns:1fr;align-items:start}
+@media(min-width:880px){.artiste .deux{grid-template-columns:minmax(260px,.8fr) 1.2fr}}
+.portrait{margin:0;max-width:460px;position:relative}
+.portrait img{width:100%;height:auto;display:block;filter:grayscale(1) contrast(1.05);
+  box-shadow:0 0 0 1px rgba(255,255,255,.16),0 0 0 10px rgba(7,12,24,.55),0 0 0 11px rgba(201,162,39,.45),0 34px 70px rgba(0,0,0,.65)}
+.portrait figcaption{margin-top:1.1em;font-size:.72rem;letter-spacing:.08em;color:var(--cendre)}
+.surtitre{font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;color:var(--orange);margin:0 0 .9em}
+.artiste blockquote{margin:0 0 1.4em;font-family:var(--display);font-size:clamp(1.3rem,2.4vw,1.85rem);line-height:1.38;max-width:30ch;color:var(--ivoire)}
+.presse{list-style:none;margin:1.8em 0 0;padding:0;border-top:1px solid var(--trait);max-width:62ch}
+.presse li{border-bottom:1px solid var(--trait)}
+.presse a{display:grid;grid-template-columns:auto 1fr auto;gap:1em;align-items:baseline;padding:.85em 0;color:var(--ivoire);text-decoration:none}
+.presse a:hover{color:#F1D27E;text-decoration:none}
+.presse b{font-weight:400;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cendre);min-width:6.5em}
+.presse a::after{content:"→";color:#C9A227}
+@media(max-width:520px){.presse a{grid-template-columns:1fr auto}.presse b{grid-column:1/-1;min-width:0}}
+
+/* ---------- chiffres clés de l'artiste ---------- */
+.chiffres{list-style:none;margin:clamp(34px,4vw,56px) 0 0;padding:0;display:grid;gap:18px 28px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:820px){.chiffres{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.chiffres li{border-top:1px solid var(--trait);padding-top:.7em;display:grid;gap:.2em;min-width:0}
+.chiffres b{font-family:var(--display);font-weight:400;font-size:clamp(2.3rem,4vw,3.6rem);line-height:1;
+  background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chiffres span{font-size:.86rem;color:var(--cendre);line-height:1.4;max-width:26ch}
+.chiffres i{font-style:normal;display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#C9A227;margin-top:.35em}
+.mot-critique{margin:1.6em 0 0;padding-left:1.1em;border-left:2px solid var(--accent);font-family:var(--display);font-size:clamp(1.1rem,1.7vw,1.3rem);line-height:1.45;color:var(--ivoire);max-width:34ch}
+.mot-critique cite{display:block;margin-top:.5em;font-style:normal;font-family:var(--texte);font-size:.76rem;letter-spacing:.06em;color:var(--cendre)}
+.ventes{list-style:none;margin:1.2em 0 0;padding:0;border-top:1px solid var(--trait)}
+.ventes li{border-bottom:1px solid var(--trait);padding:.5em 0;display:grid;grid-template-columns:3.2em 1fr;gap:.8em;font-size:.88rem;color:var(--cendre)}
+.ventes li b{font-weight:400;color:#E2C063;font-variant-numeric:tabular-nums}
+.ventes li em{font-style:normal;color:var(--ivoire)}
+
+/* ---------- atelier : expositions et ils ont écrit ---------- */
+.parcours{display:grid;gap:clamp(26px,4vw,56px);grid-template-columns:1fr;margin-top:clamp(36px,5vw,64px)}
+@media(min-width:880px){.parcours{grid-template-columns:1.1fr .9fr}}
+.parcours h3{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.7rem);margin:0 0 .8em}
+.expos{list-style:none;margin:0;padding:0;border-top:1px solid var(--trait);columns:1}
+@media(min-width:560px){.expos{columns:2;column-gap:2.4em}}
+.expos li{break-inside:avoid;border-bottom:1px solid var(--trait);padding:.55em 0;display:grid;grid-template-columns:3.2em 1fr;gap:.8em;font-size:.88rem;color:var(--cendre)}
+.expos li b{font-weight:400;color:#E2C063;font-variant-numeric:tabular-nums}
+.expos li em{font-style:normal;color:var(--ivoire)}
+.voix{display:grid;gap:1.3em}
+.voix blockquote{margin:0;padding-left:1.1em;border-left:2px solid var(--accent);font-family:var(--display);font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.45;color:var(--ivoire)}
+.voix cite{display:block;margin-top:.5em;font-style:normal;font-family:var(--texte);font-size:.76rem;letter-spacing:.06em;color:var(--cendre)}
+.sources{margin-top:1.6em;font-size:.76rem;color:var(--cendre);max-width:62ch}
+.sources a{color:var(--cendre)}
+
+/* ---------- actualités : journal daté ---------- */
+.journal{list-style:none;margin:0;padding:0}
+.entree{display:grid;gap:clamp(10px,2vw,40px);grid-template-columns:1fr;padding:clamp(26px,4vw,50px) 0;border-top:1px solid var(--trait)}
+.entree:last-child{border-bottom:1px solid var(--trait)}
+@media(min-width:760px){.entree{grid-template-columns:168px 1fr}}
+.entree .date{margin:0;padding-top:.55em}
+.entree h3{font-family:var(--display);font-weight:400;font-size:clamp(1.45rem,2.6vw,2.1rem);margin:0 0 .55em;line-height:1.1;text-wrap:balance}
+.planches{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,26px);margin-top:1.5em;align-items:flex-start}
+.vignette{background:none;border:0;padding:0;cursor:pointer;display:block;position:relative;max-width:100%;color:inherit;font:inherit;text-align:left}
+.vignette img{display:block;height:auto;max-width:100%;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 24px 48px rgba(0,0,0,.6);transition:transform .5s ease,box-shadow .5s ease}
+.planches .vignette img{width:clamp(140px,17vw,230px)}
+.planches .vignette:hover img,.planches .vignette:focus-visible img{transform:translateY(-4px) scale(1.02);box-shadow:0 0 0 1px rgba(201,162,39,.75),0 0 30px rgba(201,162,39,.28),0 30px 60px rgba(0,0,0,.65)}
+.vignette small{display:block;margin-top:.6em;font-size:.72rem;color:var(--cendre);letter-spacing:.04em;max-width:230px}
+.entree .cimaise{max-width:760px;margin:clamp(44px,5vw,70px) 0 1.2em;cursor:pointer}
+.entree .cimaise.portrait-toile{max-width:min(100%,260px);float:right;margin:clamp(40px,4vw,56px) 0 1em clamp(18px,3vw,40px)}
+.entree>div::after{content:"";display:block;clear:both}
+@media(max-width:600px){.entree .cimaise.portrait-toile{float:none;max-width:220px;margin-left:0}}
+.entree .cimaise .toile img{box-shadow:none;transition:none}
+.entree .cimaise .toile img{width:100%;height:auto;display:block}
+.loupe.doc .gardien,.loupe.doc #btn-salon,.loupe.doc #choix-int{display:none}
+
+/* ---------- le reflet d'or : un balayage lumineux sur fond doré léger, au survol ---------- */
+.reflet-or,.serie-lien:hover,.serie-lien:focus-visible,.presse a:hover,.faits li:hover,.expos li:hover,.ventes li:hover,.entree:hover,.chiffres li:hover,.couleur:hover{
+  background-image:linear-gradient(100deg,transparent 0 35%,rgba(255,255,255,.16) 50%,transparent 65% 100%),
+    linear-gradient(90deg,rgba(251,235,180,.20),rgba(226,192,99,.10) 45%,rgba(184,144,42,.05) 75%,transparent 95%);
+  background-size:240% 100%,100% 100%;background-position:120% 0,0 0;background-repeat:no-repeat;
+  animation:reflet 1.4s ease 1}
+.presse a,.faits li,.expos li,.ventes li,.entree,.chiffres li,.couleur{transition:background-color .3s ease}
+.porte::after{transition:opacity .4s ease}
+.porte:hover::after{background:linear-gradient(to top,rgba(7,12,24,.92) 0%,rgba(7,12,24,.45) 45%,rgba(7,12,24,.05) 100%),
+  linear-gradient(100deg,transparent 0 35%,rgba(251,235,180,.22) 50%,transparent 65% 100%);background-size:100% 100%,240% 100%;background-position:0 0,120% 0;background-repeat:no-repeat;animation:reflet-porte 1.3s ease 1}
+@keyframes reflet-porte{0%{background-position:0 0,120% 0}100%{background-position:0 0,-120% 0}}
+.bouton{border-color:#D4AF37;color:#E2C063;background:rgba(7,12,24,.45)}
+.bouton:hover{background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);color:var(--nuit);border-color:transparent}
+.bouton.plein{background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);color:var(--nuit);border-color:transparent;box-shadow:0 8px 24px rgba(201,162,39,.25)}
+.bouton.plein:hover{background:rgba(7,12,24,.45);color:#E2C063;border-color:#D4AF37;box-shadow:none}
+.loupe .fermer.gardien{color:#E2C063;border-color:rgba(212,175,55,.6)}
+.loupe .fermer.gardien:hover{background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);color:var(--nuit);border-color:transparent}
+/* petit message en bas d'écran (adresse copiée, etc.) */
+.toast{position:fixed;left:50%;bottom:max(22px,env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);z-index:40;background:rgba(7,12,24,.94);color:var(--ivoire);
+  border:1px solid rgba(212,175,55,.6);padding:.8em 1.2em;font-size:.86rem;letter-spacing:.02em;opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s ease;max-width:min(92vw,46ch);text-align:center}
+.toast.visible{opacity:1;transform:translate(-50%,0)}
+
+/* ---------- mode pages (ordinateur) : une section à la fois, l'accueil comme hall d'entrée ---------- */
+body.pages [data-page]:not([hidden]){animation:fondu .55s ease}
+body.pages .bande .dedans{padding-top:clamp(26px,4vh,48px)}
+body.pages .titre{margin-bottom:.3em}
+body.pages .chapeau{margin-bottom:1.3em}
+body.pages .grands{padding-top:22px}
+@keyframes fondu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.barre nav a.actif{opacity:1;border-bottom:1px solid #D4AF37;padding-bottom:2px;background-image:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227)}
+.marque{text-decoration:none}
+.marque:hover{text-decoration:none}
+.portes{display:grid;gap:clamp(14px,2vw,26px);grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.porte{position:relative;display:block;aspect-ratio:4/3;overflow:hidden;background:var(--img) center/cover no-repeat #0C1426;
+  box-shadow:0 0 0 1px var(--trait),0 20px 40px rgba(0,0,0,.55);color:var(--ivoire);text-decoration:none;isolation:isolate}
+.porte::before{content:"";position:absolute;inset:0;background:var(--img) center/cover no-repeat;transition:transform .9s cubic-bezier(.2,.7,.2,1);z-index:0}
+.porte::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,12,24,.92) 0%,rgba(7,12,24,.45) 45%,rgba(7,12,24,.05) 100%);z-index:1}
+.porte:hover{text-decoration:none;box-shadow:0 0 0 1px rgba(201,162,39,.7),0 0 30px rgba(201,162,39,.25),0 24px 48px rgba(0,0,0,.6)}
+.porte:hover::before{transform:scale(1.06)}
+.porte b,.porte i{position:relative;z-index:2;display:block;padding:0 clamp(14px,2vw,22px)}
+.porte b{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2vw,1.7rem);line-height:1.1;margin-top:auto;
+  background-image:linear-gradient(170deg,#FBEBB4,#E2C063 40%,#B8902A 70%,#F1D27E);-webkit-background-clip:text;background-clip:text;color:transparent}
+.porte i{font-style:normal;color:var(--cendre);font-size:.82rem;padding-bottom:clamp(14px,2vw,22px);padding-top:.3em}
+.porte{display:flex;flex-direction:column;justify-content:flex-end}
+
+/* ---------- barre ---------- */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--nuit)}
+.barre{position:sticky;top:env(safe-area-inset-top,0px);z-index:29;background:rgba(7,12,24,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--trait)}
+.barre .dedans{display:flex;align-items:center;gap:clamp(12px,3vw,34px);flex-wrap:wrap;padding-block:13px}
+.marque{display:flex;align-items:center;gap:10px;margin-right:auto;min-width:0}
+.marque img{width:30px;height:32px;flex:none}
+.marque span{font-family:var(--display);font-size:1.9rem;letter-spacing:.01em;line-height:1}
+.marque img{width:40px;height:43px}
+.barre nav{display:flex;gap:clamp(11px,2.3vw,26px);flex-wrap:wrap}
+.barre nav a{font-size:.74rem;text-transform:uppercase;letter-spacing:.17em;background-image:linear-gradient(170deg,#E9CF86,#C9A64A 45%,#A8872A);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.82;transition:opacity .3s}
+.barre nav a:hover{opacity:1;text-decoration:none}
+@media(max-width:660px){
+  .barre .dedans{padding-block:9px;gap:7px}
+  .marque img{width:28px;height:30px}
+  .marque span{font-size:1.3rem}
+  .barre nav{flex-wrap:nowrap;overflow-x:auto;width:100%;gap:18px;scrollbar-width:none;padding-bottom:2px}
+  .barre nav::-webkit-scrollbar{display:none}
+  .barre nav a{white-space:nowrap;font-size:.7rem}
+  section{scroll-margin-top:104px}
+}
+
+/* ---------- ouverture : la fresque de l'atelier ---------- */
+.scene{position:relative;display:grid;min-height:clamp(520px,80vh,820px);isolation:isolate}
+.scene .fresque{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 34%;z-index:0}
+.scene .rideau{position:absolute;inset:0;z-index:1;background:
+  linear-gradient(100deg,rgba(7,12,24,.96) 0%,rgba(7,12,24,.9) 26%,rgba(7,12,24,.5) 52%,rgba(7,12,24,.18) 72%,rgba(7,12,24,.42) 100%),
+  linear-gradient(to bottom,rgba(7,12,24,.62) 0%,rgba(7,12,24,0) 24%,rgba(7,12,24,0) 58%,var(--nuit) 100%)}
+.scene .dit{position:relative;z-index:2;align-self:center;width:100%;padding-block:clamp(44px,7vw,86px)}
+@media(max-width:760px){
+  .scene{min-height:clamp(560px,88vh,760px)}
+  .scene .fresque{object-position:56% 28%}
+  .scene .rideau{background:
+    linear-gradient(to bottom,rgba(7,12,24,.72) 0%,rgba(7,12,24,.3) 26%,rgba(7,12,24,.82) 58%,var(--nuit) 100%)}
+  .scene .dit{align-self:end}
+}
+.ouverture h1{font-family:var(--display);font-weight:400;font-size:clamp(3.4rem,11.5vw,7.6rem);line-height:.86;letter-spacing:-.02em;margin:0 0 .22em;text-wrap:balance;display:inline-block;
+  background-image:linear-gradient(100deg,transparent 0 40%,rgba(255,255,255,.85) 50%,transparent 60% 100%),linear-gradient(170deg,#FBEBB4 0%,#E2C063 30%,#B8902A 50%,#F1D27E 68%,#9E7A1E 100%);
+  background-size:260% 100%,100% 100%;background-position:120% 0,0 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 18px rgba(0,0,0,.75));animation:reflet 2.2s ease .6s 1}
+.ouverture h1 em{font-style:italic;display:block}
+.accroche{font-size:clamp(1.02rem,1.9vw,1.38rem);margin:0 0 .85em;color:var(--ivoire);max-width:40ch;line-height:1.35;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+.accroche small{font-size:.72em;color:var(--cendre);letter-spacing:.04em}
+.accroche b{font-weight:400;letter-spacing:.02em;text-shadow:none;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
+.sous{color:var(--cendre);margin:0 0 2em;max-width:42ch;text-shadow:0 2px 12px rgba(0,0,0,.85)}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.bouton{display:inline-block;padding:.74em 1.6em;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border:1px solid var(--orange);color:var(--orange);background:rgba(7,12,24,.4)}
+.bouton:hover{background:var(--orange);color:var(--nuit);text-decoration:none}
+.bouton.plein{background:var(--orange);color:var(--nuit)}
+.bouton.plein:hover{background:transparent;color:var(--orange)}
+
+/* ---------- le projecteur ---------- */
+.cimaise{position:relative;isolation:isolate}
+.cimaise .cone{
+  position:absolute;left:50%;transform:translateX(-50%);
+  top:clamp(-40px,-3.4vw,-24px);width:122%;height:58%;pointer-events:none;z-index:0;
+  background:radial-gradient(58% 100% at 50% 0%,rgba(255,232,196,.34),rgba(255,232,196,.09) 46%,transparent 76%);
+  filter:blur(24px);mix-blend-mode:screen;opacity:.85;transition:opacity .6s ease;
+}
+
+/* ---------- applique de tableau, laiton ---------- */
+.cimaise .lampe{
+  position:absolute;left:50%;transform:translateX(-50%);
+  top:clamp(-46px,-4.2vw,-30px);width:min(70%,330px);aspect-ratio:400/72;z-index:3;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 72'%3E%3Cdefs%3E%3ClinearGradient id='o' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F7E6AE'/%3E%3Cstop offset='.42' stop-color='%23C9A227'/%3E%3Cstop offset='1' stop-color='%236E5313'/%3E%3C/linearGradient%3E%3ClinearGradient id='v' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23FFF6E2'/%3E%3Cstop offset='1' stop-color='%23FFD79A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M152 44 Q200 8 248 44' fill='none' stroke='url(%23o)' stroke-width='7' stroke-linecap='round'/%3E%3Crect x='170' y='30' width='60' height='30' rx='3' fill='url(%23o)'/%3E%3Crect x='24' y='32' width='352' height='17' rx='8.5' fill='url(%23o)'/%3E%3Crect x='40' y='40' width='320' height='6' rx='3' fill='url(%23v)'/%3E%3C/svg%3E") center/contain no-repeat;pointer-events:none;
+  filter:drop-shadow(0 7px 16px rgba(0,0,0,.72));
+}
+.cimaise .lampe::after{
+  content:"";position:absolute;left:9%;right:9%;top:56%;height:9px;
+  background:#FFE9C7;filter:blur(13px);opacity:.95;transition:filter .6s ease;
+}
+.cimaise:hover .lampe::after,.cimaise:focus-within .lampe::after{filter:blur(18px)}
+
+.cimaise .rebond{
+  position:absolute;inset:-9% -11%;z-index:0;pointer-events:none;
+  background-image:var(--toile);background-size:cover;background-position:center;
+  filter:blur(58px) saturate(1.9);opacity:.5;transform:scale(1.06);
+  transition:opacity .6s ease,filter .6s ease;
+}
+.cimaise .toile{position:relative;z-index:1}
+.cimaise .toile img{width:100%;box-shadow:0 0 0 7px #191310,0 0 0 8px rgba(255,236,206,.16),0 30px 52px rgba(0,0,0,.8),0 8px 16px rgba(0,0,0,.62)}
+.cimaise .toile::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(255,234,198,.38) 0%,rgba(255,234,198,.15) 20%,rgba(255,234,198,.03) 52%,rgba(0,0,0,.3) 100%);
+  mix-blend-mode:overlay;transition:opacity .6s ease;
+}
+
+.cimaise .flaque{
+  position:absolute;left:50%;bottom:-16px;transform:translateX(-50%);
+  width:76%;height:26px;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(255,233,199,.2),transparent 70%);
+  mix-blend-mode:screen;transition:opacity .6s ease;
+}
+.cimaise:hover .cone,.cimaise:focus-within .cone{opacity:1}
+.cimaise:hover .rebond,.cimaise:focus-within .rebond{opacity:.68;filter:blur(48px) saturate(2.1)}
+
+.ouverture .cimaise{margin-top:6px}
+.cartouche{margin-top:20px;font-size:.73rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cendre);position:relative;z-index:1}
+
+/* ---------- lexique ---------- */
+.lexique{border-block:1px solid var(--trait);background:rgba(7,12,24,.55);backdrop-filter:blur(3px)}
+.lexique .dedans{padding-block:clamp(32px,4.4vw,56px)}
+.lexique h2{font-family:var(--texte);font-size:.73rem;letter-spacing:.22em;text-transform:uppercase;color:var(--cendre);font-weight:400;margin:0 0 1.7em}
+.couleurs{display:grid;gap:clamp(18px,3vw,34px);grid-template-columns:repeat(auto-fit,minmax(185px,1fr));margin:0}
+.couleur{display:flex;gap:14px;align-items:flex-start;min-width:0}
+.pastille{width:30px;height:30px;flex:none;border-radius:50%;margin-top:3px;box-shadow:0 0 0 2px rgba(255,255,255,.12),0 0 26px currentColor}
+.couleur dt{font-family:var(--display);font-size:1.1rem;margin:0 0 .1em}
+.couleur dd{margin:0;color:var(--cendre);font-size:.87rem;line-height:1.5}
+
+/* ---------- sections ---------- */
+section{scroll-margin-top:84px}
+.bande .dedans{padding-block:clamp(56px,8vw,112px)}
+.titre{font-family:var(--display);font-weight:400;font-size:clamp(2.05rem,4.8vw,3.4rem);line-height:1.03;margin:0 0 .55em;text-wrap:balance}
+.chapeau{color:var(--cendre);margin:0 0 2.6em;max-width:56ch}
+
+.manifeste .deux{display:grid;gap:clamp(26px,4vw,60px);grid-template-columns:1fr}
+@media(min-width:880px){.manifeste .deux{grid-template-columns:1fr 1fr}}
+.manifeste blockquote{margin:0;font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.4;max-width:25ch}
+.corps{color:var(--cendre)}
+.corps p{margin:0 0 1.1em}
+
+/* ---------- le mur ---------- */
+.mur{columns:1;column-gap:clamp(22px,3vw,42px)}
+@media(min-width:640px){.mur{columns:2}}
+@media(min-width:1060px){.mur{columns:3}}
+.oeuvre{break-inside:avoid;margin:0 0 clamp(26px,3.6vw,52px);padding:0;border:0;background:none;width:100%;text-align:left;font:inherit;color:inherit;cursor:zoom-in;display:block}
+.oeuvre figure{margin:0;padding-top:54px}
+.oeuvre figcaption{padding-top:16px;display:grid;gap:3px;position:relative;z-index:1}
+.nom{font-family:var(--display);font-size:1.1rem;line-height:1.3}
+.detail{font-size:.79rem;color:var(--cendre)}
+.prix{font-size:.79rem;color:var(--orange);font-variant-numeric:tabular-nums;letter-spacing:.05em}
+.sans-titre{font-style:italic;color:var(--cendre)}
+
+
+/* ---------- grands formats ---------- */
+.grands{display:grid;gap:clamp(64px,9vw,130px);padding-top:28px}
+.grand{margin:0}
+#grands .centre{max-width:1600px}
+.grand .cimaise{width:fit-content;max-width:100%;margin-inline:auto}
+.grand .toile img{width:auto;height:auto;max-width:100%;max-height:clamp(320px,calc(100vh - 400px),920px)}
+.grand figcaption{text-align:center}
+.grand .lampe{width:min(44%,420px)}
+.grand figcaption{padding-top:20px;display:grid;gap:4px;position:relative;z-index:1}
+.grand .nom{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.2}
+.grand .detail{font-size:.82rem;color:var(--cendre);letter-spacing:.03em}
+
+
+/* ---------- catalogue complet ---------- */
+.catalogue{columns:2;column-gap:clamp(14px,2vw,26px)}
+@media(min-width:560px){.catalogue{columns:3}}
+@media(min-width:860px){.catalogue{columns:4}}
+@media(min-width:1180px){.catalogue{columns:5}}
+.fiche{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:zoom-in;display:block;width:100%;min-width:0;break-inside:avoid;margin:0 0 clamp(22px,3vw,36px)}
+.fiche .cimaise{padding-top:30px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.fiche:hover .cimaise,.fiche:focus-visible .cimaise{transform:scale(1.07);z-index:3}
+.oeuvre .cimaise{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.oeuvre:hover .cimaise{transform:scale(1.03)}
+.fiche .lampe{width:min(74%,190px);top:auto;bottom:calc(100% - 34px)}
+.fiche .cone{top:-4%;height:60%;width:120%}
+.fiche .rebond{opacity:.3;filter:blur(34px) saturate(1.8)}
+.fiche:hover .rebond{opacity:.45}
+.fiche .toile img{width:100%;height:auto;box-shadow:0 0 0 4px #141210,0 0 0 5px rgba(255,236,206,.14),0 16px 28px rgba(0,0,0,.7)}
+.fiche .num{font-size:.66rem;letter-spacing:.14em;color:var(--orange);margin:.7em 0 0;font-variant-numeric:tabular-nums;position:relative;z-index:1}
+.fiche .t{font-family:var(--display);font-size:.92rem;line-height:1.25;margin:.1em 0 0;overflow-wrap:anywhere;position:relative;z-index:1}
+
+/* ---------- séries ---------- */
+.series{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr;border-top:1px solid var(--trait)}
+@media(min-width:780px){.series{grid-template-columns:1fr 1fr}}
+.series li{border-bottom:1px solid var(--trait);min-width:0}
+@media(min-width:780px){.series li:nth-child(odd){border-right:1px solid var(--trait)}}
+.serie-lien{display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;width:100%;min-width:0;
+  background:none;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;
+  padding:1.1em clamp(12px,1.6vw,22px) 1.1em 0;transition:background .3s ease}
+@media(min-width:780px){.series li:nth-child(odd) .serie-lien{padding-right:2.2em}.series li:nth-child(even) .serie-lien{padding-left:2.2em}}
+.serie-lien:hover,.serie-lien:focus-visible{background:linear-gradient(90deg,rgba(255,233,199,.18),rgba(255,233,199,.05) 55%,transparent 90%)}
+.serie-lien .n{font-family:var(--texte);font-size:.72rem;color:var(--accent);letter-spacing:.18em;font-variant-numeric:tabular-nums;display:inline-flex;align-items:center;gap:.6em}
+.serie-lien .n::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.serie-lien .tiret{color:var(--cendre);padding:0 1em}
+.serie-lien .intitule{font-family:var(--display);font-size:clamp(1.08rem,2vw,1.45rem);min-width:0;line-height:1.25}
+.serie-lien .compte{display:block;font-family:var(--texte);font-size:.73rem;color:var(--cendre);letter-spacing:.03em;margin-top:.2em}
+.serie-lien .fleche{color:var(--accent);opacity:.4;padding-left:1em;transition:opacity .3s ease,transform .3s ease}
+.serie-lien:hover .fleche,.serie-lien:focus-visible .fleche{opacity:1;transform:translateX(5px)}
+
+/* panneau d'une série */
+dialog.panneau{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);width:100%;height:100%;max-width:100vw;max-height:100vh}
+dialog.panneau::backdrop{background:rgba(5,8,18,.94)}
+.panneau .boite{height:100%;display:flex;flex-direction:column;gap:22px;overflow:auto;
+  padding:max(20px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+.panneau .entete{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;max-width:1100px;margin-inline:auto;width:100%}
+.panneau h3{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,4vw,2.9rem);margin:0;line-height:1.05;text-wrap:balance}
+.panneau .rang{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin:0 0 .5em}
+.panneau h3::after{content:"";display:block;width:58px;height:4px;margin-top:.4em;background:var(--accent);border-radius:2px}
+.panneau .mot{color:var(--cendre);max-width:58ch;margin:.9em 0 0;line-height:1.6}
+.panneau .grille{display:grid;gap:clamp(14px,2vw,26px) clamp(18px,2.6vw,34px);grid-template-columns:repeat(auto-fill,minmax(210px,1fr));max-width:1100px;margin-inline:auto;width:100%}
+.panneau .grille figure{margin:0;padding-top:54px}
+.panneau .grille figcaption{padding-top:10px;font-size:.78rem;color:var(--cendre)}
+.panneau .grille .t{font-family:var(--display);font-size:1rem;color:var(--ivoire);display:block}
+
+/* ---------- bio ---------- */
+.bio .deux{display:grid;gap:clamp(26px,4vw,56px);grid-template-columns:1fr}
+@media(min-width:880px){.bio .deux{grid-template-columns:1.08fr .92fr}}
+.faits{list-style:none;margin:0;padding:0;border-top:1px solid var(--trait)}
+.faits li{border-bottom:1px solid var(--trait);padding:.95em 0;display:grid;gap:.15em;min-width:0}
+.faits b{font-family:var(--display);font-weight:400;font-size:1.04rem}
+.faits span{color:var(--cendre);font-size:.86rem}
+
+/* ---------- actualité ---------- */
+.actu{border-block:1px solid var(--trait);background:rgba(7,12,24,.5);backdrop-filter:blur(3px)}
+.actu .dedans{padding-block:clamp(48px,6.5vw,92px)}
+.date{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--orange);margin:0 0 1em}
+.actu h3{font-family:var(--display);font-weight:400;font-size:clamp(1.55rem,3.2vw,2.4rem);margin:0 0 .6em;line-height:1.08;text-wrap:balance}
+.fiche-vente{margin-top:1.9em;border-left:2px solid var(--rouge);padding-left:1.2em;font-size:.87rem;color:var(--cendre);display:grid;gap:.18em}
+.fiche-vente b{color:var(--ivoire);font-weight:400}
+
+/* ---------- contact ---------- */
+.contact-deux{display:grid;gap:clamp(28px,4vw,64px);grid-template-columns:1fr;align-items:center}
+@media(min-width:820px){.contact-deux{grid-template-columns:minmax(260px,.9fr) 1.1fr}}
+.dedicace{margin:0;max-width:460px;position:relative}
+.dedicace img{width:100%;height:auto;box-shadow:0 0 0 8px #F4EDE3,0 0 0 9px rgba(255,255,255,.2),0 30px 60px rgba(0,0,0,.6)}
+.dedicace figcaption{margin-top:26px;font-size:.78rem;color:var(--cendre);letter-spacing:.04em}
+.dedicace figcaption b{font-family:var(--display);font-weight:400;font-size:1rem;color:var(--ivoire);display:block}
+.adresse{font-family:var(--display);font-size:clamp(1.3rem,3.4vw,2.1rem);display:flex;align-items:center;gap:.65em;flex-wrap:wrap;margin:0 0 .6em}
+.copier{font-family:var(--texte);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--trait);color:var(--cendre);background:none;padding:.52em 1.05em;cursor:pointer}
+.copier:hover{border-color:var(--orange);color:var(--orange)}
+
+footer{border-top:1px solid var(--trait)}
+footer .dedans{padding-block:30px;display:flex;gap:16px;flex-wrap:wrap;font-size:.74rem;color:var(--cendre);justify-content:space-between}
+
+/* ---------- loupe ---------- */
+dialog.loupe{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);width:100%;height:100%;max-width:100vw;max-height:100vh}
+dialog.loupe::backdrop{background:rgba(5,8,18,.94)}
+.loupe .boite{height:100%;display:flex;flex-direction:column;gap:16px;padding:max(18px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) max(18px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+.loupe .scene{flex:1;display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr);place-items:center;position:relative;min-height:0}
+.loupe .scene img{max-height:100%;max-width:100%;width:auto;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.8);position:relative;z-index:1}
+.loupe .scene .rebond{position:absolute;inset:4% 8%;background-image:var(--toile);background-size:cover;background-position:center;filter:blur(70px) saturate(2);opacity:.5;z-index:0}
+.loupe .pied{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+.loupe .fermer,.panneau .fermer{background:none;border:1px solid var(--trait);color:var(--cendre);font:inherit;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;padding:.55em 1.2em;cursor:pointer;flex:none}
+.panneau .fermer:hover{border-color:var(--orange);color:var(--orange)}
+.panneau .grille .cimaise{cursor:pointer}
+.loupe .fermer:hover{border-color:var(--orange);color:var(--orange)}
+
+
+/* avant l'allumage : la toile dort dans la pénombre, la lampe est éteinte */
+html.js .cimaise:not(.allume) .lampe::after,html.js .cimaise:not(.allume) .cone,html.js .cimaise:not(.allume) .rebond,html.js .cimaise:not(.allume) .flaque{opacity:0}
+html.js .cimaise:not(.allume) .toile img{filter:brightness(.55) saturate(.85)}
+.cimaise .lampe::after,.cimaise .cone,.cimaise .rebond,.cimaise .flaque{transition:opacity 1.1s ease var(--retard,0s),filter .6s ease}
+.cimaise .toile img{transition:filter 1.2s ease var(--retard,0s)}
+.apparait{opacity:.38;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.apparait.vu{opacity:1;transform:none}
+.scene canvas.coeurs{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+canvas.trace{position:fixed;inset:0;width:100%;height:100%;z-index:31;pointer-events:none}
+.palette-doigt{position:fixed;left:0;top:0;width:58px;height:58px;z-index:32;pointer-events:none;opacity:0;transform-origin:6px 2px;
+  transition:opacity .35s ease;filter:drop-shadow(0 6px 10px rgba(0,0,0,.5));will-change:transform}
+.palette-doigt.visible{opacity:1;transition:opacity .12s ease}
+dialog canvas.trace{position:absolute;z-index:5}
+
+/* ---------- chez vous : la toile à l'échelle ---------- */
+.loupe .outils{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.choix-int{display:inline-flex;border:1px solid var(--trait)}
+.choix-int button{background:none;border:0;color:var(--cendre);font:inherit;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.55em 1em;cursor:pointer;border-right:1px solid var(--trait)}
+.choix-int button:last-child{border-right:0}
+.choix-int button.actif{color:var(--orange);background:rgba(245,166,35,.1)}
+.loupe .fermer.actif{border-color:var(--orange);color:var(--orange)}
+.loupe .fermer.gardien{color:var(--orange);border-color:rgba(245,166,35,.5)}
+.loupe .fermer.gardien:hover{background:var(--orange);color:var(--nuit)}
+.salon{position:absolute;inset:0;display:none;overflow:hidden;background:#0a0f1c center/cover no-repeat}
+.loupe.chez-vous .salon{display:block}
+.loupe.chez-vous .scene>img,.loupe.chez-vous .scene>.rebond{visibility:hidden}
+.salon .cimaise{position:absolute}
+.salon .deco{position:absolute;pointer-events:none}
+.salon .deco.objet{isolation:isolate;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.salon .deco.objet img{display:block;width:100%;height:100%;mix-blend-mode:multiply}
+.salon .deco.nat,.salon .deco.ombre{position:absolute;display:block;max-width:none;max-height:none;box-shadow:none;object-fit:fill;z-index:auto}
+.salon .deco.objet img{position:static;max-width:none;max-height:none;box-shadow:none}
+.salon .deco.ombre{filter:brightness(0) blur(3px);opacity:.3;transform:translate(3px,6px)}
+.salon .cimaise .toile img{width:100%;height:100%;object-fit:cover;box-shadow:0 0 0 3px #1a1511,0 0 0 4px rgba(255,236,206,.18),0 22px 40px rgba(0,0,0,.55),0 6px 12px rgba(0,0,0,.4)}
+.salon .cimaise .toile{height:100%}
+.salon .cimaise .lampe{top:auto;bottom:calc(100% - 4px);width:min(72%,360px)}
+.salon .cimaise .cone{top:-6%;height:70%;width:130%}
+.salon .cimaise .rebond{opacity:.18;inset:-6% -8%}
+.salon .cimaise:hover .rebond{opacity:.26}
+.salon .mesure{position:absolute;height:0;border-left:1px solid rgba(255,255,255,.7);border-right:1px solid rgba(255,255,255,.7)}
+.salon .mesure::before{content:"";position:absolute;left:0;right:0;top:0;border-top:1px solid rgba(255,255,255,.7)}
+.salon .mesure span{position:absolute;left:50%;transform:translateX(-50%);top:.5em;font-size:.68rem;letter-spacing:.14em;color:#fff;white-space:nowrap;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.salon .legende{position:absolute;left:3%;top:3%;font-size:.88rem;color:#fff;letter-spacing:.02em;max-width:40ch;line-height:1.5;
+  background:rgba(7,12,24,.88);backdrop-filter:blur(8px);padding:.95em 1.15em;border-left:3px solid #D4AF37;box-shadow:0 14px 34px rgba(0,0,0,.5)}
+.salon .legende b{font-family:var(--display);font-weight:400;font-size:1.3rem;display:block;margin-bottom:.3em;line-height:1.15;
+  background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.salon .legende i{display:block;color:#EAE0D0;font-style:normal;margin-top:.4em}
+.salon .legende.droite{left:auto;right:3%}
+@media(max-width:700px){.salon .legende{top:auto;bottom:3%;left:3%;right:3%;max-width:none;font-size:.8rem;padding:.7em .9em}}
+
+/* ---------- gene a la copie ---------- */
+.cimaise img,.scene .fresque,.panneau img,.loupe img{
+  -webkit-user-drag:none;user-select:none;-webkit-touch-callout:none;pointer-events:none;
+}
+.cimaise .garde{position:absolute;inset:0;z-index:5;background:transparent}
+.scene .garde{position:absolute;inset:0;z-index:1;background:transparent}   /* au-dessus de la photo, sous le texte et les boutons */
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="fond" aria-hidden="true">
+  <div class="toile-fond"></div>
+  <div class="halo"></div>
+  <div class="net"></div>
+  <div class="voile"></div>
+  <div class="torche"></div>
+</div>
+
+<div class="page">
+<canvas class="trace" id="trace" aria-hidden="true"></canvas>
+
+<div class="barre gouttiere">
+  <div class="dedans centre">
+    <a class="marque" href="#accueil"><img src="embleme.png" alt="" width="30" height="32"><span>Isa Sator</span></a>
+    <nav>
+      <a href="#accueil" class="lien-accueil">Accueil</a>
+      <a href="#artiste">L'artiste</a>
+      <a href="#grands">Grands formats</a>
+      <a href="#oeuvres">Œuvres</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#series">Séries</a>
+      <a href="#atelier">L'atelier</a>
+      <a href="#actualite">Actualité</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<header class="ouverture" data-page="accueil" id="accueil">
+  <div class="scene">
+    <img class="fresque" src="isa-atelier.jpg" alt="Isa Sator accroupie dans son atelier, au milieu de ses flacons de couleur, devant une grande fresque" width="1266" height="755">
+    <div class="rideau"></div>
+    <canvas class="coeurs" id="coeurs" aria-hidden="true"></canvas>
+    <span class="garde"></span>
+    <div class="dit gouttiere">
+      <div class="centre">
+        <h1>Isa<em>Sator</em></h1>
+        <p class="accroche"><b>Artiste cotée à l'international</b> <small>(Artprice)</small><br>Coloriste plasticienne visionnaire</p>
+        <p class="sous">Vingt-quatre œuvres adjugées en ventes publiques depuis 2005. Exposée à Paris, New York, Dubaï, Londres et Houston. Couleur, énergie &amp; talisman, pour des âmes fortes.</p>
+        <div class="actions">
+          <a class="bouton plein" href="#oeuvres">Voir les œuvres</a>
+          <a class="bouton" href="mailto:isasator@gmail.com?subject=Contact%20depuis%20le%20site">Écrire à l'atelier</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="jalons" data-page="accueil" aria-label="Jalons du parcours">
+  <div class="file"><ul><li>Cotée Artprice : 24 adjudications en ventes publiques</li><li><b>2003</b> Nouméa, première exposition</li><li><b>2004</b> Salon des artistes français, Paris</li><li><b>2005</b> Médaille d’or et prix spécial du jury, Fréjus</li><li><b>2005</b> Première vente aux enchères, Aguttes</li><li><b>2006</b> Dubaï et Courchevel</li><li><b>2007</b> National Arts Club, New York</li><li><b>2009</b> Carrousel du Louvre, Paris</li><li><b>2014</b> Brixton, Londres</li><li><b>2016</b> Art Élysées, Paris</li><li><b>2017</b> Orangerie du Sénat, Paris</li><li><b>2017</b> Houston, Washington, Raleigh</li><li><b>2019</b> Gallery des Artistes, New York</li><li><b>2026</b> Les Vierges Polaires, Nuoro, Sardaigne</li><li>Galeries Jyb’Art et JPHT, Paris</li><li>Référencée au dictionnaire Delarge</li><li>Droits gérés par l’ADAGP</li></ul><ul aria-hidden="true"><li>Cotée Artprice : 24 adjudications en ventes publiques</li><li><b>2003</b> Nouméa, première exposition</li><li><b>2004</b> Salon des artistes français, Paris</li><li><b>2005</b> Médaille d’or et prix spécial du jury, Fréjus</li><li><b>2005</b> Première vente aux enchères, Aguttes</li><li><b>2006</b> Dubaï et Courchevel</li><li><b>2007</b> National Arts Club, New York</li><li><b>2009</b> Carrousel du Louvre, Paris</li><li><b>2014</b> Brixton, Londres</li><li><b>2016</b> Art Élysées, Paris</li><li><b>2017</b> Orangerie du Sénat, Paris</li><li><b>2017</b> Houston, Washington, Raleigh</li><li><b>2019</b> Gallery des Artistes, New York</li><li><b>2026</b> Les Vierges Polaires, Nuoro, Sardaigne</li><li>Galeries Jyb’Art et JPHT, Paris</li><li>Référencée au dictionnaire Delarge</li><li>Droits gérés par l’ADAGP</li></ul></div>
+</div>
+
+<section class="bande artiste gouttiere" id="artiste" data-page="accueil" aria-labelledby="t-art">
+  <div class="dedans centre">
+    <div class="deux">
+      <figure class="portrait">
+        <img src="isa-portrait-nb.jpg" alt="Isa Sator, portrait en noir et blanc, le regard vers l'objectif" width="986" height="1114" loading="lazy">
+        <figcaption>Portrait © Grégory Herpe</figcaption>
+      </figure>
+      <div>
+        <p class="surtitre">L'artiste</p>
+        <h2 class="titre" id="t-art">La couleur est la parole de mon inspiration</h2>
+        <blockquote>« La plus grande partie de mon travail s'effectue la nuit. Dans le tissage de mes rêves, je reçois. Et à mon réveil, la peinture automatique se déclenche. »</blockquote>
+        <div class="corps lisible">
+          <p>Elle m'accompagne partout et sans elle, je pâlis. Je lui donne des correspondances émotionnelles, vibrationnelles et symboliques. C'est assez magique. Je ne cherche pas à comprendre. J'aime ce dialogue avec l'irrationnel, il est comme un compagnon.</p>
+          <p>Mes toiles sont des symboles de vie et d'espoir. Face à l'adversité, je réponds par la force et la joie de vivre et d'être. Il se trouve que j'ai une furieuse envie d'exister envers et contre tout.</p>
+          <p>Peintre coloriste autodidacte, revenue de Nouvelle-Calédonie avec la couleur pour langue, Isa Sator expose depuis 2003 à Paris, New York, Dubaï, Londres, Houston et, en 2026, en Sardaigne. Cotée sur Artprice, qui répertorie vingt-quatre de ses œuvres adjugées en ventes publiques, de 2005 chez Aguttes à 2026, elle est représentée par la galerie Jyb'Art (Levallois-Perret) et la Galerie JPHT (Paris), référencée au dictionnaire des arts plastiques Delarge, et ses droits sont gérés par l'ADAGP. La presse sarde la décrit comme « un Picasso du XXI<sup>e</sup> siècle ».</p>
+        </div>
+        <blockquote class="mot-critique">« Isa Sator est peintre, absolument peintre. [...] Elle s'impose depuis quelques années comme une peintre majeure de la scène parisienne. »<cite>Jean-Louis Poitevin, critique d'art, fiche Artprice</cite></blockquote>
+        <ul class="presse">
+          <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" rel="noopener"><b>Entretien</b><span>Carly Aguilera, South Art Dealer Gallery, New York</span></a></li>
+          <li><a href="https://www.youtube.com/watch?v=wCfDITSZXts" rel="noopener"><b>Entretien</b><span>Jean-Philippe Théron, exposition ADN Sator, Galerie JPHT, Paris</span></a></li>
+          <li><a href="http://www.carnetdart.com/isa-sator/" rel="noopener"><b>Critique</b><span>Jean-Paul Gavard-Perret, exposition au Théâtre Déjazet, Paris</span></a></li>
+          <li><a href="https://lepetitjournal.com/new-york/isa-sator-expose-new-york-son-art-haut-en-couleur-267291" rel="noopener"><b>Article</b><span>Le Petit Journal New York : « Isa Sator expose à New York son art haut en couleur »</span></a></li>
+          <li><a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener"><b>Cote</b><span>Sa fiche Artprice : 24 résultats d'adjudication, biographie, galeries</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="chiffres">
+      <li><b>24</b><span>œuvres adjugées en ventes publiques, de 2005 à 2026</span><i>Artprice</i></li>
+      <li><b>5</b><span>pays d'exposition : France, États-Unis, Émirats arabes unis, Royaume-Uni, Italie</span></li>
+      <li><b>2</b><span>galeries : Jyb'Art à Levallois-Perret, Galerie JPHT à Paris</span></li>
+      <li><b>2005</b><span>médaille d'or à Fréjus, médailles de bronze à Paris (Académie de Lutèce) et à Verdun</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="lexique gouttiere" data-page="accueil" aria-labelledby="t-lex">
+  <div class="dedans centre">
+    <h2 id="t-lex">Le lexique d'Isa Sator</h2>
+    <dl class="couleurs">
+      <div class="couleur"><span class="pastille" style="background:#E03A1E;color:#E03A1E"></span><div><dt>Rouge</dt><dd>La passion.</dd></div></div>
+      <div class="couleur"><span class="pastille" style="background:#5FB8A3;color:#5FB8A3"></span><div><dt>Vert d'eau</dt><dd>Le pouvoir secret de la femme.</dd></div></div>
+      <div class="couleur"><span class="pastille" style="background:#2B4FC8;color:#2B4FC8"></span><div><dt>Bleu marine</dt><dd>La douleur.</dd></div></div>
+      <div class="couleur"><span class="pastille" style="background:#F5A623;color:#F5A623"></span><div><dt>Jaune</dt><dd>La fulgurance.</dd></div></div>
+    </dl>
+  </div>
+</section>
+
+<section class="bande gouttiere" id="portail" data-page="accueil" aria-labelledby="t-por">
+  <div class="dedans centre">
+    <h2 class="titre" id="t-por">Entrer dans l'atelier</h2>
+    <div class="portes">
+      <a class="porte" href="#grands" style="--img:url('grand/TB35.jpg')"><b>Les grands formats</b><i>Six toiles en pleine largeur</i></a>
+      <a class="porte" href="#oeuvres" style="--img:url('oeuvres/la-loba.jpg')"><b>Œuvres disponibles</b><i>Vingt-deux pièces uniques, sous leurs appliques</i></a>
+      <a class="porte" href="#series" style="--img:url('catalogue/TB41.jpg')"><b>Les séries</b><i>Onze histoires, de New York à Nouméa</i></a>
+      <a class="porte" href="#catalogue" style="--img:url('catalogue/TB10.jpg')"><b>Le catalogue</b><i>Les quatre-vingt-deux toiles répertoriées</i></a>
+      <a class="porte" href="#atelier" style="--img:url('isa-atelier.jpg')"><b>L'atelier</b><i>Parcours, expositions, ce qu'ils ont écrit</i></a>
+      <a class="porte" href="#actualite" style="--img:url('actu-magic-city.jpg')"><b>Actualités</b><i>Vente à Paris, Magic City, exposition en Sardaigne</i></a>
+      <a class="porte" href="#contact" style="--img:url('isa-dedicace.jpg')"><b>Écrire à l'atelier</b><i>Acquérir, visiter, exposer</i></a>
+    </div>
+  </div>
+</section>
+
+<section class="bande gouttiere" id="grands" data-page="grands" aria-labelledby="t-grands">
+  <div class="dedans centre">
+    <h2 class="titre" id="t-grands">Les grands formats</h2>
+    <p class="chapeau">Six toiles où la surface compte autant que le motif. Présentées ici en pleine largeur, à la taille qu'elles réclament.</p>
+    <div class="grands">
+      <figure class="grand apparait">
+        <div class="cimaise" style="--toile:url('grand/TB35.jpg')">
+          <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
+          <div class="toile"><img loading="lazy" src="grand/TB35.jpg" alt="Le Manteau de Gaïa" width="1600" height="900"></div>
+        </div>
+        <figcaption><span class="nom">Le Manteau de Gaïa</span><span class="detail">TB35 — acrylique sur toile — 175 × 145 cm</span></figcaption>
+      </figure>
+      <figure class="grand apparait">
+        <div class="cimaise" style="--toile:url('grand/TB59.jpg')">
+          <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
+          <div class="toile"><img loading="lazy" src="grand/TB59.jpg" alt="La Distance du Sator" width="1600" height="900"></div>
+        </div>
+        <figcaption><span class="nom">La Distance du Sator</span><span class="detail">TB59 — acrylique sur toile — 175 × 145 cm</span></figcaption>
+      </figure>
+      <figure class="grand apparait">
+        <div class="cimaise" style="--toile:url('grand/TB81.jpg')">
+          <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
+          <div class="toile"><img loading="lazy" src="grand/TB81.jpg" alt="Rotation de Marcel" width="1600" height="900"></div>
+        </div>
+        <figcaption><span class="nom">Rotation de Marcel</span><span class="detail">TB81 — acrylique sur toile — 175 × 145 cm</span></figcaption>
+      </figure>
+      <figure class="grand apparait">
+        <div class="cimaise" style="--toile:url('grand/TB82.jpg')">
+          <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
+          <div class="toile"><img loading="lazy" src="grand/TB82.jpg" alt="Hiéroglyphes et palimpsestes spatiaux" width="1600" height="900"></div>
+        </div>
+        <figcaption><span class="nom">Hiéroglyphes et palimpsestes spatiaux</span><span class="detail">TB82 — acrylique sur toile — 175 × 145 cm</span></figcaption>
+      </figure>
+      <figure class="grand apparait">
+        <div class="cimaise" style="--toile:url('grand/TB64.jpg')">
+          <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
+          <div class="toile"><img loading="lazy" src="grand/TB64.jpg" alt="La Licorne" width="1103" height="1600"></div>
+        </div>
+        <figcaption><span class="nom">La Licorne</span><span class="detail">TB64 — acrylique sur toile — 130 × 90 cm</span></figcaption>
+      </figure>
+      <figure class="grand apparait">
+        <div class="cimaise" style="--toile:url('grand/TB71.jpg')">
+          <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
+          <div class="toile"><img loading="lazy" src="grand/TB71.jpg" alt="Le Grec" width="1600" height="1599"></div>
+        </div>
+        <figcaption><span class="nom">Le Grec</span><span class="detail">TB71 — acrylique sur toile — 40 × 40 cm</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="bande gouttiere" id="oeuvres" data-page="oeuvres" aria-labelledby="t-oeu">
+  <div class="dedans centre">
+    <h2 class="titre" id="t-oeu">Œuvres disponibles</h2>
+    <p class="chapeau">Vingt-deux pièces uniques, acrylique et technique mixte sur toile. Chaque toile cherche son gardien : écrivez à l'atelier pour l'acquérir ou venir la voir.</p>
+    <div class="mur" id="mur"></div>
+  </div>
+</section>
+
+<section class="bande gouttiere" id="series" data-page="series" aria-labelledby="t-ser">
+  <div class="dedans centre">
+    <h2 class="titre" id="t-ser">Les séries</h2>
+    <p class="chapeau">« Je travaille par série. Je présente une vingtaine d'œuvres par série, où je raconte une histoire merveilleuse qui vous apportera un talisman contre la peur et pour la joie. »</p>
+    <ol class="series" id="liste-series"></ol>
+  </div>
+</section>
+
+<section class="bande gouttiere" id="catalogue" data-page="catalogue" aria-labelledby="t-cat">
+  <div class="dedans centre">
+    <h2 class="titre" id="t-cat">Le catalogue</h2>
+    <p class="chapeau">Les quatre-vingt-deux toiles répertoriées, numérotées de TB01 à TB82. Cliquez pour agrandir.</p>
+    <div class="catalogue" id="catalogue-grille"></div>
+  </div>
+</section>
+
+<section class="bande bio gouttiere" id="atelier" data-page="atelier" aria-labelledby="t-bio">
+  <div class="dedans centre">
+    <h2 class="titre" id="t-bio">Peintre avant de savoir lire</h2>
+    <div class="deux">
+      <div class="corps lisible">
+        <p>Isa Sator peint depuis qu'elle est tombée du berceau : elle a su peindre avant de savoir lire et écrire. Devenue avocate pour « enterrer sa folie sous l'habit de la femme irréprochable », elle a laissé cette dernière exploser en vol.</p>
+        <p>Partie découvrir d'autres espaces-temps de l'autre côté du Pacifique pendant près de dix ans, elle revient de Nouvelle-Calédonie en peintre, entièrement autodidacte.</p>
+        <p>Son travail célèbre la féminité, la force intérieure et le mystère du vivant. Chaque œuvre est une pièce unique, pensée comme un bijou de caractère.</p>
+      </div>
+      <ul class="faits">
+        <li><b>New York, 2007</b><span>Première exposition américaine, National Arts Club, Gramercy Park.</span></li>
+        <li><b>Galerie JPHT, Paris</b><span>Exposition sur le thème ADN Sator.</span></li>
+        <li><b>Théâtre Déjazet, Paris</b><span>Exposition, critique de Jean-Paul Gavard-Perret.</span></li>
+        <li><b>South Art Dealer Gallery</b><span>Entretien avec Carly Aguilera, New York.</span></li>
+      </ul>
+    </div>
+    <div class="parcours">
+      <div>
+        <h3>Expositions, de Nouméa à New York</h3>
+        <ul class="expos">
+        <li><b>2003</b><span><em>Nouméa</em>, Nouvelle-Calédonie, première exposition</span></li>
+        <li><b>2004</b><span><em>Salon des artistes français</em>, Paris</span></li>
+        <li><b>2005</b><span><em>Grand concours international de Fréjus</em>, médaille d’or et prix spécial du jury ; Victoires 2005 de la Fédération nationale de la culture française, abstraction lyrique ; médailles de bronze de l’Académie internationale de Lutèce et du Salon international des créateurs du siècle, Verdun</span></li>
+        <li><b>2006</b><span><em>Dubaï, Courchevel, Port-Marly</em>, et Galerie Mona Lisa, Paris</span></li>
+        <li><b>2007</b><span><em>National Arts Club, New York</em>, puis Montpellier, Paris, La Guerche</span></li>
+        <li><b>2008</b><span><em>Bastille et péniche</em>, Paris</span></li>
+        <li><b>2009</b><span><em>Carrousel du Louvre</em>, avec RFO ; Versailles</span></li>
+        <li><b>2010</b><span><em>Virgin Champs-Élysées</em>, et Barclays, Paris</span></li>
+        <li><b>2011</b><span><em>Galerie 66, Vertbois</em>, Paris</span></li>
+        <li><b>2013</b><span><em>Manart</em>, Paris</span></li>
+        <li><b>2014</b><span><em>Reims</em>, et Brixton, Londres</span></li>
+        <li><b>2015</b><span><em>Galerie JPHT</em>, Paris</span></li>
+        <li><b>2016</b><span><em>Art Élysées</em>, Beaurepaire, Felix, Montreuil</span></li>
+        <li><b>2017</b><span><em>Les Grandes Cocottes, Orangerie du Sénat, Paris</em>, avec Jyb’Art ; puis Houston, Washington, Raleigh</span></li>
+        <li><b>2018</b><span><em>Portraits de famille de Bécassine, Jyb’Art, Paris</em> ; Dampierre ; Galerie JPHT, Paris</span></li>
+        <li><b>2019</b><span><em>Trois femmes de Paris à New York</em>, Jyb’Art, Paris, et Gallery des Artistes, New York</span></li>
+        <li><b>2020</b><span><em>Armageddon</em>, Jyb’Art, Paris</span></li>
+        <li><b>2026</b><span><em>Les Vierges Polaires</em>, Casa Vacanze Ortobene Arte, Nuoro, Sardaigne</span></li>
+        </ul>
+        <p class="sources">D'après la fiche <a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener">Artprice</a>, la notice <a href="https://fr.wikipedia.org/wiki/Isa_Sator" rel="noopener">Isa Sator</a> de Wikipédia et le dictionnaire des arts plastiques <a href="https://www.ledelarge.fr/" rel="noopener">Delarge</a>. Œuvres présentes sur Artnet et Artsper.</p>
+        <h3 style="margin-top:1.6em">Ventes publiques</h3>
+        <p class="sources" style="margin:0 0 .4em">Artprice répertorie vingt-quatre adjudications, toutes en France, de 2005 à 2026. Parmi elles :</p>
+        <ul class="ventes">
+          <li><b>2005</b><span><em>Le Templier</em>, Aguttes, première vente répertoriée</span></li>
+          <li><b>2007</b><span><em>Super Zaza</em></span></li>
+          <li><b>2015</b><span><em>Replay</em></span></li>
+          <li><b>2020</b><span><em>11 Septembre</em></span></li>
+          <li><b>2026</b><span><em>Jument ailée</em>, de la série Armageddon</span></li>
+          <li><b>2026</b><span><em>Smart Barby on a VIP</em>, Blanchet &amp; Associés, Paris</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ils ont écrit</h3>
+        <div class="voix">
+          <blockquote>« Un Picasso du XXI<sup>e</sup> siècle, comme on pourrait sans doute la définir : cette peintre coloriste ne cesse de nous montrer son talent explosif à travers toutes les expositions personnelles auxquelles elle participe. »<cite>Vittorio E. Pisu, Casa Vacanze Ortobene Arte News, Nuoro, décembre 2025 (traduit de l'italien)</cite></blockquote>
+          <blockquote>« Une artiste flamboyante, qui expose déjà non seulement à Paris, à l'Orangerie du Sénat et dans d'autres galeries, mais aussi à New York, à Miami, à Tokyo, et en ce moment en Russie, où elle a été invitée. »<cite>Gonaria Nevina Lai, commissaire de l'exposition Les Vierges Polaires, Nuoro, 2025 (traduit de l'italien)</cite></blockquote>
+          <blockquote>« Isa Sator est peintre, absolument peintre. L'apparente légèreté de certains de ses thèmes récents, les Cocottes ou Loïe Fuller, les Mille et une Nuits ou l'exubérance de la nature, ne doit pas occulter que son approche de la peinture et son regard profondément féminin prennent en charge des questions essentielles qui agitent ce monde. [...] C'est ainsi qu'elle s'impose depuis quelques années comme une peintre majeure de la scène parisienne. »<cite>Jean-Louis Poitevin, critique d'art, texte repris sur sa fiche Artprice</cite></blockquote>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="actu gouttiere" id="actualite" data-page="actualite" aria-labelledby="t-act">
+  <div class="dedans centre">
+    <h2 class="titre" id="t-act">Actualités</h2>
+    <p class="chapeau">Ventes, expositions et presse. Cliquez sur une image pour l'agrandir.</p>
+    <ol class="journal">
+      <li class="entree">
+        <p class="date">7 octobre 2026</p>
+        <div>
+          <h3>Smart Barby on a VIP passe en vente</h3>
+          <div class="cimaise vignette portrait-toile" role="button" tabindex="0" style="--toile:url('actu-smart-barby.jpg')" data-doc="actu-smart-barby.jpg" data-titre="Smart Barby on a VIP" data-det="2007, acrylique sur toile, 60 × 120 cm" data-oeuvre="1">
+            <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
+            <div class="toile"><img src="actu-smart-barby.jpg" alt="Smart Barby on a VIP : une femme à la chevelure d'or renversée dans une coupe de champagne, un caniche noir à ses pieds, sur fond rouge" width="334" height="654" loading="lazy"></div>
+          </div>
+          <div class="corps lisible">
+            <p>Elle a connu New York en 2007. Dix-neuf ans plus tard, ma Smart Barby quitte l'atelier pour la vente Blanchet &amp; Associés, à Paris. Elle cherche son gardien.</p>
+            <p>Assise dans une coupe de champagne, elle renverse la tête, ferme les yeux et laisse tomber sa chevelure d'or. Un caniche noir monte la garde à ses pieds. Tout autour : fête, feu et paillettes.</p>
+            <p>J'ai peint les Smart Barbies en 2007, bien avant que le cinéma ne s'empare de la poupée. J'ai pris le symbole le plus caricatural du féminin et j'en ai fait autre chose : des femmes multiples, executive women, cantatrices, grandes prêtresses, bimbos souveraines. Aucune ne se laisse mettre en boîte.</p>
+          </div>
+          <div class="fiche-vente">
+            <span><b>Smart Barby on a VIP</b>, 2007 — acrylique sur toile, 60 × 120 cm, signée en bas à droite</span>
+            <span>Vente Blanchet &amp; Associés du 14 octobre 2026 — 97 boulevard Malesherbes, 75008 Paris</span>
+            <span>Lot n° 320. Le résultat figure désormais parmi les vingt-quatre adjudications répertoriées par Artprice.</span>
+          </div>
+        </div>
+      </li>
+      <li class="entree">
+        <p class="date">5 février 2026</p>
+        <div>
+          <h3>« Magic City », nouvelle toile</h3>
+          <div class="cimaise vignette" role="button" tabindex="0" style="--toile:url('actu-magic-city.jpg')" data-doc="actu-magic-city.jpg" data-titre="Magic City" data-det="Toile présentée le 5 février 2026" data-oeuvre="1">
+            <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
+            <div class="toile"><img src="actu-magic-city.jpg" alt="Magic City : couples en haut-de-forme et robes turquoise dansant sous une pluie de rayures roses et d'éclats d'or" width="1482" height="757" loading="lazy"></div>
+          </div>
+          <p class="corps lisible">Des couples en haut-de-forme et robes d'eau dansent sous une pluie de rayures roses et d'éclats d'or : la ville magique selon Isa Sator.</p>
+        </div>
+      </li>
+      <li class="entree">
+        <p class="date">17 décembre 2025</p>
+        <div>
+          <h3>« Les Vierges Polaires », exposition personnelle à Nuoro, Sardaigne</h3>
+          <div class="corps lisible">
+            <p>Du 3 au 31 janvier 2026, la Casa Vacanze Ortobene Arte (Via Monte Jaca 47 bis, 08100 Nuoro) accueille une exposition personnelle d'Isa Sator, sous le commissariat de Gonaria Nevina Lai, avec la participation de l'association Sardonia. Vernissage le samedi 3 janvier 2026 à 18 h.</p>
+            <p>Le journal de la galerie lui consacre deux pages : « un Picasso du XXI<sup>e</sup> siècle, comme on pourrait sans doute la définir », écrit Vittorio E. Pisu ; « une artiste flamboyante, qui expose déjà non seulement à Paris, à l'Orangerie du Sénat et dans d'autres galeries, mais aussi à New York, à Miami, à Tokyo, et en ce moment en Russie, où elle a été invitée », ajoute Gonaria Nevina Lai.</p>
+          </div>
+          <div class="planches">
+            <button class="vignette" type="button" data-doc="actu-affiche-nuoro.jpg" data-titre="Les Vierges Polaires, affiche" data-det="Casa Vacanze Ortobene Arte, Nuoro, du 3 au 31 janvier 2026"><img src="actu-affiche-nuoro.jpg" alt="Affiche de l'exposition Les Vierges Polaires à Nuoro" width="1008" height="1514" loading="lazy"><small>L'affiche</small></button>
+            <button class="vignette" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, page 1" data-det="Nuoro, décembre 2025, textes de Gonaria Nevina Lai et Vittorio E. Pisu"><img src="actu-presse-1.jpg" alt="Première page du journal Casa Vacanze Ortobene Arte News consacrée à Isa Sator" width="1070" height="1514" loading="lazy"><small>Le journal, page 1</small></button>
+            <button class="vignette" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, page 2" data-det="Nuoro, décembre 2025, suite de l'article de Vittorio E. Pisu"><img src="actu-presse-2.jpg" alt="Deuxième page du journal, avec une toile d'Isa Sator et le programme de l'exposition" width="1070" height="1514" loading="lazy"><small>Le journal, page 2</small></button>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="bande gouttiere" id="contact" data-page="contact" aria-labelledby="t-con">
+  <div class="dedans centre">
+    <div class="contact-deux">
+      <figure class="dedicace">
+        <img src="isa-dedicace.jpg" alt="Isa Sator, chapeau à fleurs et gants de dentelle, dédicace son livre Les Grandes Cocottes devant ses toiles" width="1180" height="1514" loading="lazy">
+        <figcaption><b>Isa Sator en dédicace</b>Les Grandes Cocottes, le livre de la série.</figcaption>
+      </figure>
+      <div>
+        <h2 class="titre" id="t-con"><a href="mailto:isasator@gmail.com?subject=Contact%20depuis%20le%20site" style="text-decoration:none">Écrire à l'atelier</a></h2>
+        <p class="chapeau">Pour acquérir une œuvre, organiser une visite d'atelier ou proposer une exposition.</p>
+        <p class="adresse"><a id="courriel" href="mailto:isasator@gmail.com">isasator@gmail.com</a> <button class="copier" id="btn-copier" type="button">Copier</button></p>
+        <p class="chapeau" style="margin-bottom:0">Instagram : <a href="https://www.instagram.com/isa.sator/">@isa.sator</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="gouttiere">
+  <div class="dedans centre">
+    <span>© Isa Sator — toutes les œuvres reproduites sont protégées.</span>
+    <span>Portrait © Grégory Herpe</span>
+  </div>
+</footer>
+
+</div>
+
+<dialog class="panneau" id="panneau">
+  <canvas class="trace" aria-hidden="true"></canvas>
+  <div class="boite">
+    <div class="entete">
+      <div>
+        <p class="rang" id="pan-rang"></p>
+        <h3 id="pan-nom"></h3>
+        <p class="mot" id="pan-mot"></p>
+      </div>
+      <button class="fermer" id="pan-fermer" type="button">Fermer</button>
+    </div>
+    <div class="grille" id="pan-grille"></div>
+  </div>
+</dialog>
+
+<dialog class="loupe" id="loupe">
+  <canvas class="trace" aria-hidden="true"></canvas>
+  <div class="boite">
+    <div class="scene" id="scene">
+      <span class="rebond" id="loupe-rebond"></span>
+      <img id="loupe-img" src="" alt="">
+      <div class="salon" id="salon" aria-hidden="true"></div>
+    </div>
+    <div class="pied">
+      <div>
+        <p class="nom" id="loupe-nom" style="margin:0"></p>
+        <p class="detail" id="loupe-detail" style="margin:.25em 0 0"></p>
+        <p class="prix" id="loupe-prix" style="margin:.3em 0 0"></p>
+      </div>
+      <div class="outils">
+        <button class="fermer" id="btn-salon" type="button" hidden>Chez vous, à l'échelle</button>
+        <span class="choix-int" id="choix-int" hidden><button type="button" data-int="salon">Salon</button><button type="button" data-int="chambre">Chambre</button><button type="button" data-int="loft">Loft</button></span>
+        <a class="fermer gardien" id="btn-gardien" href="mailto:isasator@gmail.com">Cette toile cherche son gardien</a>
+        <button class="fermer" id="loupe-fermer" type="button">Fermer</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+document.documentElement.classList.add("js");
+/* slug, titre, année, prix €, technique, hauteur cm, largeur cm, largeur px, hauteur px */
+const OEUVRES = [
+["la-loba","La loba",2008,9500,"Acrylique sur toile",190,160,386,600],
+["adn-sator","ADN Sator",2016,9500,"Acrylique sur toile",160,130,566,600],
+["les-archi-drolesse","Les Archi-Drôlesse",2017,8500,"Acrylique sur toile",160,130,481,600],
+["hotel-du-cul-tourne","L'hôtel du cul tourné",2013,8500,"Acrylique sur toile",160,130,402,600],
+["ubus-le-rebus","Ubus le rébus",2013,8500,"Acrylique sur toile",160,130,409,600],
+["meme-longueur-donde","Plus sur la même longueur d'onde",2013,8500,"Acrylique sur toile",160,130,430,600],
+["erectus","Erectus",2013,8500,"Acrylique sur toile",160,130,405,600],
+["rien-ne-va-plus","Rien ne va plus",2013,8500,"Acrylique sur toile",160,130,400,600],
+["jardin-deden","Le jardin d'Eden",2013,8500,"Acrylique sur toile",160,130,402,600],
+["guns-and-roses","Guns and Roses",2009,8400,"Acrylique sur toile",175,160,600,446],
+["distance-terre-soleil","Distance terre soleil",2011,7680,"Acrylique sur toile",175,160,600,296],
+["yvette-guilbert","Yvette Guilbert",2017,5880,"Acrylique sur toile",110,95,343,600],
+["le-bain","Le bain",2016,5280,"Acrylique sur toile",130,90,600,406],
+["gaby-deslys","Gaby Deslys",2017,4800,"Acrylique sur toile",100,100,600,589],
+["patti-smith","Patti Smith",2009,4320,"Acrylique sur toile",120,60,351,600],
+["cochon-hurlant","Le cochon hurlant",2009,4000,"Acrylique sur toile",130,90,507,600],
+["baiser-givre","Le Baiser Givré",2003,3880,"Technique mixte sur toile",92,66,421,600],
+["women-leopard","Women leopard, baie des Citrons",2002,11300,"Technique mixte sur toile sur châssis",null,null,600,340],
+["come-8","Come 8",2001,4300,"Technique mixte et acrylique sur carton",null,null,328,600],
+["sans-titre-2003-a",null,2003,8880,null,null,null,600,307],
+["sans-titre-2003-b",null,2003,3880,null,null,null,422,600],
+["sans-titre-2001",null,2001,8880,null,null,null,600,304]
+];
+
+const GRANDS=[35,59,64,71,81,82];
+/* dimensions connues (hauteur, largeur en cm) pour « chez vous » */
+const DIMS={35:[175,145],59:[175,145],81:[175,145],82:[175,145],64:[130,90],71:[40,40],
+  19:[160,130],21:[175,160],23:[160,130],28:[160,130],31:[175,160],33:[100,100],36:[160,130],40:[110,95],44:[160,130],51:[92,66],77:[190,160],79:[160,130],80:[160,130]};
+const CAT={1:[1,"La Païva",350,347],2:[2,"AC-DC",350,233],3:[3,"Smart Barby Strong",213,302],4:[4,"Armageddon",350,234],5:[5,"U2",350,200],6:[6,"Women Leopard Baie des Citrons Noumea",350,198],7:[7,"La Forêt magique",350,182],8:[8,"La Jument ailée",263,350],9:[9,"Autoportrait d'Èze",290,350],10:[10,"Le Meilleur des mondes",344,350],11:[11,"Le Prince gourmand",350,217],12:[12,"Les Bouilleurs de crue",290,350],13:[13,"La Capucine",264,350],14:[14,"La Montre molle",350,225],15:[15,"Les Hippocampes",350,262],16:[16,"La Guerre des Roses",244,350],17:[17,"Le Harem",350,237],18:[18,"Blanche d'Antigny",350,341],19:[19,"Erectus",233,350],20:[20,"Les Remerciements de Bécassine",189,314],21:[21,"Guns and Roses",350,263],22:[22,"Nini Pattes en l'air",280,350],23:[23,"Le Jardin d'Eden",233,350],24:[24,"Satisfaction",233,350],25:[25,"Le Génie",277,350],26:[26,"L'Été, le temps des cerises",263,350],27:[27,"Les Torchons spatiaux",350,225],28:[28,"Ubus les Rébus",233,350],29:[29,"Vérité Sensualité, les Trois Grâces à Nouméa",350,197],30:[30,"Le Lièvre et la Tortue",350,226],31:[31,"La Distance Terre-Soleil",350,225],32:[32,"Thé pour tous",280,350],33:[33,"Gaby Deslys",350,350],34:[34,"En allant au marché",265,350],35:[35,"Le Manteau de Gaïa",760,428],36:[36,"L'Hôtel du Cul tourné",281,350],37:[37,"Balade au Bois de Boulogne",277,350],38:[38,"Les 4 Lascars",263,350],39:[39,"Apollonie Sabatier",350,349],40:[40,"Yvette Guilbert",248,350],41:[41,"Smart Barby on a Phone",287,350],42:[42,"Galipette",282,350],43:[43,"La Belle du Cotentin",295,350],44:[44,"Rien ne va plus",233,350],45:[45,"Bécassine à Pigalle",213,212],46:[46,"Le Cerf",263,305],47:[47,"La Fée Électricité, Loïe Fuller",282,350],48:[48,"Smart Barby Rose Bonbon",217,271],49:[49,"Le Cœur a ses raisons",273,350],50:[50,"Le Velouté",350,344],51:[51,"Le Baiser givré",246,350],52:[52,"Fanfan",291,350],53:[53,"Les Généaux",350,263],54:[54,"Le Baiser maure",246,350],55:[55,"Smart Barby Carnegie Hall",161,318],56:[56,"Smart Barby on a Phone II",159,314],57:[57,"Le Japonais",350,247],58:[58,"Smart Barby Cannes ou la Tropézienne",159,314],59:[59,"La Distance du Sator",760,428],60:[60,"Les Vaches normandes",350,242],61:[61,"Phaéton, le char du fils du Soleil par-dessus tête",244,350],62:[62,"La Chute 1",263,350],63:[63,"Les Chiens de l'Enfer",349,350],64:[64,"La Licorne",524,760],65:[65,"La Versaillaise",246,350],66:[66,"Dragon celte",240,350],67:[67,"La Victoire de Samothrace",263,350],68:[68,"Autoportrait Nouméa",254,350],69:[69,"Rize",213,266],70:[70,"L'Avenir de l'Homme",241,350],71:[71,"Le Grec",760,759],72:[72,"La Chute de Satan",245,350],73:[73,"La Chute de Satan 2",222,350],74:[74,"La Sirène bleue",331,263],75:[75,"Hélène",253,350],76:[76,"Le Dragon de l'Apocalypse",350,333],77:[77,"La Loba",263,350],78:[78,"Bicéphale",350,263],79:[79,"Les Archidrôlesses",280,350],80:[80,"Plus sur la même longueur d'onde",233,350],81:[81,"Rotation de Marcel",760,428],82:[82,"Hiéroglyphes et palimpsestes spatiaux",760,428]};
+
+/* nom, mot d'Isa, numeros TB, fiabilite, exposition */
+const SERIES=[
+["Les Arlésiennes swinging","",[],"","Galerie Saint-Ravy, Montpellier, avril-mai 2007","orange"],
+["Smart Barbies","J'ai pris le symbole le plus caricatural du féminin et j'en ai fait autre chose : des femmes multiples, executive women, cantatrices, grandes prêtresses, bimbos souveraines. Aucune ne se laisse mettre en boîte.",[3,41,48,55,56,58],"sure","National Arts Club, Gramercy Park, New York, septembre 2007","rouge"],
+["Les Copines","",[],"","","eau"],
+["African Queens","",[],"","","orange"],
+["Rock'n'Roll at all","",[2,5,21,24],"sure","Virgin Megastore Champs-Élysées et Banque Barclays, Paris, 2010","bleu"],
+["L'Amour","",[26,49,51,54],"a-confirmer","Galerie Manart, Paris, avril-mai 2013","rouge"],
+["Les Normands","",[43,60],"sure","","eau"],
+["ADN Sator","Les distances et les formules entrent dans la toile.",[10,27,31,35,59,81,82],"a-confirmer","Galerie JPHT, Paris, octobre-novembre 2015, puis Espace Beaurepaire, 2016","bleu"],
+["Les Grandes Cocottes","Les grandes horizontales du Paris du XIXe siècle, rendues à leur superbe.",[1,18,22,33,39,40,47],"sure","Orangerie du Sénat, Jardin du Luxembourg, Paris, 2017","rouge"],
+["Collection Nouvelle-Calédonie, La Sirène de Passy","Rapportée des années passées de l'autre côté du Pacifique, où elle s'est formée au Centre d'Art de Nouméa.",[6,29,68,74],"a-confirmer","","eau"],
+["Bécassine rock'n'roll","",[20,45],"sure","Centre culturel La Salorgne, La Guerche-de-Bretagne, mars 2007 ; Portraits de famille de Bécassine, Galerie JPHT, Paris, 2018","orange"]
+];
+
+const euros = n => n.toLocaleString("fr-FR") + " €";
+const echappe = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+
+function detail(o){
+  const b=[String(o[2])];
+  if(o[4]) b.push(o[4].toLowerCase());
+  if(o[5]&&o[6]) b.push(o[5]+" × "+o[6]+" cm");
+  return b.join(" — ");
+}
+
+const mur=document.getElementById("mur");
+OEUVRES.forEach((o,i)=>{
+  const [slug,titre,,prix,,,,lpx,hpx]=o;
+  const b=document.createElement("button");
+  b.type="button"; b.className="oeuvre apparait"; b.dataset.i=i;
+  const nom=titre?echappe(titre):'<span class="sans-titre">Sans titre</span>';
+  b.innerHTML=
+    '<figure><div class="cimaise" style="--toile:url(\'oeuvres/'+slug+'.jpg\')">'+
+      '<span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
+      '<div class="toile"><img loading="lazy" src="oeuvres/'+slug+'.jpg" alt="'+
+        (titre?echappe(titre):"Œuvre sans titre")+'" width="'+lpx+'" height="'+hpx+'"></div>'+
+      '<span class="flaque"></span>'+
+    '</div>'+
+    '<figcaption><span class="nom">'+nom+'</span>'+
+    '<span class="detail">'+detail(o)+'</span>'+
+    '<span class="prix">'+euros(prix)+'</span></figcaption></figure>';
+  mur.appendChild(b);
+});
+
+const sl=document.getElementById("liste-series");
+SERIES.forEach((s,i)=>{
+  const [nom,,tb,,,coul]=s;
+  const compte = tb.length ? (tb.length>1 ? tb.length+" toiles" : "1 toile") : "à documenter avec Isa";
+  const li=document.createElement("li");
+  li.style.setProperty("--accent","var(--"+(coul||"orange")+")");
+  li.innerHTML='<button type="button" class="serie-lien" data-i="'+i+'">'+
+    '<span class="n">'+String(i+1).padStart(2,"0")+'</span>'+
+    '<span class="tiret" aria-hidden="true">\u2014</span>'+
+    '<span class="intitule">'+echappe(nom)+'<span class="compte">'+compte+'</span></span>'+
+    '<span class="fleche" aria-hidden="true">\u2192</span></button>';
+  sl.appendChild(li);
+});
+
+const panneau=document.getElementById("panneau");
+sl.addEventListener("click",e=>{
+  const b=e.target.closest(".serie-lien"); if(!b) return;
+  const i=+b.dataset.i, [nom,mot,tb,fiab,expo,coul]=SERIES[i];
+  panneau.style.setProperty("--accent","var(--"+(coul||"orange")+")");
+  document.getElementById("pan-rang").textContent = expo ? expo : "Série "+String(i+1).padStart(2,"0");
+  document.getElementById("pan-nom").textContent=nom;
+  let m = mot || "";
+  if(!tb.length) m = (m?m+" ":"") + "Les toiles de cette série ne sont pas encore reliées au catalogue. Écrivez à l'atelier pour les découvrir.";
+  else if(fiab==="a-confirmer") m = (m?m+" ":"") + "Rattachement proposé, à confirmer avec Isa.";
+  if(tb.length) m = (m?m+" ":"") + "Touchez une toile pour la voir chez vous, à l'échelle.";
+  document.getElementById("pan-mot").textContent = m;
+  const g=document.getElementById("pan-grille");
+  g.innerHTML = tb.map(n=>{
+    const o=CAT[n]; if(!o) return "";
+    return '<figure><div class="cimaise" style="--toile:url(\'catalogue/TB'+String(n).padStart(2,"0")+'.jpg\')">'+
+      '<span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
+      '<div class="toile"><img loading="lazy" src="catalogue/TB'+String(n).padStart(2,"0")+'.jpg" alt="'+echappe(o[1])+'" width="'+o[2]+'" height="'+o[3]+'"></div>'+
+      '</div><figcaption><span class="t">'+echappe(o[1])+'</span>TB'+String(n).padStart(2,"0")+'</figcaption></figure>';
+  }).join("");
+  if(panneau.showModal) panneau.showModal();
+  surveille(g);
+});
+document.getElementById("pan-fermer").addEventListener("click",()=>panneau.close());
+panneau.addEventListener("click",e=>{if(e.target===panneau) panneau.close();});
+
+const loupe=document.getElementById("loupe");
+const salon=document.getElementById("salon");
+const btnSalon=document.getElementById("btn-salon");
+const btnGardien=document.getElementById("btn-gardien");
+let courante=null;   /* {src, titre, h_cm, l_cm} */
+
+/* « Chez vous » : la toile posée à sa vraie taille dans un intérieur photographié de face.
+   Chaque photo porte son échelle (pixels par mètre), mesurée sur la hauteur sous plafond et recoupée
+   sur un meuble (tête de lit de 160, fauteuil club). Pour chaque intérieur : un emplacement préféré
+   (au-dessus du canapé ou du lit) et, quand il existe, un pan de mur libre pour les grandes toiles. */
+const INTERIEURS={
+  salon:{nom:"Salon",legende:"dans un salon, au-dessus d'un canapé",
+    paysage:{src:"interieur-salon-paysage.jpg",w:2000,h:1125,k:311.5,sol:905,
+      dessus:{x:480,basPref:0.97,basMin:0.80,hautMax:2.48,largMax:2.4},
+      libre:{x:1480,largMax:3.0,centreY:1.6,hautMax:2.48},
+      deco:[{x:115,y:695,w:141,h:140,img:"deco/coussin.png",c:0,a:1,omb:1},{x:700,y:695,w:141,h:140,img:"deco/coussin.png",c:1,a:1,omb:1},{x:525,y:673,w:70,h:92,img:"deco/vase-tiges.png",nat:1},{x:526,y:765,w:69,h:93,img:"deco/vase.png",c:1,a:1,omb:1},{x:1064,y:564,w:130,h:170,img:"deco/vase-tiges.png",nat:1},{x:1067,y:734,w:126,h:171,img:"deco/vase.png",c:1,a:1,omb:1}]},
+    portrait:{src:"interieur-salon-portrait.jpg",w:1125,h:2015,k:461,sol:1490,
+      dessus:{x:370,basPref:0.92,basMin:0.75,hautMax:2.48,largMax:2.2},
+      deco:[{x:505,y:1193,w:209,h:207,img:"deco/coussin.png",c:1,a:1,omb:1},{x:350,y:1193,w:209,h:207,img:"deco/coussin.png",c:0,a:1,omb:1},{x:832,y:984,w:193,h:252,img:"deco/vase-tiges.png",nat:1},{x:836,y:1236,w:187,h:254,img:"deco/vase.png",c:1,a:1,omb:1}]}},
+  chambre:{nom:"Chambre",legende:"dans une chambre, au-dessus d'un lit de 160",
+    paysage:{src:"interieur-chambre.jpg",w:2000,h:1116,k:307.7,sol:914,
+      dessus:{x:1007,basPref:1.22,basMin:1.05,hautMax:2.48,largMax:2.4},
+      libre:{x:275,largMax:1.38,centreY:1.5,hautMax:2.48},
+      deco:[{x:716,y:616,w:567,h:154,img:"deco/chambre-tete.png",c:0,a:1.0},{x:925,y:662,w:139,h:138,img:"deco/coussin.png",c:1,a:1,omb:1},{x:700,y:797,w:277,h:178,img:"deco/plaid.png",c:0,a:1,omb:1}]},
+    portrait:{src:"interieur-chambre-portrait.jpg",w:1125,h:2015,k:300,sol:1430,
+      dessus:{x:565,basPref:1.35,basMin:1.18,hautMax:4.1,largMax:2.6},
+      deco:[{x:284,y:1107,w:558,h:185,img:"deco/chambrep-tete.png",c:0,a:1.0},{x:497,y:1180,w:136,h:135,img:"deco/coussin.png",c:1,a:1,omb:1},{x:420,y:1471,w:270,h:173,img:"deco/plaid.png",c:0,a:1,omb:1}]}},
+  loft:{nom:"Loft",legende:"dans un loft à haut plafond, mur de briques",
+    paysage:{src:"interieur-loft-paysage.jpg",w:2000,h:1125,k:218,sol:1075,
+      libre:{x:960,largMax:3.9,centreY:2.7,hautMax:4.3},
+      deco:[{x:1423,y:262,w:184,h:139,img:"deco/loft-abatjour.png",c:0,a:1.0},{x:191,y:840,w:173,h:155,img:"deco/loft-pot.png",c:1,a:1.0}]},
+    portrait:{src:"interieur-loft-portrait.jpg",w:1125,h:2015,k:420,sol:1440,
+      libre:{x:410,largMax:1.5,centreY:2.08,hautMax:3.2},
+      deco:[{x:733,y:690,w:169,h:116,img:"deco/loftp-abatjour.png",c:0,a:1.0},{x:3,y:1255,w:154,h:149,img:"deco/loftp-pot.png",c:1,a:1.0}]}}
+};
+/* les deux couleurs principales de chaque toile, pour teinter coussins, tête de lit, pot : calculées sur les 104 images */
+const PALS={"adn-sator":["#2e9ce5","#f7120c"],"baiser-givre":["#deb24a","#6d5344"],"cochon-hurlant":["#cf0005","#217216"],"come-8":["#c0567e","#6e3e4d"],"distance-terre-soleil":["#fd5d0d","#03b9ac"],"erectus":["#ca0607","#6e2611"],"gaby-deslys":["#732136","#a5665e"],"guns-and-roses":["#8e1108","#936131"],"hotel-du-cul-tourne":["#7d030a","#18792a"],"jardin-deden":["#b50607","#0b413f"],"la-loba":["#21aa75","#865a41"],"le-bain":["#7e0e44","#fda403"],"les-archi-drolesse":["#781514","#8a554b"],"meme-longueur-donde":["#b68621","#611228"],"patti-smith":["#553725","#553725"],"rien-ne-va-plus":["#a50137","#743d60"],"sans-titre-2001":["#d1c128","#212a82"],"sans-titre-2003-a":["#e3c91d","#bb9268"],"sans-titre-2003-b":["#e0ab23","#9a5031"],"ubus-le-rebus":["#b10703","#08702a"],"women-leopard":["#362f5b","#872841"],"yvette-guilbert":["#a74833","#c5841c"],"TB01":["#769fb9","#769fb9"],"TB02":["#db6631","#e1b05c"],"TB03":["#d68b3d","#bf3031"],"TB04":["#9f1419","#c47054"],"TB05":["#d45e31","#654337"],"TB06":["#352e5b","#852840"],"TB07":["#249d4b","#2c5339"],"TB08":["#315bce","#7e372f"],"TB09":["#d0354b","#d6b237"],"TB10":["#e4201f","#137955"],"TB11":["#d51744","#c86f36"],"TB12":["#5fac34","#254089"],"TB13":["#338033","#ce4320"],"TB14":["#2f7384","#b1923a"],"TB15":["#9e3940","#387764"],"TB16":["#6d1d17","#f3d43e"],"TB17":["#f7a707","#6b263a"],"TB18":["#ac5441","#e1c668"],"TB19":["#c43419","#80170b"],"TB20":["#d47a19","#944e37"],"TB21":["#a00e08","#9e8d64"],"TB22":["#85231e","#c4963d"],"TB23":["#a00f0c","#0d413c"],"TB24":["#ac6505","#298337"],"TB25":["#1ac1e9","#41e878"],"TB26":["#be7921","#804b32"],"TB27":["#c44671","#dba96c"],"TB28":["#9c1a07","#156d33"],"TB29":["#4461bb","#844053"],"TB30":["#2e448a","#bd9572"],"TB31":["#fc7c41","#64b2ae"],"TB32":["#ee3429","#a5943b"],"TB33":["#9a6960","#692e38"],"TB34":["#77ba3a","#44a169"],"TB35":["#266ea8","#e6bd25"],"TB36":["#8d0303","#ef4208"],"TB37":["#0fa185","#bb5639"],"TB38":["#b3463e","#8f5767"],"TB39":["#d85c33","#d85c33"],"TB40":["#9b3014","#daa833"],"TB41":["#0e6381","#f59413"],"TB42":["#4b8b93","#77b8bf"],"TB43":["#951a16","#2a772f"],"TB44":["#762542","#b4271f"],"TB45":["#88050e","#925350"],"TB46":["#948b5a","#576842"],"TB47":["#7a535a","#6c858e"],"TB48":["#d84a30","#822637"],"TB49":["#b68349","#7e683c"],"TB50":["#010147","#fed005"],"TB51":["#deb24b","#6d5343"],"TB52":["#b74d50","#532936"],"TB53":["#458f57","#63473e"],"TB54":["#e2ab21","#985131"],"TB55":["#d83925","#30486b"],"TB56":["#d5402d","#7d2929"],"TB57":["#e5bf6e","#6e5323"],"TB58":["#eeb834","#bd7266"],"TB59":["#989f09","#c4cb02"],"TB60":["#57951c","#805633"],"TB61":["#dd3c2b","#37559c"],"TB62":["#8b0e1a","#c93a44"],"TB63":["#d55a43","#522d2c"],"TB64":["#db4b3e","#4b569f"],"TB65":["#8d4c3d","#8d4c3d"],"TB66":["#d75123","#cd9c7d"],"TB67":["#944c4e","#944c4e"],"TB68":["#755a53","#c8beb9"],"TB69":["#142d76","#532023"],"TB70":["#d64b38","#ddbe81"],"TB71":["#e4bd28","#272892"],"TB72":["#b83d39","#db6663"],"TB73":["#884633","#423024"],"TB74":["#393260","#393260"],"TB75":["#6f4c15","#b2873f"],"TB76":["#d94f3b","#773733"],"TB77":["#b49156","#8a7241"],"TB78":["#458f57","#63473e"],"TB79":["#88332c","#a97a67"],"TB80":["#a8873d","#531927"],"TB81":["#2da459","#c95a4a"],"TB82":["#a8224b","#a8224b"]};
+/* dominante de chaque toile : c = chaude, f = froide, n = mélangée ; calculée sur les 104 images */
+const TEINTES={"adn-sator":"f","baiser-givre":"c","cochon-hurlant":"c","come-8":"c","distance-terre-soleil":"n","erectus":"c","gaby-deslys":"c","guns-and-roses":"c","hotel-du-cul-tourne":"c","jardin-deden":"c","la-loba":"n","le-bain":"c","les-archi-drolesse":"c","meme-longueur-donde":"c","patti-smith":"c","rien-ne-va-plus":"c","sans-titre-2001":"c","sans-titre-2003-a":"c","sans-titre-2003-b":"c","ubus-le-rebus":"n","women-leopard":"f","yvette-guilbert":"c","TB01":"f","TB02":"c","TB03":"c","TB04":"c","TB05":"c","TB06":"f","TB07":"n","TB08":"f","TB09":"c","TB10":"f","TB11":"c","TB12":"n","TB13":"c","TB14":"f","TB15":"n","TB16":"c","TB17":"c","TB18":"c","TB19":"c","TB20":"c","TB21":"c","TB22":"c","TB23":"c","TB24":"c","TB25":"n","TB26":"c","TB27":"c","TB28":"n","TB29":"c","TB30":"f","TB31":"c","TB32":"c","TB33":"c","TB34":"n","TB35":"f","TB36":"c","TB37":"f","TB38":"c","TB39":"c","TB40":"c","TB41":"c","TB42":"f","TB43":"n","TB44":"c","TB45":"c","TB46":"n","TB47":"n","TB48":"c","TB49":"c","TB50":"c","TB51":"c","TB52":"c","TB53":"n","TB54":"c","TB55":"c","TB56":"c","TB57":"c","TB58":"c","TB59":"c","TB60":"n","TB61":"c","TB62":"c","TB63":"c","TB64":"f","TB65":"c","TB66":"c","TB67":"c","TB68":"n","TB69":"f","TB70":"c","TB71":"c","TB72":"c","TB73":"c","TB74":"n","TB75":"c","TB76":"c","TB77":"c","TB78":"n","TB79":"c","TB80":"c","TB81":"n","TB82":"c"};
+let interieurChoisi=null;        /* choix du visiteur, sinon automatique */
+
+function place(I,hm,lm){
+  /* renvoie {x, bas, note} en mètres, ou null si rien ne convient vraiment */
+  const d=I.dessus, l=I.libre;
+  if(d&&lm<=d.largMax&&d.basPref+hm<=d.hautMax) return {x:d.x,bas:d.basPref,ok:true};
+  if(d&&lm<=d.largMax&&d.basMin+hm<=d.hautMax) return {x:d.x,bas:d.basMin,ok:true};
+  if(l&&lm<=l.largMax&&hm<=l.hautMax-0.4){ const bas=Math.max(0.4, Math.min(l.centreY-hm/2, l.hautMax-hm)); return {x:l.x,bas,ok:true,note:"Accrochée sur le pan de mur libre."}; }
+  if(d) return {x:d.x,bas:Math.max(0.3,d.hautMax-hm),ok:false,note:"Toile plus haute que le mur disponible ici : posée devant le meuble pour donner l'échelle."};
+  return {x:l.x,bas:Math.max(0.3,l.hautMax-hm),ok:false,note:"Toile plus haute que le mur disponible ici."};
+}
+function choisitInterieur(hm,lm,portrait){
+  if(interieurChoisi) return interieurChoisi;
+  const t=TEINTES[courante.cle]||"n";
+  const pref = t==="f" ? ["chambre","salon","loft"] : t==="c" ? ["salon","loft","chambre"] : ["loft","salon","chambre"];
+  for(const n of pref){ const I=INTERIEURS[n]; const V=(portrait&&I.portrait)?I.portrait:I.paysage; if(place(V,hm,lm).ok) return n; }
+  return pref[0];
+}
+function dessineSalon(){
+  if(!courante||!courante.h||!courante.l) return;
+  const r=salon.getBoundingClientRect(), portrait=r.height>r.width;
+  const hm=courante.h/100, lm=courante.l/100;
+  const nomI=choisitInterieur(hm,lm,portrait), I=INTERIEURS[nomI], V=(portrait&&I.portrait)?I.portrait:I.paysage;
+  document.querySelectorAll("#choix-int button").forEach(b=>b.classList.toggle("actif",b.dataset.int===nomI));
+  const sc=Math.max(r.width/V.w, r.height/V.h);                  /* cadrage « cover » de la photo */
+  const ox=(r.width-V.w*sc)/2, oy=(r.height-V.h*sc)/2;
+  const ppm=V.k*sc;                                                /* pixels par mètre à l'écran */
+  const yDe=m=>oy+(V.sol-m*V.k)*sc;                                /* hauteur au-dessus du sol -> y écran */
+  const P=place(V,hm,lm);
+  const L=lm*ppm, H=hm*ppm, x=ox+P.x*sc-L/2, top=yDe(P.bas+hm);
+  salon.style.backgroundImage="url('"+V.src+"')";
+  const pal=PALS[courante.cle]||["#C8321A","#F5A623"];
+  /* objets recolorables : un masque exact de l'objet (PNG gris + alpha), teinté dans ses propres ombres */
+  const geo=d=>'left:'+(ox+d.x*sc).toFixed(1)+'px;top:'+(oy+d.y*sc).toFixed(1)+'px;width:'+(d.w*sc).toFixed(1)+'px;height:'+(d.h*sc).toFixed(1)+'px;';
+  const deco=(V.deco||[]).map(d=>{
+    if(d.nat) return '<img class="deco nat" style="'+geo(d)+'" src="'+d.img+'" alt="">';
+    const ombre=d.omb?'<img class="deco ombre" style="'+geo(d)+'" src="'+d.img+'" alt="">':'';
+    return ombre+'<span class="deco objet" style="'+geo(d)+'background:'+pal[d.c]+';opacity:'+d.a+';-webkit-mask-image:url(\''+d.img+'\');mask-image:url(\''+d.img+'\')"><img src="'+d.img+'" alt=""></span>';
+  }).join("");
+  salon.innerHTML=deco+
+    '<div class="cimaise allume" style="left:'+x.toFixed(1)+'px;top:'+top.toFixed(1)+'px;width:'+L.toFixed(1)+'px;height:'+H.toFixed(1)+'px;--toile:url(\''+courante.src+'\')">'+
+      '<span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
+      '<div class="toile"><img src="'+courante.src+'" alt=""></div><span class="flaque"></span></div>'+
+    '<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.l+' cm</span></div>'+
+    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>Chez vous, à l\'échelle</b>'+courante.h+' × '+courante.l+' cm, '+I.legende+', sous son applique. Le décor prend les couleurs de la toile.'+(courante.estime?'<i>Dimensions non renseignées : présentée au format indicatif de 100 cm.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
+}
+document.getElementById("choix-int").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-int]"); if(!b) return;
+  interieurChoisi=b.dataset.int; dessineSalon();
+});
+btnSalon.addEventListener("click",()=>{
+  const actif=loupe.classList.toggle("chez-vous");
+  btnSalon.classList.toggle("actif",actif);
+  btnSalon.textContent = actif ? "Voir la toile seule" : "Chez vous, à l'échelle";
+  document.getElementById("choix-int").hidden=!actif;
+  if(actif) dessineSalon();
+});
+addEventListener("resize",()=>{ if(loupe.classList.contains("chez-vous")) dessineSalon(); });
+
+function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
+  courante={src,titre,h,l,estime:!!estime,cle:src.replace(/^.*\//,"").replace(/\.jpg$/,"")};
+  interieurChoisi=null; document.getElementById("choix-int").hidden=true;
+  document.getElementById("loupe-img").src=src;
+  document.getElementById("loupe-img").alt=titre||"Œuvre sans titre";
+  document.getElementById("loupe-rebond").style.setProperty("--toile","url('"+src+"')");
+  document.getElementById("loupe-nom").textContent=titre||"Sans titre";
+  document.getElementById("loupe-detail").textContent=det;
+  document.getElementById("loupe-prix").textContent=prix;
+  loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); btnSalon.textContent="Chez vous, à l'échelle";
+  btnSalon.hidden = !(h&&l);
+  btnGardien.href="mailto:isasator@gmail.com?subject="+encodeURIComponent("Mon intérêt pour votre tableau « "+(titre||"Sans titre")+" »"+(ref?" ("+ref+")":""))+
+    "&body="+encodeURIComponent("Bonjour Isa,\n\nJe vous écris au sujet de la toile « "+(titre||"Sans titre")+" »"+(ref?" ("+ref+")":"")+".\n\n");
+  if(loupe.showModal) loupe.showModal();
+}
+mur.addEventListener("click",e=>{
+  const b=e.target.closest(".oeuvre"); if(!b) return;
+  const o=OEUVRES[+b.dataset.i];
+  ouvreLoupe("oeuvres/"+o[0]+".jpg", o[1], detail(o), euros(o[3]), o[5], o[6], o[2]);
+});
+document.getElementById("loupe-fermer").addEventListener("click",()=>loupe.close());
+/* actualités : affiches et pages de presse s'ouvrent dans la loupe, sans bouton d'achat ; les toiles gardent le leur */
+document.querySelectorAll(".vignette[data-doc]").forEach(v=>{
+  const ouvre=()=>{ ouvreLoupe(v.dataset.doc, v.dataset.titre, v.dataset.det, "", 0, 0, ""); if(!v.dataset.oeuvre) loupe.classList.add("doc"); };
+  v.addEventListener("click",ouvre);
+  v.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } });
+});
+loupe.addEventListener("click",e=>{if(e.target===loupe) loupe.close();});
+
+/* ---------- les lampes s'allument quand on arrive devant la toile ---------- */
+const reduit=matchMedia("(prefers-reduced-motion:reduce)").matches;
+const obsAllume=new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("allume","vu"); if(e.target.classList.contains("titre")&&!reduit) e.target.classList.add("dore"); obsAllume.unobserve(e.target); } });
+},{rootMargin:"0px 0px 14% 0px",threshold:.04});
+function surveille(racine){
+  (racine||document).querySelectorAll(".cimaise:not(.allume)").forEach((c,i)=>{
+    c.style.setProperty("--retard",reduit?"0s":((i%4)*.12)+"s");
+    obsAllume.observe(c); accroche3D(c);
+  });
+  (racine||document).querySelectorAll(".apparait:not(.vu)").forEach(c=>obsAllume.observe(c));
+  (racine||document).querySelectorAll(".titre:not(.vu)").forEach(c=>obsAllume.observe(c));
+}
+function accroche3D(){}
+surveille(document);
+
+/* ---------- la toile du fond défile un peu moins vite que la page (profondeur) ---------- */
+if(!reduit){
+  const fondEl=document.querySelector(".fond"); let attente=false;
+  addEventListener("scroll",()=>{ if(attente) return; attente=true;
+    requestAnimationFrame(()=>{ fondEl.style.setProperty("--defile",Math.min(80,scrollY*0.05).toFixed(1)); attente=false; }); },{passive:true});
+}
+
+/* ---------- l'ouverture : cœurs et gouttes de pigment s'échappent d'Isa ---------- */
+(function(){
+  const cv=document.getElementById("coeurs"), fresque=document.querySelector(".scene .fresque"), scene=document.querySelector(".scene");
+  if(!cv||reduit) return;
+  const ctx=cv.getContext("2d"); const TEINTES=["#E8402A","#F7B043","#3D62E0","#6CC9B3","#F07A98","#FFD86E"];
+  let parts=[], L=0, H=0, visible=true, dernier=0, reste=0;
+  function taille(){ const r=scene.getBoundingClientRect(); L=cv.width=Math.round(r.width*devicePixelRatio); H=cv.height=Math.round(r.height*devicePixelRatio); }
+  /* position du cœur d'Isa dans la photo (52 % / 47 %), reportée dans le cadrage « cover » */
+  function origine(){
+    const r=scene.getBoundingClientRect(), nw=1266, nh=755, k=Math.max(r.width/nw, r.height/nh);
+    const pw=nw*k, ph=nh*k, posx=parseFloat(getComputedStyle(fresque).objectPosition.split(" ")[0])/100, posy=parseFloat(getComputedStyle(fresque).objectPosition.split(" ")[1])/100;
+    const ox=(r.width-pw)*posx, oy=(r.height-ph)*posy;
+    return [(ox+0.505*pw)*devicePixelRatio, (oy+0.6*ph)*devicePixelRatio];
+  }
+  function coeur(x,y,t,rot,a,c){
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rot); ctx.scale(t,t); ctx.globalAlpha=a;
+    ctx.beginPath(); ctx.moveTo(0,.35); ctx.bezierCurveTo(-.9,-.4,-.45,-1.15,0,-.55); ctx.bezierCurveTo(.45,-1.15,.9,-.4,0,.35); ctx.closePath();
+    /* halo doré, cœur de couleur, liseré d'or, reflet */
+    ctx.shadowColor="rgba(255,214,120,.95)"; ctx.shadowBlur=14/t*devicePixelRatio; ctx.fillStyle=c; ctx.fill();
+    ctx.shadowBlur=0; ctx.lineWidth=0.11; ctx.strokeStyle="rgba(255,226,150,.95)"; ctx.stroke();
+    ctx.globalAlpha=a*.55; ctx.fillStyle="#fff"; ctx.beginPath(); ctx.ellipse(-.3,-.55,.16,.1,-.6,0,6.283); ctx.fill();
+    ctx.restore();
+  }
+  function goutte(x,y,t,a,c){ ctx.save(); ctx.globalAlpha=a; ctx.fillStyle=c; ctx.beginPath(); ctx.arc(x,y,t,0,6.283); ctx.fill(); ctx.restore(); }
+  function nait(force){
+    const [ox,oy]=origine(), d=devicePixelRatio, coeurOuGoutte=Math.random()<.8;
+    parts.push({x:ox+(Math.random()-.5)*40*d, y:oy+(Math.random()-.5)*24*d, vx:(Math.random()-.5)*(force?1.6:.7)*d, vy:-(0.55+Math.random()*1.1)*(force?1.5:1)*d,
+      t:(coeurOuGoutte?12+Math.random()*22:2.5+Math.random()*4)*d, rot:(Math.random()-.5)*.8, vr:(Math.random()-.5)*.03, age:0, vie:3.6+Math.random()*3.2,
+      c:TEINTES[Math.floor(Math.random()*TEINTES.length)], k:coeurOuGoutte, ph:Math.random()*6.28});
+  }
+  function boucle(ts){
+    requestAnimationFrame(boucle);
+    if(!visible) return;
+    const dt=Math.min(.05,(ts-dernier)/1000||.016); dernier=ts;
+    reste+=dt*1.6; while(reste>1){ nait(false); reste-=1; }
+    ctx.clearRect(0,0,L,H);
+    parts=parts.filter(p=>p.age<p.vie);
+    for(const p of parts){
+      p.age+=dt; p.x+=p.vx+Math.sin(p.age*1.7+p.ph)*.35*devicePixelRatio; p.y+=p.vy; p.vy*=0.998; p.rot+=p.vr;
+      const f=p.age/p.vie, a=f<.12?f/.12:1-Math.max(0,(f-.55)/.45);
+      if(p.k) coeur(p.x,p.y,p.t*(0.7+0.3*Math.sin(p.age*3)),p.rot,a*.9,p.c); else goutte(p.x,p.y,p.t,a*.8,p.c);
+    }
+  }
+  taille(); addEventListener("resize",taille);
+  for(let i=0;i<26;i++) nait(true);                     /* l'envol d'arrivée */
+  new IntersectionObserver(es=>{visible=es[0].isIntersecting;}).observe(scene);
+  requestAnimationFrame(boucle);
+})();
+
+/* ---------- sur écran tactile, la palette apparaît sous le doigt et le suit ---------- */
+(function(){
+  if(!matchMedia("(hover:none) and (pointer:coarse)").matches) return;
+  const p=document.createElement("img"); p.src="palette-96.png"; p.alt=""; p.className="palette-doigt"; p.setAttribute("aria-hidden","true"); document.body.appendChild(p);
+  let cache=null;
+  function pose(t){ p.style.transform="translate("+(t.clientX-6)+"px,"+(t.clientY-2)+"px)"; }
+  addEventListener("touchstart",e=>{ clearTimeout(cache); pose(e.touches[0]); p.classList.add("visible"); },{passive:true});
+  addEventListener("touchmove",e=>{ pose(e.touches[0]); },{passive:true});
+  function range(){ clearTimeout(cache); cache=setTimeout(()=>p.classList.remove("visible"),650); }
+  addEventListener("touchend",range,{passive:true}); addEventListener("touchcancel",range,{passive:true});
+})();
+
+/* ---------- au clic, un éclat de couleur : lumineux, délicat, contenu ---------- */
+(function(){
+  if(reduit) return;
+  const TEINTES=[[255,92,60],[255,184,64],[96,132,255],[120,214,196],[255,140,170],[255,236,200]];
+  const calques=[...document.querySelectorAll("canvas.trace")].map(cv=>({cv,ctx:cv.getContext("2d"),gouttes:[],coeurs:[],L:0,H:0,vide:true}));
+  function taille(){ calques.forEach(c=>{ c.L=c.cv.width=Math.round(innerWidth*devicePixelRatio); c.H=c.cv.height=Math.round(innerHeight*devicePixelRatio); }); }
+  taille(); addEventListener("resize",taille);
+  function calqueActif(){
+    const ouverts=document.querySelectorAll("dialog[open]"), d=ouverts[ouverts.length-1];
+    return calques.find(c=> d ? d.contains(c.cv) : !c.cv.closest("dialog")) || calques[0];
+  }
+  function eclate(x,y){
+    const c=calqueActif(), d=devicePixelRatio, base=TEINTES[Math.floor(Math.random()*5)];
+    /* le cœur : une petite lueur chaude qui s'ouvre puis s'éteint, et une onde fine qui s'élargit */
+    c.coeurs.push({x,y,c:base,age:0,vie:1.1,r:21*d});
+    /* les étincelles : petites, lumineuses, qui ne vont pas loin */
+    const k=14+Math.floor(Math.random()*6);
+    for(let i=0;i<k;i++){
+      const ang=Math.random()*6.283, v=(2+Math.random()*5.4)*d, cc=Math.random()<.5?base:TEINTES[Math.floor(Math.random()*6)];
+      c.gouttes.push({x,y,vx:Math.cos(ang)*v,vy:Math.sin(ang)*v,r:(1.1+Math.random()*2.6)*d,c:cc,age:0,vie:0.9+Math.random()*0.6,peinture:false});
+    }
+    /* les gouttes de peinture : opaques, brillantes, un peu plus lourdes */
+    const kp=9+Math.floor(Math.random()*6);
+    for(let i=0;i<kp;i++){
+      const ang=Math.random()*6.283, v=(1.6+Math.random()*4.4)*d, cc=Math.random()<.6?base:TEINTES[Math.floor(Math.random()*5)];
+      c.gouttes.push({x,y,vx:Math.cos(ang)*v,vy:Math.sin(ang)*v,r:(2.4+Math.random()*4.4)*d,c:cc,age:0,vie:1.1+Math.random()*0.5,peinture:true,et:Math.random()*6.28});
+    }
+  }
+  addEventListener("pointerdown",e=>{ if(e.button!==undefined&&e.button!==0) return; if(e.pointerType==="touch") return; eclate(e.clientX*devicePixelRatio,e.clientY*devicePixelRatio); },{passive:true});
+  /* au doigt : l'éclat part au relâchement, si le doigt n'a pas bougé (sinon c'est un défilement) */
+  let appui=null;
+  addEventListener("touchstart",e=>{ const t=e.changedTouches[0]; appui={x:t.clientX,y:t.clientY,t:Date.now()}; },{passive:true});
+  addEventListener("touchend",e=>{ const t=e.changedTouches[0]; if(appui && Math.hypot(t.clientX-appui.x,t.clientY-appui.y)<12 && Date.now()-appui.t<450) eclate(t.clientX*devicePixelRatio,t.clientY*devicePixelRatio); appui=null; },{passive:true});
+  function lueur(ctx,x,y,r,c,a){
+    const g=ctx.createRadialGradient(x,y,0,x,y,r);
+    g.addColorStop(0,"rgba(255,250,240,"+(a*.95).toFixed(3)+")");
+    g.addColorStop(0.25,"rgba("+c.join(",")+","+(a*.8).toFixed(3)+")");
+    g.addColorStop(1,"rgba("+c.join(",")+",0)");
+    ctx.fillStyle=g; ctx.beginPath(); ctx.arc(x,y,r,0,6.283); ctx.fill();
+  }
+  let dernier=performance.now();
+  (function boucle(ts){
+    requestAnimationFrame(boucle);
+    const dt=Math.min(.05,(ts-dernier)/1000); dernier=ts;
+    for(const c of calques){
+      const ctx=c.ctx;
+      if(!c.gouttes.length&&!c.coeurs.length){ if(!c.vide){ ctx.clearRect(0,0,c.L,c.H); c.vide=true; } continue; }
+      c.vide=false; ctx.clearRect(0,0,c.L,c.H);
+      ctx.globalCompositeOperation="lighter";
+      c.coeurs=c.coeurs.filter(t=>t.age<t.vie);
+      for(const t of c.coeurs){
+        t.age+=dt; const f=t.age/t.vie;
+        const ouverture=Math.min(1,t.age/0.08), a=f<.2?1:1-(f-.2)/.8;
+        lueur(ctx,t.x,t.y,t.r*(0.6+0.4*ouverture)*(1+f*.6),t.c,a*.9);
+        /* l'onde : un anneau fin qui s'élargit et s'efface */
+        const R=t.r*0.8+f*44*devicePixelRatio;
+        ctx.strokeStyle="rgba("+t.c.join(",")+","+((1-f)*.55).toFixed(3)+")"; ctx.lineWidth=1.2*devicePixelRatio;
+        ctx.beginPath(); ctx.arc(t.x,t.y,R,0,6.283); ctx.stroke();
+      }
+      c.gouttes=c.gouttes.filter(g=>g.age<g.vie);
+      for(const g of c.gouttes){
+        if(g.peinture) continue;
+        g.age+=dt; const f=g.age/g.vie, a=f<.3?1:1-(f-.3)/.7;
+        g.vx*=0.92; g.vy*=0.92; g.vy+=0.03*devicePixelRatio; g.x+=g.vx; g.y+=g.vy;
+        lueur(ctx,g.x,g.y,g.r*3.2,g.c,a*.55);
+        ctx.fillStyle="rgba(255,250,240,"+(a*.85).toFixed(3)+")"; ctx.beginPath(); ctx.arc(g.x,g.y,g.r*(1-f*.4),0,6.283); ctx.fill();
+      }
+      ctx.globalCompositeOperation="source-over";
+      /* la peinture : gouttes opaques avec leur reflet, dessinées par-dessus la lumière */
+      for(const g of c.gouttes){
+        if(!g.peinture) continue;
+        g.age+=dt; const f=g.age/g.vie, a=f<.5?1:1-(f-.5)/.5;
+        g.vx*=0.9; g.vy*=0.9; g.vy+=0.06*devicePixelRatio; g.x+=g.vx; g.y+=g.vy;
+        const rr=g.r*(1+f*.15), ex=1+Math.min(.8,Math.hypot(g.vx,g.vy)/(3*devicePixelRatio));
+        ctx.save(); ctx.translate(g.x,g.y); ctx.rotate(Math.atan2(g.vy,g.vx)); ctx.scale(ex,1); ctx.globalAlpha=a;
+        ctx.fillStyle="rgb("+g.c.join(",")+")"; ctx.beginPath(); ctx.arc(0,0,rr,0,6.283); ctx.fill();
+        ctx.fillStyle="rgba(255,255,255,.8)"; ctx.beginPath(); ctx.arc(-rr*.3,-rr*.35,rr*.3,0,6.283); ctx.fill();
+        ctx.restore();
+      }
+    }
+  })(performance.now());
+})();
+
+/* ---------- pages : sur ordinateur, une section à la fois ; sur téléphone, le fil continu ---------- */
+const PAGES={accueil:"accueil",portail:"accueil",artiste:"accueil",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",contact:"contact"};
+const mqPages=matchMedia("(min-width:761px)");
+function montrePage(){
+  const h=decodeURIComponent(location.hash.replace("#","")), page=PAGES[h]||"accueil", enPages=mqPages.matches;
+  document.body.classList.toggle("pages",enPages);
+  document.querySelectorAll("[data-page]").forEach(e=>{ e.hidden = enPages && e.dataset.page!==page; });
+  const courant = (h && PAGES[h]) ? h : page;   /* onglet souligné : la cible exacte (ex. L'artiste, sur la page d'accueil) */
+  document.querySelectorAll(".barre nav a").forEach(a=>{ const cle=a.getAttribute("href").slice(1); a.classList.toggle("actif", enPages && (cle===courant || (courant==="accueil" && cle==="accueil"))); });
+  if(enPages){
+    const cible=h&&h!==page?document.getElementById(h):null;
+    if(cible&&!cible.hidden) cible.scrollIntoView(); else window.scrollTo(0,0);
+  } else if(h){ const c=document.getElementById(h); if(c) c.scrollIntoView(); }
+}
+addEventListener("hashchange",montrePage);
+mqPages.addEventListener("change",montrePage);
+montrePage();
+
+/* la torche : à la souris, une lumière chaude suit le visiteur sur les murs sombres */
+if(matchMedia("(hover:hover) and (pointer:fine)").matches){
+  const fond=document.querySelector(".fond"); let tic=false;
+  addEventListener("pointermove",e=>{
+    if(e.pointerType!=="mouse") return;
+    document.body.classList.add("torche");
+    if(tic) return; tic=true;
+    requestAnimationFrame(()=>{ fond.style.setProperty("--tx",e.clientX+"px"); fond.style.setProperty("--ty",e.clientY+"px"); tic=false; });
+  },{passive:true});
+  addEventListener("pointerleave",()=>document.body.classList.remove("torche"));
+}
+
+/* tout lien de courriel : on ouvre la messagerie ET on copie l'adresse, avec un petit message, au cas où aucune messagerie n'est réglée sur l'appareil */
+const toast=document.createElement("div"); toast.className="toast"; toast.setAttribute("role","status"); document.body.appendChild(toast);
+let toastT=null;
+function montreToast(t){ toast.textContent=t; toast.classList.add("visible"); clearTimeout(toastT); toastT=setTimeout(()=>toast.classList.remove("visible"),3800); }
+document.addEventListener("click",e=>{
+  const a=e.target.closest('a[href^="mailto:"]'); if(!a) return;
+  const adresse=a.getAttribute("href").replace(/^mailto:/,"").split("?")[0];
+  try{ navigator.clipboard&&navigator.clipboard.writeText(adresse); }catch(_){}
+  montreToast("Adresse copiée : "+adresse+". Si votre messagerie ne s'ouvre pas, collez-la dans un nouveau message.");
+});
+const btn=document.getElementById("btn-copier");
+btn.addEventListener("click",async()=>{
+  const t=document.getElementById("courriel").textContent;
+  try{ await navigator.clipboard.writeText(t); btn.textContent="Copié"; }
+  catch{
+    const r=document.createRange(); r.selectNodeContents(document.getElementById("courriel"));
+    const s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent="Sélectionné";
+  }
+  setTimeout(()=>{btn.textContent="Copier";},2200);
+});
+
+/* gene a la copie : clic droit et glisser-deposer neutralises sur les images */
+document.addEventListener("contextmenu",e=>{
+  if(e.target.closest(".cimaise,.scene,.panneau,.loupe,.grille")) e.preventDefault();
+});
+document.addEventListener("dragstart",e=>{ if(e.target.tagName==="IMG") e.preventDefault(); });
+
+/* catalogue complet */
+const cg=document.getElementById("catalogue-grille");
+Object.keys(CAT).map(Number).sort((a,b)=>a-b).forEach(n=>{
+  const o=CAT[n], id="TB"+String(n).padStart(2,"0");
+  const b=document.createElement("button"); b.type="button"; b.className="fiche"; b.dataset.n=n;
+  b.innerHTML='<div class="cimaise" style="--toile:url(\'catalogue/'+id+'.jpg\')"><span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
+    '<div class="toile"><img loading="lazy" src="catalogue/'+id+'.jpg" alt="'+echappe(o[1])+'" width="'+o[2]+'" height="'+o[3]+'"></div></div>'+
+    '<p class="num">'+id+'</p><p class="t">'+echappe(o[1])+'</p>';
+  cg.appendChild(b);
+});
+surveille(cg);
+/* une toile du catalogue (par son numéro TB) s'ouvre directement mise en scène chez soi */
+function chezSoi(n){
+  const o=CAT[n]; if(!o) return;
+  const id="TB"+String(n).padStart(2,"0");
+  const src=(GRANDS.includes(n))?"grand/"+id+".jpg":"catalogue/"+id+".jpg";
+  const dim=DIMS[n];
+  /* dimensions inconnues : format indicatif, grand côté 100 cm, dans les proportions de la photo */
+  let h=dim?dim[0]:null, l=dim?dim[1]:null, estime=false;
+  if(!dim){ const r=o[3]/o[2]; if(r>=1){h=100;l=Math.round(100/r);} else {l=100;h=Math.round(100*r);} estime=true; }
+  ouvreLoupe(src, o[1], id+(dim?" — "+dim[0]+" × "+dim[1]+" cm":" — dimensions à préciser"), "", h, l, id, estime);
+  loupe.classList.add("chez-vous"); btnSalon.classList.add("actif"); btnSalon.textContent="Voir la toile seule";
+  document.getElementById("choix-int").hidden=false; dessineSalon();
+}
+cg.addEventListener("click",e=>{ const b=e.target.closest(".fiche"); if(b) chezSoi(+b.dataset.n); });
+/* les grands formats et les toiles des séries aussi */
+function numeroDe(el){ const img=el.querySelector("img"); const m=img&&/TB(\d+)\.jpg/.exec(img.getAttribute("src")); return m?+m[1]:null; }
+document.querySelectorAll(".grand .cimaise").forEach(c=>{ c.setAttribute("role","button"); c.tabIndex=0; c.style.cursor="pointer";
+  const ouvre=()=>{ const n=numeroDe(c); if(n) chezSoi(n); };
+  c.addEventListener("click",ouvre); c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } }); });
+document.getElementById("pan-grille").addEventListener("click",e=>{ const f=e.target.closest("figure"); if(!f) return; const n=numeroDe(f); if(n) chezSoi(n); });
+</script>
+
+</body>
+</html>
