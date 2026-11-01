@@ -1,0 +1,153 @@
+SITE ISA SATOR, version 31 du 1er novembre 2026, a montrer a Isa.
+
+CONTENU DU DOSSIER
+  index.html         la page complete en français (une seule page, sections ancrées)
+  en.html, de.html, it.html, es.html, pt.html, ru.html, ar.html, zh.html, ja.html, ko.html   la même page en anglais, allemand, italien, espagnol, portugais, russe, arabe, chinois, japonais et coréen (menu déroulant dans la barre)
+  isa-atelier.jpg    la photo d'ouverture
+  isa-dedicace.jpg   la photo de dédicace (section contact), 1180 px, récupérée du site actuel
+  isa-portrait-nb.jpg le portrait noir et blanc de Grégory Herpe (accueil), récupéré du site actuel
+  actu-*.jpg         les images des actualités : Smart Barby on a VIP (334 px, seule taille servie par le site actuel), Magic City, affiche de Nuoro, deux pages du journal sarde
+  palette-48/96.png  le curseur palette (visuel AI Studio détouré), palette-32/64 en réserve
+  fonts/             les polices Bodoni Moda et Jost hébergées avec le site (licence libre SIL OFL, fichiers de licence inclus) : plus aucun appel à Google Fonts
+  apercu.jpg         la carte d'aperçu du lien (1200 × 630) : emblème, Isa Sator en or, baseline
+  icone-180/192/512  les icônes (écran d'accueil du téléphone), favicon.png et site.webmanifest
+  cadre-or.png       la moulure dorée (tuile en neuf tranches) qui encadre toutes les toiles
+  deco/              les objets de décor teintés aux couleurs de la toile : coussin, plaid, vase (visuels AI Studio détourés, gris normalisé + transparence), abat-jour et pot du loft, tête de lit de la chambre (masques exacts découpés dans les photos)
+  embleme.png        l'emblème en fond
+  fond-toile.jpg     la toile peinte du fond (bureau), fond-toile-m.jpg (mobile) : générées, à remplacer si Isa fournit une macro de sa propre matière
+  favicon.png        l'icône d'onglet
+  oeuvres/           les 22 toiles de la galerie actuelle (600 px, signées)
+  catalogue/         les 82 toiles du catalogue TB01 à TB82 (350 px sauf six, signées)
+  grand/             les six grands formats en 1600 px (signées)
+  .htaccess          réglages pour l'hébergement OVH
+
+MISE EN LIGNE CHEZ OVH
+  Déposer tout le contenu de ce dossier à la racine du site (dossier www) par FTP ou par le gestionnaire de fichiers OVH.
+  Aucune base de données, aucun réglage : c'est un site statique.
+
+NOUVEAUTES DE LA VERSION 33 (1er novembre 2026, soir)
+  Le journal sarde (Casa Vacanze Ortobene Arte News, décembre 2025) est refait en image dans la langue du lecteur : même maquette en deux pages, mêmes photographies (découpées dans les scans), texte traduit à la place de l'italien. Fichiers journal/<langue>-1.jpg et -2.jpg pour les quatorze langues autres que l'italien, produits par journal.py ; la page italienne garde les scans d'origine ; dans les autres langues, un lien « Original en italien, page 1 · page 2 » ouvre les scans. Le texte traduit reste lisible sous les vignettes (Lire le journal…).
+  Le curriculum complet d'Isa remplace la chronologie condensée (section L'atelier, Expositions) : toutes les expositions de 2003 à 2026, distinctions, ventes aux enchères et ventes de charité, année par année, d'après le document reçu de Christophe le 01/11/2026 (identique à l'onglet Expositions de l'ancien site). Dans les quinze langues. Point à confirmer avec Isa : ADN Sator à la Galerie JPHT et le lancement du site sont placés en 2015 (pages de la galerie des 10 et 14 novembre 2015, article Saisons de culture du 14 septembre 2015), le curriculum les range sous 2016.
+  Film d'atelier de 2009 (Baigneuses, Michel Patient, 7 min 08, retrouvé sur Dailymotion depuis l'ancien site) dans L'atelier, sous la liste presse : vidéo hébergée sur le site (video/baigneuses-2009.mp4, 768 px, 19,7 Mo, chargée seulement à la lecture), image d'attente video/baigneuses-2009.jpg. L'original en 848 px (43 Mo) est dans l'atelier (recu_2026-11-01/video_dailymotion).
+  Liste presse : la page Isa Sator de la Galerie JPHT (Paris, Marais) ajoutée.
+  Catalogue : un appui sur la pastille dorée « Isa raconte » (La Païva) lit la voix d'Isa sans ouvrir la toile ; la pastille s'anime pendant la lecture. Elle était jusqu'ici inerte au toucher (pointer-events:none), corrigé.
+  Tables de traduction : clés obsolètes de l'ancienne chronologie retirées de trad_2, trad_3 et des tables des langues ajoutées.
+  Mise en scène « chez vous » (33b) : les objets recolorés (coussins, vases, plaid, tête de lit, abat-jour, pot) ne s'affichaient plus que par leur ombre, le masque CSS qui les découpait étant refusé par certains navigateurs ou certaines origines (constaté sur la capture de Christophe du 01/11 au soir, reproduit). Ils sont désormais peints dans un canvas (image × couleur de la toile, découpée par la transparence du PNG), ce qui marche partout. Le petit vase du salon, qui semblait posé dans le canapé, est déplacé sur la table basse, à gauche.
+
+NOUVEAUTES DE LA VERSION 32 (1er novembre 2026)
+  Quinze langues : français, anglais, allemand, italien, espagnol, portugais, polonais, serbe, bulgare, russe, arabe, chinois simplifié (Chine continentale, Singapour), chinois traditionnel (Hong Kong, Taïwan, Macao), japonais, coréen. Pages pl.html, sr.html, bg.html et zh-hant.html ajoutées.
+  Serbe en écriture latine (lue par les Serbes, Croates, Bosniens et Monténégrins ; nos polices Jost n'ont pas les lettres propres au cyrillique serbe). Chinois traditionnel converti caractère par caractère du chinois simplifié (OpenCC). La plaque d'or affiche 简中 et 繁中 pour les deux chinois.
+  Le choix automatique à l'arrivée distingue zh-TW, zh-HK, zh-MO (traditionnel) du zh-CN (simplifié) ; un navigateur en serbe arrive sur sr.html.
+  Polices latin étendu (Bodoni Moda et Jost) pour les lettres polonaises et serbes (ł, ś, ż, č, đ, š, ž…), chargées seulement quand la page en contient.
+  Liste des langues plus longue : elle défile si l'écran est bas.
+  Chronologie des expositions complétée d'après le curriculum d'Isa (reçu de Christophe le 01/11/2026, identique à l'onglet Expositions de l'ancien site isa-sator.net) : 2020 Galerie Ludwig Trossaert ; 2021 Armageddon chez Jyb'Art à Levallois-Perret (l'ancienne ligne « 2020, Paris » venait d'une source secondaire) ; 2023 Pop Circus (Echomusée), Journée de la rose (Bagatelle), hôtel particulier Anne-Marie Mitterrand ; 2024 Joie et Lumière et Armageddon, Espace Élisabeth Oster ; 2025 Connecting People, Espace Élisabeth Oster ; 2004 présidente de Soap'Art Océanie ; ventes chez Cornette de Saint-Cyr, Tajan, Joron-Derem et ventes de charité pour Les Toiles Enchantées. Mention « Chronologie complétée d'après le curriculum de l'artiste » sous les sources. Dans les quinze langues.
+  L'applique de tableau flotte au-dessus du cadre (vide d'environ 5 % de la largeur de la toile, bras de laiton jusqu'au cadre, halo qui enjambe le vide), même règle sur le mur Œuvres, les grands formats, les fiches du catalogue, la mise en scène chez vous et le téléphone. Chaque cimaise réserve la hauteur de l'applique au lieu de la laisser déborder.
+  Lien Carnet d'art en https.
+  Vidéo d'atelier retrouvée sur l'ancien site (Dailymotion xb5dmk, « Baigneuses par Isa Sator », Michel Patient, 14/11/2009, 7 min 08) : sauvegardée dans l'atelier en .mp4, pas encore sur le site (à décider : lecteur, lien, ou rien).
+
+NOUVEAUTES DE LA VERSION 31 (suite, 31d)
+  CORRECTION IMPORTANTE : les 22 toiles du mur « Œuvres » étaient étirées en hauteur depuis la version 29 (le style du cadre doré fixait la largeur mais laissait la hauteur de l'attribut HTML) : corrigé, aucune image n'est plus déformée (112 images mesurées).
+  Mise en scène « chez vous » : l'orientation et les proportions viennent désormais de la photo de la toile (la plus grande dimension déclarée s'applique à son grand côté) ; plus jamais de toile tournée ni recadrée. Les quatre grands formats dont la photo n'est qu'un détail (TB35, TB59, TB81, TB82 : photos 16/9 sans les bords de la toile) ne sont plus mis en scène et portent la mention « détail de la toile, photo partielle ».
+  Placement : toile centrée dans la hauteur de mur libre quand elle tient ; sinon elle descend derrière le meuble (canapé, fauteuil, tête de lit découpés dans la photo, posés devant elle) ; l'abat-jour et les objets passent devant ; le cadrage suit la toile pour qu'elle ne soit jamais coupée.
+  Navigation : la loupe et le panneau de série s'ouvrent sous la barre du menu, qui reste visible et cliquable ; « Fermer » devient « ← Retour » ; le bouton « précédent » du téléphone ou du navigateur referme le volet ; le bouton « Cette toile cherche son gardien » est retiré.
+  La parole d'Isa (essai sur La Païva, TB01) : pastille dorée « Isa raconte » sur la vignette du catalogue ; dans la loupe, lecteur doré (voix/TB01.mp3, et .ogg en secours) et volet « Lire ses mots » avec la transcription (à valider par Isa).
+
+NOUVEAUTES DE LA VERSION 31
+  Le site existe en onze langues : français (index.html), anglais (en.html), allemand (de.html), italien (it.html), espagnol (es.html), portugais (pt.html), russe (ru.html), arabe (ar.html, page de droite à gauche), chinois simplifié (zh.html), japonais (ja.html), coréen (ko.html).
+  Sélecteur : une plaque d'or avec le code de la langue en cours, qui déroule la liste des langues dans leur écriture.
+  Police Jost en cyrillique ajoutée (fonts/jost-cyrillic-*), chargée seulement par la page russe ; japonais et chinois s'appuient sur les polices du téléphone ou de l'ordinateur.
+  Sélecteur de langue dans la barre ; la langue choisie est retenue sur l'appareil et la section en cours est conservée.
+  Un visiteur dont le navigateur est réglé dans l'une de ces langues arrive directement sur sa version ; les autres voient le français.
+  Les titres des œuvres, des séries et des expositions restent en français (titres d'auteur) ; tout le reste est traduit : menu, textes, légendes, boutons, courriel préparé, cartes de partage.
+  Catalogue : les dimensions figurent sous le titre de chaque toile ; pour les 63 toiles dont les dimensions ne sont pas encore connues, mention « dimensions à préciser » (à compléter avec Isa).
+  Menu de la barre légèrement resserré sur ordinateur pour laisser la place au sélecteur.
+  Journal sarde (actualité de Nuoro) : le document original reste tel quel, et un volet « Lire le journal en français » sous les vignettes donne la traduction intégrale (éditorial de G. N. Lai, article de V. E. Pisu, encadré Sardonia, affiche) ; dans chaque langue, la traduction correspondante ; sur la page italienne, la transcription de l'original. Dans la loupe, un bouton « Lire la traduction » y mène.
+  Ouverture sur ordinateur : la photo d'Isa se fond à gauche et en bas dans la toile bleu nuit du site, le voile sombre est allégé, la barre du menu laisse voir le fond à travers son flou (plus de noir plat).
+
+NOUVEAUTES DE LA VERSION 30
+  Sur ordinateur, « L'artiste » est une page à part entière (onglet et porte du hall) : l'accueil ne déroule plus vers le portrait.
+  Plaque d'or au survol des onglets de la barre : le titre survolé s'inscrit sur une plaque dorée brossée, texte nuit, avec le reflet qui passe.
+
+NOUVEAUTES DE LA VERSION 29
+  Cadre doré mouluré sur toutes les toiles (catalogue, œuvres, grands formats, séries, actualités, loupe, mise en scène), à la place du filet noir ; dans la pièce, le cadre est à l'échelle (environ 6 cm).
+  Dans la loupe, les trois pièces apparaissent en vignettes (« Voir chez vous : Salon, Chambre, Loft ») dès l'ouverture de la toile : un appui met la toile en scène dans la pièce choisie, « Voir la toile seule » revient à la toile encadrée.
+  Aperçu en ligne : https://isa-sator.github.io/ (organisation GitHub isa-sator, dépôt isa-sator.github.io).
+
+NOUVEAUTES DE LA VERSION 28 (audit téléphone)
+  Les boutons de l'ouverture (« Voir les œuvres », « Écrire à l'atelier ») ne répondaient pas : le voile transparent qui protège la photo passait au-dessus d'eux. Corrigé. Tout lien de courriel copie aussi l'adresse et l'affiche en bas d'écran, au cas où aucune messagerie n'est réglée sur l'appareil.
+  « Isa Sator » en lettres d'or sur l'ouverture, avec le reflet qui passe ; accroche sur deux lignes : « Artiste cotée à l'international (Artprice) » puis « Coloriste plasticienne visionnaire » ; boutons en or.
+  Reflet d'or au survol (le balayage lumineux des lignes de séries) étendu aux portes de l'accueil, aux liens de presse, aux lignes d'expositions et de ventes, aux chiffres clés.
+  Mise en scène : grand vase de sol à pampas à droite du canapé (salon, ordinateur et téléphone) ; sur téléphone, le loft a sa propre photo en portrait (fauteuil club, plante, lampe arceau) avec abat-jour et pot teintés.
+  Toutes les toiles se mettent en scène : les six grands formats et les toiles ouvertes depuis une série s'ouvrent désormais directement « chez vous » au toucher, comme celles du catalogue (il manquait le lien sur ces deux endroits).
+  Sur écran tactile, la palette au pinceau apparaît sous le doigt et le suit tant qu'il touche l'écran, puis s'efface.
+  L'éclat de peinture ne part plus au début d'un défilement : au doigt, il part au relâchement si le doigt n'a pas bougé (un vrai appui).
+  Le bouton Fermer du panneau des séries n'était pas habillé : corrigé. Le panneau indique « Touchez une toile pour la voir chez vous ».
+
+NOUVEAUTES DE LA VERSION 27
+  Onglet « L'artiste » dans la barre : il mène au bloc portrait et parcours de l'accueil (onglet souligné quand on y est).
+  Les deux toiles des actualités (Magic City, Smart Barby on a VIP) portent la signature ISA SATOR comme toutes les autres.
+  Polices hébergées avec le site (Bodoni Moda, Jost) : rendu identique partout, plus de dépendance à Google.
+  Carte d'aperçu du lien (apercu.jpg) et icônes : quand le lien est envoyé par SMS, WhatsApp ou mail, ou ajouté à l'écran d'accueil d'un téléphone, c'est l'emblème et « Isa Sator » en or qui apparaissent (sur un hébergement maîtrisé : OVH ou GitHub Pages ; la page claude.ai garde son propre aperçu).
+
+NOUVEAUTES DE LA VERSION 26
+  Décor « Chez vous » refait : plus aucune tache de couleur floue. Des objets réels prennent les couleurs de la toile, dans leurs propres plis et ombres : salon, deux coussins et un vase à pampas sur la table ; chambre, tête de lit teintée (masque exact), coussin devant les oreillers, plaid plié sur le lit ; loft, abat-jour et pot teintés (masques exacts). Première couleur dominante de la toile sur l'objet principal, seconde couleur sur le second.
+  Encadré « Chez vous, à l'échelle » lisible : fond nuit presque opaque, titre en lettres d'or, texte blanc plus grand.
+  La version portrait (téléphone) de la chambre et du salon reçoit les mêmes objets.
+
+NOUVEAUTES DE LA VERSION 25
+  Loft : la toile est accrochée nettement plus haut sur le pan de mur libre (centre à 2,70 m du sol au lieu de 1,95 m), vérifié sur trois formats (100 × 83, 130 × 90, 175 × 145).
+
+NOUVEAUTES DE LA VERSION 24
+  La cote, d'après la fiche Artprice lue le 1er novembre 2026 : « Artiste cotée Artprice » sous le nom dès l'ouverture ; « Vingt-quatre œuvres adjugées en ventes publiques depuis 2005 » ; bandeau de jalons complété (cote Artprice, première vente Aguttes 2005, galeries Jyb'Art et JPHT, droits ADAGP) ; quatre chiffres clés sous le bloc L'artiste (24 adjudications, 5 pays, 2 galeries, 2005 année des médailles) ; mot de Jean-Louis Poitevin « une peintre majeure de la scène parisienne » ; lien vers la fiche Artprice.
+  L'atelier : expositions complétées des titres Artprice (Les Grandes Cocottes 2017, Portraits de famille de Bécassine 2018, Trois femmes de Paris à New York 2019, Armageddon 2020), liste « Ventes publiques » (Le Templier 2005 Aguttes, Super Zaza 2007, Replay 2015, 11 Septembre 2020, Jument ailée 2026, Smart Barby on a VIP 2026).
+  Actualités : la toile Smart Barby on a VIP sous son applique, date de vente du 14 octobre 2026.
+  Curseur : la palette avec le tourbillon du logo et le pinceau penché à gauche (visuel AI Studio), 48 px, point de clic sur la pointe du pinceau.
+
+NOUVEAUTES DE LA VERSION 23
+  Accueil : sous le nom, « Artiste peintre cotée · Coloriste plasticienne visionnaire » et la ligne « Exposée à Paris, New York, Dubaï, Londres, Houston et Nouméa depuis 2003 ». Puis un bandeau de jalons qui défile (2003 Nouméa ... 2026 Nuoro, dictionnaire Delarge), puis le bloc « L'artiste » : portrait noir et blanc de Grégory Herpe, la parole d'Isa reprise du site actuel (la couleur, la nuit, la peinture automatique) et les quatre liens d'entretiens et d'articles (Carly Aguilera, Jean-Philippe Théron, Gavard-Perret, Le Petit Journal New York).
+  Actualités : les trois dates du site actuel sont reprises. 7 octobre 2026, Smart Barby on a VIP en vente (texte intégral). 5 février 2026, la toile Magic City sous son applique, cliquable. 17 décembre 2025, l'exposition personnelle « Les Vierges Polaires » à Nuoro (Sardaigne), avec l'affiche et les deux pages du journal de la galerie, qui s'ouvrent en grand.
+  L'atelier : la biographie, puis la liste des expositions 2003 à 2026 (d'après Wikipédia) et trois citations (presse sarde, Jean-Louis Poitevin).
+  Les documents (affiche, pages de presse) s'ouvrent dans la loupe sans le bouton d'achat ; une image haute tient désormais entière dans la loupe.
+
+SOURCE DE LA COTE
+  Fiche Artprice n° 319130 (fr.artprice.com/artiste/319130/isa-sator) : 24 résultats d'adjudication, catégorie peinture, de 2005 (Le Templier, Aguttes) à 2026 (Barbie on the VIP) ; galeries Jyb'Art et JPHT ; images © Adagp. Les prix d'adjudication sont réservés aux abonnés Artprice : si Isa les communique, on pourra afficher une fourchette.
+
+NOUVEAUTES DE LA VERSION 22
+  « Chez vous » : le décor prend les couleurs de la toile (coussins du salon, tête de lit et oreillers de la chambre, pot et assise du loft), à partir des deux couleurs principales de chaque toile calculées sur les 104 images. Dans le loft, la toile est accrochée plus haut.
+  Premier écran des grands formats : la toile et sa légende tiennent dans l'écran (contrôlé à 1440 × 790, 1280 × 650, 1920 × 1000). Liens de la barre en or, nom de l'artiste plus grand.
+
+NOUVEAUTES DE LA VERSION 21
+  Sur ordinateur, le site se parcourt par pages (Accueil, Grands formats, Œuvres, Catalogue, Séries, L'atelier, Actualité, Contact) : une section à la fois, retour à l'accueil par le logo ou l'onglet Accueil ; sur téléphone, le fil continu est conservé. L'accueil propose un hall d'entrée de sept portes.
+  Titres de sections et nom de l'artiste en lettres d'or (dégradé métallique), avec un reflet qui passe à l'arrivée.
+  Catalogue : effet grossissant au survol ; le clic ouvre directement la toile mise en scène dans une pièce (dimensions connues : à l'échelle ; sinon format indicatif de 100 cm, signalé).
+
+NOUVEAUTES DES VERSIONS 14 A 20
+  Plus d'ivoire : le fond est une toile d'encre bleu nuit travaillée à la brosse, en relief, d'après la référence AI Studio.
+  Le curseur est une pointe de pinceau trempée dans les couleurs (visuel AI Studio détouré, pinceau-32.png et pinceau-64.png pour Retina).
+  Au clic, un éclat de couleur lumineux et délicat (lueur, onde fine, petites gouttes brillantes), environ une seconde, y compris sur la barre de titres et dans les panneaux.
+  Les grands formats ne dépassent jamais 76 % de la hauteur de l'écran du visiteur : la toile est toujours entière à l'écran (vérifié sur six tailles d'écran, du téléphone au 2560 px).
+  À l'ouverture, des cœurs et des gouttes de pigment s'échappent d'Isa.
+  Les appliques s'allument quand la toile arrive devant le visiteur.
+  Une couleur du lexique attribuée à chaque série (pastille et trait) : proposition à valider avec Isa.
+  « Chez vous, à l'échelle » dans la loupe : la toile à sa vraie taille dans trois intérieurs photographiés de face (visuels AI Studio) : salon (interieur-salon-paysage/portrait), chambre (interieur-chambre + portrait), loft à haut plafond (interieur-loft-paysage). Échelle de chaque photo mesurée (plafond 2,60 m, tête de lit de 160, fauteuil club). Choix automatique : d'abord l'intérieur qui a la place, puis l'accord de couleurs (toiles chaudes : salon ; froides : chambre ; mélangées : loft), et le visiteur peut changer (Salon, Chambre, Loft). Les versions portrait servent sur téléphone.
+  « Cette toile cherche son gardien » : bouton qui prépare un courriel à Isa avec le titre de la toile.
+  La torche : à la souris, une lumière chaude suit le visiteur sur les murs sombres.
+  Signature « ISA SATOR » posée dans la zone peinte, jamais sur les cartels imprimés des photos.
+  Catalogue : les 82 toiles à leurs vraies proportions, chacune sous son applique ; 14 photos recadrées sur la peinture (marges blanches et cartels imprimés retirés), TB06 gardée entière (les bandes blanches font partie de l'œuvre). Originaux non recadrés conservés dans l'atelier.
+  Cœurs lumineux cernés d'or à l'ouverture ; éclat au clic mêlant lumière et vraies gouttes de peinture ; reflet doré qui passe sur chaque titre à son arrivée ; toiles déjà visibles en transparence avant de s'allumer ; « Écrire à l'atelier » et l'adresse ouvrent le courriel.
+
+EN ATTENTE
+  Photo de Smart Barby on a VIP en haute définition (le site actuel ne la sert qu'en 334 px).
+  Photos d'origine en haute définition pour les 76 toiles en 350 px.
+  Séries vides : Les Arlésiennes swinging, Les Copines, African Queens.
+  Rattachements à confirmer : L'Amour, ADN Sator, Collection Nouvelle-Calédonie.
+  Trois œuvres sans titre, cinq sans dimensions, deux coquilles de titres sur le site actuel.
+  Décision sur la vente en ligne (panier) : recommandation, contact plutôt que panier.
+  Page mentions légales à rédiger avant mise en ligne.
+
+v34 (01/11/2026, soir)
+- Chambre : tables de nuit et lampes retirées, mur bleu nuit approfondi et pailleté (chambre_retouche.py ; originaux dans journal_src/*_v1.jpg). Plaid retiré.
+- Salon : coussins reculés contre le dossier.
+- Placement « Chez vous » : une toile trop haute pour le pan au-dessus du canapé ou du lit va sur le mur libre (à droite du canapé, à côté du lit) avant d'être posée derrière le meuble ; vase à plumeaux poussé à droite ; sur téléphone, la photo large recadrée sur la toile est reprise si la verticale n'a pas de mur libre ; plafond pris à 2,48 m partout. Audit complet : audit_chez_vous.py.
+- Actualités : Fanfan (TB52) et Le Harem (TB17) aux enchères sur Catawiki, expertes nommées, traduit en 15 langues ; dimensions ajoutées.
+- Voix : La Païva en serbe et en bulgare avec la voix clonée d'Isa (ElevenLabs v3), voix/TB01-sr et TB01-bg, texte traduit affiché.
