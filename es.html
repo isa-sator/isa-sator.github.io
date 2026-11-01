@@ -192,6 +192,10 @@ body.torche .fond .torche{opacity:1}
 .presse a:hover{color:#F1D27E;text-decoration:none}
 .presse b{font-weight:400;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cendre);min-width:6.5em}
 .presse a::after{content:"→";color:#C9A227}
+.film{margin:1.6em 0 0;max-width:62ch}
+.film video{width:100%;height:auto;display:block;background:#000;border:1px solid rgba(212,175,55,.35);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.film figcaption{display:grid;gap:.25em;padding:.75em 0 0;font-size:.82rem;color:var(--cendre);line-height:1.45}
+.film figcaption b{font-weight:400;color:var(--ivoire);font-size:.92rem;letter-spacing:.02em}
 @media(max-width:520px){.presse a{grid-template-columns:1fr auto}.presse b{grid-column:1/-1;min-width:0}}
 
 /* ---------- chiffres clés de l'artiste ---------- */
@@ -232,6 +236,9 @@ body.torche .fond .torche{opacity:1}
 .entree .date{margin:0;padding-top:.55em}
 .entree h3{font-family:var(--display);font-weight:400;font-size:clamp(1.45rem,2.6vw,2.1rem);margin:0 0 .55em;line-height:1.1;text-wrap:balance}
 .planches{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,26px);margin-top:1.5em;align-items:flex-start}
+.original-it{margin:.8em 0 0;font-size:.8rem;color:var(--cendre)}
+.vignette.lien-doc{display:inline;color:#E2C063;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
+.vignette.lien-doc:hover{color:#FBEBB4}
 .vignette{background:none;border:0;padding:0;cursor:pointer;display:block;position:relative;max-width:100%;color:inherit;font:inherit;text-align:left}
 .vignette img{display:block;height:auto;max-width:100%;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 24px 48px rgba(0,0,0,.6);transition:transform .5s ease,box-shadow .5s ease}
 .planches .vignette img{width:clamp(140px,17vw,230px)}
@@ -648,13 +655,17 @@ dialog canvas.trace{position:absolute;z-index:5}
 @media(max-width:600px){.loupe .voix{gap:10px;padding:8px 10px} .loupe .voix .titre-voix{font-size:.95rem} .loupe .voix .fermer{padding:.5em .7em} .loupe .voix-texte{max-width:calc(100% - 36px);max-height:50vh;font-size:.84rem}}
 /* la pastille « Isa raconte » sur une vignette du catalogue */
 .fiche .cimaise{position:relative}
-.fiche .voix-badge{position:absolute;right:-8px;bottom:-8px;z-index:6;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 14px rgba(0,0,0,.55);pointer-events:none}
+.fiche .voix-badge{position:absolute;right:-8px;bottom:-8px;z-index:6;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 14px rgba(0,0,0,.55);pointer-events:auto}
 .fiche .voix-badge::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(226,192,99,.7);animation:pulse-voix 2.4s ease-out infinite}
 @keyframes pulse-voix{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.7);opacity:0}}
 .fiche .voix-badge i{display:block;width:2.5px;background:var(--nuit);border-radius:1px;margin:0 1px}
 .fiche .voix-badge span{display:flex;align-items:flex-end;height:14px}
 .fiche .voix-badge i:nth-child(1){height:6px} .fiche .voix-badge i:nth-child(2){height:13px} .fiche .voix-badge i:nth-child(3){height:9px}
+@keyframes barre-voix{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.fiche .voix-badge.joue{box-shadow:0 0 0 2px rgba(251,235,180,.9),0 0 22px rgba(226,192,99,.8)}
+.fiche .voix-badge.joue i{transform-origin:bottom;animation:barre-voix .8s ease-in-out infinite}
+.fiche .voix-badge.joue i:nth-child(2){animation-delay:.15s} .fiche .voix-badge.joue i:nth-child(3){animation-delay:.3s}
 .fiche .mention-voix{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#E2C063;margin:.35em 0 0;position:relative;z-index:1}
 .choix-int{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
 .choix-int i{font-style:normal;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#E2C063;margin-right:2px}
@@ -787,7 +798,14 @@ dialog canvas.trace{position:absolute;z-index:5}
           <li><a href="https://www.carnetdart.com/isa-sator/" rel="noopener"><b>Crítica</b><span>Jean-Paul Gavard-Perret, exposición en el Théâtre Déjazet, París</span></a></li>
           <li><a href="https://lepetitjournal.com/new-york/isa-sator-expose-new-york-son-art-haut-en-couleur-267291" rel="noopener"><b>Artículo</b><span>Le Petit Journal New York: «Isa Sator expone en Nueva York su arte lleno de color»</span></a></li>
           <li><a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener"><b>Cotización</b><span>Su ficha Artprice: 24 resultados de subasta, biografía, galerías</span></a></li>
+          <li><a href="https://www.galeriejpht.com/tag/isa-sator" rel="noopener"><b>Galería</b><span>Galerie JPHT, París: la página de Isa Sator, sus exposiciones desde 2015</span></a></li>
         </ul>
+        <figure class="film">
+          <video controls preload="none" playsinline poster="video/baigneuses-2009.jpg" width="768" height="434">
+            <source src="video/baigneuses-2009.mp4" type="video/mp4">
+          </video>
+          <figcaption><b>Isa en su taller, 2009</b><span>Baigneuses, película de Michel Patient, 7 min 08, recuperada en Dailymotion. Isa traza a pincel negro las siluetas de la serie Baigneuses.</span></figcaption>
+        </figure>
       </div>
     </div>
     <ul class="chiffres">
@@ -922,28 +940,28 @@ dialog canvas.trace{position:absolute;z-index:5}
       <div>
         <h3>Exposiciones, de Numea a Nueva York</h3>
         <ul class="expos">
-        <li><b>2003</b><span><em>Nouméa</em>, Nueva Caledonia, primera exposición</span></li>
-        <li><b>2004</b><span><em>Salon des artistes français</em>, París; presidenta de Soap’Art Océanie, Numea</span></li>
-        <li><b>2005</b><span><em>Grand Concours International de Fréjus</em>, medalla de oro y premio especial del jurado; Victoires 2005 de la Fédération nationale de la culture française, abstracción lírica; medallas de bronce de la Académie internationale de Lutèce y del Salon international des créateurs du siècle, Verdún</span></li>
-        <li><b>2006</b><span><em>Dubái, Courchevel, Port-Marly</em>, y Galerie Mona Lisa, París</span></li>
-        <li><b>2007</b><span><em>National Arts Club, New York</em>, luego Montpellier, París, La Guerche</span></li>
-        <li><b>2008</b><span><em>Bastilla y barcaza</em>, Paris</span></li>
-        <li><b>2009</b><span><em>Carrousel du Louvre</em>, con RFO; Versalles</span></li>
-        <li><b>2010</b><span><em>Virgin Champs-Élysées</em>, y Barclays, París</span></li>
-        <li><b>2011</b><span><em>Galerie 66, Vertbois</em>, Paris</span></li>
-        <li><b>2013</b><span><em>Manart</em>, Paris</span></li>
-        <li><b>2014</b><span><em>Reims</em>, y Brixton, Londres</span></li>
-        <li><b>2015</b><span><em>Galerie JPHT</em>, Paris</span></li>
-        <li><b>2016</b><span><em>Art Élysées</em>, Beaurepaire, Felix, Montreuil</span></li>
-        <li><b>2017</b><span><em>Les Grandes Cocottes, Orangerie du Sénat, Paris</em>, con Jyb’Art; luego Houston, Washington, Raleigh</span></li>
-        <li><b>2018</b><span><em>Portraits de famille de Bécassine, Jyb’Art, Paris</em> ; Dampierre ; Galerie JPHT, Paris</span></li>
-        <li><b>2019</b><span><em>Trois femmes de Paris à New York</em>, Jyb’Art, París, y Gallery des Artistes, Nueva York</span></li>
-        <li><b>2020</b><span><em>Galerie Ludwig Trossaert</em>, Amberes, Londres, París y Nueva York</span></li>
-        <li><b>2021</b><span><em>Armageddon</em>, Jyb’Art, Levallois-Perret</span></li>
-        <li><b>2023</b><span><em>Pop Circus</em>, Echomusée, París; Journée de la rose, Orangerie de Bagatelle; palacete de Anne-Marie Mitterrand</span></li>
-        <li><b>2024</b><span><em>Joie et Lumière</em>, <em>Armageddon</em>, Espace Élisabeth Oster, Paris</span></li>
-        <li><b>2025</b><span><em>Connecting People</em>, Espace Élisabeth Oster, Paris</span></li>
-        <li><b>2026</b><span><em>Les Vierges Polaires</em>, Casa Vacanze Ortobene Arte, Nuoro, Cerdeña</span></li>
+        <li><b>2003</b><span>Mujeres escultoras del taller Michel Rocton, Hôtel Park Royal, Numea (marzo)</span></li>
+        <li><b>2004</b><span>Salon des Artistes Français, París, selección del jurado para Le Cri intérieur (octubre); Banque BNC, Numea, Noume'Art y Soap'Art Océanie (octubre); presidenta de Soap'Art Océanie, asociación para la promoción del arte contemporáneo en Nueva Caledonia; medalla de bronce con mención en el 36º Gran concurso internacional de la Académie internationale de Lutèce</span></li>
+        <li><b>2005</b><span>Salón de arte moderno y contemporáneo de la Fédération nationale de la culture française, Fréjus (mayo): medalla de oro y premio especial del jurado del Gran concurso internacional de Fréjus, medalla europea y trofeo Abstracción lírica de las Victoires 2005; subasta pública por Me Aguttes, Hôtel Drouot (22 de septiembre); Vertige de l'amour e Il était une fois, subasta pública por Me Michel Rambert, Hôtel des ventes Tuilliers, Metz (19 de noviembre)</span></li>
+        <li><b>2006</b><span>Galerie Mona Lisa, París (abril); Super Zaza, subasta benéfica por Me Cornette de Saint-Cyr, Drouot-Montaigne (junio); Les Copines 2, subasta pública por Me Cornette de Saint-Cyr, Hôtel Drouot (23 de octubre); Salón 16th International Middle East Furniture and Interior Design, Dubái (noviembre); Galerie Daniel Besseiche, Courchevel (diciembre); Galerie Les Pyramides, Port-Marly, colectiva (diciembre)</span></li>
+        <li><b>2007</b><span>Les Bécassines Rock'n Roll, Centre culturel La Salorgne, Bretaña (marzo); Galerie Les Arts du 7e, París (de marzo a mayo), con una venta benéfica a favor de Les Toiles Enchantées, asociación presidida por Alain Chabat, en presencia de Me Pierre Cornette de Saint-Cyr; Une orange à Central Park y Nikky, subasta pública (14 de abril); Les Arlésiennes Swinging, Galerie Saint-Ravy, Montpellier (abril-mayo); Bécassine superstar, subasta pública por la casa Tajan (26 de junio); Smart Barbies, National Arts Club, Gramercy Park, Nueva York (septiembre); miembro del National Arts Club de Nueva York (octubre)</span></li>
+        <li><b>2008</b><span>Programa Au quotidien en RFO, obras colgadas en el plató y participación en el programa (febrero); Animus Domina, barcaza Café Barge, París (de junio a agosto); Grand Marché d'art contemporain, París Bastille (octubre); La Souris du Pirate, subasta pública por Me Cornette de Saint-Cyr (20 de octubre); La Versaillaise, subasta pública por Me Christophe Joron-Derem (9 de diciembre)</span></li>
+        <li><b>2009</b><span>Proyecto de cartel para el Festival de Cannes (enero); Les grands maîtres de demain, invitada de honor, Carrousel du Louvre, París (octubre); Les Versaillaises, ayuntamiento de Versalles, colectiva (diciembre)</span></li>
+        <li><b>2010</b><span>Banque Barclays, faubourg Saint-Honoré, París (mayo); Rock'n Roll at All, Virgin Megastore, París (octubre)</span></li>
+        <li><b>2011</b><span>Galerie du Vertbois, París (abril-mayo); Les peuples de la vallée de l'Omo, Galerie 66 Champs-Élysées, París (noviembre)</span></li>
+        <li><b>2013</b><span>L'Amour, Galerie Manart, París (abril-mayo)</span></li>
+        <li><b>2014</b><span>Las 12 ciudades del Mundial de Brasil, Brixton, Londres (marzo); Carré artistique des équations, Grand Hôtel, Reims (mayo)</span></li>
+        <li><b>2015</b><span>Lanzamiento oficial del sitio web de la artista, Comédie Montmartre, París (septiembre); ADN Sator, Galerie JPHT, París, inauguración en presencia de Me Cornette de Saint-Cyr para una subasta (octubre-noviembre)</span></li>
+        <li><b>2016</b><span>Art Élysées, Espace Beaurepaire y Tapis by Félix, París; La Table Fleurie, Montreuil</span></li>
+        <li><b>2017</b><span>Les Grandes Cocottes, Orangerie du Sénat, Jardin du Luxembourg, París (del 10 al 21 de agosto), con la edición del catálogo Les Grandes Cocottes; en Estados Unidos, series ADN Sator y Smart Barbies: Raleigh, Carolina del Norte (del 9 al 12 de febrero), Houston, Texas (del 1 al 5 de marzo), Washington, embajada de Francia (del 1 al 5 de mayo), Los Ángeles y Chicago (segundo semestre)</span></li>
+        <li><b>2018</b><span>Erotic'art, Galerie l'Espace Grange, Dampierre (del 14 de febrero al 4 de marzo); Portraits de famille de Bécassine, Galerie JPHT, París (junio-julio)</span></li>
+        <li><b>2019</b><span>Trois femmes de Paris à New York, Galerie JPHT, París (mayo y diciembre), y Gallery of Artists, Nueva York (octubre)</span></li>
+        <li><b>2020</b><span>Referenciada en la Galerie Ludwig Trossaert (Amberes, Londres, París, Nueva York); obras difundidas en cuatro plataformas</span></li>
+        <li><b>2021</b><span>Armageddon, galería Jyb'Art, Levallois-Perret</span></li>
+        <li><b>2023</b><span>Pop Circus, galería Echomusée, París (del 23 al 30 de abril); Journée de la rose, Orangerie del jardín de Bagatelle (junio); exposición de lienzos en el palacete de Anne-Marie Mitterrand</span></li>
+        <li><b>2024</b><span>Joie et Lumière (4 de julio) y Armageddon (5 de diciembre), Espace Élisabeth Oster, París</span></li>
+        <li><b>2025</b><span>Connecting People, Espace Élisabeth Oster, París (desde el 3 de marzo)</span></li>
+        <li><b>2026</b><span>Les Vierges Polaires, Casa Vacanze Ortobene Arte, Nuoro, Cerdeña (del 3 al 31 de enero)</span></li>
         </ul>
         <p class="sources">Según la ficha <a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener">Artprice</a>, el artículo <a href="https://fr.wikipedia.org/wiki/Isa_Sator" rel="noopener">Isa Sator</a> de Wikipedia y el diccionario de artes plásticas <a href="https://www.ledelarge.fr/" rel="noopener">Delarge</a>. Obras presentes en Artnet y Artsper. <span>Cronología completada a partir del currículum de la artista.</span></p>
         <h3 style="margin-top:1.6em">Subastas públicas</h3>
@@ -1016,9 +1034,10 @@ dialog canvas.trace{position:absolute;z-index:5}
           </div>
           <div class="planches">
             <button class="vignette" type="button" data-doc="actu-affiche-nuoro.jpg" data-titre="Les Vierges Polaires, cartel" data-det="Casa Vacanze Ortobene Arte, Nuoro, del 3 al 31 de enero de 2026"><img src="actu-affiche-nuoro.jpg" alt="Cartel de la exposición Les Vierges Polaires en Nuoro" width="1008" height="1514" loading="lazy"><small>El cartel</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, página 1" data-det="Nuoro, diciembre de 2025, textos de Gonaria Nevina Lai y Vittorio E. Pisu"><img src="actu-presse-1.jpg" alt="Primera página del periódico Casa Vacanze Ortobene Arte News dedicada a Isa Sator" width="1070" height="1514" loading="lazy"><small>El periódico, página 1</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, página 2" data-det="Nuoro, diciembre de 2025, continuación del artículo de Vittorio E. Pisu"><img src="actu-presse-2.jpg" alt="Segunda página del periódico, con un lienzo de Isa Sator y el programa de la exposición" width="1070" height="1514" loading="lazy"><small>El periódico, página 2</small></button>
+            <button class="vignette" type="button" data-doc="journal/es-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, página 1" data-det="Nuoro, diciembre de 2025, textos de Gonaria Nevina Lai y Vittorio E. Pisu"><img src="journal/es-1.jpg" alt="Primera página del periódico Casa Vacanze Ortobene Arte News dedicada a Isa Sator" width="1498" height="2332" loading="lazy"><small>El periódico, página 1</small></button>
+            <button class="vignette" type="button" data-doc="journal/es-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, página 2" data-det="Nuoro, diciembre de 2025, continuación del artículo de Vittorio E. Pisu"><img src="journal/es-2.jpg" alt="Segunda página del periódico, con un lienzo de Isa Sator y el programa de la exposición" width="1498" height="1910" loading="lazy"><small>El periódico, página 2</small></button>
           </div>
+          <p class="original-it"><button class="vignette lien-doc" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, pagina 1" data-det="Originale in italiano, Nuoro, dicembre 2025">Original en italiano, página 1</button> · <button class="vignette lien-doc" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, pagina 2" data-det="Originale in italiano, Nuoro, dicembre 2025">página 2</button></p>
           <details class="traduction" id="traduction-nuoro">
             <summary>Leer el periódico en español (traducido del italiano)</summary>
             <div class="texte lisible">
@@ -1438,6 +1457,15 @@ voixAudio.addEventListener("timeupdate",()=>{
   document.getElementById("voix-temps").textContent=fmt(voixAudio.currentTime)+" / "+fmt(voixAudio.duration);
 });
 voixAudio.addEventListener("ended",()=>voixBloc.classList.remove("joue"));
+/* la pastille du catalogue : la voix d'Isa sans ouvrir la toile */
+function ecouteDirect(cle,bd){
+  const v=VOIX[cle]; if(!v) return;
+  const src=(voixAudio.canPlayType("audio/mpeg")||!voixAudio.canPlayType("audio/ogg; codecs=opus"))?v.src:v.src.replace(/\.mp3$/,".ogg");
+  if(voixAudio.getAttribute("src")!==src){ voixAudio.src=src; voixAudio.load(); }
+  if(voixAudio.paused){ voixAudio.play().then(()=>{ document.querySelectorAll(".voix-badge.joue").forEach(x=>x.classList.remove("joue")); bd.classList.add("joue"); }).catch(()=>{}); }
+  else { voixAudio.pause(); }
+}
+voixAudio.addEventListener("pause",()=>document.querySelectorAll(".voix-badge.joue").forEach(x=>x.classList.remove("joue")));
 document.getElementById("voix-lecture").addEventListener("click",()=>{
   if(voixAudio.paused){ voixAudio.play().then(()=>voixBloc.classList.add("joue")).catch(()=>{}); } else { voixAudio.pause(); voixBloc.classList.remove("joue"); }
 });
@@ -1709,7 +1737,12 @@ Object.keys(CAT).map(Number).sort((a,b)=>a-b).forEach(n=>{
     (DIMS[n] ? '<p class="dim">'+DIMS[n][0]+' × '+DIMS[n][1]+' cm</p>' : '<p class="dim manque">'+"dimensiones por precisar"+'</p>')+
     (VOIX[id] ? '<p class="mention-voix">'+"Isa cuenta"+'</p>' : '')+
     (DETAILS[n] ? '<p class="dim manque">'+"detalle del lienzo, foto parcial"+'</p>' : '');
-  if(VOIX[id]) b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge" aria-hidden="true"><span><i></i><i></i><i></i></span></span>');
+  if(VOIX[id]){
+    b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge" role="button" tabindex="0" aria-label="'+"Isa cuenta"+'"><span><i></i><i></i><i></i></span></span>');
+    const bd=b.querySelector(".voix-badge");
+    bd.addEventListener("click",e=>{ e.stopPropagation(); e.preventDefault(); ecouteDirect(id,bd); });
+    bd.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.stopPropagation(); e.preventDefault(); ecouteDirect(id,bd); } });
+  }
   cg.appendChild(b);
 });
 surveille(cg);

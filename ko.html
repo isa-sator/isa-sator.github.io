@@ -192,6 +192,10 @@ body.torche .fond .torche{opacity:1}
 .presse a:hover{color:#F1D27E;text-decoration:none}
 .presse b{font-weight:400;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cendre);min-width:6.5em}
 .presse a::after{content:"→";color:#C9A227}
+.film{margin:1.6em 0 0;max-width:62ch}
+.film video{width:100%;height:auto;display:block;background:#000;border:1px solid rgba(212,175,55,.35);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.film figcaption{display:grid;gap:.25em;padding:.75em 0 0;font-size:.82rem;color:var(--cendre);line-height:1.45}
+.film figcaption b{font-weight:400;color:var(--ivoire);font-size:.92rem;letter-spacing:.02em}
 @media(max-width:520px){.presse a{grid-template-columns:1fr auto}.presse b{grid-column:1/-1;min-width:0}}
 
 /* ---------- chiffres clés de l'artiste ---------- */
@@ -232,6 +236,9 @@ body.torche .fond .torche{opacity:1}
 .entree .date{margin:0;padding-top:.55em}
 .entree h3{font-family:var(--display);font-weight:400;font-size:clamp(1.45rem,2.6vw,2.1rem);margin:0 0 .55em;line-height:1.1;text-wrap:balance}
 .planches{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,26px);margin-top:1.5em;align-items:flex-start}
+.original-it{margin:.8em 0 0;font-size:.8rem;color:var(--cendre)}
+.vignette.lien-doc{display:inline;color:#E2C063;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
+.vignette.lien-doc:hover{color:#FBEBB4}
 .vignette{background:none;border:0;padding:0;cursor:pointer;display:block;position:relative;max-width:100%;color:inherit;font:inherit;text-align:left}
 .vignette img{display:block;height:auto;max-width:100%;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 24px 48px rgba(0,0,0,.6);transition:transform .5s ease,box-shadow .5s ease}
 .planches .vignette img{width:clamp(140px,17vw,230px)}
@@ -648,13 +655,17 @@ dialog canvas.trace{position:absolute;z-index:5}
 @media(max-width:600px){.loupe .voix{gap:10px;padding:8px 10px} .loupe .voix .titre-voix{font-size:.95rem} .loupe .voix .fermer{padding:.5em .7em} .loupe .voix-texte{max-width:calc(100% - 36px);max-height:50vh;font-size:.84rem}}
 /* la pastille « Isa raconte » sur une vignette du catalogue */
 .fiche .cimaise{position:relative}
-.fiche .voix-badge{position:absolute;right:-8px;bottom:-8px;z-index:6;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 14px rgba(0,0,0,.55);pointer-events:none}
+.fiche .voix-badge{position:absolute;right:-8px;bottom:-8px;z-index:6;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 14px rgba(0,0,0,.55);pointer-events:auto}
 .fiche .voix-badge::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(226,192,99,.7);animation:pulse-voix 2.4s ease-out infinite}
 @keyframes pulse-voix{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.7);opacity:0}}
 .fiche .voix-badge i{display:block;width:2.5px;background:var(--nuit);border-radius:1px;margin:0 1px}
 .fiche .voix-badge span{display:flex;align-items:flex-end;height:14px}
 .fiche .voix-badge i:nth-child(1){height:6px} .fiche .voix-badge i:nth-child(2){height:13px} .fiche .voix-badge i:nth-child(3){height:9px}
+@keyframes barre-voix{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.fiche .voix-badge.joue{box-shadow:0 0 0 2px rgba(251,235,180,.9),0 0 22px rgba(226,192,99,.8)}
+.fiche .voix-badge.joue i{transform-origin:bottom;animation:barre-voix .8s ease-in-out infinite}
+.fiche .voix-badge.joue i:nth-child(2){animation-delay:.15s} .fiche .voix-badge.joue i:nth-child(3){animation-delay:.3s}
 .fiche .mention-voix{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#E2C063;margin:.35em 0 0;position:relative;z-index:1}
 .choix-int{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
 .choix-int i{font-style:normal;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#E2C063;margin-right:2px}
@@ -787,7 +798,14 @@ dialog canvas.trace{position:absolute;z-index:5}
           <li><a href="https://www.carnetdart.com/isa-sator/" rel="noopener"><b>평론</b><span>장폴 가바르페레, 파리 데자제 극장 전시</span></a></li>
           <li><a href="https://lepetitjournal.com/new-york/isa-sator-expose-new-york-son-art-haut-en-couleur-267291" rel="noopener"><b>기사</b><span>Le Petit Journal New York: “이자 사토르, 색채 넘치는 예술을 뉴욕에서 선보이다”</span></a></li>
           <li><a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener"><b>시장 평가</b><span>Artprice 프로필: 낙찰 기록 24건, 약력, 갤러리</span></a></li>
+          <li><a href="https://www.galeriejpht.com/tag/isa-sator" rel="noopener"><b>갤러리</b><span>Galerie JPHT, 파리: 이자 사토르 페이지, 2015년 이후의 전시</span></a></li>
         </ul>
+        <figure class="film">
+          <video controls preload="none" playsinline poster="video/baigneuses-2009.jpg" width="768" height="434">
+            <source src="video/baigneuses-2009.mp4" type="video/mp4">
+          </video>
+          <figcaption><b>작업실의 이자, 2009년</b><span>《Baigneuses》(목욕하는 여인들), 미셸 파시앙 촬영, 7분 08초, Dailymotion에서 발견. 이자가 검은 붓으로 ‘목욕하는 여인들’ 연작의 실루엣을 그린다.</span></figcaption>
+        </figure>
       </div>
     </div>
     <ul class="chiffres">
@@ -922,28 +940,28 @@ dialog canvas.trace{position:absolute;z-index:5}
       <div>
         <h3>전시: 누메아에서 뉴욕까지</h3>
         <ul class="expos">
-        <li><b>2003</b><span><em>Nouméa</em>, 뉴칼레도니아, 첫 전시</span></li>
-        <li><b>2004</b><span><em>Salon des artistes français</em>, 파리; 누메아 Soap’Art Océanie 회장</span></li>
-        <li><b>2005</b><span><em>Grand Concours International de Fréjus</em>, 금메달 및 심사위원 특별상; 프랑스 문화 전국연맹 2005년 ‘빅투아르’ 상(서정적 추상 부문); 뤼테스 국제 아카데미 및 베르됭 ‘세기의 창작자 국제 살롱’ 동메달</span></li>
-        <li><b>2006</b><span><em>두바이, 쿠르슈벨, 포르마를리</em>, 그리고 파리 모나리자 갤러리</span></li>
-        <li><b>2007</b><span><em>National Arts Club, New York</em>, 이어서 몽펠리에, 파리, 라게르슈</span></li>
-        <li><b>2008</b><span><em>바스티유와 선상 갤러리</em>, Paris</span></li>
-        <li><b>2009</b><span><em>Carrousel du Louvre</em>, RFO와 함께; 베르사유</span></li>
-        <li><b>2010</b><span><em>Virgin Champs-Élysées</em>, 그리고 파리 바클레이스</span></li>
-        <li><b>2011</b><span><em>Galerie 66, Vertbois</em>, Paris</span></li>
-        <li><b>2013</b><span><em>Manart</em>, Paris</span></li>
-        <li><b>2014</b><span><em>Reims</em>, 그리고 런던 브릭스턴</span></li>
-        <li><b>2015</b><span><em>Galerie JPHT</em>, Paris</span></li>
-        <li><b>2016</b><span><em>Art Élysées</em>, Beaurepaire, Felix, Montreuil</span></li>
-        <li><b>2017</b><span><em>Les Grandes Cocottes, Orangerie du Sénat, Paris</em>, Jyb’Art와 함께; 이어서 휴스턴, 워싱턴, 롤리</span></li>
-        <li><b>2018</b><span><em>Portraits de famille de Bécassine, Jyb’Art, Paris</em> ; Dampierre ; Galerie JPHT, Paris</span></li>
-        <li><b>2019</b><span><em>Trois femmes de Paris à New York</em>, 파리 Jyb’Art, 그리고 뉴욕 Gallery des Artistes</span></li>
-        <li><b>2020</b><span><em>Galerie Ludwig Trossaert</em>, 앤트워프, 런던, 파리, 뉴욕</span></li>
-        <li><b>2021</b><span><em>Armageddon</em>, Jyb’Art, Levallois-Perret</span></li>
-        <li><b>2023</b><span><em>Pop Circus</em>, Echomusée, 파리; 장미의 날, 바가텔 오랑주리; 안마리 미테랑 저택</span></li>
-        <li><b>2024</b><span><em>Joie et Lumière</em>, <em>Armageddon</em>, Espace Élisabeth Oster, Paris</span></li>
-        <li><b>2025</b><span><em>Connecting People</em>, Espace Élisabeth Oster, Paris</span></li>
-        <li><b>2026</b><span><em>Les Vierges Polaires</em>, Casa Vacanze Ortobene Arte, 누오로, 사르데냐</span></li>
+        <li><b>2003</b><span>미셸 록통 아틀리에의 여성 조각가전, Hôtel Park Royal, 누메아 (3월)</span></li>
+        <li><b>2004</b><span>프랑스 예술가 살롱(Salon des Artistes Français), 파리, 심사위원 선정작 《Le Cri intérieur》 (10월); BNC 은행, 누메아, Noume'Art와 Soap'Art Océanie (10월); 뉴칼레도니아 현대미술 진흥 협회 Soap'Art Océanie 회장; 뤼테스 국제 아카데미 제36회 국제 대회 동메달(우수상)</span></li>
+        <li><b>2005</b><span>프랑스 문화 전국연맹 근현대 미술 살롱, 프레쥐스 (5월): 프레쥐스 국제 대회 금메달과 심사위원 특별상, Victoires 2005 유럽 메달과 서정 추상 트로피; Me Aguttes 공개 경매, 오텔 드루오 (9월 22일); 《Vertige de l'amour》와 《Il était une fois》, Me Michel Rambert 공개 경매, Hôtel des ventes Tuilliers, 메스 (11월 19일)</span></li>
+        <li><b>2006</b><span>Galerie Mona Lisa, 파리 (4월); 《Super Zaza》, Me Cornette de Saint-Cyr 자선 경매, Drouot-Montaigne (6월); 《Les Copines 2》, Me Cornette de Saint-Cyr 공개 경매, 오텔 드루오 (10월 23일); 제16회 중동 국제 가구·인테리어 디자인 박람회, 두바이 (11월); Galerie Daniel Besseiche, 쿠르슈벨 (12월); Galerie Les Pyramides, 포르마를리, 단체전 (12월)</span></li>
+        <li><b>2007</b><span>《Les Bécassines Rock'n Roll》, 라 살로르뉴 문화센터, 브르타뉴 (3월); Galerie Les Arts du 7e, 파리 (3월부터 5월), 알랭 샤바가 회장인 Les Toiles Enchantées 협회를 위한 자선 판매 병행, Me Pierre Cornette de Saint-Cyr 참석; 《Une orange à Central Park》와 《Nikky》, 공개 경매 (4월 14일); 《Les Arlésiennes Swinging》, Galerie Saint-Ravy, 몽펠리에 (4월~5월); 《Bécassine superstar》, Tajan 공개 경매 (6월 26일); 《Smart Barbies》, 내셔널 아츠 클럽, 그래머시 파크, 뉴욕 (9월); 뉴욕 내셔널 아츠 클럽 회원 (10월)</span></li>
+        <li><b>2008</b><span>RFO 방송 《Au quotidien》, 스튜디오 작품 전시 및 출연 (2월); 《Animus Domina》, 바지선 Café Barge, 파리 (6월부터 8월); 현대미술 대시장, 파리 바스티유 (10월); 《La Souris du Pirate》, Me Cornette de Saint-Cyr 공개 경매 (10월 20일); 《La Versaillaise》, Me Christophe Joron-Derem 공개 경매 (12월 9일)</span></li>
+        <li><b>2009</b><span>칸 영화제 포스터 프로젝트 (1월); 《Les grands maîtres de demain》, 명예 초대 작가, 카루젤 뒤 루브르, 파리 (10월); 《Les Versaillaises》, 베르사유 시청, 단체전 (12월)</span></li>
+        <li><b>2010</b><span>바클레이스 은행, 포부르 생토노레, 파리 (5월); 《Rock'n Roll at All》, 버진 메가스토어, 파리 (10월)</span></li>
+        <li><b>2011</b><span>Galerie du Vertbois, 파리 (4월~5월); 《Les peuples de la vallée de l'Omo》, Galerie 66 샹젤리제, 파리 (11월)</span></li>
+        <li><b>2013</b><span>《L'Amour》, Galerie Manart, 파리 (4월~5월)</span></li>
+        <li><b>2014</b><span>《브라질 월드컵의 12개 도시》, 브릭스턴, 런던 (3월); 《Carré artistique des équations》, Grand Hôtel, 랭스 (5월)</span></li>
+        <li><b>2015</b><span>작가 공식 웹사이트 공개, Comédie Montmartre, 파리 (9월); 《ADN Sator》, Galerie JPHT, 파리, Me Cornette de Saint-Cyr 참석 하에 경매와 함께 열린 개막식 (10월~11월)</span></li>
+        <li><b>2016</b><span>Art Élysées, Espace Beaurepaire, Tapis by Félix, 파리; La Table Fleurie, 몽트뢰유</span></li>
+        <li><b>2017</b><span>《Les Grandes Cocottes》, 상원 오랑주리, 뤽상부르 공원, 파리 (8월 10일~21일), 도록 《Les Grandes Cocottes》 출간; 미국에서 《ADN Sator》와 《Smart Barbies》 시리즈: 노스캐롤라이나주 롤리 (2월 9일~12일), 텍사스주 휴스턴 (3월 1일~5일), 워싱턴 프랑스 대사관 (5월 1일~5일), 로스앤젤레스와 시카고 (하반기)</span></li>
+        <li><b>2018</b><span>《Erotic'art》, Galerie l'Espace Grange, 당피에르 (2월 14일~3월 4일); 《Portraits de famille de Bécassine》, Galerie JPHT, 파리 (6월~7월)</span></li>
+        <li><b>2019</b><span>《Trois femmes de Paris à New York》, Galerie JPHT, 파리 (5월과 12월), 그리고 Gallery of Artists, 뉴욕 (10월)</span></li>
+        <li><b>2020</b><span>Galerie Ludwig Trossaert (앤트워프, 런던, 파리, 뉴욕) 등록; 네 개의 온라인 플랫폼에 작품 소개</span></li>
+        <li><b>2021</b><span>《Armageddon》, Jyb'Art 갤러리, 르발루아페레</span></li>
+        <li><b>2023</b><span>《Pop Circus》, Echomusée 갤러리, 파리 (4월 23일~30일); 장미의 날, 바가텔 공원 오랑주리 (6월); 안마리 미테랑 저택 회화전</span></li>
+        <li><b>2024</b><span>《Joie et Lumière》 (7월 4일)와 《Armageddon》 (12월 5일), Espace Élisabeth Oster, 파리</span></li>
+        <li><b>2025</b><span>《Connecting People》, Espace Élisabeth Oster, 파리 (3월 3일부터)</span></li>
+        <li><b>2026</b><span>《Les Vierges Polaires》, Casa Vacanze Ortobene Arte, 누오로, 사르데냐 (1월 3일~31일)</span></li>
         </ul>
         <p class="sources">출처: <a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener">Artprice</a> 프로필, 위키백과 항목 <a href="https://fr.wikipedia.org/wiki/Isa_Sator" rel="noopener">Isa Sator</a>, 미술가 사전 <a href="https://www.ledelarge.fr/" rel="noopener">Delarge</a>. 작품은 Artnet과 Artsper에도 소개되어 있습니다. <span>연보는 작가 본인의 이력에 따라 보완했습니다.</span></p>
         <h3 style="margin-top:1.6em">공개 경매</h3>
@@ -1016,9 +1034,10 @@ dialog canvas.trace{position:absolute;z-index:5}
           </div>
           <div class="planches">
             <button class="vignette" type="button" data-doc="actu-affiche-nuoro.jpg" data-titre="Les Vierges Polaires, 포스터" data-det="Casa Vacanze Ortobene Arte, 누오로, 2026년 1월 3일~31일"><img src="actu-affiche-nuoro.jpg" alt="누오로 전시 Les Vierges Polaires 포스터" width="1008" height="1514" loading="lazy"><small>포스터</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, 1면" data-det="누오로, 2025년 12월, 고나리아 네비나 라이와 비토리오 E. 피수의 글"><img src="actu-presse-1.jpg" alt="이자 사토르를 다룬 Casa Vacanze Ortobene Arte News 1면" width="1070" height="1514" loading="lazy"><small>소식지 1면</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, 2면" data-det="누오로, 2025년 12월, 비토리오 E. 피수 기사의 후반부"><img src="actu-presse-2.jpg" alt="소식지 2면, 이자 사토르의 작품과 전시 일정" width="1070" height="1514" loading="lazy"><small>소식지 2면</small></button>
+            <button class="vignette" type="button" data-doc="journal/ko-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, 1면" data-det="누오로, 2025년 12월, 고나리아 네비나 라이와 비토리오 E. 피수의 글"><img src="journal/ko-1.jpg" alt="이자 사토르를 다룬 Casa Vacanze Ortobene Arte News 1면" width="1498" height="2320" loading="lazy"><small>소식지 1면</small></button>
+            <button class="vignette" type="button" data-doc="journal/ko-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, 2면" data-det="누오로, 2025년 12월, 비토리오 E. 피수 기사의 후반부"><img src="journal/ko-2.jpg" alt="소식지 2면, 이자 사토르의 작품과 전시 일정" width="1498" height="1896" loading="lazy"><small>소식지 2면</small></button>
           </div>
+          <p class="original-it"><button class="vignette lien-doc" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, pagina 1" data-det="Originale in italiano, Nuoro, dicembre 2025">이탈리아어 원본, 1면</button> · <button class="vignette lien-doc" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, pagina 2" data-det="Originale in italiano, Nuoro, dicembre 2025">2면</button></p>
           <details class="traduction" id="traduction-nuoro">
             <summary>소식지를 한국어로 읽기 (이탈리아어에서 번역)</summary>
             <div class="texte lisible">
@@ -1438,6 +1457,15 @@ voixAudio.addEventListener("timeupdate",()=>{
   document.getElementById("voix-temps").textContent=fmt(voixAudio.currentTime)+" / "+fmt(voixAudio.duration);
 });
 voixAudio.addEventListener("ended",()=>voixBloc.classList.remove("joue"));
+/* la pastille du catalogue : la voix d'Isa sans ouvrir la toile */
+function ecouteDirect(cle,bd){
+  const v=VOIX[cle]; if(!v) return;
+  const src=(voixAudio.canPlayType("audio/mpeg")||!voixAudio.canPlayType("audio/ogg; codecs=opus"))?v.src:v.src.replace(/\.mp3$/,".ogg");
+  if(voixAudio.getAttribute("src")!==src){ voixAudio.src=src; voixAudio.load(); }
+  if(voixAudio.paused){ voixAudio.play().then(()=>{ document.querySelectorAll(".voix-badge.joue").forEach(x=>x.classList.remove("joue")); bd.classList.add("joue"); }).catch(()=>{}); }
+  else { voixAudio.pause(); }
+}
+voixAudio.addEventListener("pause",()=>document.querySelectorAll(".voix-badge.joue").forEach(x=>x.classList.remove("joue")));
 document.getElementById("voix-lecture").addEventListener("click",()=>{
   if(voixAudio.paused){ voixAudio.play().then(()=>voixBloc.classList.add("joue")).catch(()=>{}); } else { voixAudio.pause(); voixBloc.classList.remove("joue"); }
 });
@@ -1709,7 +1737,12 @@ Object.keys(CAT).map(Number).sort((a,b)=>a-b).forEach(n=>{
     (DIMS[n] ? '<p class="dim">'+DIMS[n][0]+' × '+DIMS[n][1]+' cm</p>' : '<p class="dim manque">'+"치수 미확정"+'</p>')+
     (VOIX[id] ? '<p class="mention-voix">'+"이자의 이야기"+'</p>' : '')+
     (DETAILS[n] ? '<p class="dim manque">'+"작품의 일부, 부분 사진"+'</p>' : '');
-  if(VOIX[id]) b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge" aria-hidden="true"><span><i></i><i></i><i></i></span></span>');
+  if(VOIX[id]){
+    b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge" role="button" tabindex="0" aria-label="'+"이자의 이야기"+'"><span><i></i><i></i><i></i></span></span>');
+    const bd=b.querySelector(".voix-badge");
+    bd.addEventListener("click",e=>{ e.stopPropagation(); e.preventDefault(); ecouteDirect(id,bd); });
+    bd.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.stopPropagation(); e.preventDefault(); ecouteDirect(id,bd); } });
+  }
   cg.appendChild(b);
 });
 surveille(cg);

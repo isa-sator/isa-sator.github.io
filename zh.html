@@ -192,6 +192,10 @@ body.torche .fond .torche{opacity:1}
 .presse a:hover{color:#F1D27E;text-decoration:none}
 .presse b{font-weight:400;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cendre);min-width:6.5em}
 .presse a::after{content:"→";color:#C9A227}
+.film{margin:1.6em 0 0;max-width:62ch}
+.film video{width:100%;height:auto;display:block;background:#000;border:1px solid rgba(212,175,55,.35);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.film figcaption{display:grid;gap:.25em;padding:.75em 0 0;font-size:.82rem;color:var(--cendre);line-height:1.45}
+.film figcaption b{font-weight:400;color:var(--ivoire);font-size:.92rem;letter-spacing:.02em}
 @media(max-width:520px){.presse a{grid-template-columns:1fr auto}.presse b{grid-column:1/-1;min-width:0}}
 
 /* ---------- chiffres clés de l'artiste ---------- */
@@ -232,6 +236,9 @@ body.torche .fond .torche{opacity:1}
 .entree .date{margin:0;padding-top:.55em}
 .entree h3{font-family:var(--display);font-weight:400;font-size:clamp(1.45rem,2.6vw,2.1rem);margin:0 0 .55em;line-height:1.1;text-wrap:balance}
 .planches{display:flex;flex-wrap:wrap;gap:clamp(14px,2vw,26px);margin-top:1.5em;align-items:flex-start}
+.original-it{margin:.8em 0 0;font-size:.8rem;color:var(--cendre)}
+.vignette.lien-doc{display:inline;color:#E2C063;text-decoration:underline;text-underline-offset:3px;font-size:inherit}
+.vignette.lien-doc:hover{color:#FBEBB4}
 .vignette{background:none;border:0;padding:0;cursor:pointer;display:block;position:relative;max-width:100%;color:inherit;font:inherit;text-align:left}
 .vignette img{display:block;height:auto;max-width:100%;box-shadow:0 0 0 1px rgba(255,255,255,.16),0 24px 48px rgba(0,0,0,.6);transition:transform .5s ease,box-shadow .5s ease}
 .planches .vignette img{width:clamp(140px,17vw,230px)}
@@ -648,13 +655,17 @@ dialog canvas.trace{position:absolute;z-index:5}
 @media(max-width:600px){.loupe .voix{gap:10px;padding:8px 10px} .loupe .voix .titre-voix{font-size:.95rem} .loupe .voix .fermer{padding:.5em .7em} .loupe .voix-texte{max-width:calc(100% - 36px);max-height:50vh;font-size:.84rem}}
 /* la pastille « Isa raconte » sur une vignette du catalogue */
 .fiche .cimaise{position:relative}
-.fiche .voix-badge{position:absolute;right:-8px;bottom:-8px;z-index:6;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 14px rgba(0,0,0,.55);pointer-events:none}
+.fiche .voix-badge{position:absolute;right:-8px;bottom:-8px;z-index:6;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+  background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 14px rgba(0,0,0,.55);pointer-events:auto}
 .fiche .voix-badge::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(226,192,99,.7);animation:pulse-voix 2.4s ease-out infinite}
 @keyframes pulse-voix{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.7);opacity:0}}
 .fiche .voix-badge i{display:block;width:2.5px;background:var(--nuit);border-radius:1px;margin:0 1px}
 .fiche .voix-badge span{display:flex;align-items:flex-end;height:14px}
 .fiche .voix-badge i:nth-child(1){height:6px} .fiche .voix-badge i:nth-child(2){height:13px} .fiche .voix-badge i:nth-child(3){height:9px}
+@keyframes barre-voix{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+.fiche .voix-badge.joue{box-shadow:0 0 0 2px rgba(251,235,180,.9),0 0 22px rgba(226,192,99,.8)}
+.fiche .voix-badge.joue i{transform-origin:bottom;animation:barre-voix .8s ease-in-out infinite}
+.fiche .voix-badge.joue i:nth-child(2){animation-delay:.15s} .fiche .voix-badge.joue i:nth-child(3){animation-delay:.3s}
 .fiche .mention-voix{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#E2C063;margin:.35em 0 0;position:relative;z-index:1}
 .choix-int{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
 .choix-int i{font-style:normal;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#E2C063;margin-right:2px}
@@ -787,7 +798,14 @@ dialog canvas.trace{position:absolute;z-index:5}
           <li><a href="https://www.carnetdart.com/isa-sator/" rel="noopener"><b>评论</b><span>让-保罗·加瓦尔-佩雷，巴黎德雅泽剧院展览</span></a></li>
           <li><a href="https://lepetitjournal.com/new-york/isa-sator-expose-new-york-son-art-haut-en-couleur-267291" rel="noopener"><b>报道</b><span>《纽约小报》：“伊莎·萨托尔在纽约展出她色彩斑斓的艺术”</span></a></li>
           <li><a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener"><b>行情</b><span>她的 Artprice 档案：24 项拍卖成交、传记、画廊</span></a></li>
+          <li><a href="https://www.galeriejpht.com/tag/isa-sator" rel="noopener"><b>画廊</b><span>Galerie JPHT，巴黎：伊莎·萨托尔专页，2015 年以来的展览</span></a></li>
         </ul>
+        <figure class="film">
+          <video controls preload="none" playsinline poster="video/baigneuses-2009.jpg" width="768" height="434">
+            <source src="video/baigneuses-2009.mp4" type="video/mp4">
+          </video>
+          <figcaption><b>伊莎在她的画室，2009 年</b><span>《Baigneuses》（浴女），米歇尔·帕西安拍摄，7 分 08 秒，发现于 Dailymotion。伊莎以黑色画笔勾勒“浴女”系列的身影。</span></figcaption>
+        </figure>
       </div>
     </div>
     <ul class="chiffres">
@@ -922,28 +940,28 @@ dialog canvas.trace{position:absolute;z-index:5}
       <div>
         <h3>展览：从努美阿到纽约</h3>
         <ul class="expos">
-        <li><b>2003</b><span><em>Nouméa</em>，新喀里多尼亚，首次展览</span></li>
-        <li><b>2004</b><span><em>Salon des artistes français</em>，巴黎；努美阿 Soap’Art Océanie 协会主席</span></li>
-        <li><b>2005</b><span><em>弗雷瑞斯国际大赛</em>，金奖及评审团特别奖；法国文化全国联合会 2005 年“胜利奖”，抒情抽象类；吕泰斯国际学院与凡尔登“世纪创作者国际沙龙”铜奖</span></li>
-        <li><b>2006</b><span><em>迪拜、库尔舍维尔、波尔马尔利</em>，以及巴黎蒙娜丽莎画廊</span></li>
-        <li><b>2007</b><span><em>National Arts Club, New York</em>，随后蒙彼利埃、巴黎、拉盖尔什</span></li>
-        <li><b>2008</b><span><em>巴士底与塞纳河船屋</em>, Paris</span></li>
-        <li><b>2009</b><span><em>Carrousel du Louvre</em>，与 RFO 电视台合作；凡尔赛</span></li>
-        <li><b>2010</b><span><em>Virgin Champs-Élysées</em>，以及巴黎巴克莱银行</span></li>
-        <li><b>2011</b><span><em>Galerie 66, Vertbois</em>, Paris</span></li>
-        <li><b>2013</b><span><em>Manart</em>, Paris</span></li>
-        <li><b>2014</b><span><em>Reims</em>，以及伦敦布里克斯顿</span></li>
-        <li><b>2015</b><span><em>Galerie JPHT</em>, Paris</span></li>
-        <li><b>2016</b><span><em>Art Élysées</em>, Beaurepaire, Felix, Montreuil</span></li>
-        <li><b>2017</b><span><em>Les Grandes Cocottes, Orangerie du Sénat, Paris</em>，与 Jyb’Art 画廊合作；随后休斯敦、华盛顿、罗利</span></li>
-        <li><b>2018</b><span><em>Portraits de famille de Bécassine, Jyb’Art, Paris</em> ; Dampierre ; Galerie JPHT, Paris</span></li>
-        <li><b>2019</b><span><em>Trois femmes de Paris à New York</em>，巴黎 Jyb’Art 画廊及纽约 Gallery des Artistes</span></li>
-        <li><b>2020</b><span><em>Galerie Ludwig Trossaert</em>，安特卫普、伦敦、巴黎与纽约</span></li>
-        <li><b>2021</b><span><em>Armageddon</em>, Jyb’Art, Levallois-Perret</span></li>
-        <li><b>2023</b><span><em>Pop Circus</em>，Echomusée，巴黎；玫瑰日，巴加泰勒橘园；安娜-玛丽·密特朗私邸</span></li>
-        <li><b>2024</b><span><em>Joie et Lumière</em>, <em>Armageddon</em>, Espace Élisabeth Oster, Paris</span></li>
-        <li><b>2025</b><span><em>Connecting People</em>, Espace Élisabeth Oster, Paris</span></li>
-        <li><b>2026</b><span><em>Les Vierges Polaires</em>，Casa Vacanze Ortobene Arte，努奥罗，撒丁岛</span></li>
+        <li><b>2003</b><span>米歇尔·罗克通工作室女雕塑家展，Hôtel Park Royal，努美阿（3 月）</span></li>
+        <li><b>2004</b><span>法国艺术家沙龙（Salon des Artistes Français），巴黎，评审团入选作品《Le Cri intérieur》（10 月）；BNC 银行，努美阿，Noume'Art 与 Soap'Art Océanie（10 月）；任 Soap'Art Océanie 协会主席，该协会致力于推广新喀里多尼亚的当代艺术；卢泰西亚国际学院第 36 届国际大赛铜奖并获评语</span></li>
+        <li><b>2005</b><span>法国文化全国联合会现代与当代艺术沙龙，弗雷瑞斯（5 月）：弗雷瑞斯国际大赛金奖与评审团特别奖，2005 年 Victoires 欧洲奖章与抒情抽象奖杯；Aguttes 拍卖行公开拍卖，德鲁奥拍卖中心（9 月 22 日）；《Vertige de l'amour》与《Il était une fois》，Michel Rambert 公开拍卖，Hôtel des ventes Tuilliers，梅斯（11 月 19 日）</span></li>
+        <li><b>2006</b><span>Galerie Mona Lisa，巴黎（4 月）；《Super Zaza》，Cornette de Saint-Cyr 慈善拍卖，Drouot-Montaigne（6 月）；《Les Copines 2》，Cornette de Saint-Cyr 公开拍卖，德鲁奥拍卖中心（10 月 23 日）；第 16 届中东国际家具与室内设计展，迪拜（11 月）；Galerie Daniel Besseiche，谷雪维尔（12 月）；Galerie Les Pyramides，Port-Marly，群展（12 月）</span></li>
+        <li><b>2007</b><span>《Les Bécassines Rock'n Roll》，La Salorgne 文化中心，布列塔尼（3 月）；Galerie Les Arts du 7e，巴黎（3 月至 5 月），并为 Alain Chabat 主持的 Les Toiles Enchantées 协会举办慈善义卖，Pierre Cornette de Saint-Cyr 出席；《Une orange à Central Park》与《Nikky》，公开拍卖（4 月 14 日）；《Les Arlésiennes Swinging》，Galerie Saint-Ravy，蒙彼利埃（4 月至 5 月）；《Bécassine superstar》，Tajan 拍卖行公开拍卖（6 月 26 日）；《Smart Barbies》，国家艺术俱乐部，格拉梅西公园，纽约（9 月）；成为纽约国家艺术俱乐部会员（10 月）</span></li>
+        <li><b>2008</b><span>RFO 电视节目《Au quotidien》，作品在演播室展出并参加节目（2 月）；《Animus Domina》，Café Barge 驳船，巴黎（6 月至 8 月）；当代艺术大集市，巴黎巴士底（10 月）；《La Souris du Pirate》，Cornette de Saint-Cyr 公开拍卖（10 月 20 日）；《La Versaillaise》，Christophe Joron-Derem 公开拍卖（12 月 9 日）</span></li>
+        <li><b>2009</b><span>戛纳电影节海报方案（1 月）；《Les grands maîtres de demain》，荣誉嘉宾，卢浮宫卡鲁塞尔厅，巴黎（10 月）；《Les Versaillaises》，凡尔赛市政厅，群展（12 月）</span></li>
+        <li><b>2010</b><span>巴克莱银行，圣奥诺雷郊区街，巴黎（5 月）；《Rock'n Roll at All》，Virgin Megastore，巴黎（10 月）</span></li>
+        <li><b>2011</b><span>Galerie du Vertbois，巴黎（4 月至 5 月）；《Les peuples de la vallée de l'Omo》，Galerie 66 香榭丽舍，巴黎（11 月）</span></li>
+        <li><b>2013</b><span>《L'Amour》，Galerie Manart，巴黎（4 月至 5 月）</span></li>
+        <li><b>2014</b><span>《巴西世界杯的 12 座城市》，布里克斯顿，伦敦（3 月）；《Carré artistique des équations》，Grand Hôtel，兰斯（5 月）</span></li>
+        <li><b>2015</b><span>艺术家官方网站发布，Comédie Montmartre，巴黎（9 月）；《ADN Sator》，Galerie JPHT，巴黎，开幕式有 Cornette de Saint-Cyr 出席并举行拍卖（10 月至 11 月）</span></li>
+        <li><b>2016</b><span>Art Élysées、Espace Beaurepaire 与 Tapis by Félix，巴黎；La Table Fleurie，蒙特勒伊</span></li>
+        <li><b>2017</b><span>《Les Grandes Cocottes》，参议院橘园，卢森堡公园，巴黎（8 月 10 日至 21 日），并出版图录《Les Grandes Cocottes》；美国巡展，《ADN Sator》与《Smart Barbies》系列：北卡罗来纳州罗利（2 月 9 日至 12 日）、得克萨斯州休斯敦（3 月 1 日至 5 日）、华盛顿法国大使馆（5 月 1 日至 5 日）、洛杉矶与芝加哥（下半年）</span></li>
+        <li><b>2018</b><span>《Erotic'art》，Galerie l'Espace Grange，当皮埃尔（2 月 14 日至 3 月 4 日）；《Portraits de famille de Bécassine》，Galerie JPHT，巴黎（6 月至 7 月）</span></li>
+        <li><b>2019</b><span>《Trois femmes de Paris à New York》，Galerie JPHT，巴黎（5 月与 12 月），以及 Gallery of Artists，纽约（10 月）</span></li>
+        <li><b>2020</b><span>入选 Galerie Ludwig Trossaert（安特卫普、伦敦、巴黎、纽约）；作品在四个线上平台展示</span></li>
+        <li><b>2021</b><span>《Armageddon》，Jyb'Art 画廊，勒瓦卢瓦-佩雷</span></li>
+        <li><b>2023</b><span>《Pop Circus》，Echomusée 画廊，巴黎（4 月 23 日至 30 日）；玫瑰日，巴加泰勒公园橘园（6 月）；安娜-玛丽·密特朗私邸画展</span></li>
+        <li><b>2024</b><span>《Joie et Lumière》（7 月 4 日）与《Armageddon》（12 月 5 日），Espace Élisabeth Oster，巴黎</span></li>
+        <li><b>2025</b><span>《Connecting People》，Espace Élisabeth Oster，巴黎（3 月 3 日起）</span></li>
+        <li><b>2026</b><span>《Les Vierges Polaires》，Casa Vacanze Ortobene Arte，努奥罗，撒丁岛（1 月 3 日至 31 日）</span></li>
         </ul>
         <p class="sources">资料来源：<a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener">Artprice</a> 档案、维基百科 <a href="https://fr.wikipedia.org/wiki/Isa_Sator" rel="noopener">Isa Sator</a> 词条及 <a href="https://www.ledelarge.fr/" rel="noopener">Delarge</a> 艺术家辞典。作品亦见于 Artnet 与 Artsper。 <span>年表已根据艺术家本人的履历补全。</span></p>
         <h3 style="margin-top:1.6em">公开拍卖</h3>
@@ -1016,9 +1034,10 @@ dialog canvas.trace{position:absolute;z-index:5}
           </div>
           <div class="planches">
             <button class="vignette" type="button" data-doc="actu-affiche-nuoro.jpg" data-titre="《极地圣女》，海报" data-det="Casa Vacanze Ortobene Arte，努奥罗，2026 年 1 月 3 日至 31 日"><img src="actu-affiche-nuoro.jpg" alt="努奥罗《极地圣女》展览海报" width="1008" height="1514" loading="lazy"><small>海报</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News，第 1 页" data-det="努奥罗，2025 年 12 月，戈纳里亚·内维娜·莱与维托里奥·E·皮苏的文章"><img src="actu-presse-1.jpg" alt="Casa Vacanze Ortobene Arte News 刊物以伊莎·萨托尔为主题的第一页" width="1070" height="1514" loading="lazy"><small>刊物第 1 页</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News，第 2 页" data-det="努奥罗，2025 年 12 月，维托里奥·E·皮苏文章的续篇"><img src="actu-presse-2.jpg" alt="刊物第二页，载有伊莎·萨托尔的一幅画作及展览日程" width="1070" height="1514" loading="lazy"><small>刊物第 2 页</small></button>
+            <button class="vignette" type="button" data-doc="journal/zh-1.jpg" data-titre="Casa Vacanze Ortobene Arte News，第 1 页" data-det="努奥罗，2025 年 12 月，戈纳里亚·内维娜·莱与维托里奥·E·皮苏的文章"><img src="journal/zh-1.jpg" alt="Casa Vacanze Ortobene Arte News 刊物以伊莎·萨托尔为主题的第一页" width="1498" height="2135" loading="lazy"><small>刊物第 1 页</small></button>
+            <button class="vignette" type="button" data-doc="journal/zh-2.jpg" data-titre="Casa Vacanze Ortobene Arte News，第 2 页" data-det="努奥罗，2025 年 12 月，维托里奥·E·皮苏文章的续篇"><img src="journal/zh-2.jpg" alt="刊物第二页，载有伊莎·萨托尔的一幅画作及展览日程" width="1498" height="1862" loading="lazy"><small>刊物第 2 页</small></button>
           </div>
+          <p class="original-it"><button class="vignette lien-doc" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, pagina 1" data-det="Originale in italiano, Nuoro, dicembre 2025">意大利语原版，第 1 页</button> · <button class="vignette lien-doc" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, pagina 2" data-det="Originale in italiano, Nuoro, dicembre 2025">第 2 页</button></p>
           <details class="traduction" id="traduction-nuoro">
             <summary>阅读刊物中文译文（译自意大利语）</summary>
             <div class="texte lisible">
@@ -1438,6 +1457,15 @@ voixAudio.addEventListener("timeupdate",()=>{
   document.getElementById("voix-temps").textContent=fmt(voixAudio.currentTime)+" / "+fmt(voixAudio.duration);
 });
 voixAudio.addEventListener("ended",()=>voixBloc.classList.remove("joue"));
+/* la pastille du catalogue : la voix d'Isa sans ouvrir la toile */
+function ecouteDirect(cle,bd){
+  const v=VOIX[cle]; if(!v) return;
+  const src=(voixAudio.canPlayType("audio/mpeg")||!voixAudio.canPlayType("audio/ogg; codecs=opus"))?v.src:v.src.replace(/\.mp3$/,".ogg");
+  if(voixAudio.getAttribute("src")!==src){ voixAudio.src=src; voixAudio.load(); }
+  if(voixAudio.paused){ voixAudio.play().then(()=>{ document.querySelectorAll(".voix-badge.joue").forEach(x=>x.classList.remove("joue")); bd.classList.add("joue"); }).catch(()=>{}); }
+  else { voixAudio.pause(); }
+}
+voixAudio.addEventListener("pause",()=>document.querySelectorAll(".voix-badge.joue").forEach(x=>x.classList.remove("joue")));
 document.getElementById("voix-lecture").addEventListener("click",()=>{
   if(voixAudio.paused){ voixAudio.play().then(()=>voixBloc.classList.add("joue")).catch(()=>{}); } else { voixAudio.pause(); voixBloc.classList.remove("joue"); }
 });
@@ -1709,7 +1737,12 @@ Object.keys(CAT).map(Number).sort((a,b)=>a-b).forEach(n=>{
     (DIMS[n] ? '<p class="dim">'+DIMS[n][0]+' × '+DIMS[n][1]+' cm</p>' : '<p class="dim manque">'+"尺寸待定"+'</p>')+
     (VOIX[id] ? '<p class="mention-voix">'+"伊莎讲述"+'</p>' : '')+
     (DETAILS[n] ? '<p class="dim manque">'+"画作局部，照片不完整"+'</p>' : '');
-  if(VOIX[id]) b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge" aria-hidden="true"><span><i></i><i></i><i></i></span></span>');
+  if(VOIX[id]){
+    b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge" role="button" tabindex="0" aria-label="'+"伊莎讲述"+'"><span><i></i><i></i><i></i></span></span>');
+    const bd=b.querySelector(".voix-badge");
+    bd.addEventListener("click",e=>{ e.stopPropagation(); e.preventDefault(); ecouteDirect(id,bd); });
+    bd.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.stopPropagation(); e.preventDefault(); ecouteDirect(id,bd); } });
+  }
   cg.appendChild(b);
 });
 surveille(cg);
