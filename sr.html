@@ -686,10 +686,8 @@ dialog canvas.trace{position:absolute;z-index:5}
 .salon .deco{position:absolute;pointer-events:none;z-index:3}
 .salon .deco.nat.devant{z-index:3;filter:none;opacity:1;transform:none}
 .salon .cimaise{z-index:2}
-.salon .deco.objet{isolation:isolate;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.salon .deco.objet img{display:block;width:100%;height:100%;mix-blend-mode:multiply}
+.salon canvas.deco.objet{display:block}
 .salon .deco.nat,.salon .deco.ombre{position:absolute;display:block;max-width:none;max-height:none;box-shadow:none;object-fit:fill;z-index:auto}
-.salon .deco.objet img{position:static;max-width:none;max-height:none;box-shadow:none}
 .salon .deco.ombre{filter:brightness(0) blur(3px);opacity:.3;transform:translate(3px,6px)}
 .salon .cimaise .toile img{box-sizing:content-box;width:100%;height:100%;object-fit:fill;border:var(--cadre,8px) solid transparent;border-image:url("cadre-or.png") 40 / var(--cadre,8px) round;margin:calc(-1 * var(--cadre,8px));background:#0E0902;
   box-shadow:0 0 0 1px rgba(0,0,0,.5),0 22px 40px rgba(0,0,0,.55),0 6px 12px rgba(0,0,0,.4)}
@@ -1290,7 +1288,7 @@ const INTERIEURS={
       dessus:{x:480,basPref:0.97,basMin:0.80,hautMax:2.48,largMax:2.4,fond:0.05},
       libre:{x:1480,largMax:3.0,centreY:1.6,hautMax:2.48},
       devant:[[45,730],[55,668],[860,665],[898,715],[905,905],[45,905]],
-      deco:[{x:115,y:695,w:141,h:140,img:"deco/coussin.png",c:0,a:1,omb:1},{x:700,y:695,w:141,h:140,img:"deco/coussin.png",c:1,a:1,omb:1},{x:525,y:673,w:70,h:92,img:"deco/vase-tiges.png",nat:1},{x:526,y:765,w:69,h:93,img:"deco/vase.png",c:1,a:1,omb:1},{x:1064,y:564,w:130,h:170,img:"deco/vase-tiges.png",nat:1},{x:1067,y:734,w:126,h:171,img:"deco/vase.png",c:1,a:1,omb:1}]},
+      deco:[{x:115,y:695,w:141,h:140,img:"deco/coussin.png",c:0,a:1,omb:1},{x:700,y:695,w:141,h:140,img:"deco/coussin.png",c:1,a:1,omb:1},{x:262,y:698,w:70,h:92,img:"deco/vase-tiges.png",nat:1},{x:263,y:790,w:69,h:93,img:"deco/vase.png",c:1,a:1,omb:1},{x:1064,y:564,w:130,h:170,img:"deco/vase-tiges.png",nat:1},{x:1067,y:734,w:126,h:171,img:"deco/vase.png",c:1,a:1,omb:1}]},
     portrait:{src:"interieur-salon-portrait.jpg",w:1125,h:2015,k:461,sol:1490,
       dessus:{x:370,basPref:0.92,basMin:0.75,hautMax:2.48,largMax:2.2,fond:0.05},
       devant:[[0,1195],[640,1195],[700,1275],[705,1490],[0,1490]],
@@ -1371,7 +1369,7 @@ function dessineSalon(){
   const deco=(V.deco||[]).map(d=>{
     if(d.nat) return '<img class="deco nat" style="'+geo(d)+'" src="'+d.img+'" alt="">';
     const ombre=d.omb?'<img class="deco ombre" style="'+geo(d)+'" src="'+d.img+'" alt="">':'';
-    return ombre+'<span class="deco objet" style="'+geo(d)+'background:'+pal[d.c]+';opacity:'+d.a+';-webkit-mask-image:url(\''+d.img+'\');mask-image:url(\''+d.img+'\')"><img src="'+d.img+'" alt=""></span>';
+    return ombre+'<canvas class="deco objet" style="'+geo(d)+'opacity:'+d.a+'" data-img="'+d.img+'" data-c="'+pal[d.c]+'"></canvas>';
   }).join("");
   /* le meuble (canapé, fauteuil) découpé dans la photo, posé devant la toile quand elle descend derrière lui */
   const meuble=(P.derriere&&V.devant)?'<img class="deco nat devant" style="left:'+ox.toFixed(1)+'px;top:'+oy.toFixed(1)+'px;width:'+(V.w*sc).toFixed(1)+'px;height:'+(V.h*sc).toFixed(1)+'px;clip-path:polygon('+V.devant.map(p=>(100*p[0]/V.w).toFixed(2)+'% '+(100*p[1]/V.h).toFixed(2)+'%').join(',')+')" src="'+V.src+'" alt="">':'';
@@ -1382,6 +1380,24 @@ function dessineSalon(){
     meuble+deco+
     (P.derriere?'':'<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.lr+' cm</span></div>')+
     '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>Kod vas, u razmeri</b>'+courante.hr+' × '+courante.lr+' cm, '+I.legende+', pod svojom zidnom lampom. Enterijer poprima boje platna; izaberite drugu prostoriju dole.'+(courante.estime?'<i>Dimenzije nisu navedene: prikazano u orijentacionom formatu od 100 cm.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
+  peintObjets(salon);
+}
+/* ---------- objets recolorés : peints dans un canvas (image × couleur, découpée par la transparence du PNG) ---------- */
+const IMAGES_DECO={};
+function chargeImage(src){ return IMAGES_DECO[src]||(IMAGES_DECO[src]=new Promise(res=>{ const i=new Image(); i.onload=()=>res(i); i.onerror=()=>res(null); i.src=src; })); }
+function peintObjets(zone){
+  zone.querySelectorAll("canvas.deco.objet").forEach(async c=>{
+    const im=await chargeImage(c.dataset.img); if(!im||!c.isConnected) return;
+    const r=c.getBoundingClientRect(); if(!r.width||!r.height) return;
+    const dpr=Math.min(2,window.devicePixelRatio||1);
+    c.width=Math.max(1,Math.round(r.width*dpr)); c.height=Math.max(1,Math.round(r.height*dpr));
+    const x=c.getContext("2d"); x.clearRect(0,0,c.width,c.height);
+    x.drawImage(im,0,0,c.width,c.height);
+    x.globalCompositeOperation="multiply"; x.fillStyle=c.dataset.c; x.fillRect(0,0,c.width,c.height);
+    if(x.globalCompositeOperation!=="multiply"){ x.globalCompositeOperation="source-atop"; x.globalAlpha=.55; x.fillRect(0,0,c.width,c.height); x.globalAlpha=1; }
+    x.globalCompositeOperation="destination-in"; x.drawImage(im,0,0,c.width,c.height);
+    x.globalCompositeOperation="source-over";
+  });
 }
 document.getElementById("choix-int").addEventListener("click",e=>{
   const b=e.target.closest("button[data-int]"); if(!b) return;
