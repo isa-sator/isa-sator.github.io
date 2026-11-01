@@ -1160,7 +1160,7 @@ const SERIES=[
 ];
 
 /* la parole d'Isa : clé = numéro TB (catalogue) ou identifiant d'œuvre ; fichier audio, durée affichée, texte transcrit */
-const VOIX={"TB01":{src:"voix/TB01.m4a",texte:["La Païva. Cette toile d'un mètre sur un mètre fait partie de la série des Grandes Cocottes, que j'ai créée lorsque l'Orangerie du Sénat, à Paris, m'a proposé d'exposer au mois d'août 2017. J'ai choisi de parler des grandes cocottes, ces grandes allongées, ces femmes du Second Empire, pour remettre les femmes à l'honneur dans ce centre de pouvoir qui, à l'époque, ne comportait aucune femme.", "J'ai mis en avant leur goût pour la liberté, pour une vérité aussi de vivre et d'être. Elles ont été des femmes complètement phares dans le monde ; il n'y a aucun équivalent nulle part ailleurs de ces femmes, qui évoquent aussi la fête, la joie, le spectacle. Beaucoup d'entre elles étaient des femmes talentueuses, avec souvent des destins qui finissaient mal, malheureusement, mais des femmes qui ont choisi d'être libres, de ne pas exister à travers un mari ou une famille nombreuse, de ne pas être esclaves, et qui ont choisi de se servir de leurs attributs pour pouvoir surnager avec ce qu'on leur laissait.", "J'ai donc été très honorée de peindre toute cette galerie de portraits, dont la Païva, une femme d'origine russe qui se faisait, comme on dirait, combler, tellement qu'elle a pu acheter un très bel hôtel particulier, qui se trouve sur les Champs-Élysées à Paris et qui accueille aujourd'hui, je crois, le Travellers Club ; il se visite."]}};
+const VOIX={"TB01":{src:"voix/TB01.mp3",texte:["La Païva. Cette toile d'un mètre sur un mètre fait partie de la série des Grandes Cocottes, que j'ai créée lorsque l'Orangerie du Sénat, à Paris, m'a proposé d'exposer au mois d'août 2017. J'ai choisi de parler des grandes cocottes, ces grandes allongées, ces femmes du Second Empire, pour remettre les femmes à l'honneur dans ce centre de pouvoir qui, à l'époque, ne comportait aucune femme.", "J'ai mis en avant leur goût pour la liberté, pour une vérité aussi de vivre et d'être. Elles ont été des femmes complètement phares dans le monde ; il n'y a aucun équivalent nulle part ailleurs de ces femmes, qui évoquent aussi la fête, la joie, le spectacle. Beaucoup d'entre elles étaient des femmes talentueuses, avec souvent des destins qui finissaient mal, malheureusement, mais des femmes qui ont choisi d'être libres, de ne pas exister à travers un mari ou une famille nombreuse, de ne pas être esclaves, et qui ont choisi de se servir de leurs attributs pour pouvoir surnager avec ce qu'on leur laissait.", "J'ai donc été très honorée de peindre toute cette galerie de portraits, dont la Païva, une femme d'origine russe qui se faisait, comme on dirait, combler, tellement qu'elle a pu acheter un très bel hôtel particulier, qui se trouve sur les Champs-Élysées à Paris et qui accueille aujourd'hui, je crois, le Travellers Club ; il se visite."]}};
 const euros = n => n.toLocaleString("de-DE") + " €";
 const echappe = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
 
@@ -1399,8 +1399,8 @@ function montreVoix(cle){
   const v=VOIX[cle];
   voixAudio.pause(); voixBloc.classList.remove("joue"); voixTexte.hidden=true;
   voixBloc.hidden=!v; if(!v) return;
-  /* m4a (AAC) partout où il est lu, sinon la version opus */
-  const src=(voixAudio.canPlayType("audio/mp4")||!voixAudio.canPlayType("audio/ogg; codecs=opus"))?v.src:v.src.replace(/\.m4a$/,".opus");
+  /* mp3 partout, ogg (opus) en secours */
+  const src=(voixAudio.canPlayType("audio/mpeg")||!voixAudio.canPlayType("audio/ogg; codecs=opus"))?v.src:v.src.replace(/\.mp3$/,".ogg");
   if(voixAudio.getAttribute("src")!==src){ voixAudio.src=src; voixAudio.load(); }
   document.getElementById("voix-avance").style.width="0";
   document.getElementById("voix-temps").textContent="0:00 / "+fmt(voixAudio.duration);
