@@ -265,7 +265,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .marque img{width:40px;height:43px}
 .barre nav{display:flex;gap:clamp(11px,2.3vw,26px);flex-wrap:wrap}
 .barre nav a{font-size:.74rem;text-transform:uppercase;letter-spacing:.17em;background-image:linear-gradient(170deg,#E9CF86,#C9A64A 45%,#A8872A);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.82;transition:opacity .3s}
-.barre nav a:hover{opacity:1;text-decoration:none}
+.barre nav a{padding:.5em .75em;margin:-.5em -.15em;border-radius:2px;transition:opacity .25s ease,box-shadow .25s ease}
+.barre nav a:hover,.barre nav a:focus-visible{opacity:1;text-decoration:none;color:var(--nuit);-webkit-text-fill-color:var(--nuit);
+  -webkit-background-clip:padding-box;background-clip:padding-box;
+  background-image:linear-gradient(100deg,transparent 0 30%,rgba(255,255,255,.55) 50%,transparent 70% 100%),linear-gradient(100deg,#8C6A14 0%,#D4AF37 18%,#FBEBB4 42%,#E2C063 60%,#B8902A 82%,#F1D27E 100%);
+  background-size:240% 100%,100% 100%;background-position:120% 0,0 0;background-repeat:no-repeat;
+  box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 18px rgba(201,162,39,.35),inset 0 1px 0 rgba(255,255,255,.5);animation:reflet 1.1s ease 1}
+.barre nav a.actif:hover{border-bottom-color:transparent}
 @media(max-width:660px){
   .barre .dedans{padding-block:9px;gap:7px}
   .marque img{width:28px;height:30px}
@@ -620,7 +626,7 @@ dialog canvas.trace{position:absolute;z-index:5}
   <div class="file"><ul><li>Cotée Artprice : 24 adjudications en ventes publiques</li><li><b>2003</b> Nouméa, première exposition</li><li><b>2004</b> Salon des artistes français, Paris</li><li><b>2005</b> Médaille d’or et prix spécial du jury, Fréjus</li><li><b>2005</b> Première vente aux enchères, Aguttes</li><li><b>2006</b> Dubaï et Courchevel</li><li><b>2007</b> National Arts Club, New York</li><li><b>2009</b> Carrousel du Louvre, Paris</li><li><b>2014</b> Brixton, Londres</li><li><b>2016</b> Art Élysées, Paris</li><li><b>2017</b> Orangerie du Sénat, Paris</li><li><b>2017</b> Houston, Washington, Raleigh</li><li><b>2019</b> Gallery des Artistes, New York</li><li><b>2026</b> Les Vierges Polaires, Nuoro, Sardaigne</li><li>Galeries Jyb’Art et JPHT, Paris</li><li>Référencée au dictionnaire Delarge</li><li>Droits gérés par l’ADAGP</li></ul><ul aria-hidden="true"><li>Cotée Artprice : 24 adjudications en ventes publiques</li><li><b>2003</b> Nouméa, première exposition</li><li><b>2004</b> Salon des artistes français, Paris</li><li><b>2005</b> Médaille d’or et prix spécial du jury, Fréjus</li><li><b>2005</b> Première vente aux enchères, Aguttes</li><li><b>2006</b> Dubaï et Courchevel</li><li><b>2007</b> National Arts Club, New York</li><li><b>2009</b> Carrousel du Louvre, Paris</li><li><b>2014</b> Brixton, Londres</li><li><b>2016</b> Art Élysées, Paris</li><li><b>2017</b> Orangerie du Sénat, Paris</li><li><b>2017</b> Houston, Washington, Raleigh</li><li><b>2019</b> Gallery des Artistes, New York</li><li><b>2026</b> Les Vierges Polaires, Nuoro, Sardaigne</li><li>Galeries Jyb’Art et JPHT, Paris</li><li>Référencée au dictionnaire Delarge</li><li>Droits gérés par l’ADAGP</li></ul></div>
 </div>
 
-<section class="bande artiste gouttiere" id="artiste" data-page="accueil" aria-labelledby="t-art">
+<section class="bande artiste gouttiere" id="artiste" data-page="artiste" aria-labelledby="t-art">
   <div class="dedans centre">
     <div class="deux">
       <figure class="portrait">
@@ -671,6 +677,7 @@ dialog canvas.trace{position:absolute;z-index:5}
   <div class="dedans centre">
     <h2 class="titre" id="t-por">Entrer dans l'atelier</h2>
     <div class="portes">
+      <a class="porte" href="#artiste" style="--img:url('isa-portrait-nb.jpg')"><b>L'artiste</b><i>Portrait, parole, cote et presse</i></a>
       <a class="porte" href="#grands" style="--img:url('grand/TB35.jpg')"><b>Les grands formats</b><i>Six toiles en pleine largeur</i></a>
       <a class="porte" href="#oeuvres" style="--img:url('oeuvres/la-loba.jpg')"><b>Œuvres disponibles</b><i>Vingt-deux pièces uniques, sous leurs appliques</i></a>
       <a class="porte" href="#series" style="--img:url('catalogue/TB41.jpg')"><b>Les séries</b><i>Onze histoires, de New York à Nouméa</i></a>
@@ -1354,7 +1361,7 @@ if(!reduit){
 })();
 
 /* ---------- pages : sur ordinateur, une section à la fois ; sur téléphone, le fil continu ---------- */
-const PAGES={accueil:"accueil",portail:"accueil",artiste:"accueil",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",contact:"contact"};
+const PAGES={accueil:"accueil",portail:"accueil",artiste:"artiste",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",contact:"contact"};
 const mqPages=matchMedia("(min-width:761px)");
 function montrePage(){
   const h=decodeURIComponent(location.hash.replace("#","")), page=PAGES[h]||"accueil", enPages=mqPages.matches;
