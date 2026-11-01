@@ -413,7 +413,7 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 }
 .cimaise .toile{position:relative;z-index:1}
 /* cadre doré mouluré : une tuile en 9 tranches (cadre-or.png), largeur réglée par --cadre */
-.cimaise .toile img{width:100%;box-sizing:border-box;border:var(--cadre,12px) solid transparent;border-image:url("cadre-or.png") 40 / var(--cadre,12px) round;background:#0E0902;
+.cimaise .toile img{width:100%;height:auto;box-sizing:border-box;border:var(--cadre,12px) solid transparent;border-image:url("cadre-or.png") 40 / var(--cadre,12px) round;background:#0E0902;
   box-shadow:0 0 0 1px rgba(0,0,0,.55),0 30px 52px rgba(0,0,0,.8),0 8px 16px rgba(0,0,0,.62)}
 .grand .toile img{--cadre:clamp(12px,1.2vw,20px)}
 .panneau .grille .toile img{--cadre:8px}
@@ -482,6 +482,7 @@ section{scroll-margin-top:84px}
 .grand figcaption{padding-top:20px;display:grid;gap:4px;position:relative;z-index:1}
 .grand .nom{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.2}
 .grand .detail{font-size:.82rem;color:var(--cendre);letter-spacing:.03em}
+.grand .detail.manque{font-style:italic;opacity:.6;font-size:.74rem}
 
 
 /* ---------- catalogue complet ---------- */
@@ -523,8 +524,8 @@ section{scroll-margin-top:84px}
 .serie-lien:hover .fleche,.serie-lien:focus-visible .fleche{opacity:1;transform:translateX(5px)}
 
 /* panneau d'une série */
-dialog.panneau{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);width:100%;height:100%;max-width:100vw;max-height:100vh}
-dialog.panneau::backdrop{background:rgba(5,8,18,.94)}
+dialog.panneau{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);position:fixed;inset:var(--barre-h,70px) 0 0 0;margin:0;width:100%;height:auto;max-width:100vw;max-height:none;z-index:28}
+dialog.panneau::backdrop{background:transparent}
 .panneau .boite{height:100%;display:flex;flex-direction:column;gap:22px;overflow:auto;
   padding:max(20px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
 .panneau .entete{display:flex;gap:18px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;max-width:1100px;margin-inline:auto;width:100%}
@@ -568,9 +569,12 @@ footer{border-top:1px solid var(--trait)}
 footer .dedans{padding-block:30px;display:flex;gap:16px;flex-wrap:wrap;font-size:.74rem;color:var(--cendre);justify-content:space-between}
 
 /* ---------- loupe ---------- */
-dialog.loupe{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);width:100%;height:100%;max-width:100vw;max-height:100vh}
-dialog.loupe::backdrop{background:rgba(5,8,18,.94)}
-.loupe .boite{height:100%;display:flex;flex-direction:column;gap:16px;padding:max(18px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) max(18px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
+dialog.loupe{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);position:fixed;inset:var(--barre-h,70px) 0 0 0;margin:0;width:100%;height:auto;max-width:100vw;max-height:none;z-index:28}
+dialog.panneau{z-index:27}
+dialog.loupe::backdrop{background:transparent}
+body.volet-ouvert{overflow:hidden}
+.fermer.retour::before{content:"← ";}
+.loupe .boite{height:100%;display:flex;flex-direction:column;gap:14px;padding:14px max(18px,env(safe-area-inset-right,0px)) max(14px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
 .loupe .scene{flex:1;display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr);place-items:center;position:relative;min-height:0}
 .loupe .scene img{max-height:100%;max-width:100%;width:auto;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.8);position:relative;z-index:1}
 .loupe .scene>img{box-sizing:border-box;border:clamp(10px,1.4vw,18px) solid transparent;border-image:url("cadre-or.png") 40 / clamp(10px,1.4vw,18px) round;background:#0E0902}
@@ -598,6 +602,40 @@ dialog canvas.trace{position:absolute;z-index:5}
 
 /* ---------- chez vous : la toile à l'échelle ---------- */
 .loupe .outils{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+/* ---------- la parole d'Isa : lecteur doré et volet de texte ---------- */
+.loupe .voix{display:flex;align-items:center;gap:14px;padding:10px 14px;border:1px solid rgba(212,175,55,.45);background:rgba(7,12,24,.8);max-width:720px;width:100%;margin-inline:auto}
+.loupe .voix .lecture{flex:none;width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;
+  background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.5),0 8px 20px rgba(201,162,39,.35)}
+.loupe .voix .lecture:hover{box-shadow:0 0 0 1px rgba(251,235,180,.9),0 10px 26px rgba(201,162,39,.5)}
+.loupe .voix .ondes{display:flex;align-items:flex-end;gap:3px;height:18px}
+.loupe .voix .ondes i{display:block;width:3px;height:8px;background:var(--nuit);border-radius:2px}
+.loupe .voix .ondes i:nth-child(2){height:16px}
+.loupe .voix .ondes i:nth-child(3){height:11px}
+.loupe .voix.joue .ondes i{animation:onde .9s ease-in-out infinite alternate}
+.loupe .voix.joue .ondes i:nth-child(2){animation-delay:.15s} .loupe .voix.joue .ondes i:nth-child(3){animation-delay:.3s}
+@keyframes onde{from{height:5px}to{height:18px}}
+.loupe .voix .piste{flex:1;min-width:0;display:grid;gap:6px}
+.loupe .voix .titre-voix{font-family:var(--display);font-size:1.05rem;line-height:1.1;background-image:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);-webkit-background-clip:text;background-clip:text;color:transparent}
+.loupe .voix .barre-voix{display:block;height:3px;background:rgba(255,255,255,.14);border-radius:2px;cursor:pointer;position:relative}
+.loupe .voix .barre-voix span{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#C9A227,#FBEBB4);border-radius:2px}
+.loupe .voix .temps{font-size:.68rem;letter-spacing:.1em;color:var(--cendre);font-variant-numeric:tabular-nums}
+.loupe .voix .fermer{color:#E2C063;border-color:rgba(212,175,55,.6)}
+.loupe .voix-texte{position:absolute;left:max(18px,env(safe-area-inset-left,0px));top:max(18px,env(safe-area-inset-top,0px));z-index:6;max-width:min(46ch,calc(100% - 36px));max-height:min(62vh,560px);overflow:auto;
+  background:rgba(7,12,24,.92);backdrop-filter:blur(8px);border-left:3px solid #D4AF37;box-shadow:0 14px 34px rgba(0,0,0,.5);padding:1em 1.2em;color:#EAE0D0;font-size:.9rem;line-height:1.6}
+.loupe .voix-texte .surtitre{margin:0 0 .6em}
+.loupe .voix-texte p{margin:0 0 .8em}
+.loupe .voix-texte .note{font-size:.72rem;color:var(--cendre);margin:.4em 0 0;font-style:italic}
+@media(max-width:600px){.loupe .voix{gap:10px;padding:8px 10px} .loupe .voix .titre-voix{font-size:.95rem} .loupe .voix .fermer{padding:.5em .7em} .loupe .voix-texte{max-width:calc(100% - 36px);max-height:50vh;font-size:.84rem}}
+/* la pastille « Isa raconte » sur une vignette du catalogue */
+.fiche .cimaise{position:relative}
+.fiche .voix-badge{position:absolute;right:-8px;bottom:-8px;z-index:6;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 14px rgba(0,0,0,.55);pointer-events:none}
+.fiche .voix-badge::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(226,192,99,.7);animation:pulse-voix 2.4s ease-out infinite}
+@keyframes pulse-voix{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.fiche .voix-badge i{display:block;width:2.5px;background:var(--nuit);border-radius:1px;margin:0 1px}
+.fiche .voix-badge span{display:flex;align-items:flex-end;height:14px}
+.fiche .voix-badge i:nth-child(1){height:6px} .fiche .voix-badge i:nth-child(2){height:13px} .fiche .voix-badge i:nth-child(3){height:9px}
+.fiche .mention-voix{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#E2C063;margin:.35em 0 0;position:relative;z-index:1}
 .choix-int{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
 .choix-int i{font-style:normal;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#E2C063;margin-right:2px}
 .choix-int button{position:relative;width:88px;height:58px;border:1px solid var(--trait);background:var(--img) center/cover no-repeat #0C1426;color:#fff;font:inherit;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
@@ -614,13 +652,15 @@ dialog canvas.trace{position:absolute;z-index:5}
 .loupe.chez-vous .salon{display:block}
 .loupe.chez-vous .scene>img,.loupe.chez-vous .scene>.rebond{visibility:hidden}
 .salon .cimaise{position:absolute}
-.salon .deco{position:absolute;pointer-events:none}
+.salon .deco{position:absolute;pointer-events:none;z-index:3}
+.salon .deco.nat.devant{z-index:3;filter:none;opacity:1;transform:none}
+.salon .cimaise{z-index:2}
 .salon .deco.objet{isolation:isolate;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .salon .deco.objet img{display:block;width:100%;height:100%;mix-blend-mode:multiply}
 .salon .deco.nat,.salon .deco.ombre{position:absolute;display:block;max-width:none;max-height:none;box-shadow:none;object-fit:fill;z-index:auto}
 .salon .deco.objet img{position:static;max-width:none;max-height:none;box-shadow:none}
 .salon .deco.ombre{filter:brightness(0) blur(3px);opacity:.3;transform:translate(3px,6px)}
-.salon .cimaise .toile img{box-sizing:content-box;width:100%;height:100%;object-fit:cover;border:var(--cadre,8px) solid transparent;border-image:url("cadre-or.png") 40 / var(--cadre,8px) round;margin:calc(-1 * var(--cadre,8px));background:#0E0902;
+.salon .cimaise .toile img{box-sizing:content-box;width:100%;height:100%;object-fit:fill;border:var(--cadre,8px) solid transparent;border-image:url("cadre-or.png") 40 / var(--cadre,8px) round;margin:calc(-1 * var(--cadre,8px));background:#0E0902;
   box-shadow:0 0 0 1px rgba(0,0,0,.5),0 22px 40px rgba(0,0,0,.55),0 6px 12px rgba(0,0,0,.4)}
 .salon .cimaise .toile{height:100%}
 .salon .cimaise .lampe{top:auto;bottom:calc(100% + var(--cadre,8px) - 4px);width:min(72%,360px)}
@@ -776,28 +816,28 @@ dialog canvas.trace{position:absolute;z-index:5}
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB35.jpg" alt="Le Manteau de Gaïa" width="1600" height="900"></div>
         </div>
-        <figcaption><span class="nom">Le Manteau de Gaïa</span><span class="detail">TB35 — 캔버스에 아크릴 — 175 × 145 cm</span></figcaption>
+        <figcaption><span class="nom">Le Manteau de Gaïa</span><span class="detail">TB35 — 캔버스에 아크릴 — 175 × 145 cm</span><span class="detail manque">작품의 일부, 부분 사진</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB59.jpg')">
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB59.jpg" alt="La Distance du Sator" width="1600" height="900"></div>
         </div>
-        <figcaption><span class="nom">La Distance du Sator</span><span class="detail">TB59 — 캔버스에 아크릴 — 175 × 145 cm</span></figcaption>
+        <figcaption><span class="nom">La Distance du Sator</span><span class="detail">TB59 — 캔버스에 아크릴 — 175 × 145 cm</span><span class="detail manque">작품의 일부, 부분 사진</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB81.jpg')">
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB81.jpg" alt="Rotation de Marcel" width="1600" height="900"></div>
         </div>
-        <figcaption><span class="nom">Rotation de Marcel</span><span class="detail">TB81 — 캔버스에 아크릴 — 175 × 145 cm</span></figcaption>
+        <figcaption><span class="nom">Rotation de Marcel</span><span class="detail">TB81 — 캔버스에 아크릴 — 175 × 145 cm</span><span class="detail manque">작품의 일부, 부분 사진</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB82.jpg')">
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB82.jpg" alt="Hiéroglyphes et palimpsestes spatiaux" width="1600" height="900"></div>
         </div>
-        <figcaption><span class="nom">Hiéroglyphes et palimpsestes spatiaux</span><span class="detail">TB82 — 캔버스에 아크릴 — 175 × 145 cm</span></figcaption>
+        <figcaption><span class="nom">Hiéroglyphes et palimpsestes spatiaux</span><span class="detail">TB82 — 캔버스에 아크릴 — 175 × 145 cm</span><span class="detail manque">작품의 일부, 부분 사진</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB64.jpg')">
@@ -1024,7 +1064,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <h3 id="pan-nom"></h3>
         <p class="mot" id="pan-mot"></p>
       </div>
-      <button class="fermer" id="pan-fermer" type="button">닫기</button>
+      <button class="fermer retour" id="pan-fermer" type="button">뒤로</button>
     </div>
     <div class="grille" id="pan-grille"></div>
   </div>
@@ -1038,6 +1078,20 @@ dialog canvas.trace{position:absolute;z-index:5}
       <img id="loupe-img" src="" alt="">
       <div class="salon" id="salon" aria-hidden="true"></div>
     </div>
+    <div class="voix" id="voix" hidden>
+      <button type="button" class="lecture" id="voix-lecture" aria-label="듣기"><span class="ondes"><i></i><i></i><i></i></span></button>
+      <div class="piste">
+        <span class="titre-voix">이자가 이 작품을 이야기합니다</span>
+        <span class="barre-voix" id="voix-barre"><span id="voix-avance"></span></span>
+        <span class="temps" id="voix-temps">0:00 / 0:00</span>
+      </div>
+      <button type="button" class="fermer" id="voix-mots">그녀의 말 읽기</button>
+    </div>
+    <div class="voix-texte" id="voix-texte" hidden>
+      <p class="surtitre">그녀의 말 (프랑스어)</p>
+      <div id="voix-paragraphes"></div>
+      <p class="note">음성 메시지의 녹취록, 이자의 확인 예정.</p>
+    </div>
     <div class="pied">
       <div>
         <p class="nom" id="loupe-nom" style="margin:0"></p>
@@ -1048,8 +1102,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <button class="fermer" id="btn-salon" type="button" hidden>실제 크기로 집에 걸어 보기</button>
         <button class="fermer" id="btn-traduction" type="button" hidden>번역 읽기</button>
         <span class="choix-int" id="choix-int" hidden><i>집에서 보기:</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>거실</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>침실</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>로프트</span></button></span>
-        <a class="fermer gardien" id="btn-gardien" href="mailto:isasator@gmail.com">이 캔버스는 수호자를 찾고 있습니다</a>
-        <button class="fermer" id="loupe-fermer" type="button">닫기</button>
+        <button class="fermer retour" id="loupe-fermer" type="button">뒤로</button>
       </div>
     </div>
   </div>
@@ -1084,8 +1137,10 @@ const OEUVRES = [
 ];
 
 const GRANDS=[35,59,64,71,81,82];
+/* photos qui ne montrent qu'un détail de la toile (sans ses bords) : pas de mise en scène possible */
+const DETAILS={35:1,59:1,81:1,82:1};
 /* dimensions connues (hauteur, largeur en cm) pour « chez vous » */
-const DIMS={35:[175,145],59:[175,145],81:[175,145],82:[175,145],64:[130,90],71:[40,40],
+const DIMS={1:[100,100],35:[145,175],59:[145,175],81:[145,175],82:[145,175],64:[130,90],71:[40,40],
   19:[160,130],21:[175,160],23:[160,130],28:[160,130],31:[175,160],33:[100,100],36:[160,130],40:[110,95],44:[160,130],51:[92,66],77:[190,160],79:[160,130],80:[160,130]};
 const CAT={1:[1,"La Païva",350,347],2:[2,"AC-DC",350,233],3:[3,"Smart Barby Strong",213,302],4:[4,"Armageddon",350,234],5:[5,"U2",350,200],6:[6,"Women Leopard Baie des Citrons Noumea",350,198],7:[7,"La Forêt magique",350,182],8:[8,"La Jument ailée",263,350],9:[9,"Autoportrait d'Èze",290,350],10:[10,"Le Meilleur des mondes",344,350],11:[11,"Le Prince gourmand",350,217],12:[12,"Les Bouilleurs de crue",290,350],13:[13,"La Capucine",264,350],14:[14,"La Montre molle",350,225],15:[15,"Les Hippocampes",350,262],16:[16,"La Guerre des Roses",244,350],17:[17,"Le Harem",350,237],18:[18,"Blanche d'Antigny",350,341],19:[19,"Erectus",233,350],20:[20,"Les Remerciements de Bécassine",189,314],21:[21,"Guns and Roses",350,263],22:[22,"Nini Pattes en l'air",280,350],23:[23,"Le Jardin d'Eden",233,350],24:[24,"Satisfaction",233,350],25:[25,"Le Génie",277,350],26:[26,"L'Été, le temps des cerises",263,350],27:[27,"Les Torchons spatiaux",350,225],28:[28,"Ubus les Rébus",233,350],29:[29,"Vérité Sensualité, les Trois Grâces à Nouméa",350,197],30:[30,"Le Lièvre et la Tortue",350,226],31:[31,"La Distance Terre-Soleil",350,225],32:[32,"Thé pour tous",280,350],33:[33,"Gaby Deslys",350,350],34:[34,"En allant au marché",265,350],35:[35,"Le Manteau de Gaïa",760,428],36:[36,"L'Hôtel du Cul tourné",281,350],37:[37,"Balade au Bois de Boulogne",277,350],38:[38,"Les 4 Lascars",263,350],39:[39,"Apollonie Sabatier",350,349],40:[40,"Yvette Guilbert",248,350],41:[41,"Smart Barby on a Phone",287,350],42:[42,"Galipette",282,350],43:[43,"La Belle du Cotentin",295,350],44:[44,"Rien ne va plus",233,350],45:[45,"Bécassine à Pigalle",213,212],46:[46,"Le Cerf",263,305],47:[47,"La Fée Électricité, Loïe Fuller",282,350],48:[48,"Smart Barby Rose Bonbon",217,271],49:[49,"Le Cœur a ses raisons",273,350],50:[50,"Le Velouté",350,344],51:[51,"Le Baiser givré",246,350],52:[52,"Fanfan",291,350],53:[53,"Les Généaux",350,263],54:[54,"Le Baiser maure",246,350],55:[55,"Smart Barby Carnegie Hall",161,318],56:[56,"Smart Barby on a Phone II",159,314],57:[57,"Le Japonais",350,247],58:[58,"Smart Barby Cannes ou la Tropézienne",159,314],59:[59,"La Distance du Sator",760,428],60:[60,"Les Vaches normandes",350,242],61:[61,"Phaéton, le char du fils du Soleil par-dessus tête",244,350],62:[62,"La Chute 1",263,350],63:[63,"Les Chiens de l'Enfer",349,350],64:[64,"La Licorne",524,760],65:[65,"La Versaillaise",246,350],66:[66,"Dragon celte",240,350],67:[67,"La Victoire de Samothrace",263,350],68:[68,"Autoportrait Nouméa",254,350],69:[69,"Rize",213,266],70:[70,"L'Avenir de l'Homme",241,350],71:[71,"Le Grec",760,759],72:[72,"La Chute de Satan",245,350],73:[73,"La Chute de Satan 2",222,350],74:[74,"La Sirène bleue",331,263],75:[75,"Hélène",253,350],76:[76,"Le Dragon de l'Apocalypse",350,333],77:[77,"La Loba",263,350],78:[78,"Bicéphale",350,263],79:[79,"Les Archidrôlesses",280,350],80:[80,"Plus sur la même longueur d'onde",233,350],81:[81,"Rotation de Marcel",760,428],82:[82,"Hiéroglyphes et palimpsestes spatiaux",760,428]};
 
@@ -1104,6 +1159,8 @@ const SERIES=[
 ["Bécassine rock'n'roll","",[20,45],"sure","라 살로르뉴 문화센터, 라게르슈드브르타뉴, 2007년 3월; Portraits de famille de Bécassine, JPHT 갤러리, 파리, 2018년","orange"]
 ];
 
+/* la parole d'Isa : clé = numéro TB (catalogue) ou identifiant d'œuvre ; fichier audio, durée affichée, texte transcrit */
+const VOIX={"TB01":{src:"voix/TB01.m4a",texte:["La Païva. Cette toile d'un mètre sur un mètre fait partie de la série des Grandes Cocottes, que j'ai créée lorsque l'Orangerie du Sénat, à Paris, m'a proposé d'exposer au mois d'août 2017. J'ai choisi de parler des grandes cocottes, ces grandes allongées, ces femmes du Second Empire, pour remettre les femmes à l'honneur dans ce centre de pouvoir qui, à l'époque, ne comportait aucune femme.", "J'ai mis en avant leur goût pour la liberté, pour une vérité aussi de vivre et d'être. Elles ont été des femmes complètement phares dans le monde ; il n'y a aucun équivalent nulle part ailleurs de ces femmes, qui évoquent aussi la fête, la joie, le spectacle. Beaucoup d'entre elles étaient des femmes talentueuses, avec souvent des destins qui finissaient mal, malheureusement, mais des femmes qui ont choisi d'être libres, de ne pas exister à travers un mari ou une famille nombreuse, de ne pas être esclaves, et qui ont choisi de se servir de leurs attributs pour pouvoir surnager avec ce qu'on leur laissait.", "J'ai donc été très honorée de peindre toute cette galerie de portraits, dont la Païva, une femme d'origine russe qui se faisait, comme on dirait, combler, tellement qu'elle a pu acheter un très bel hôtel particulier, qui se trouve sur les Champs-Élysées à Paris et qui accueille aujourd'hui, je crois, le Travellers Club ; il se visite."]}};
 const euros = n => n.toLocaleString("ko-KR") + " €";
 const echappe = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
 
@@ -1167,16 +1224,15 @@ sl.addEventListener("click",e=>{
       '<div class="toile"><img loading="lazy" src="catalogue/TB'+String(n).padStart(2,"0")+'.jpg" alt="'+echappe(o[1])+'" width="'+o[2]+'" height="'+o[3]+'"></div>'+
       '</div><figcaption><span class="t">'+echappe(o[1])+'</span>TB'+String(n).padStart(2,"0")+'</figcaption></figure>';
   }).join("");
-  if(panneau.showModal) panneau.showModal();
+  ouvreVolet(panneau);
   surveille(g);
 });
-document.getElementById("pan-fermer").addEventListener("click",()=>panneau.close());
-panneau.addEventListener("click",e=>{if(e.target===panneau) panneau.close();});
+document.getElementById("pan-fermer").addEventListener("click",()=>fermeVolet(panneau));
+panneau.addEventListener("click",e=>{if(e.target===panneau) fermeVolet(panneau);});
 
 const loupe=document.getElementById("loupe");
 const salon=document.getElementById("salon");
 const btnSalon=document.getElementById("btn-salon");
-const btnGardien=document.getElementById("btn-gardien");
 let courante=null;   /* {src, titre, h_cm, l_cm} */
 
 /* « Chez vous » : la toile posée à sa vraie taille dans un intérieur photographié de face.
@@ -1186,26 +1242,30 @@ let courante=null;   /* {src, titre, h_cm, l_cm} */
 const INTERIEURS={
   salon:{nom:"거실",legende:"거실 소파 위에",
     paysage:{src:"interieur-salon-paysage.jpg",w:2000,h:1125,k:311.5,sol:905,
-      dessus:{x:480,basPref:0.97,basMin:0.80,hautMax:2.48,largMax:2.4},
+      dessus:{x:480,basPref:0.97,basMin:0.80,hautMax:2.48,largMax:2.4,fond:0.05},
       libre:{x:1480,largMax:3.0,centreY:1.6,hautMax:2.48},
+      devant:[[45,730],[55,668],[860,665],[898,715],[905,905],[45,905]],
       deco:[{x:115,y:695,w:141,h:140,img:"deco/coussin.png",c:0,a:1,omb:1},{x:700,y:695,w:141,h:140,img:"deco/coussin.png",c:1,a:1,omb:1},{x:525,y:673,w:70,h:92,img:"deco/vase-tiges.png",nat:1},{x:526,y:765,w:69,h:93,img:"deco/vase.png",c:1,a:1,omb:1},{x:1064,y:564,w:130,h:170,img:"deco/vase-tiges.png",nat:1},{x:1067,y:734,w:126,h:171,img:"deco/vase.png",c:1,a:1,omb:1}]},
     portrait:{src:"interieur-salon-portrait.jpg",w:1125,h:2015,k:461,sol:1490,
-      dessus:{x:370,basPref:0.92,basMin:0.75,hautMax:2.48,largMax:2.2},
+      dessus:{x:370,basPref:0.92,basMin:0.75,hautMax:2.48,largMax:2.2,fond:0.05},
+      devant:[[0,1195],[640,1195],[700,1275],[705,1490],[0,1490]],
       deco:[{x:505,y:1193,w:209,h:207,img:"deco/coussin.png",c:1,a:1,omb:1},{x:350,y:1193,w:209,h:207,img:"deco/coussin.png",c:0,a:1,omb:1},{x:832,y:984,w:193,h:252,img:"deco/vase-tiges.png",nat:1},{x:836,y:1236,w:187,h:254,img:"deco/vase.png",c:1,a:1,omb:1}]}},
   chambre:{nom:"침실",legende:"침실의 160 cm 침대 위에",
     paysage:{src:"interieur-chambre.jpg",w:2000,h:1116,k:307.7,sol:914,
-      dessus:{x:1007,basPref:1.22,basMin:1.05,hautMax:2.48,largMax:2.4},
+      dessus:{x:1007,basPref:1.22,basMin:1.05,hautMax:2.48,largMax:2.4,fond:0.5},
       libre:{x:275,largMax:1.38,centreY:1.5,hautMax:2.48},
       deco:[{x:716,y:616,w:567,h:154,img:"deco/chambre-tete.png",c:0,a:1.0},{x:925,y:662,w:139,h:138,img:"deco/coussin.png",c:1,a:1,omb:1},{x:700,y:797,w:277,h:178,img:"deco/plaid.png",c:0,a:1,omb:1}]},
     portrait:{src:"interieur-chambre-portrait.jpg",w:1125,h:2015,k:300,sol:1430,
-      dessus:{x:565,basPref:1.35,basMin:1.18,hautMax:4.1,largMax:2.6},
+      dessus:{x:565,basPref:1.35,basMin:1.18,hautMax:4.1,largMax:2.6,fond:0.55},
       deco:[{x:284,y:1107,w:558,h:185,img:"deco/chambrep-tete.png",c:0,a:1.0},{x:497,y:1180,w:136,h:135,img:"deco/coussin.png",c:1,a:1,omb:1},{x:420,y:1471,w:270,h:173,img:"deco/plaid.png",c:0,a:1,omb:1}]}},
   loft:{nom:"Loft",legende:"천장이 높은 로프트의 벽돌 벽에",
     paysage:{src:"interieur-loft-paysage.jpg",w:2000,h:1125,k:218,sol:1075,
-      libre:{x:960,largMax:3.9,centreY:2.7,hautMax:4.3},
+      libre:{x:960,largMax:3.9,centreY:2.4,hautMax:4.3,fond:0.08},
+      devant:[[1000,548],[1098,540],[1105,468],[1272,468],[1282,560],[1282,720],[1003,720]],
       deco:[{x:1423,y:262,w:184,h:139,img:"deco/loft-abatjour.png",c:0,a:1.0},{x:191,y:840,w:173,h:155,img:"deco/loft-pot.png",c:1,a:1.0}]},
     portrait:{src:"interieur-loft-portrait.jpg",w:1125,h:2015,k:420,sol:1440,
-      libre:{x:410,largMax:1.5,centreY:2.08,hautMax:3.2},
+      libre:{x:410,largMax:1.5,centreY:2.08,hautMax:3.2,fond:0.08},
+      devant:[[842,1180],[900,1170],[905,1095],[995,1092],[1003,1180],[1003,1440],[845,1440]],
       deco:[{x:733,y:690,w:169,h:116,img:"deco/loftp-abatjour.png",c:0,a:1.0},{x:3,y:1255,w:154,h:149,img:"deco/loftp-pot.png",c:1,a:1.0}]}}
 };
 /* les deux couleurs principales de chaque toile, pour teinter coussins, tête de lit, pot : calculées sur les 104 images */
@@ -1215,13 +1275,19 @@ const TEINTES={"adn-sator":"f","baiser-givre":"c","cochon-hurlant":"c","come-8":
 let interieurChoisi=null;        /* choix du visiteur, sinon automatique */
 
 function place(I,hm,lm){
-  /* renvoie {x, bas, note} en mètres, ou null si rien ne convient vraiment */
+  /* renvoie {x, bas, note} en mètres : bas = hauteur du bord inférieur de la toile au-dessus du sol */
   const d=I.dessus, l=I.libre;
-  if(d&&lm<=d.largMax&&d.basPref+hm<=d.hautMax) return {x:d.x,bas:d.basPref,ok:true};
-  if(d&&lm<=d.largMax&&d.basMin+hm<=d.hautMax) return {x:d.x,bas:d.basMin,ok:true};
-  if(l&&lm<=l.largMax&&hm<=l.hautMax-0.4){ const bas=Math.max(0.4, Math.min(l.centreY-hm/2, l.hautMax-hm)); return {x:l.x,bas,ok:true,note:"비어 있는 벽면에 걸었습니다."}; }
-  if(d) return {x:d.x,bas:Math.max(0.3,d.hautMax-hm),ok:false,note:"이곳 벽 높이보다 큰 작품입니다. 크기 비교를 위해 가구 앞에 세워 두었습니다."};
-  return {x:l.x,bas:Math.max(0.3,l.hautMax-hm),ok:false,note:"이곳 벽 높이보다 큰 작품입니다."};
+  if(d&&lm<=d.largMax){
+    const bande=d.hautMax-d.basMin;                                   /* mur libre au-dessus du meuble */
+    if(hm<=bande){ const bas=Math.max(d.basPref, Math.min(d.basMin+(bande-hm)/2, d.hautMax-hm-0.1)); return {x:d.x,bas,ok:true}; }
+    /* trop haute pour le pan de mur : elle descend derrière le meuble, posée au sol s'il le faut */
+    return {x:d.x,bas:Math.max(d.fond!=null?d.fond:0.3, d.hautMax-hm-0.1),ok:true,derriere:true,note:"벽면보다 높은 작품: 바닥에 세워 가구 뒤에 두었습니다."};
+  }
+  if(l&&lm<=l.largMax){
+    if(hm<=l.hautMax-0.4){ const bas=Math.max(0.4, Math.min(l.centreY-hm/2, l.hautMax-hm)); return {x:l.x,bas,ok:true,note:"비어 있는 벽면에 걸었습니다."}; }
+    return {x:l.x,bas:Math.max(l.fond!=null?l.fond:0.3, l.hautMax-hm-0.1),ok:true,derriere:true,note:"벽면보다 높은 작품: 바닥에 세워 가구 뒤에 두었습니다."};
+  }
+  const z=d||l; return {x:z.x,bas:Math.max(z.fond!=null?z.fond:0.3, z.hautMax-hm-0.1),ok:false,note:"벽면보다 높은 작품: 바닥에 세워 가구 뒤에 두었습니다."};
 }
 function choisitInterieur(hm,lm,portrait){
   if(interieurChoisi) return interieurChoisi;
@@ -1233,16 +1299,27 @@ function choisitInterieur(hm,lm,portrait){
 function dessineSalon(){
   if(!courante||!courante.h||!courante.l) return;
   const r=salon.getBoundingClientRect(), portrait=r.height>r.width;
-  const hm=courante.h/100, lm=courante.l/100;
+  /* l'orientation et les proportions viennent de la photo de la toile ; la plus grande dimension déclarée s'applique à son grand côté */
+  const im=document.getElementById("loupe-img"), rp=(im.naturalWidth&&im.naturalHeight)?im.naturalWidth/im.naturalHeight:(courante.l/courante.h);
+  const grand=Math.max(courante.h,courante.l)/100;
+  const lm=rp>=1?grand:grand*rp, hm=rp>=1?grand/rp:grand;
+  courante.lr=Math.round(lm*100); courante.hr=Math.round(hm*100);
   const nomI=choisitInterieur(hm,lm,portrait), I=INTERIEURS[nomI], V=(portrait&&I.portrait)?I.portrait:I.paysage;
   document.querySelectorAll("#choix-int button").forEach(b=>b.classList.toggle("actif",b.dataset.int===nomI));
   const sc=Math.max(r.width/V.w, r.height/V.h);                  /* cadrage « cover » de la photo */
-  const ox=(r.width-V.w*sc)/2, oy=(r.height-V.h*sc)/2;
+  const ox=(r.width-V.w*sc)/2; let oy=(r.height-V.h*sc)/2;
   const ppm=V.k*sc;                                                /* pixels par mètre à l'écran */
-  const yDe=m=>oy+(V.sol-m*V.k)*sc;                                /* hauteur au-dessus du sol -> y écran */
   const P=place(V,hm,lm);
+  /* le cadrage vertical suit la toile : jamais coupée en haut ni en bas (la photo reste en « cover ») */
+  const marge=0.07*r.height, yHautPx=V.sol-(P.bas+hm)*V.k, yBasPx=V.sol-P.bas*V.k;
+  if(yHautPx*sc+oy<marge) oy=marge-yHautPx*sc;
+  if(yBasPx*sc+oy>r.height-marge) oy=r.height-marge-yBasPx*sc;
+  oy=Math.min(0, Math.max(r.height-V.h*sc, oy));
+  const yDe=m=>oy+(V.sol-m*V.k)*sc;                                /* hauteur au-dessus du sol -> y écran */
   const L=lm*ppm, H=hm*ppm, x=ox+P.x*sc-L/2, top=yDe(P.bas+hm);
   salon.style.backgroundImage="url('"+V.src+"')";
+  salon.style.backgroundSize=(V.w*sc).toFixed(1)+"px "+(V.h*sc).toFixed(1)+"px";
+  salon.style.backgroundPosition=ox.toFixed(1)+"px "+oy.toFixed(1)+"px";
   const pal=PALS[courante.cle]||["#C8321A","#F5A623"];
   /* objets recolorables : un masque exact de l'objet (PNG gris + alpha), teinté dans ses propres ombres */
   const geo=d=>'left:'+(ox+d.x*sc).toFixed(1)+'px;top:'+(oy+d.y*sc).toFixed(1)+'px;width:'+(d.w*sc).toFixed(1)+'px;height:'+(d.h*sc).toFixed(1)+'px;';
@@ -1251,12 +1328,15 @@ function dessineSalon(){
     const ombre=d.omb?'<img class="deco ombre" style="'+geo(d)+'" src="'+d.img+'" alt="">':'';
     return ombre+'<span class="deco objet" style="'+geo(d)+'background:'+pal[d.c]+';opacity:'+d.a+';-webkit-mask-image:url(\''+d.img+'\');mask-image:url(\''+d.img+'\')"><img src="'+d.img+'" alt=""></span>';
   }).join("");
-  salon.innerHTML=deco+
+  /* le meuble (canapé, fauteuil) découpé dans la photo, posé devant la toile quand elle descend derrière lui */
+  const meuble=(P.derriere&&V.devant)?'<img class="deco nat devant" style="left:'+ox.toFixed(1)+'px;top:'+oy.toFixed(1)+'px;width:'+(V.w*sc).toFixed(1)+'px;height:'+(V.h*sc).toFixed(1)+'px;clip-path:polygon('+V.devant.map(p=>(100*p[0]/V.w).toFixed(2)+'% '+(100*p[1]/V.h).toFixed(2)+'%').join(',')+')" src="'+V.src+'" alt="">':'';
+  salon.innerHTML=
     '<div class="cimaise allume" style="left:'+x.toFixed(1)+'px;top:'+top.toFixed(1)+'px;width:'+L.toFixed(1)+'px;height:'+H.toFixed(1)+'px;--cadre:'+Math.max(3,Math.round(0.06*ppm))+'px;--toile:url(\''+courante.src+'\')">'+
       '<span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
       '<div class="toile"><img src="'+courante.src+'" alt=""></div><span class="flaque"></span></div>'+
-    '<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.l+' cm</span></div>'+
-    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>실제 크기로 집에 걸어 보기</b>'+courante.h+' × '+courante.l+' cm, '+I.legende+', 벽등 아래. 실내는 작품의 색을 입습니다. 아래에서 다른 방을 선택할 수 있습니다.'+(courante.estime?'<i>치수 미등록: 참고용으로 100 cm 크기로 표시했습니다.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
+    meuble+deco+
+    (P.derriere?'':'<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.lr+' cm</span></div>')+
+    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>실제 크기로 집에 걸어 보기</b>'+courante.hr+' × '+courante.lr+' cm, '+I.legende+', 벽등 아래. 실내는 작품의 색을 입습니다. 아래에서 다른 방을 선택할 수 있습니다.'+(courante.estime?'<i>치수 미등록: 참고용으로 100 cm 크기로 표시했습니다.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
 }
 document.getElementById("choix-int").addEventListener("click",e=>{
   const b=e.target.closest("button[data-int]"); if(!b) return;
@@ -1283,20 +1363,72 @@ function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
   loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); btnSalon.textContent="작품만 보기";
   document.getElementById("btn-traduction").hidden=true;
   btnSalon.hidden = true;
-  document.getElementById("choix-int").hidden = !(h&&l);
-  btnGardien.href="mailto:isasator@gmail.com?subject="+encodeURIComponent("작품 “"+(titre||"무제")+"”에 관하여"+(ref?" ("+ref+")":""))+
-    "&body="+encodeURIComponent("이자 님께,\n\n작품 “"+(titre||"무제")+"”에 관하여"+(ref?" ("+ref+")":"")+".\n\n");
-  if(loupe.showModal) loupe.showModal();
+  document.getElementById("choix-int").hidden = !(h&&l) || !!DETAILS[(ref+"").replace("TB","")] || courante.detail;
+  montreVoix(courante.cle);
+  ouvreVolet(loupe);
 }
+/* ---------- les volets (loupe, série) : sous la barre du menu, avec le bouton « précédent » ---------- */
+function hauteurBarre(){ const b=document.querySelector(".barre"); return b?Math.round(b.getBoundingClientRect().height):70; }
+function ouvreVolet(d){
+  document.documentElement.style.setProperty("--barre-h", hauteurBarre()+"px");
+  if(!d.open) d.show();
+  document.body.classList.add("volet-ouvert");
+  if(!(history.state&&history.state.volet===d.id)) history.pushState({volet:d.id}, "", location.href);
+}
+function fermeVolet(d, parHistorique){
+  if(d.open) d.close();
+  if(![loupe,panneau].some(x=>x.open)) document.body.classList.remove("volet-ouvert");
+  if(!parHistorique && history.state && history.state.volet===d.id) history.back();
+}
+addEventListener("popstate",()=>{
+  const v=history.state&&history.state.volet;
+  if(loupe.open && v!=="loupe") fermeVolet(loupe,true);
+  if(panneau.open && v!=="panneau") fermeVolet(panneau,true);
+});
+addEventListener("keydown",e=>{ if(e.key==="Escape"){ if(loupe.open) fermeVolet(loupe); else if(panneau.open) fermeVolet(panneau); } });
+addEventListener("resize",()=>{ if(loupe.open||panneau.open) document.documentElement.style.setProperty("--barre-h", hauteurBarre()+"px"); });
+/* un clic sur le menu pendant qu'un volet est ouvert : le volet se referme et la page change */
+document.querySelectorAll(".barre nav a, .marque").forEach(a=>a.addEventListener("click",()=>{
+  if(loupe.open||panneau.open){ if(history.state&&history.state.volet) history.replaceState({}, "", location.href); if(loupe.open) fermeVolet(loupe,true); if(panneau.open) fermeVolet(panneau,true); }
+}));
+/* ---------- la parole d'Isa ---------- */
+const voixBloc=document.getElementById("voix"), voixTexte=document.getElementById("voix-texte"), voixAudio=new Audio();
+voixAudio.preload="metadata";
+const fmt=s=>{ s=Math.max(0,Math.round(s||0)); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); };
+function montreVoix(cle){
+  const v=VOIX[cle];
+  voixAudio.pause(); voixBloc.classList.remove("joue"); voixTexte.hidden=true;
+  voixBloc.hidden=!v; if(!v) return;
+  /* m4a (AAC) partout où il est lu, sinon la version opus */
+  const src=(voixAudio.canPlayType("audio/mp4")||!voixAudio.canPlayType("audio/ogg; codecs=opus"))?v.src:v.src.replace(/\.m4a$/,".opus");
+  if(voixAudio.getAttribute("src")!==src){ voixAudio.src=src; voixAudio.load(); }
+  document.getElementById("voix-avance").style.width="0";
+  document.getElementById("voix-temps").textContent="0:00 / "+fmt(voixAudio.duration);
+  document.getElementById("voix-paragraphes").innerHTML=v.texte.map(t=>"<p>"+echappe(t)+"</p>").join("");
+}
+voixAudio.addEventListener("loadedmetadata",()=>{ document.getElementById("voix-temps").textContent=fmt(voixAudio.currentTime)+" / "+fmt(voixAudio.duration); });
+voixAudio.addEventListener("timeupdate",()=>{
+  const d=voixAudio.duration||1; document.getElementById("voix-avance").style.width=(100*voixAudio.currentTime/d).toFixed(1)+"%";
+  document.getElementById("voix-temps").textContent=fmt(voixAudio.currentTime)+" / "+fmt(voixAudio.duration);
+});
+voixAudio.addEventListener("ended",()=>voixBloc.classList.remove("joue"));
+document.getElementById("voix-lecture").addEventListener("click",()=>{
+  if(voixAudio.paused){ voixAudio.play().then(()=>voixBloc.classList.add("joue")).catch(()=>{}); } else { voixAudio.pause(); voixBloc.classList.remove("joue"); }
+});
+document.getElementById("voix-barre").addEventListener("click",e=>{
+  const r=e.currentTarget.getBoundingClientRect(); if(voixAudio.duration) voixAudio.currentTime=voixAudio.duration*Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));
+});
+document.getElementById("voix-mots").addEventListener("click",()=>{ voixTexte.hidden=!voixTexte.hidden; });
+loupe.addEventListener("close",()=>{ voixAudio.pause(); voixBloc.classList.remove("joue"); });
 mur.addEventListener("click",e=>{
   const b=e.target.closest(".oeuvre"); if(!b) return;
   const o=OEUVRES[+b.dataset.i];
   ouvreLoupe("oeuvres/"+o[0]+".jpg", o[1], detail(o), euros(o[3]), o[5], o[6], o[2]);
 });
-document.getElementById("loupe-fermer").addEventListener("click",()=>loupe.close());
+document.getElementById("loupe-fermer").addEventListener("click",()=>fermeVolet(loupe));
 const btnTrad=document.getElementById("btn-traduction");
 btnTrad.addEventListener("click",()=>{
-  const d=document.getElementById(btnTrad.dataset.cible); loupe.close();
+  const d=document.getElementById(btnTrad.dataset.cible); fermeVolet(loupe);
   if(d){ d.open=true; setTimeout(()=>d.scrollIntoView({behavior:"smooth",block:"start"}),60); }
 });
 /* actualités : affiches et pages de presse s'ouvrent dans la loupe, sans bouton d'achat ; les toiles gardent le leur */
@@ -1307,7 +1439,7 @@ document.querySelectorAll(".vignette[data-doc]").forEach(v=>{
   v.addEventListener("click",ouvre);
   v.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } });
 });
-loupe.addEventListener("click",e=>{if(e.target===loupe) loupe.close();});
+loupe.addEventListener("click",e=>{if(e.target===loupe) fermeVolet(loupe);});
 
 /* ---------- les lampes s'allument quand on arrive devant la toile ---------- */
 const reduit=matchMedia("(prefers-reduced-motion:reduce)").matches;
@@ -1548,12 +1680,17 @@ Object.keys(CAT).map(Number).sort((a,b)=>a-b).forEach(n=>{
   b.innerHTML='<div class="cimaise" style="--toile:url(\'catalogue/'+id+'.jpg\')"><span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
     '<div class="toile"><img loading="lazy" src="catalogue/'+id+'.jpg" alt="'+echappe(o[1])+'" width="'+o[2]+'" height="'+o[3]+'"></div></div>'+
     '<p class="num">'+id+'</p><p class="t">'+echappe(o[1])+'</p>'+
-    (DIMS[n] ? '<p class="dim">'+DIMS[n][0]+' × '+DIMS[n][1]+' cm</p>' : '<p class="dim manque">'+"치수 미확정"+'</p>');
+    (DIMS[n] ? '<p class="dim">'+DIMS[n][0]+' × '+DIMS[n][1]+' cm</p>' : '<p class="dim manque">'+"치수 미확정"+'</p>')+
+    (VOIX[id] ? '<p class="mention-voix">'+"이자의 이야기"+'</p>' : '')+
+    (DETAILS[n] ? '<p class="dim manque">'+"작품의 일부, 부분 사진"+'</p>' : '');
+  if(VOIX[id]) b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge" aria-hidden="true"><span><i></i><i></i><i></i></span></span>');
   cg.appendChild(b);
 });
 surveille(cg);
 /* une toile du catalogue (par son numéro TB) s'ouvre directement mise en scène chez soi */
 function chezSoi(n){
+  if(DETAILS[n]){ const o=CAT[n], id="TB"+String(n).padStart(2,"0"), src=(GRANDS.includes(n)?"grand/":"catalogue/")+id+".jpg"; courante=null;
+    ouvreLoupe(src, o[1], id+" — "+"작품의 일부, 부분 사진", "", 0, 0, id); return; }
   const o=CAT[n]; if(!o) return;
   const id="TB"+String(n).padStart(2,"0");
   const src=(GRANDS.includes(n))?"grand/"+id+".jpg":"catalogue/"+id+".jpg";
