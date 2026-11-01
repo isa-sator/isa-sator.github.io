@@ -353,8 +353,7 @@ html[lang="ar"] *{letter-spacing:0!important}
 html[lang="ar"] .ouverture h1,html[lang="ar"] .marque span{direction:ltr}
 /* arabe, ouverture sur ordinateur : le bloc de texte reste à gauche (là où la photo se fond dans le bleu nuit), le texte y est aligné à droite */
 @media(min-width:761px){html[lang="ar"] .ouverture .dit .centre{direction:ltr} html[lang="ar"] .ouverture .dit .centre>*{direction:rtl;text-align:right} html[lang="ar"] .ouverture .actions{justify-content:flex-end;max-width:42ch}}
-html[lang="ar"] .salon .legende{left:auto;right:3%}
-html[lang="ar"] .salon .legende.droite{right:auto;left:3%}
+/* arabe : la légende suit la même règle physique (côté opposé à la toile) que les autres langues */
 html[lang="ar"] .presse a::after,html[lang="ar"] .serie-lien .fleche{transform:scaleX(-1)}
 html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visible .fleche{transform:scaleX(-1) translateX(5px)}
 /* largeurs intermédiaires : le sélecteur à droite de la marque, le menu sur sa propre ligne */
@@ -602,6 +601,7 @@ dialog.loupe{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);
 dialog.panneau{z-index:27}
 dialog.loupe::backdrop{background:transparent}
 body.volet-ouvert{overflow:hidden}
+body.volet-ouvert .page{z-index:auto}  /* la barre (et la liste des langues) repasse au-dessus du volet */
 .fermer.retour::before{content:"← ";}
 .loupe .boite{height:100%;display:flex;flex-direction:column;gap:14px;padding:14px max(18px,env(safe-area-inset-right,0px)) max(14px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
 .loupe .scene{flex:1;display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr);place-items:center;position:relative;min-height:0}
@@ -649,6 +649,23 @@ dialog canvas.trace{position:absolute;z-index:5}
 .loupe .voix .barre-voix span{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#C9A227,#FBEBB4);border-radius:2px}
 .loupe .voix .temps{font-size:.68rem;letter-spacing:.1em;color:var(--cendre);font-variant-numeric:tabular-nums}
 .loupe .voix .fermer{color:#E2C063;border-color:rgba(212,175,55,.6)}
+.legende-bas{display:none}
+@media (max-width:1100px), (pointer:coarse){
+  .loupe.chez-vous .salon .legende{display:none}
+  .loupe.chez-vous .legende-bas{display:block;font-size:.82rem;line-height:1.5;color:#fff;background:rgba(7,12,24,.88);border-left:3px solid #D4AF37;padding:.7em .9em}
+  .legende-bas b{display:block;font-family:var(--display);font-weight:400;font-size:1.1rem;margin-bottom:.25em;color:#E2C063}
+  .legende-bas i{display:block;font-style:normal;margin-top:.4em;color:#EAE0D0}
+  .loupe .boite{overflow-y:auto}
+  .loupe .boite>*{flex-shrink:0}          /* le texte d'Isa et la légende gardent leur hauteur, la boîte défile */
+  .loupe .scene{flex:none;height:min(62vh,520px);order:0}
+  .loupe .legende-bas{order:1}
+  .loupe .voix{order:2}
+  .loupe .voix-texte{order:3}
+  .loupe .pied{order:4}
+  .loupe .voix-texte{position:static!important;max-width:none!important;max-height:none!important;margin:0}
+}
+/* grand écran : la légende s'efface pendant que les mots d'Isa sont ouverts */
+.loupe:has(#voix-texte:not([hidden])) .salon .legende{opacity:0;pointer-events:none}
 .loupe .voix-texte{position:absolute;left:max(18px,env(safe-area-inset-left,0px));top:max(18px,env(safe-area-inset-top,0px));z-index:6;max-width:min(46ch,calc(100% - 36px));max-height:min(62vh,560px);overflow:auto;
   background:rgba(7,12,24,.92);backdrop-filter:blur(8px);border-left:3px solid #D4AF37;box-shadow:0 14px 34px rgba(0,0,0,.5);padding:1em 1.2em;color:#EAE0D0;font-size:.9rem;line-height:1.6}
 .loupe .voix-texte .surtitre{margin:0 0 .6em}
@@ -855,42 +872,42 @@ dialog canvas.trace{position:absolute;z-index:5}
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB35.jpg" alt="Le Manteau de Gaïa" width="1600" height="900"></div>
         </div>
-        <figcaption><span class="nom">Le Manteau de Gaïa</span><span class="detail">TB35 — acrylique sur toile — 175 × 145 cm</span><span class="detail manque">Détail de la toile, photo partielle</span></figcaption>
+        <figcaption><span class="nom">Le Manteau de Gaïa</span><span class="detail">TB35 · acrylique sur toile · 175 × 145 cm</span><span class="detail manque">Détail de la toile, photo partielle</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB59.jpg')">
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB59.jpg" alt="La Distance du Sator" width="1600" height="900"></div>
         </div>
-        <figcaption><span class="nom">La Distance du Sator</span><span class="detail">TB59 — acrylique sur toile — 175 × 145 cm</span><span class="detail manque">Détail de la toile, photo partielle</span></figcaption>
+        <figcaption><span class="nom">La Distance du Sator</span><span class="detail">TB59 · acrylique sur toile · 175 × 145 cm</span><span class="detail manque">Détail de la toile, photo partielle</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB81.jpg')">
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB81.jpg" alt="Rotation de Marcel" width="1600" height="900"></div>
         </div>
-        <figcaption><span class="nom">Rotation de Marcel</span><span class="detail">TB81 — acrylique sur toile — 175 × 145 cm</span><span class="detail manque">Détail de la toile, photo partielle</span></figcaption>
+        <figcaption><span class="nom">Rotation de Marcel</span><span class="detail">TB81 · acrylique sur toile · 175 × 145 cm</span><span class="detail manque">Détail de la toile, photo partielle</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB82.jpg')">
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB82.jpg" alt="Hiéroglyphes et palimpsestes spatiaux" width="1600" height="900"></div>
         </div>
-        <figcaption><span class="nom">Hiéroglyphes et palimpsestes spatiaux</span><span class="detail">TB82 — acrylique sur toile — 175 × 145 cm</span><span class="detail manque">Détail de la toile, photo partielle</span></figcaption>
+        <figcaption><span class="nom">Hiéroglyphes et palimpsestes spatiaux</span><span class="detail">TB82 · acrylique sur toile · 175 × 145 cm</span><span class="detail manque">Détail de la toile, photo partielle</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB64.jpg')">
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB64.jpg" alt="La Licorne" width="1103" height="1600"></div>
         </div>
-        <figcaption><span class="nom">La Licorne</span><span class="detail">TB64 — acrylique sur toile — 130 × 90 cm</span></figcaption>
+        <figcaption><span class="nom">La Licorne</span><span class="detail">TB64 · acrylique sur toile · 130 × 90 cm</span></figcaption>
       </figure>
       <figure class="grand apparait">
         <div class="cimaise" style="--toile:url('grand/TB71.jpg')">
           <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
           <div class="toile"><img loading="lazy" src="grand/TB71.jpg" alt="Le Grec" width="1600" height="1599"></div>
         </div>
-        <figcaption><span class="nom">Le Grec</span><span class="detail">TB71 — acrylique sur toile — 40 × 40 cm</span></figcaption>
+        <figcaption><span class="nom">Le Grec</span><span class="detail">TB71 · acrylique sur toile · 40 × 40 cm</span></figcaption>
       </figure>
     </div>
   </div>
@@ -1024,8 +1041,8 @@ dialog canvas.trace{position:absolute;z-index:5}
             <p>J'ai peint les Smart Barbies en 2007, bien avant que le cinéma ne s'empare de la poupée. J'ai pris le symbole le plus caricatural du féminin et j'en ai fait autre chose : des femmes multiples, executive women, cantatrices, grandes prêtresses, bimbos souveraines. Aucune ne se laisse mettre en boîte.</p>
           </div>
           <div class="fiche-vente">
-            <span><b>Smart Barby on a VIP</b>, 2007 — acrylique sur toile, 60 × 120 cm, signée en bas à droite</span>
-            <span>Vente Blanchet &amp; Associés du 14 octobre 2026 — 97 boulevard Malesherbes, 75008 Paris</span>
+            <span><b>Smart Barby on a VIP</b>, 2007 · acrylique sur toile, 60 × 120 cm, signée en bas à droite</span>
+            <span>Vente Blanchet &amp; Associés du 14 octobre 2026 · 97 boulevard Malesherbes, 75008 Paris</span>
             <span>Lot n° 320. Le résultat figure désormais parmi les vingt-quatre adjudications répertoriées par Artprice.</span>
           </div>
         </div>
@@ -1110,7 +1127,7 @@ dialog canvas.trace{position:absolute;z-index:5}
 
 <footer class="gouttiere">
   <div class="dedans centre">
-    <span>© Isa Sator — toutes les œuvres reproduites sont protégées.</span>
+    <span>© Isa Sator · toutes les œuvres reproduites sont protégées.</span>
     <span>Portrait © Grégory Herpe</span>
   </div>
 </footer>
@@ -1167,6 +1184,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <button class="fermer retour" id="loupe-fermer" type="button">Retour</button>
       </div>
     </div>
+    <div class="legende-bas" id="legende-bas" aria-live="polite"></div>
   </div>
 </dialog>
 
@@ -1230,7 +1248,7 @@ function detail(o){
   const b=[String(o[2])];
   if(o[4]) b.push(o[4].toLowerCase());
   if(o[5]&&o[6]) b.push(o[5]+" × "+o[6]+" cm");
-  return b.join(" — ");
+  return b.join(" · ");
 }
 
 const mur=document.getElementById("mur");
@@ -1419,6 +1437,7 @@ function dessineSalon(){
     (P.derriere?'':'<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.lr+' cm</span></div>')+
     '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>Chez vous, à l\'échelle</b>'+courante.hr+' × '+courante.lr+' cm, '+((P.libre&&I.legendeLibre)?I.legendeLibre:I.legende)+', sous son applique. Le décor prend les couleurs de la toile ; choisissez une autre pièce en bas.'+(courante.estime?'<i>Dimensions non renseignées : présentée au format indicatif de 100 cm.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
   peintObjets(salon);
+  const lg=salon.querySelector(".legende"); document.getElementById("legende-bas").innerHTML=lg?lg.innerHTML:"";
 }
 /* ---------- objets recolorés : peints dans un canvas (image × couleur, découpée par la transparence du PNG) ---------- */
 const IMAGES_DECO={};
@@ -1465,6 +1484,7 @@ function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
   document.getElementById("choix-int").hidden = !(h&&l) || !!DETAILS[(ref+"").replace("TB","")] || courante.detail;
   montreVoix(courante.cle);
   ouvreVolet(loupe);
+  loupe.querySelector(".boite").scrollTop=0;
 }
 /* ---------- les volets (loupe, série) : sous la barre du menu, avec le bouton « précédent » ---------- */
 function hauteurBarre(){ const b=document.querySelector(".barre"); return b?Math.round(b.getBoundingClientRect().height):70; }
@@ -1526,7 +1546,7 @@ document.getElementById("voix-lecture").addEventListener("click",()=>{
 document.getElementById("voix-barre").addEventListener("click",e=>{
   const r=e.currentTarget.getBoundingClientRect(); if(voixAudio.duration) voixAudio.currentTime=voixAudio.duration*Math.min(1,Math.max(0,(e.clientX-r.left)/r.width));
 });
-document.getElementById("voix-mots").addEventListener("click",()=>{ voixTexte.hidden=!voixTexte.hidden; });
+document.getElementById("voix-mots").addEventListener("click",()=>{ voixTexte.hidden=!voixTexte.hidden; if(!voixTexte.hidden && matchMedia("(max-width:1100px), (pointer:coarse)").matches) voixTexte.scrollIntoView({block:"nearest",behavior:"smooth"}); });
 loupe.addEventListener("close",()=>{ voixAudio.pause(); voixBloc.classList.remove("joue"); });
 mur.addEventListener("click",e=>{
   const b=e.target.closest(".oeuvre"); if(!b) return;
@@ -1759,8 +1779,28 @@ document.addEventListener("click",e=>{
 /* changement de langue : on retient le choix (pour la prochaine visite) et on reste sur la même section */
 document.querySelectorAll(".langues a").forEach(a=>a.addEventListener("click",()=>{
   try{ localStorage.setItem("isa-langue", a.getAttribute("hreflang")); }catch(_){}
-  a.href = a.getAttribute("href").split("#")[0] + location.hash;
+  let q="";
+  if(loupe.open && courante && /^[\w-]+$/.test(courante.cle) && !loupe.classList.contains("doc")){
+    q="?toile="+courante.cle+(loupe.classList.contains("chez-vous")?"&piece="+(interieurChoisi||"auto"):"")+(voixTexte.hidden?"":"&mots=1");
+  }
+  a.href = a.getAttribute("href").split("#")[0].split("?")[0] + q + location.hash;
 }));
+/* arrivée par un changement de langue avec une toile ouverte : on la rouvre dans le même état */
+(function(){
+  const u=new URLSearchParams(location.search), t=u.get("toile"); if(!t) return;
+  history.replaceState(null,"",location.pathname+location.hash);
+  const m=/^TB(\d+)$/.exec(t);
+  if(m && CAT[+m[1]]) chezSoi(+m[1]);
+  else { const im=[...document.querySelectorAll(".oeuvre img,.grand img")].find(x=>(x.getAttribute("src")||"").replace(/^.*\//,"").replace(/\.jpg$/,"")===t); const o=im&&im.closest(".oeuvre,.grand,figure"); if(o) o.click(); }
+  if(!loupe.open) return;
+  const pi=u.get("piece"), cv=()=>loupe.classList.contains("chez-vous");
+  if(!pi){ if(cv()) btnSalon.click(); }
+  else {
+    if(!cv()){ const b=document.querySelector('#choix-int button[data-int="'+pi+'"]'); if(b) b.click(); else { loupe.classList.add("chez-vous"); btnSalon.hidden=false; btnSalon.classList.add("actif"); dessineSalon(); } }
+    else if(pi!=="auto" && INTERIEURS[pi]){ interieurChoisi=pi; dessineSalon(); }
+  }
+  if(u.get("mots")==="1" && !voixBloc.hidden) voixTexte.hidden=false;
+})();
 document.addEventListener("click",e=>{ const l=document.getElementById("langues"); if(l&&l.open&&!l.contains(e.target)) l.open=false; });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ const l=document.getElementById("langues"); if(l) l.open=false; } });
 const btn=document.getElementById("btn-copier");
@@ -1803,7 +1843,7 @@ surveille(cg);
 /* une toile du catalogue (par son numéro TB) s'ouvre directement mise en scène chez soi */
 function chezSoi(n){
   if(DETAILS[n]){ const o=CAT[n], id="TB"+String(n).padStart(2,"0"), src=(GRANDS.includes(n)?"grand/":"catalogue/")+id+".jpg"; courante=null;
-    ouvreLoupe(src, o[1], id+" — "+"détail de la toile, photo partielle", "", 0, 0, id); return; }
+    ouvreLoupe(src, o[1], id+" · "+"détail de la toile, photo partielle", "", 0, 0, id); return; }
   const o=CAT[n]; if(!o) return;
   const id="TB"+String(n).padStart(2,"0");
   const src=(GRANDS.includes(n))?"grand/"+id+".jpg":"catalogue/"+id+".jpg";
@@ -1811,7 +1851,7 @@ function chezSoi(n){
   /* dimensions inconnues : format indicatif, grand côté 100 cm, dans les proportions de la photo */
   let h=dim?dim[0]:null, l=dim?dim[1]:null, estime=false;
   if(!dim){ const r=o[3]/o[2]; if(r>=1){h=100;l=Math.round(100/r);} else {l=100;h=Math.round(100*r);} estime=true; }
-  ouvreLoupe(src, o[1], id+(dim?" — "+dim[0]+" × "+dim[1]+" cm":" — dimensions à préciser"), "", h, l, id, estime);
+  ouvreLoupe(src, o[1], id+(dim?" · "+dim[0]+" × "+dim[1]+" cm":" · dimensions à préciser"), "", h, l, id, estime);
   loupe.classList.add("chez-vous"); btnSalon.hidden=false; btnSalon.classList.add("actif");
   document.getElementById("choix-int").hidden=false; dessineSalon();
 }
