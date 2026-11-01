@@ -10,12 +10,16 @@
 <link rel="alternate" hreflang="de" href="https://isa-sator.github.io/de.html">
 <link rel="alternate" hreflang="it" href="https://isa-sator.github.io/it.html">
 <link rel="alternate" hreflang="es" href="https://isa-sator.github.io/es.html">
-<link rel="alternate" hreflang="zh" href="https://isa-sator.github.io/zh.html">
-<link rel="alternate" hreflang="ru" href="https://isa-sator.github.io/ru.html">
-<link rel="alternate" hreflang="ja" href="https://isa-sator.github.io/ja.html">
-<link rel="alternate" hreflang="ar" href="https://isa-sator.github.io/ar.html">
-<link rel="alternate" hreflang="ko" href="https://isa-sator.github.io/ko.html">
 <link rel="alternate" hreflang="pt" href="https://isa-sator.github.io/pt.html">
+<link rel="alternate" hreflang="pl" href="https://isa-sator.github.io/pl.html">
+<link rel="alternate" hreflang="sr-Latn" href="https://isa-sator.github.io/sr.html">
+<link rel="alternate" hreflang="bg" href="https://isa-sator.github.io/bg.html">
+<link rel="alternate" hreflang="ru" href="https://isa-sator.github.io/ru.html">
+<link rel="alternate" hreflang="ar" href="https://isa-sator.github.io/ar.html">
+<link rel="alternate" hreflang="zh" href="https://isa-sator.github.io/zh.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://isa-sator.github.io/zh-hant.html">
+<link rel="alternate" hreflang="ja" href="https://isa-sator.github.io/ja.html">
+<link rel="alternate" hreflang="ko" href="https://isa-sator.github.io/ko.html">
 <link rel="alternate" hreflang="x-default" href="https://isa-sator.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Isa Sator">
@@ -34,7 +38,10 @@
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 <script>/* langue : un choix mémorisé, sinon celle du navigateur ; la page française renvoie vers la bonne version */
 (function(){try{var L=document.documentElement.lang,p=null;try{p=localStorage.getItem("isa-langue");}catch(_){}
-var d={en:"en.html",de:"de.html",it:"it.html",es:"es.html",zh:"zh.html",ru:"ru.html",ja:"ja.html",ar:"ar.html",ko:"ko.html",pt:"pt.html"},n=(navigator.language||"").slice(0,2).toLowerCase(),c=p||(d[n]?n:"fr");
+var d={en:"en.html",de:"de.html",it:"it.html",es:"es.html",pt:"pt.html",pl:"pl.html","sr-latn":"sr.html",bg:"bg.html",ru:"ru.html",ar:"ar.html",zh:"zh.html","zh-hant":"zh-hant.html",ja:"ja.html",ko:"ko.html"},
+nl=(navigator.language||"").toLowerCase(),n=nl.slice(0,2);
+if(n==="zh"&&/hant|-tw|-hk|-mo/.test(nl)) n="zh-hant"; if(n==="sr") n="sr-latn";
+var c=(p||(d[n]?n:"fr")).toLowerCase();
 if(L==="fr"&&c!=="fr"&&d[c]&&!/claude\.ai$/.test(location.hostname)) location.replace(d[c]+location.hash);}catch(e){}})();</script>
 <title>Isa Sator</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -54,6 +61,13 @@ if(L==="fr"&&c!=="fr"&&d[c]&&!/claude\.ai$/.test(location.hostname)) location.re
 @font-face{font-family:"Jost";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/jost-cyrillic-300-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-cyrillic-400-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-cyrillic-500-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+/* latin étendu : polonais, serbe, et tout accent d'Europe centrale (chargé seulement si la page en contient) */
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Bodoni Moda";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/bodoni-moda-latin-ext-500-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Bodoni Moda";font-style:italic;font-weight:400;font-display:swap;src:url("fonts/bodoni-moda-latin-ext-400-italic.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Jost";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/jost-latin-ext-300-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-latin-ext-500-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 </style>
 <style>
 /* Une grande toile d'encre bleu nuit, travaillée à la brosse, sert de mur. L'emblème de
@@ -312,15 +326,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .langues summary::after{content:"";width:6px;height:6px;border-right:1.5px solid var(--nuit);border-bottom:1.5px solid var(--nuit);transform:translateY(-2px) rotate(45deg);transition:transform .25s ease}
 .langues[open] summary::after{transform:translateY(1px) rotate(225deg)}
 .langues summary:hover,.langues[open] summary{box-shadow:0 0 0 1px rgba(251,235,180,.8),0 6px 18px rgba(201,162,39,.35)}
-.langues .liste{position:absolute;top:calc(100% + 8px);inset-inline-end:0;z-index:40;min-width:11em;background:rgba(7,12,24,.97);border:1px solid rgba(212,175,55,.45);box-shadow:0 18px 40px rgba(0,0,0,.6);padding:.35em 0;display:grid}
+.langues .liste{position:absolute;top:calc(100% + 8px);inset-inline-end:0;z-index:40;min-width:11em;max-height:calc(100vh - 110px);overflow-y:auto;overscroll-behavior:contain;background:rgba(7,12,24,.97);border:1px solid rgba(212,175,55,.45);box-shadow:0 18px 40px rgba(0,0,0,.6);padding:.35em 0;display:grid}
 .langues .liste a{display:block;padding:.5em 1em;font-size:.84rem;color:var(--ivoire);text-decoration:none;white-space:nowrap;letter-spacing:.02em}
 .langues .liste a:hover{background:rgba(212,175,55,.14);color:#FBEBB4;text-decoration:none}
 .langues .liste a.actif{color:#E2C063}
 .langues .liste a.actif::before{content:"✦ ";font-size:.7em;vertical-align:.2em}
 html[lang="zh"]{--display:"Bodoni Moda","Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC","Noto Serif SC",SimSun,serif;--texte:"Jost","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",sans-serif}
-html[lang="zh"] .barre nav a,html[lang="ja"] .barre nav a{letter-spacing:.1em}
+html[lang="zh-Hant"]{--display:"Bodoni Moda","Songti TC","Noto Serif CJK TC","Noto Serif TC",PMingLiU,serif;--texte:"Jost","PingFang TC","Hiragino Sans CNS","Noto Sans CJK TC","Noto Sans TC","Microsoft JhengHei",sans-serif}
+html[lang="zh"] .barre nav a,html[lang="zh-Hant"] .barre nav a,html[lang="ja"] .barre nav a{letter-spacing:.1em}
 html[lang="ja"]{--display:"Bodoni Moda","Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif CJK JP","Noto Serif JP",serif;--texte:"Jost","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP","Noto Sans JP",sans-serif}
-html[lang="ru"]{--display:"Bodoni Moda","Playfair Display",Georgia,"Times New Roman",serif}
+html[lang="ru"],html[lang="bg"]{--display:"Bodoni Moda","Playfair Display",Georgia,"Times New Roman",serif}
 html[lang="ko"]{--display:"Bodoni Moda","Apple Myungjo","Nanum Myeongjo","Noto Serif CJK KR","Noto Serif KR",serif;--texte:"Jost","Apple SD Gothic Neo","Malgun Gothic","Noto Sans CJK KR","Noto Sans KR",sans-serif}
 html[lang="ko"] .barre nav a{letter-spacing:.1em}
 /* arabe : de droite à gauche, polices de secours, aucun espacement de lettres (il casserait les liaisons) */
@@ -384,10 +399,10 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .bouton.plein:hover{background:transparent;color:var(--orange)}
 
 /* ---------- le projecteur ---------- */
-.cimaise{position:relative;isolation:isolate}
+.cimaise{position:relative;isolation:isolate;padding-top:min(17.5%,82.5px)}
 .cimaise .cone{
   position:absolute;left:50%;transform:translateX(-50%);
-  top:clamp(-40px,-3.4vw,-24px);width:122%;height:58%;pointer-events:none;z-index:0;
+  top:0;width:122%;height:62%;pointer-events:none;z-index:0;
   background:radial-gradient(58% 100% at 50% 0%,rgba(255,232,196,.34),rgba(255,232,196,.09) 46%,transparent 76%);
   filter:blur(24px);mix-blend-mode:screen;opacity:.85;transition:opacity .6s ease;
 }
@@ -395,12 +410,16 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 /* ---------- applique de tableau, laiton ---------- */
 .cimaise .lampe{
   position:absolute;left:50%;transform:translateX(-50%);
-  top:clamp(-46px,-4.2vw,-30px);width:min(70%,330px);aspect-ratio:400/72;z-index:3;
+  top:0;width:min(70%,330px);aspect-ratio:400/100;z-index:3;background-size:100% auto;background-position:top center;background-repeat:no-repeat;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 72'%3E%3Cdefs%3E%3ClinearGradient id='o' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23F7E6AE'/%3E%3Cstop offset='.42' stop-color='%23C9A227'/%3E%3Cstop offset='1' stop-color='%236E5313'/%3E%3C/linearGradient%3E%3ClinearGradient id='v' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23FFF6E2'/%3E%3Cstop offset='1' stop-color='%23FFD79A'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M152 44 Q200 8 248 44' fill='none' stroke='url(%23o)' stroke-width='7' stroke-linecap='round'/%3E%3Crect x='170' y='30' width='60' height='30' rx='3' fill='url(%23o)'/%3E%3Crect x='24' y='32' width='352' height='17' rx='8.5' fill='url(%23o)'/%3E%3Crect x='40' y='40' width='320' height='6' rx='3' fill='url(%23v)'/%3E%3C/svg%3E") center/contain no-repeat;pointer-events:none;
   filter:drop-shadow(0 7px 16px rgba(0,0,0,.72));
 }
+.cimaise .lampe::before{ /* le bras de laiton, de l'abat-jour au cadre */
+  content:"";position:absolute;left:50%;top:56%;height:44%;width:max(2px,1.8%);transform:translateX(-50%);z-index:-1;
+  background:linear-gradient(90deg,#5E4610,#E2C063 45%,#F7E6AE 55%,#7A5C16);border-radius:1px;box-shadow:0 0 3px rgba(0,0,0,.55);
+}
 .cimaise .lampe::after{
-  content:"";position:absolute;left:9%;right:9%;top:56%;height:9px;
+  content:"";position:absolute;left:9%;right:9%;top:40%;height:9px;
   background:#FFE9C7;filter:blur(13px);opacity:.95;transition:filter .6s ease;
 }
 .cimaise:hover .lampe::after,.cimaise:focus-within .lampe::after{filter:blur(18px)}
@@ -479,6 +498,7 @@ section{scroll-margin-top:84px}
 .grand .toile img{width:auto;height:auto;max-width:100%;max-height:clamp(320px,calc(100vh - 400px),920px)}
 .grand figcaption{text-align:center}
 .grand .lampe{width:min(44%,420px)}
+.grand .cimaise{padding-top:min(11%,105px)}
 .grand figcaption{padding-top:20px;display:grid;gap:4px;position:relative;z-index:1}
 .grand .nom{font-family:var(--display);font-size:clamp(1.3rem,2.6vw,2rem);line-height:1.2}
 .grand .detail{font-size:.82rem;color:var(--cendre);letter-spacing:.03em}
@@ -491,12 +511,12 @@ section{scroll-margin-top:84px}
 @media(min-width:860px){.catalogue{columns:4}}
 @media(min-width:1180px){.catalogue{columns:5}}
 .fiche{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:zoom-in;display:block;width:100%;min-width:0;break-inside:avoid;margin:0 0 clamp(22px,3vw,36px)}
-.fiche .cimaise{padding-top:30px;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.fiche .cimaise{padding-top:min(18.5%,47.5px);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .fiche:hover .cimaise,.fiche:focus-visible .cimaise{transform:scale(1.07);z-index:3}
 .oeuvre .cimaise{transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .oeuvre:hover .cimaise{transform:scale(1.03)}
-.fiche .lampe{width:min(74%,190px);top:auto;bottom:calc(100% - 34px)}
-.fiche .cone{top:-4%;height:60%;width:120%}
+.fiche .lampe{width:min(74%,190px)}
+.fiche .cone{top:0;height:64%;width:120%}
 .fiche .rebond{opacity:.3;filter:blur(34px) saturate(1.8)}
 .fiche:hover .rebond{opacity:.45}
 .fiche .toile img{--cadre:7px;width:100%;height:auto;box-shadow:0 0 0 1px rgba(0,0,0,.5),0 16px 28px rgba(0,0,0,.7)}
@@ -663,7 +683,8 @@ dialog canvas.trace{position:absolute;z-index:5}
 .salon .cimaise .toile img{box-sizing:content-box;width:100%;height:100%;object-fit:fill;border:var(--cadre,8px) solid transparent;border-image:url("cadre-or.png") 40 / var(--cadre,8px) round;margin:calc(-1 * var(--cadre,8px));background:#0E0902;
   box-shadow:0 0 0 1px rgba(0,0,0,.5),0 22px 40px rgba(0,0,0,.55),0 6px 12px rgba(0,0,0,.4)}
 .salon .cimaise .toile{height:100%}
-.salon .cimaise .lampe{top:auto;bottom:calc(100% + var(--cadre,8px) - 4px);width:min(72%,360px)}
+.salon .cimaise{padding-top:0}
+.salon .cimaise .lampe{top:auto;bottom:100%;width:min(72%,360px)}
 .salon .cimaise .cone{top:-6%;height:70%;width:130%}
 .salon .cimaise .rebond{opacity:.18;inset:-6% -8%}
 .salon .cimaise:hover .rebond{opacity:.26}
@@ -714,7 +735,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       <a href="#contact">연락처</a>
     </nav>
     <details class="langues" id="langues"><summary aria-label="언어"><span class="code">KO</span></summary>
-      <div class="liste"><a href="./" hreflang="fr" lang="fr">Français</a><a href="en.html" hreflang="en" lang="en">English</a><a href="de.html" hreflang="de" lang="de">Deutsch</a><a href="it.html" hreflang="it" lang="it">Italiano</a><a href="es.html" hreflang="es" lang="es">Español</a><a href="pt.html" hreflang="pt" lang="pt">Português</a><a href="ru.html" hreflang="ru" lang="ru">Русский</a><a href="ar.html" hreflang="ar" lang="ar">العربية</a><a href="zh.html" hreflang="zh" lang="zh">中文</a><a href="ja.html" hreflang="ja" lang="ja">日本語</a><a href="ko.html" hreflang="ko" lang="ko" class="actif">한국어</a></div>
+      <div class="liste"><a href="./" hreflang="fr" lang="fr">Français</a><a href="en.html" hreflang="en" lang="en">English</a><a href="de.html" hreflang="de" lang="de">Deutsch</a><a href="it.html" hreflang="it" lang="it">Italiano</a><a href="es.html" hreflang="es" lang="es">Español</a><a href="pt.html" hreflang="pt" lang="pt">Português</a><a href="pl.html" hreflang="pl" lang="pl">Polski</a><a href="sr.html" hreflang="sr-Latn" lang="sr-Latn">Srpski</a><a href="bg.html" hreflang="bg" lang="bg">Български</a><a href="ru.html" hreflang="ru" lang="ru">Русский</a><a href="ar.html" hreflang="ar" lang="ar">العربية</a><a href="zh.html" hreflang="zh" lang="zh">简体中文</a><a href="zh-hant.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a><a href="ja.html" hreflang="ja" lang="ja">日本語</a><a href="ko.html" hreflang="ko" lang="ko" class="actif">한국어</a></div>
     </details>
   </div>
 </div>
@@ -763,7 +784,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <ul class="presse">
           <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" rel="noopener"><b>인터뷰</b><span>Carly Aguilera, South Art Dealer Gallery, New York</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=wCfDITSZXts" rel="noopener"><b>인터뷰</b><span>장필리프 테롱, 전시 ADN Sator, 파리 JPHT 갤러리</span></a></li>
-          <li><a href="http://www.carnetdart.com/isa-sator/" rel="noopener"><b>평론</b><span>장폴 가바르페레, 파리 데자제 극장 전시</span></a></li>
+          <li><a href="https://www.carnetdart.com/isa-sator/" rel="noopener"><b>평론</b><span>장폴 가바르페레, 파리 데자제 극장 전시</span></a></li>
           <li><a href="https://lepetitjournal.com/new-york/isa-sator-expose-new-york-son-art-haut-en-couleur-267291" rel="noopener"><b>기사</b><span>Le Petit Journal New York: “이자 사토르, 색채 넘치는 예술을 뉴욕에서 선보이다”</span></a></li>
           <li><a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener"><b>시장 평가</b><span>Artprice 프로필: 낙찰 기록 24건, 약력, 갤러리</span></a></li>
         </ul>
@@ -902,7 +923,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <h3>전시: 누메아에서 뉴욕까지</h3>
         <ul class="expos">
         <li><b>2003</b><span><em>Nouméa</em>, 뉴칼레도니아, 첫 전시</span></li>
-        <li><b>2004</b><span><em>Salon des artistes français</em>, Paris</span></li>
+        <li><b>2004</b><span><em>Salon des artistes français</em>, 파리; 누메아 Soap’Art Océanie 회장</span></li>
         <li><b>2005</b><span><em>Grand Concours International de Fréjus</em>, 금메달 및 심사위원 특별상; 프랑스 문화 전국연맹 2005년 ‘빅투아르’ 상(서정적 추상 부문); 뤼테스 국제 아카데미 및 베르됭 ‘세기의 창작자 국제 살롱’ 동메달</span></li>
         <li><b>2006</b><span><em>두바이, 쿠르슈벨, 포르마를리</em>, 그리고 파리 모나리자 갤러리</span></li>
         <li><b>2007</b><span><em>National Arts Club, New York</em>, 이어서 몽펠리에, 파리, 라게르슈</span></li>
@@ -917,10 +938,14 @@ dialog canvas.trace{position:absolute;z-index:5}
         <li><b>2017</b><span><em>Les Grandes Cocottes, Orangerie du Sénat, Paris</em>, Jyb’Art와 함께; 이어서 휴스턴, 워싱턴, 롤리</span></li>
         <li><b>2018</b><span><em>Portraits de famille de Bécassine, Jyb’Art, Paris</em> ; Dampierre ; Galerie JPHT, Paris</span></li>
         <li><b>2019</b><span><em>Trois femmes de Paris à New York</em>, 파리 Jyb’Art, 그리고 뉴욕 Gallery des Artistes</span></li>
-        <li><b>2020</b><span><em>Armageddon</em>, Jyb’Art, Paris</span></li>
+        <li><b>2020</b><span><em>Galerie Ludwig Trossaert</em>, 앤트워프, 런던, 파리, 뉴욕</span></li>
+        <li><b>2021</b><span><em>Armageddon</em>, Jyb’Art, Levallois-Perret</span></li>
+        <li><b>2023</b><span><em>Pop Circus</em>, Echomusée, 파리; 장미의 날, 바가텔 오랑주리; 안마리 미테랑 저택</span></li>
+        <li><b>2024</b><span><em>Joie et Lumière</em>, <em>Armageddon</em>, Espace Élisabeth Oster, Paris</span></li>
+        <li><b>2025</b><span><em>Connecting People</em>, Espace Élisabeth Oster, Paris</span></li>
         <li><b>2026</b><span><em>Les Vierges Polaires</em>, Casa Vacanze Ortobene Arte, 누오로, 사르데냐</span></li>
         </ul>
-        <p class="sources">출처: <a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener">Artprice</a> 프로필, 위키백과 항목 <a href="https://fr.wikipedia.org/wiki/Isa_Sator" rel="noopener">Isa Sator</a>, 미술가 사전 <a href="https://www.ledelarge.fr/" rel="noopener">Delarge</a>. 작품은 Artnet과 Artsper에도 소개되어 있습니다.</p>
+        <p class="sources">출처: <a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener">Artprice</a> 프로필, 위키백과 항목 <a href="https://fr.wikipedia.org/wiki/Isa_Sator" rel="noopener">Isa Sator</a>, 미술가 사전 <a href="https://www.ledelarge.fr/" rel="noopener">Delarge</a>. 작품은 Artnet과 Artsper에도 소개되어 있습니다. <span>연보는 작가 본인의 이력에 따라 보완했습니다.</span></p>
         <h3 style="margin-top:1.6em">공개 경매</h3>
         <p class="sources" style="margin:0 0 .4em">Artprice에는 2005년부터 2026년까지 모두 프랑스에서 이루어진 낙찰 24건이 기록되어 있습니다. 그중 일부:</p>
         <ul class="ventes">
@@ -931,6 +956,7 @@ dialog canvas.trace{position:absolute;z-index:5}
           <li><b>2026</b><span><em>Jument ailée</em>, Armageddon 시리즈 중</span></li>
           <li><b>2026</b><span><em>Smart Barby on a VIP</em>, Blanchet &amp; Associés, Paris</span></li>
         </ul>
+        <p class="sources" style="margin-top:.8em">그녀의 작품은 2005년부터 2008년까지 Cornette de Saint-Cyr, Tajan, Joron-Derem 경매에도 출품되었고, Les Toiles Enchantées를 위한 자선 경매에도 나왔습니다.</p>
       </div>
       <div>
         <h3>평론</h3>
