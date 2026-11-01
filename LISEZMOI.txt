@@ -151,3 +151,10 @@ v34 (01/11/2026, soir)
 - Placement « Chez vous » : une toile trop haute pour le pan au-dessus du canapé ou du lit va sur le mur libre (à droite du canapé, à côté du lit) avant d'être posée derrière le meuble ; vase à plumeaux poussé à droite ; sur téléphone, la photo large recadrée sur la toile est reprise si la verticale n'a pas de mur libre ; plafond pris à 2,48 m partout. Audit complet : audit_chez_vous.py.
 - Actualités : Fanfan (TB52) et Le Harem (TB17) aux enchères sur Catawiki, expertes nommées, traduit en 15 langues ; dimensions ajoutées.
 - Voix : La Païva en serbe et en bulgare avec la voix clonée d'Isa (ElevenLabs v3), voix/TB01-sr et TB01-bg, texte traduit affiché.
+
+v35 (01/11/2026, 23 h)
+- Changement de langue avec une toile ouverte : la liste des langues passait sous le volet (corrigé : body.volet-ouvert .page{z-index:auto}) ; la langue choisie rouvre la même toile, dans la même pièce, avec les mots d'Isa s'ils étaient ouverts (?toile=…&piece=…&mots=1).
+- Téléphone et tablette (largeur 1100 px ou écran tactile) : la légende « Chez vous » passe sous l'image (#legende-bas) ; « Lire ses mots » s'affiche sous le lecteur, en entier ; la boîte défile.
+- Arabe : la légende se place du côté opposé à la toile, comme dans les autres langues.
+- Serbe et bulgare : le texte d'Isa est traduit, le surtitre ne dit plus « en français » et précise que la voix est créée par intelligence artificielle à partir de celle d'Isa, avec son accord.
+- Nouvel audit des parcours : audit_parcours.py (PC, tablette, téléphone ; français, serbe, arabe ; 20 parcours chacun).

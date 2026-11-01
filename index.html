@@ -600,6 +600,64 @@ footer .dedans{padding-block:30px;display:flex;gap:16px;flex-wrap:wrap;font-size
 dialog.loupe{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);position:fixed;inset:var(--barre-h,70px) 0 0 0;margin:0;width:100%;height:auto;max-width:100vw;max-height:none;z-index:28}
 dialog.panneau{z-index:27}
 dialog.loupe::backdrop{background:transparent}
+/* ---------- v36 : barre (recherche, sélection), tiroirs, panier, recherche, sur mesure ---------- */
+.outils-barre{display:flex;gap:6px;align-items:center;flex:none;margin-inline-start:auto}
+.outil-barre{position:relative;display:inline-grid;place-items:center;width:36px;height:34px;border:1px solid rgba(212,175,55,.55);border-radius:2px;background:rgba(7,12,24,.35);color:#E2C063;cursor:pointer;padding:0}
+.outil-barre:hover,.outil-barre:focus-visible{background:rgba(212,175,55,.16);color:#FBEBB4}
+.outil-barre .compte{position:absolute;top:-7px;inset-inline-end:-7px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:linear-gradient(170deg,#FBEBB4,#C9A227);color:#0b1222;font-size:.68rem;font-weight:700;line-height:18px;text-align:center}
+.outil-barre.pulse{animation:pulse .6s ease}
+@keyframes pulse{50%{transform:scale(1.18)}}
+@media (max-width:660px){.outils-barre{order:2;margin-inline-start:auto} .outil-barre{width:34px;height:32px}}
+dialog.tiroir{border:0;padding:0 0 max(18px,env(safe-area-inset-bottom,0px));margin:0;position:fixed;inset:var(--barre-h,70px) 0 0 auto;width:min(480px,100vw);height:auto;max-height:none;max-width:100vw;z-index:28;
+  background:rgba(7,11,22,.985);color:var(--ivoire);border-inline-start:1px solid rgba(212,175,55,.35);box-shadow:-30px 0 60px rgba(0,0,0,.55);overflow-y:auto;overscroll-behavior:contain}
+dialog.tiroir.large{width:min(860px,100vw)}
+.tiroir-tete{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;background:rgba(7,11,22,.97);border-bottom:1px solid rgba(212,175,55,.22)}
+.tiroir-tete h2{margin:0;font-family:var(--display);font-weight:400;font-size:1.45rem;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tiroir .aide,.tiroir .vide,.tiroir .certif,.tiroir .total,.tiroir .compte-r{padding:0 20px}
+.tiroir .aide{font-size:.86rem;color:var(--cendre);line-height:1.5}
+.tiroir .vide{color:var(--cendre);font-size:.9rem;line-height:1.5;margin-top:18px}
+.certif{font-size:.8rem;line-height:1.45;color:#EAD9A6;margin:.5em 0 0;padding-inline-start:1.5em;position:relative}
+.certif::before{content:"";position:absolute;inset-inline-start:0;top:.15em;width:1em;height:1em;border-radius:50%;border:1.5px solid #D4AF37;box-shadow:inset 0 0 0 2px rgba(7,12,24,1),inset 0 0 0 3.5px #D4AF37}
+.loupe .certif{max-width:46ch}
+.selection{list-style:none;margin:14px 0 0;padding:0 20px;display:grid;gap:12px}
+.selection li{display:grid;grid-template-columns:76px 1fr auto;gap:12px;align-items:center;padding:10px;border:1px solid rgba(212,175,55,.2);background:rgba(255,255,255,.02)}
+.selection img{width:76px;height:76px;object-fit:contain;background:#0b1120;box-shadow:0 0 0 3px #b8912a,0 6px 14px rgba(0,0,0,.5)}
+.selection .t{font-family:var(--display);font-size:1.02rem;line-height:1.2;margin:0}
+.selection .d{font-size:.74rem;color:var(--cendre);margin:.25em 0 0}
+.selection .p{font-size:.84rem;color:var(--orange);margin:.3em 0 0;font-variant-numeric:tabular-nums}
+.selection .retirer{background:none;border:0;color:var(--cendre);font:inherit;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.tiroir .total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:16px 0 4px;font-size:.86rem;color:var(--cendre)}
+.tiroir .total b{font-family:var(--display);font-weight:400;font-size:1.35rem;color:#F1D27E;font-variant-numeric:tabular-nums}
+.tiroir .certif{margin:6px 20px 0 20px;padding-inline-start:1.5em}
+.formulaire{display:grid;gap:12px;padding:6px 20px 0;margin-top:12px}
+.formulaire label{display:grid;gap:5px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#E2C063}
+.formulaire input,.formulaire textarea,.formulaire select,.filtres input,.filtres select{font:inherit;font-size:.95rem;letter-spacing:0;text-transform:none;color:var(--ivoire);background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.35);border-radius:2px;padding:.65em .75em;width:100%;box-sizing:border-box}
+.formulaire input:focus,.formulaire textarea:focus,.filtres input:focus,.filtres select:focus{outline:2px solid rgba(226,192,99,.7);outline-offset:1px}
+.formulaire fieldset{border:1px solid rgba(212,175,55,.2);padding:.6em .8em;margin:0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.formulaire legend{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#E2C063;padding:0 .3em}
+.formulaire .choix{display:flex;align-items:center;gap:.5em;text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--ivoire)}
+.formulaire .choix input{width:auto}
+.formulaire .bouton{justify-self:start;cursor:pointer;margin-top:4px}
+.formulaire .erreur{color:#ff9b8a;font-size:.85rem;margin:0}
+.formulaire .ok{color:#9fe0a8;font-size:.85rem;margin:0}
+.formulaire .depuis{font-size:.85rem;color:#EAD9A6;margin:0;border-inline-start:3px solid #D4AF37;padding:.4em .7em;background:rgba(212,175,55,.06)}
+.filtres{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;padding:14px 20px 0}
+.filtres input[type=search]{grid-column:1/-1}
+.filtres label{display:grid;gap:4px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#E2C063}
+.pastilles{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap}
+.pastilles button{font:inherit;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.5em 1em;border:1px solid rgba(212,175,55,.4);background:none;color:var(--cendre);cursor:pointer;border-radius:2px}
+.pastilles button.actif{background:linear-gradient(170deg,#FBEBB4,#C9A227);color:#0b1222;border-color:transparent}
+.tiroir .compte-r{font-size:.8rem;color:var(--cendre);margin:14px 0 8px}
+.resultats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding:0 20px}
+.resultats button{display:grid;gap:6px;text-align:start;background:none;border:0;padding:0;color:inherit;cursor:pointer;font:inherit}
+.resultats .vg{aspect-ratio:1;display:grid;place-items:center;background:#0b1120;border:1px solid rgba(212,175,55,.18)}
+.resultats img{max-width:88%;max-height:88%;object-fit:contain;box-shadow:0 0 0 3px #b8912a,0 8px 18px rgba(0,0,0,.55)}
+.resultats button:hover .vg,.resultats button:focus-visible .vg{border-color:rgba(226,192,99,.8)}
+.resultats .t{font-family:var(--display);font-size:.95rem;line-height:1.2}
+.resultats .d{font-size:.72rem;color:var(--cendre)}
+.resultats .badge{justify-self:start;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#0b1222;background:#9fe0a8;padding:.15em .5em;border-radius:2px}
+.loupe .fermer.ajouter{border-color:#D4AF37;color:#FBEBB4;background:rgba(212,175,55,.12)}
+.loupe .fermer.ajouter.dedans{background:linear-gradient(170deg,#FBEBB4,#C9A227);color:#0b1222}
 body.volet-ouvert{overflow:hidden}
 body.volet-ouvert .page{z-index:auto}  /* la barre (et la liste des langues) repasse au-dessus du volet */
 .fermer.retour::before{content:"← ";}
@@ -762,6 +820,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       <a href="#actualite">Actualité</a>
       <a href="#contact">Contact</a>
     </nav>
+    <div class="outils-barre"><button type="button" class="outil-barre" id="btn-recherche" aria-label="Rechercher une œuvre" title="Rechercher une œuvre"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button type="button" class="outil-barre" id="btn-panier" aria-label="Ma sélection" title="Ma sélection"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M5 8h14l-1.3 11.2a1.5 1.5 0 0 1-1.5 1.3H7.8a1.5 1.5 0 0 1-1.5-1.3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="compte" id="panier-compte" hidden>0</span></button></div>
     <details class="langues" id="langues"><summary aria-label="Langue"><span class="code">FR</span></summary>
       <div class="liste"><a href="./" hreflang="fr" lang="fr" class="actif">Français</a><a href="en.html" hreflang="en" lang="en">English</a><a href="de.html" hreflang="de" lang="de">Deutsch</a><a href="it.html" hreflang="it" lang="it">Italiano</a><a href="es.html" hreflang="es" lang="es">Español</a><a href="pt.html" hreflang="pt" lang="pt">Português</a><a href="pl.html" hreflang="pl" lang="pl">Polski</a><a href="sr.html" hreflang="sr-Latn" lang="sr-Latn">Srpski</a><a href="bg.html" hreflang="bg" lang="bg">Български</a><a href="ru.html" hreflang="ru" lang="ru">Русский</a><a href="ar.html" hreflang="ar" lang="ar">العربية</a><a href="zh.html" hreflang="zh" lang="zh">简体中文</a><a href="zh-hant.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a><a href="ja.html" hreflang="ja" lang="ja">日本語</a><a href="ko.html" hreflang="ko" lang="ko">한국어</a></div>
     </details>
@@ -1120,6 +1179,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p class="chapeau">Pour acquérir une œuvre, organiser une visite d'atelier ou proposer une exposition.</p>
         <p class="adresse"><a id="courriel" href="mailto:isasator@gmail.com">isasator@gmail.com</a> <button class="copier" id="btn-copier" type="button">Copier</button></p>
         <p class="chapeau" style="margin-bottom:0">Instagram : <a href="https://www.instagram.com/isa.sator/">@isa.sator</a></p>
+        <p style="margin:1.4em 0 0"><button class="bouton" id="btn-mesure-contact" type="button">Demander une œuvre sur mesure</button></p>
       </div>
     </div>
   </div>
@@ -1149,6 +1209,61 @@ dialog canvas.trace{position:absolute;z-index:5}
   </div>
 </dialog>
 
+<dialog class="tiroir" id="tiroir-panier" aria-labelledby="tp-titre">
+  <div class="tiroir-tete"><h2 id="tp-titre">Ma sélection</h2><button type="button" class="fermer" data-ferme>Fermer</button></div>
+  <ul class="selection" id="selection"></ul>
+  <p class="vide" id="selection-vide">Votre sélection est vide. Ouvrez une œuvre et choisissez « Ajouter à ma sélection ».</p>
+  <div id="selection-suite">
+    <p class="total"><span>Total des œuvres à prix affiché</span><b id="selection-total"></b></p>
+    <p class="certif">Chaque œuvre est accompagnée de son certificat d'authenticité numéroté, signé à la main par Isa.</p>
+    <form class="formulaire" id="form-achat" novalidate>
+      <p class="aide">Votre demande part par e-mail à l'atelier. Isa vous répond pour confirmer la disponibilité, la livraison et le paiement.</p>
+      <label><span>Nom</span><input name="nom" autocomplete="name" required></label>
+      <label><span>E-mail</span><input name="courriel" type="email" autocomplete="email" required></label>
+      <label><span>Ville et pays de livraison</span><input name="ville" autocomplete="address-level2"></label>
+      <fieldset><legend>Livraison</legend><label class="choix"><input type="radio" name="livraison" value="domicile" checked> <span>Livraison à domicile</span></label><label class="choix"><input type="radio" name="livraison" value="atelier"> <span>Retrait à l'atelier</span></label></fieldset>
+      <label><span>Message</span><textarea name="message" rows="3"></textarea></label>
+      <p class="erreur" id="achat-erreur" hidden>Indiquez votre nom et une adresse e-mail valide.</p>
+      <button class="bouton" type="submit">Envoyer ma demande d'acquisition</button>
+      <p class="ok" id="achat-ok" hidden>Votre messagerie s'ouvre avec la demande prête : il ne reste qu'à l'envoyer.</p>
+    </form>
+  </div>
+</dialog>
+<dialog class="tiroir large" id="tiroir-recherche" aria-labelledby="tr-titre">
+  <div class="tiroir-tete"><h2 id="tr-titre">Rechercher une œuvre</h2><button type="button" class="fermer" data-ferme>Fermer</button></div>
+  <div class="filtres">
+    <input type="search" id="r-texte" placeholder="Titre, série, année, numéro…" aria-label="Rechercher une œuvre">
+    <div class="pastilles" id="r-type" role="group"><button type="button" data-v="" class="actif">Toutes</button><button type="button" data-v="dispo">Disponibles</button><button type="button" data-v="cat">Catalogue</button></div>
+    <label><span>Format</span><select id="r-format"><option value="">Tous formats</option><option value="petit">Petit (jusqu'à 60 cm)</option><option value="moyen">Moyen (61 à 120 cm)</option><option value="grand">Grand (plus de 120 cm)</option></select></label>
+    <label><span>Couleurs</span><select id="r-teinte"><option value="">Toutes couleurs</option><option value="c">Chaudes</option><option value="f">Froides</option><option value="n">Mélangées</option></select></label>
+    <label><span>Série</span><select id="r-serie"><option value="">Toutes les séries</option></select></label>
+    <label><span>Prix maximum</span><select id="r-prix"><option value="">Sans limite</option><option value="2000">2 000 €</option><option value="4000">4 000 €</option><option value="6000">6 000 €</option><option value="8000">8 000 €</option></select></label>
+  </div>
+  <p class="compte-r"><span>Résultats :</span> <b id="r-nombre"></b></p>
+  <div class="resultats" id="r-liste"></div>
+  <p class="vide" id="r-aucun" hidden>Aucune œuvre ne correspond. Essayez un autre mot ou moins de filtres.</p>
+</dialog>
+<dialog class="tiroir" id="tiroir-mesure" aria-labelledby="tm-titre">
+  <div class="tiroir-tete"><h2 id="tm-titre">Une œuvre sur mesure</h2><button type="button" class="fermer" data-ferme>Fermer</button></div>
+  <p class="aide">Une couleur, un sujet, un format précis pour votre mur : Isa peut peindre une toile rien que pour vous.</p>
+  <form class="formulaire" id="form-mesure" novalidate>
+    <p class="depuis" id="m-depuis" hidden></p>
+    <label><span>Format souhaité (en cm)</span><input name="format" placeholder="100 × 80"></label>
+    <label><span>La pièce</span><input name="piece"></label>
+    <label><span>Couleurs et ambiance</span><input name="couleurs"></label>
+    <label><span>Sujet ou thème</span><input name="sujet"></label>
+    <label><span>Budget indicatif</span><input name="budget"></label>
+    <label><span>Délai souhaité</span><input name="delai"></label>
+    <label><span>Nom</span><input name="nom" autocomplete="name" required></label>
+    <label><span>E-mail</span><input name="courriel" type="email" autocomplete="email" required></label>
+    <label><span>Message</span><textarea name="message" rows="3"></textarea></label>
+    <p class="aide">Vous pourrez joindre une photo de votre mur en répondant à l'e-mail d'Isa.</p>
+    <p class="erreur" id="mesure-erreur" hidden>Indiquez votre nom et une adresse e-mail valide.</p>
+    <button class="bouton" type="submit">Envoyer ma demande sur mesure</button>
+    <p class="ok" id="mesure-ok" hidden>Votre messagerie s'ouvre avec la demande prête : il ne reste qu'à l'envoyer.</p>
+  </form>
+</dialog>
+<template id="txt"><span data-k="panier">Ma sélection</span><span data-k="recherche">Rechercher une œuvre</span><span data-k="fermer">Fermer</span><span data-k="ajouter">Ajouter à ma sélection</span><span data-k="ajoutee">Dans ma sélection</span><span data-k="retirer">Retirer</span><span data-k="vide">Votre sélection est vide. Ouvrez une œuvre et choisissez « Ajouter à ma sélection ».</span><span data-k="total">Total des œuvres à prix affiché</span><span data-k="surdemande">Prix et disponibilité sur demande</span><span data-k="certif">Chaque œuvre est accompagnée de son certificat d'authenticité numéroté, signé à la main par Isa.</span><span data-k="intro">Votre demande part par e-mail à l'atelier. Isa vous répond pour confirmer la disponibilité, la livraison et le paiement.</span><span data-k="nom">Nom</span><span data-k="courriel">E-mail</span><span data-k="ville">Ville et pays de livraison</span><span data-k="message">Message</span><span data-k="livraison">Livraison</span><span data-k="domicile">Livraison à domicile</span><span data-k="atelier">Retrait à l'atelier</span><span data-k="envoyer">Envoyer ma demande d'acquisition</span><span data-k="objet_achat">Demande d'acquisition depuis le site</span><span data-k="oeuvres">Œuvres</span><span data-k="envoyee">Votre messagerie s'ouvre avec la demande prête : il ne reste qu'à l'envoyer.</span><span data-k="manque">Indiquez votre nom et une adresse e-mail valide.</span><span data-k="motcle">Titre, série, année, numéro…</span><span data-k="toutes">Toutes</span><span data-k="dispos">Disponibles</span><span data-k="catalogue">Catalogue</span><span data-k="format">Format</span><span data-k="tousformats">Tous formats</span><span data-k="petit">Petit (jusqu'à 60 cm)</span><span data-k="moyen">Moyen (61 à 120 cm)</span><span data-k="grand">Grand (plus de 120 cm)</span><span data-k="couleurs">Couleurs</span><span data-k="touscouleurs">Toutes couleurs</span><span data-k="chaudes">Chaudes</span><span data-k="froides">Froides</span><span data-k="melangees">Mélangées</span><span data-k="serie">Série</span><span data-k="touteseries">Toutes les séries</span><span data-k="prixmax">Prix maximum</span><span data-k="sanslimite">Sans limite</span><span data-k="resultats">Résultats :</span><span data-k="aucun">Aucune œuvre ne correspond. Essayez un autre mot ou moins de filtres.</span><span data-k="disponible">Disponible</span><span data-k="sanstitre">Sans titre</span><span data-k="mesure">Une œuvre sur mesure</span><span data-k="mesure_intro">Une couleur, un sujet, un format précis pour votre mur : Isa peut peindre une toile rien que pour vous.</span><span data-k="m_format">Format souhaité (en cm)</span><span data-k="m_piece">La pièce</span><span data-k="m_couleurs">Couleurs et ambiance</span><span data-k="m_sujet">Sujet ou thème</span><span data-k="m_budget">Budget indicatif</span><span data-k="m_delai">Délai souhaité</span><span data-k="m_photo">Vous pourrez joindre une photo de votre mur en répondant à l'e-mail d'Isa.</span><span data-k="m_envoyer">Envoyer ma demande sur mesure</span><span data-k="objet_mesure">Demande d'œuvre sur mesure</span><span data-k="m_depuis">Inspirée de la toile</span><span data-k="m_pourmur">Une toile sur mesure pour ce mur</span><span data-k="m_contact">Demander une œuvre sur mesure</span></template>
 <dialog class="loupe" id="loupe">
   <canvas class="trace" aria-hidden="true"></canvas>
   <div class="boite">
@@ -1176,8 +1291,11 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p class="nom" id="loupe-nom" style="margin:0"></p>
         <p class="detail" id="loupe-detail" style="margin:.25em 0 0"></p>
         <p class="prix" id="loupe-prix" style="margin:.3em 0 0"></p>
+        <p class="certif" id="loupe-certif" hidden>Chaque œuvre est accompagnée de son certificat d'authenticité numéroté, signé à la main par Isa.</p>
       </div>
       <div class="outils">
+        <button class="fermer ajouter" id="btn-ajouter" type="button" hidden>Ajouter à ma sélection</button>
+        <button class="fermer" id="btn-mesure" type="button" hidden>Une toile sur mesure pour ce mur</button>
         <button class="fermer" id="btn-salon" type="button" hidden>Chez vous, à l'échelle</button>
         <button class="fermer" id="btn-traduction" type="button" hidden>Lire la traduction</button>
         <span class="choix-int" id="choix-int" hidden><i>Voir chez vous :</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>Salon</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>Chambre</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>Loft</span></button></span>
@@ -1437,6 +1555,7 @@ function dessineSalon(){
     (P.derriere?'':'<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.lr+' cm</span></div>')+
     '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>Chez vous, à l\'échelle</b>'+courante.hr+' × '+courante.lr+' cm, '+((P.libre&&I.legendeLibre)?I.legendeLibre:I.legende)+', sous son applique. Le décor prend les couleurs de la toile ; choisissez une autre pièce en bas.'+(courante.estime?'<i>Dimensions non renseignées : présentée au format indicatif de 100 cm.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
   peintObjets(salon);
+  document.getElementById("btn-mesure").hidden=false;
   const lg=salon.querySelector(".legende"); document.getElementById("legende-bas").innerHTML=lg?lg.innerHTML:"";
 }
 /* ---------- objets recolorés : peints dans un canvas (image × couleur, découpée par la transparence du PNG) ---------- */
@@ -1464,7 +1583,7 @@ document.getElementById("choix-int").addEventListener("click",e=>{
 });
 btnSalon.addEventListener("click",()=>{
   /* retour à la toile seule : les vignettes restent pour y revenir */
-  loupe.classList.remove("chez-vous"); btnSalon.hidden=true;
+  loupe.classList.remove("chez-vous"); btnSalon.hidden=true; document.getElementById("btn-mesure").hidden=true;
   document.querySelectorAll("#choix-int button").forEach(x=>x.classList.remove("actif"));
 });
 addEventListener("resize",()=>{ if(loupe.classList.contains("chez-vous")) dessineSalon(); });
@@ -1478,11 +1597,15 @@ function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
   document.getElementById("loupe-nom").textContent=titre||"Sans titre";
   document.getElementById("loupe-detail").textContent=det;
   document.getElementById("loupe-prix").textContent=prix;
-  loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); btnSalon.textContent="Voir la toile seule";
+  loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); document.getElementById("btn-mesure").hidden=true; btnSalon.textContent="Voir la toile seule";
   document.getElementById("btn-traduction").hidden=true;
   btnSalon.hidden = true;
   document.getElementById("choix-int").hidden = !(h&&l) || !!DETAILS[(ref+"").replace("TB","")] || courante.detail;
   montreVoix(courante.cle);
+  const estOeuvre=/^TB\d+$/.test(courante.cle) || OEUVRES.some(o=>o[0]===courante.cle);
+  document.getElementById("btn-ajouter").hidden=!estOeuvre;
+  document.getElementById("loupe-certif").hidden=!(estOeuvre && OEUVRES.some(o=>o[0]===courante.cle));
+  try{ majBoutonAjouter(); }catch(_){}   /* la sélection peut ne pas être encore chargée (réouverture après changement de langue) */
   ouvreVolet(loupe);
   loupe.querySelector(".boite").scrollTop=0;
 }
@@ -1496,7 +1619,7 @@ function ouvreVolet(d){
 }
 function fermeVolet(d, parHistorique){
   if(d.open) d.close();
-  if(![loupe,panneau].some(x=>x.open)) document.body.classList.remove("volet-ouvert");
+  if(!document.querySelector("dialog[open]")) document.body.classList.remove("volet-ouvert");
   if(!parHistorique && history.state && history.state.volet===d.id) history.back();
 }
 addEventListener("popstate",()=>{
@@ -1862,6 +1985,116 @@ document.querySelectorAll(".grand .cimaise").forEach(c=>{ c.setAttribute("role",
   const ouvre=()=>{ const n=numeroDe(c); if(n) chezSoi(n); };
   c.addEventListener("click",ouvre); c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } }); });
 document.getElementById("pan-grille").addEventListener("click",e=>{ const f=e.target.closest("figure"); if(!f) return; const n=numeroDe(f); if(n) chezSoi(n); });
+/* ---------- v36 : textes de l'interface (gabarit traduit), sélection, recherche, sur mesure ---------- */
+const TX=k=>{ const e=document.querySelector('#txt').content.querySelector('[data-k="'+k+'"]'); return e?e.textContent:k; };
+const tiroirs=[...document.querySelectorAll("dialog.tiroir")];
+tiroirs.forEach(d=>d.querySelectorAll("[data-ferme]").forEach(b=>b.addEventListener("click",()=>fermeVolet(d))));
+addEventListener("popstate",()=>{ tiroirs.forEach(d=>{ if(d.open && !(history.state&&history.state.volet===d.id)) fermeVolet(d,true); }); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ const d=tiroirs.find(x=>x.open); if(d){ e.preventDefault(); fermeVolet(d); } } });
+const ouvreTiroir=d=>{ tiroirs.forEach(x=>{ if(x!==d && x.open) fermeVolet(x,true); }); ouvreVolet(d); d.scrollTop=0; };
+const courrielOK=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const envoieCourriel=(objet,lignes)=>{ location.href="mailto:isasator@gmail.com?subject="+encodeURIComponent(objet)+"&body="+encodeURIComponent(lignes.join("\n")); };
+
+/* --- la sélection --- */
+let SEL=[]; try{ SEL=JSON.parse(localStorage.getItem("isa-selection")||"[]"); if(!Array.isArray(SEL)) SEL=[]; }catch(_){ SEL=[]; }
+const sauveSel=()=>{ try{ localStorage.setItem("isa-selection",JSON.stringify(SEL)); }catch(_){} };
+const prixDe=cle=>{ const o=OEUVRES.find(x=>x[0]===cle); return o?o[3]:null; };
+function majCompte(){ const c=document.getElementById("panier-compte"); c.textContent=SEL.length; c.hidden=!SEL.length; }
+function majBoutonAjouter(){
+  const b=document.getElementById("btn-ajouter"), dans=courante&&SEL.some(x=>x.cle===courante.cle);
+  b.classList.toggle("dedans",!!dans); b.textContent=dans?TX("ajoutee"):TX("ajouter");
+}
+function rendSel(){
+  const ul=document.getElementById("selection"); ul.innerHTML="";
+  SEL.forEach((x,i)=>{ const li=document.createElement("li");
+    li.innerHTML='<img src="'+x.img+'" alt="" loading="lazy"><div><p class="t">'+echappe(x.titre)+'</p><p class="d">'+echappe(x.det||"")+'</p><p class="p">'+(x.prix?euros(x.prix):echappe(TX("surdemande")))+'</p></div><button type="button" class="retirer" data-i="'+i+'">'+echappe(TX("retirer"))+'</button>';
+    ul.appendChild(li); });
+  document.getElementById("selection-vide").hidden=!!SEL.length;
+  document.getElementById("selection-suite").hidden=!SEL.length;
+  const t=SEL.reduce((s,x)=>s+(x.prix||0),0); document.getElementById("selection-total").textContent=t?euros(t):"·";
+  majCompte();
+}
+document.getElementById("selection").addEventListener("click",e=>{ const b=e.target.closest(".retirer"); if(!b) return; SEL.splice(+b.dataset.i,1); sauveSel(); rendSel(); if(loupe.open) majBoutonAjouter(); });
+document.getElementById("btn-panier").addEventListener("click",()=>{ rendSel(); ouvreTiroir(document.getElementById("tiroir-panier")); });
+document.getElementById("btn-ajouter").addEventListener("click",()=>{
+  if(!courante) return; const i=SEL.findIndex(x=>x.cle===courante.cle);
+  if(i>=0){ SEL.splice(i,1); }
+  else { SEL.push({cle:courante.cle, titre:courante.titre||TX("sanstitre"), det:document.getElementById("loupe-detail").textContent, prix:prixDe(courante.cle), img:courante.src}); const p=document.getElementById("btn-panier"); p.classList.remove("pulse"); void p.offsetWidth; p.classList.add("pulse"); }
+  sauveSel(); majCompte(); majBoutonAjouter();
+});
+document.getElementById("form-achat").addEventListener("submit",e=>{
+  e.preventDefault(); const f=e.currentTarget, v=n=>(f.elements[n].value||"").trim();
+  const ok=v("nom")&&courrielOK(v("courriel")); document.getElementById("achat-erreur").hidden=ok; if(!ok) return;
+  const L=[TX("oeuvres")+" :"]; SEL.forEach(x=>L.push("- "+x.titre+" ("+x.cle+") · "+(x.det||"")+" · "+(x.prix?euros(x.prix):TX("surdemande"))));
+  const t=SEL.reduce((s,x)=>s+(x.prix||0),0); if(t) L.push(TX("total")+" : "+euros(t));
+  L.push("",TX("nom")+" : "+v("nom"),TX("courriel")+" : "+v("courriel"),TX("ville")+" : "+v("ville"),TX("livraison")+" : "+(f.elements.livraison.value==="atelier"?TX("atelier"):TX("domicile")));
+  if(v("message")) L.push("",TX("message")+" :",v("message"));
+  L.push("","("+location.href.split("#")[0].split("?")[0]+")");
+  envoieCourriel(TX("objet_achat"),L); document.getElementById("achat-ok").hidden=false;
+});
+majCompte(); if(loupe.open) majBoutonAjouter();
+
+/* --- la recherche --- */
+const sansAccent=s=>(s||"").toString().normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const seriesDe=n=>SERIES.filter(s=>s[2].includes(n)).map(s=>s[0]);
+const INDEX=[
+  ...OEUVRES.map((o,i)=>({type:"dispo",i,cle:o[0],titre:o[1]||TX("sanstitre"),annee:o[2],prix:o[3],h:o[5],l:o[6],img:"oeuvres/"+o[0]+".jpg",teinte:TEINTES[o[0]]||"",series:[],det:detail(o)})),
+  ...Object.values(CAT).map(c=>{ const n=c[0], cle="TB"+String(n).padStart(2,"0"), d=DIMS[n]; return {type:"cat",n,cle,titre:c[1],annee:"",prix:null,h:d?d[0]:null,l:d?d[1]:null,img:(GRANDS.includes(n)?"grand/":"catalogue/")+cle+".jpg",teinte:TEINTES[cle]||"",series:seriesDe(n),det:cle+(d?" · "+d[0]+" × "+d[1]+" cm":"")}; })
+];
+const rs=document.getElementById("r-serie");
+SERIES.forEach((s,i)=>{ if(s[2].length){ const o=document.createElement("option"); o.value=i; o.textContent=s[0]; rs.appendChild(o); } });
+let rType="";
+document.getElementById("r-type").addEventListener("click",e=>{ const b=e.target.closest("button[data-v]"); if(!b) return; rType=b.dataset.v; [...e.currentTarget.children].forEach(x=>x.classList.toggle("actif",x===b)); cherche(); });
+["r-texte","r-format","r-teinte","r-serie","r-prix"].forEach(id=>document.getElementById(id).addEventListener("input",cherche));
+function cherche(){
+  const q=sansAccent(document.getElementById("r-texte").value.trim()), fmt=document.getElementById("r-format").value, te=document.getElementById("r-teinte").value,
+        se=document.getElementById("r-serie").value, px=+document.getElementById("r-prix").value||0;
+  const res=INDEX.filter(x=>{
+    if(rType && x.type!==rType) return false;
+    if(px && !(x.prix && x.prix<=px)) return false;
+    if(te && x.teinte!==te) return false;
+    if(se!=="" && !(x.type==="cat" && SERIES[+se][2].includes(x.n))) return false;
+    if(fmt){ if(!x.h||!x.l) return false; const g=Math.max(x.h,x.l); if(fmt==="petit"&&g>60) return false; if(fmt==="moyen"&&(g<=60||g>120)) return false; if(fmt==="grand"&&g<=120) return false; }
+    if(q){ const hay=sansAccent([x.titre,x.cle,x.annee,x.series.join(" ")].join(" ")); if(!q.split(/\s+/).every(m=>hay.includes(m))) return false; }
+    return true; });
+  const liste=document.getElementById("r-liste"); liste.innerHTML="";
+  res.forEach(x=>{ const b=document.createElement("button"); b.type="button"; b.dataset.k=INDEX.indexOf(x);
+    b.innerHTML='<span class="vg"><img src="'+x.img+'" alt="" loading="lazy"></span>'+(x.type==="dispo"?'<span class="badge">'+echappe(TX("disponible"))+'</span>':'')+'<span class="t">'+echappe(x.titre)+'</span><span class="d">'+echappe(x.det)+(x.prix?" · "+euros(x.prix):"")+'</span>';
+    liste.appendChild(b); });
+  document.getElementById("r-nombre").textContent=res.length; document.getElementById("r-aucun").hidden=!!res.length;
+}
+document.getElementById("r-liste").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-k]"); if(!b) return; const x=INDEX[+b.dataset.k];
+  fermeVolet(document.getElementById("tiroir-recherche"),true);
+  if(x.type==="dispo"){ const o=OEUVRES[x.i]; ouvreLoupe("oeuvres/"+o[0]+".jpg", o[1], detail(o), euros(o[3]), o[5], o[6], o[2]); }
+  else chezSoi(x.n);
+});
+document.getElementById("btn-recherche").addEventListener("click",()=>{ cherche(); ouvreTiroir(document.getElementById("tiroir-recherche")); setTimeout(()=>{ if(!matchMedia("(pointer:coarse)").matches) document.getElementById("r-texte").focus(); },60); });
+
+/* --- sur mesure --- */
+function ouvreMesure(depuis){
+  const f=document.getElementById("form-mesure"), dp=document.getElementById("m-depuis");
+  document.getElementById("mesure-ok").hidden=true; document.getElementById("mesure-erreur").hidden=true;
+  if(depuis){ dp.hidden=false; dp.textContent=TX("m_depuis")+" : « "+depuis.titre+" » ("+depuis.cle+")"; f.dataset.depuis=depuis.titre+" ("+depuis.cle+")";
+    if(depuis.format) f.elements.format.value=depuis.format; if(depuis.piece) f.elements.piece.value=depuis.piece; }
+  else { dp.hidden=true; delete f.dataset.depuis; }
+  ouvreTiroir(document.getElementById("tiroir-mesure"));
+}
+document.getElementById("btn-mesure-contact").addEventListener("click",()=>ouvreMesure(null));
+document.getElementById("btn-mesure").addEventListener("click",()=>{
+  if(!courante) return; const b=document.querySelector("#choix-int button.actif span");
+  ouvreMesure({titre:courante.titre||TX("sanstitre"), cle:courante.cle, format:(courante.hr&&courante.lr)?courante.hr+" × "+courante.lr:"", piece:b?b.textContent:""});
+});
+document.getElementById("form-mesure").addEventListener("submit",e=>{
+  e.preventDefault(); const f=e.currentTarget, v=n=>(f.elements[n].value||"").trim();
+  const ok=v("nom")&&courrielOK(v("courriel")); document.getElementById("mesure-erreur").hidden=ok; if(!ok) return;
+  const L=[]; if(f.dataset.depuis) L.push(TX("m_depuis")+" : "+f.dataset.depuis,"");
+  [["format","m_format"],["piece","m_piece"],["couleurs","m_couleurs"],["sujet","m_sujet"],["budget","m_budget"],["delai","m_delai"]].forEach(([n,k])=>{ if(v(n)) L.push(TX(k)+" : "+v(n)); });
+  L.push("",TX("nom")+" : "+v("nom"),TX("courriel")+" : "+v("courriel")); if(v("message")) L.push("",TX("message")+" :",v("message"));
+  L.push("",TX("m_photo"));
+  envoieCourriel(TX("objet_mesure"),L); document.getElementById("mesure-ok").hidden=false;
+});
+
 </script>
 
 </body>

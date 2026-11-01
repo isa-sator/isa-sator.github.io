@@ -600,6 +600,64 @@ footer .dedans{padding-block:30px;display:flex;gap:16px;flex-wrap:wrap;font-size
 dialog.loupe{border:0;padding:0;background:rgba(5,8,18,.98);color:var(--ivoire);position:fixed;inset:var(--barre-h,70px) 0 0 0;margin:0;width:100%;height:auto;max-width:100vw;max-height:none;z-index:28}
 dialog.panneau{z-index:27}
 dialog.loupe::backdrop{background:transparent}
+/* ---------- v36 : barre (recherche, sélection), tiroirs, panier, recherche, sur mesure ---------- */
+.outils-barre{display:flex;gap:6px;align-items:center;flex:none;margin-inline-start:auto}
+.outil-barre{position:relative;display:inline-grid;place-items:center;width:36px;height:34px;border:1px solid rgba(212,175,55,.55);border-radius:2px;background:rgba(7,12,24,.35);color:#E2C063;cursor:pointer;padding:0}
+.outil-barre:hover,.outil-barre:focus-visible{background:rgba(212,175,55,.16);color:#FBEBB4}
+.outil-barre .compte{position:absolute;top:-7px;inset-inline-end:-7px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:linear-gradient(170deg,#FBEBB4,#C9A227);color:#0b1222;font-size:.68rem;font-weight:700;line-height:18px;text-align:center}
+.outil-barre.pulse{animation:pulse .6s ease}
+@keyframes pulse{50%{transform:scale(1.18)}}
+@media (max-width:660px){.outils-barre{order:2;margin-inline-start:auto} .outil-barre{width:34px;height:32px}}
+dialog.tiroir{border:0;padding:0 0 max(18px,env(safe-area-inset-bottom,0px));margin:0;position:fixed;inset:var(--barre-h,70px) 0 0 auto;width:min(480px,100vw);height:auto;max-height:none;max-width:100vw;z-index:28;
+  background:rgba(7,11,22,.985);color:var(--ivoire);border-inline-start:1px solid rgba(212,175,55,.35);box-shadow:-30px 0 60px rgba(0,0,0,.55);overflow-y:auto;overscroll-behavior:contain}
+dialog.tiroir.large{width:min(860px,100vw)}
+.tiroir-tete{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;background:rgba(7,11,22,.97);border-bottom:1px solid rgba(212,175,55,.22)}
+.tiroir-tete h2{margin:0;font-family:var(--display);font-weight:400;font-size:1.45rem;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tiroir .aide,.tiroir .vide,.tiroir .certif,.tiroir .total,.tiroir .compte-r{padding:0 20px}
+.tiroir .aide{font-size:.86rem;color:var(--cendre);line-height:1.5}
+.tiroir .vide{color:var(--cendre);font-size:.9rem;line-height:1.5;margin-top:18px}
+.certif{font-size:.8rem;line-height:1.45;color:#EAD9A6;margin:.5em 0 0;padding-inline-start:1.5em;position:relative}
+.certif::before{content:"";position:absolute;inset-inline-start:0;top:.15em;width:1em;height:1em;border-radius:50%;border:1.5px solid #D4AF37;box-shadow:inset 0 0 0 2px rgba(7,12,24,1),inset 0 0 0 3.5px #D4AF37}
+.loupe .certif{max-width:46ch}
+.selection{list-style:none;margin:14px 0 0;padding:0 20px;display:grid;gap:12px}
+.selection li{display:grid;grid-template-columns:76px 1fr auto;gap:12px;align-items:center;padding:10px;border:1px solid rgba(212,175,55,.2);background:rgba(255,255,255,.02)}
+.selection img{width:76px;height:76px;object-fit:contain;background:#0b1120;box-shadow:0 0 0 3px #b8912a,0 6px 14px rgba(0,0,0,.5)}
+.selection .t{font-family:var(--display);font-size:1.02rem;line-height:1.2;margin:0}
+.selection .d{font-size:.74rem;color:var(--cendre);margin:.25em 0 0}
+.selection .p{font-size:.84rem;color:var(--orange);margin:.3em 0 0;font-variant-numeric:tabular-nums}
+.selection .retirer{background:none;border:0;color:var(--cendre);font:inherit;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.tiroir .total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:16px 0 4px;font-size:.86rem;color:var(--cendre)}
+.tiroir .total b{font-family:var(--display);font-weight:400;font-size:1.35rem;color:#F1D27E;font-variant-numeric:tabular-nums}
+.tiroir .certif{margin:6px 20px 0 20px;padding-inline-start:1.5em}
+.formulaire{display:grid;gap:12px;padding:6px 20px 0;margin-top:12px}
+.formulaire label{display:grid;gap:5px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#E2C063}
+.formulaire input,.formulaire textarea,.formulaire select,.filtres input,.filtres select{font:inherit;font-size:.95rem;letter-spacing:0;text-transform:none;color:var(--ivoire);background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.35);border-radius:2px;padding:.65em .75em;width:100%;box-sizing:border-box}
+.formulaire input:focus,.formulaire textarea:focus,.filtres input:focus,.filtres select:focus{outline:2px solid rgba(226,192,99,.7);outline-offset:1px}
+.formulaire fieldset{border:1px solid rgba(212,175,55,.2);padding:.6em .8em;margin:0;display:flex;flex-wrap:wrap;gap:6px 18px}
+.formulaire legend{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#E2C063;padding:0 .3em}
+.formulaire .choix{display:flex;align-items:center;gap:.5em;text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--ivoire)}
+.formulaire .choix input{width:auto}
+.formulaire .bouton{justify-self:start;cursor:pointer;margin-top:4px}
+.formulaire .erreur{color:#ff9b8a;font-size:.85rem;margin:0}
+.formulaire .ok{color:#9fe0a8;font-size:.85rem;margin:0}
+.formulaire .depuis{font-size:.85rem;color:#EAD9A6;margin:0;border-inline-start:3px solid #D4AF37;padding:.4em .7em;background:rgba(212,175,55,.06)}
+.filtres{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;padding:14px 20px 0}
+.filtres input[type=search]{grid-column:1/-1}
+.filtres label{display:grid;gap:4px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:#E2C063}
+.pastilles{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap}
+.pastilles button{font:inherit;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.5em 1em;border:1px solid rgba(212,175,55,.4);background:none;color:var(--cendre);cursor:pointer;border-radius:2px}
+.pastilles button.actif{background:linear-gradient(170deg,#FBEBB4,#C9A227);color:#0b1222;border-color:transparent}
+.tiroir .compte-r{font-size:.8rem;color:var(--cendre);margin:14px 0 8px}
+.resultats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;padding:0 20px}
+.resultats button{display:grid;gap:6px;text-align:start;background:none;border:0;padding:0;color:inherit;cursor:pointer;font:inherit}
+.resultats .vg{aspect-ratio:1;display:grid;place-items:center;background:#0b1120;border:1px solid rgba(212,175,55,.18)}
+.resultats img{max-width:88%;max-height:88%;object-fit:contain;box-shadow:0 0 0 3px #b8912a,0 8px 18px rgba(0,0,0,.55)}
+.resultats button:hover .vg,.resultats button:focus-visible .vg{border-color:rgba(226,192,99,.8)}
+.resultats .t{font-family:var(--display);font-size:.95rem;line-height:1.2}
+.resultats .d{font-size:.72rem;color:var(--cendre)}
+.resultats .badge{justify-self:start;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#0b1222;background:#9fe0a8;padding:.15em .5em;border-radius:2px}
+.loupe .fermer.ajouter{border-color:#D4AF37;color:#FBEBB4;background:rgba(212,175,55,.12)}
+.loupe .fermer.ajouter.dedans{background:linear-gradient(170deg,#FBEBB4,#C9A227);color:#0b1222}
 body.volet-ouvert{overflow:hidden}
 body.volet-ouvert .page{z-index:auto}  /* la barre (et la liste des langues) repasse au-dessus du volet */
 .fermer.retour::before{content:"← ";}
@@ -762,6 +820,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       <a href="#actualite">소식</a>
       <a href="#contact">연락처</a>
     </nav>
+    <div class="outils-barre"><button type="button" class="outil-barre" id="btn-recherche" aria-label="작품 검색" title="작품 검색"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button type="button" class="outil-barre" id="btn-panier" aria-label="나의 선택" title="나의 선택"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M5 8h14l-1.3 11.2a1.5 1.5 0 0 1-1.5 1.3H7.8a1.5 1.5 0 0 1-1.5-1.3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="compte" id="panier-compte" hidden>0</span></button></div>
     <details class="langues" id="langues"><summary aria-label="언어"><span class="code">KO</span></summary>
       <div class="liste"><a href="./" hreflang="fr" lang="fr">Français</a><a href="en.html" hreflang="en" lang="en">English</a><a href="de.html" hreflang="de" lang="de">Deutsch</a><a href="it.html" hreflang="it" lang="it">Italiano</a><a href="es.html" hreflang="es" lang="es">Español</a><a href="pt.html" hreflang="pt" lang="pt">Português</a><a href="pl.html" hreflang="pl" lang="pl">Polski</a><a href="sr.html" hreflang="sr-Latn" lang="sr-Latn">Srpski</a><a href="bg.html" hreflang="bg" lang="bg">Български</a><a href="ru.html" hreflang="ru" lang="ru">Русский</a><a href="ar.html" hreflang="ar" lang="ar">العربية</a><a href="zh.html" hreflang="zh" lang="zh">简体中文</a><a href="zh-hant.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a><a href="ja.html" hreflang="ja" lang="ja">日本語</a><a href="ko.html" hreflang="ko" lang="ko" class="actif">한국어</a></div>
     </details>
@@ -1120,6 +1179,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p class="chapeau">작품 구매, 아틀리에 방문, 전시 제안은 이곳으로.</p>
         <p class="adresse"><a id="courriel" href="mailto:isasator@gmail.com">isasator@gmail.com</a> <button class="copier" id="btn-copier" type="button">복사</button></p>
         <p class="chapeau" style="margin-bottom:0">Instagram: <a href="https://www.instagram.com/isa.sator/">@isa.sator</a></p>
+        <p style="margin:1.4em 0 0"><button class="bouton" id="btn-mesure-contact" type="button">주문 제작 요청하기</button></p>
       </div>
     </div>
   </div>
@@ -1149,6 +1209,61 @@ dialog canvas.trace{position:absolute;z-index:5}
   </div>
 </dialog>
 
+<dialog class="tiroir" id="tiroir-panier" aria-labelledby="tp-titre">
+  <div class="tiroir-tete"><h2 id="tp-titre">나의 선택</h2><button type="button" class="fermer" data-ferme>닫기</button></div>
+  <ul class="selection" id="selection"></ul>
+  <p class="vide" id="selection-vide">선택한 작품이 없습니다. 작품을 열고 ‘나의 선택에 추가’를 누르세요.</p>
+  <div id="selection-suite">
+    <p class="total"><span>가격이 표시된 작품 합계</span><b id="selection-total"></b></p>
+    <p class="certif">모든 작품에는 이자가 직접 서명한 번호가 매겨진 진품 인증서가 함께 제공됩니다.</p>
+    <form class="formulaire" id="form-achat" novalidate>
+      <p class="aide">요청은 이메일로 아틀리에에 전달됩니다. 이자가 구매 가능 여부, 배송, 결제를 확인해 답장드립니다.</p>
+      <label><span>이름</span><input name="nom" autocomplete="name" required></label>
+      <label><span>이메일</span><input name="courriel" type="email" autocomplete="email" required></label>
+      <label><span>배송 도시 및 국가</span><input name="ville" autocomplete="address-level2"></label>
+      <fieldset><legend>수령 방법</legend><label class="choix"><input type="radio" name="livraison" value="domicile" checked> <span>자택 배송</span></label><label class="choix"><input type="radio" name="livraison" value="atelier"> <span>아틀리에 방문 수령</span></label></fieldset>
+      <label><span>메시지</span><textarea name="message" rows="3"></textarea></label>
+      <p class="erreur" id="achat-erreur" hidden>이름과 올바른 이메일 주소를 입력하세요.</p>
+      <button class="bouton" type="submit">구매 요청 보내기</button>
+      <p class="ok" id="achat-ok" hidden>요청이 작성된 상태로 메일 앱이 열립니다. 보내기만 하면 됩니다.</p>
+    </form>
+  </div>
+</dialog>
+<dialog class="tiroir large" id="tiroir-recherche" aria-labelledby="tr-titre">
+  <div class="tiroir-tete"><h2 id="tr-titre">작품 검색</h2><button type="button" class="fermer" data-ferme>닫기</button></div>
+  <div class="filtres">
+    <input type="search" id="r-texte" placeholder="제목, 연작, 연도, 번호…" aria-label="작품 검색">
+    <div class="pastilles" id="r-type" role="group"><button type="button" data-v="" class="actif">전체</button><button type="button" data-v="dispo">구매 가능</button><button type="button" data-v="cat">카탈로그</button></div>
+    <label><span>크기</span><select id="r-format"><option value="">모든 크기</option><option value="petit">소형 (60 cm 이하)</option><option value="moyen">중형 (61~120 cm)</option><option value="grand">대형 (120 cm 초과)</option></select></label>
+    <label><span>색감</span><select id="r-teinte"><option value="">모든 색감</option><option value="c">따뜻한 색</option><option value="f">차가운 색</option><option value="n">혼합</option></select></label>
+    <label><span>연작</span><select id="r-serie"><option value="">모든 연작</option></select></label>
+    <label><span>최고 가격</span><select id="r-prix"><option value="">제한 없음</option><option value="2000">2 000 €</option><option value="4000">4 000 €</option><option value="6000">6 000 €</option><option value="8000">8 000 €</option></select></label>
+  </div>
+  <p class="compte-r"><span>검색 결과:</span> <b id="r-nombre"></b></p>
+  <div class="resultats" id="r-liste"></div>
+  <p class="vide" id="r-aucun" hidden>해당하는 작품이 없습니다. 다른 단어를 넣거나 조건을 줄여 보세요.</p>
+</dialog>
+<dialog class="tiroir" id="tiroir-mesure" aria-labelledby="tm-titre">
+  <div class="tiroir-tete"><h2 id="tm-titre">주문 제작 작품</h2><button type="button" class="fermer" data-ferme>닫기</button></div>
+  <p class="aide">색, 주제, 벽에 꼭 맞는 크기: 이자가 오직 당신을 위한 그림을 그려 드립니다.</p>
+  <form class="formulaire" id="form-mesure" novalidate>
+    <p class="depuis" id="m-depuis" hidden></p>
+    <label><span>원하는 크기 (cm)</span><input name="format" placeholder="100 × 80"></label>
+    <label><span>공간</span><input name="piece"></label>
+    <label><span>색감과 분위기</span><input name="couleurs"></label>
+    <label><span>주제 또는 테마</span><input name="sujet"></label>
+    <label><span>예상 예산</span><input name="budget"></label>
+    <label><span>희망 시기</span><input name="delai"></label>
+    <label><span>이름</span><input name="nom" autocomplete="name" required></label>
+    <label><span>이메일</span><input name="courriel" type="email" autocomplete="email" required></label>
+    <label><span>메시지</span><textarea name="message" rows="3"></textarea></label>
+    <p class="aide">이자의 이메일에 답장할 때 벽 사진을 첨부할 수 있습니다.</p>
+    <p class="erreur" id="mesure-erreur" hidden>이름과 올바른 이메일 주소를 입력하세요.</p>
+    <button class="bouton" type="submit">주문 제작 요청 보내기</button>
+    <p class="ok" id="mesure-ok" hidden>요청이 작성된 상태로 메일 앱이 열립니다. 보내기만 하면 됩니다.</p>
+  </form>
+</dialog>
+<template id="txt"><span data-k="panier">나의 선택</span><span data-k="recherche">작품 검색</span><span data-k="fermer">닫기</span><span data-k="ajouter">나의 선택에 추가</span><span data-k="ajoutee">선택에 담김</span><span data-k="retirer">빼기</span><span data-k="vide">선택한 작품이 없습니다. 작품을 열고 ‘나의 선택에 추가’를 누르세요.</span><span data-k="total">가격이 표시된 작품 합계</span><span data-k="surdemande">가격 및 구매 가능 여부 문의</span><span data-k="certif">모든 작품에는 이자가 직접 서명한 번호가 매겨진 진품 인증서가 함께 제공됩니다.</span><span data-k="intro">요청은 이메일로 아틀리에에 전달됩니다. 이자가 구매 가능 여부, 배송, 결제를 확인해 답장드립니다.</span><span data-k="nom">이름</span><span data-k="courriel">이메일</span><span data-k="ville">배송 도시 및 국가</span><span data-k="message">메시지</span><span data-k="livraison">수령 방법</span><span data-k="domicile">자택 배송</span><span data-k="atelier">아틀리에 방문 수령</span><span data-k="envoyer">구매 요청 보내기</span><span data-k="objet_achat">웹사이트에서 온 구매 요청</span><span data-k="oeuvres">작품</span><span data-k="envoyee">요청이 작성된 상태로 메일 앱이 열립니다. 보내기만 하면 됩니다.</span><span data-k="manque">이름과 올바른 이메일 주소를 입력하세요.</span><span data-k="motcle">제목, 연작, 연도, 번호…</span><span data-k="toutes">전체</span><span data-k="dispos">구매 가능</span><span data-k="catalogue">카탈로그</span><span data-k="format">크기</span><span data-k="tousformats">모든 크기</span><span data-k="petit">소형 (60 cm 이하)</span><span data-k="moyen">중형 (61~120 cm)</span><span data-k="grand">대형 (120 cm 초과)</span><span data-k="couleurs">색감</span><span data-k="touscouleurs">모든 색감</span><span data-k="chaudes">따뜻한 색</span><span data-k="froides">차가운 색</span><span data-k="melangees">혼합</span><span data-k="serie">연작</span><span data-k="touteseries">모든 연작</span><span data-k="prixmax">최고 가격</span><span data-k="sanslimite">제한 없음</span><span data-k="resultats">검색 결과:</span><span data-k="aucun">해당하는 작품이 없습니다. 다른 단어를 넣거나 조건을 줄여 보세요.</span><span data-k="disponible">구매 가능</span><span data-k="sanstitre">무제</span><span data-k="mesure">주문 제작 작품</span><span data-k="mesure_intro">색, 주제, 벽에 꼭 맞는 크기: 이자가 오직 당신을 위한 그림을 그려 드립니다.</span><span data-k="m_format">원하는 크기 (cm)</span><span data-k="m_piece">공간</span><span data-k="m_couleurs">색감과 분위기</span><span data-k="m_sujet">주제 또는 테마</span><span data-k="m_budget">예상 예산</span><span data-k="m_delai">희망 시기</span><span data-k="m_photo">이자의 이메일에 답장할 때 벽 사진을 첨부할 수 있습니다.</span><span data-k="m_envoyer">주문 제작 요청 보내기</span><span data-k="objet_mesure">주문 제작 작품 요청</span><span data-k="m_depuis">영감을 준 작품</span><span data-k="m_pourmur">이 벽을 위한 주문 제작</span><span data-k="m_contact">주문 제작 요청하기</span></template>
 <dialog class="loupe" id="loupe">
   <canvas class="trace" aria-hidden="true"></canvas>
   <div class="boite">
@@ -1176,8 +1291,11 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p class="nom" id="loupe-nom" style="margin:0"></p>
         <p class="detail" id="loupe-detail" style="margin:.25em 0 0"></p>
         <p class="prix" id="loupe-prix" style="margin:.3em 0 0"></p>
+        <p class="certif" id="loupe-certif" hidden>모든 작품에는 이자가 직접 서명한 번호가 매겨진 진품 인증서가 함께 제공됩니다.</p>
       </div>
       <div class="outils">
+        <button class="fermer ajouter" id="btn-ajouter" type="button" hidden>나의 선택에 추가</button>
+        <button class="fermer" id="btn-mesure" type="button" hidden>이 벽을 위한 주문 제작</button>
         <button class="fermer" id="btn-salon" type="button" hidden>실제 크기로 집에 걸어 보기</button>
         <button class="fermer" id="btn-traduction" type="button" hidden>번역 읽기</button>
         <span class="choix-int" id="choix-int" hidden><i>집에서 보기:</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>거실</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>침실</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>로프트</span></button></span>
@@ -1437,6 +1555,7 @@ function dessineSalon(){
     (P.derriere?'':'<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.lr+' cm</span></div>')+
     '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>실제 크기로 집에 걸어 보기</b>'+courante.hr+' × '+courante.lr+' cm, '+((P.libre&&I.legendeLibre)?I.legendeLibre:I.legende)+', 벽등 아래. 실내는 작품의 색을 입습니다. 아래에서 다른 방을 선택할 수 있습니다.'+(courante.estime?'<i>치수 미등록: 참고용으로 100 cm 크기로 표시했습니다.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
   peintObjets(salon);
+  document.getElementById("btn-mesure").hidden=false;
   const lg=salon.querySelector(".legende"); document.getElementById("legende-bas").innerHTML=lg?lg.innerHTML:"";
 }
 /* ---------- objets recolorés : peints dans un canvas (image × couleur, découpée par la transparence du PNG) ---------- */
@@ -1464,7 +1583,7 @@ document.getElementById("choix-int").addEventListener("click",e=>{
 });
 btnSalon.addEventListener("click",()=>{
   /* retour à la toile seule : les vignettes restent pour y revenir */
-  loupe.classList.remove("chez-vous"); btnSalon.hidden=true;
+  loupe.classList.remove("chez-vous"); btnSalon.hidden=true; document.getElementById("btn-mesure").hidden=true;
   document.querySelectorAll("#choix-int button").forEach(x=>x.classList.remove("actif"));
 });
 addEventListener("resize",()=>{ if(loupe.classList.contains("chez-vous")) dessineSalon(); });
@@ -1478,11 +1597,15 @@ function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
   document.getElementById("loupe-nom").textContent=titre||"무제";
   document.getElementById("loupe-detail").textContent=det;
   document.getElementById("loupe-prix").textContent=prix;
-  loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); btnSalon.textContent="작품만 보기";
+  loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); document.getElementById("btn-mesure").hidden=true; btnSalon.textContent="작품만 보기";
   document.getElementById("btn-traduction").hidden=true;
   btnSalon.hidden = true;
   document.getElementById("choix-int").hidden = !(h&&l) || !!DETAILS[(ref+"").replace("TB","")] || courante.detail;
   montreVoix(courante.cle);
+  const estOeuvre=/^TB\d+$/.test(courante.cle) || OEUVRES.some(o=>o[0]===courante.cle);
+  document.getElementById("btn-ajouter").hidden=!estOeuvre;
+  document.getElementById("loupe-certif").hidden=!(estOeuvre && OEUVRES.some(o=>o[0]===courante.cle));
+  try{ majBoutonAjouter(); }catch(_){}   /* la sélection peut ne pas être encore chargée (réouverture après changement de langue) */
   ouvreVolet(loupe);
   loupe.querySelector(".boite").scrollTop=0;
 }
@@ -1496,7 +1619,7 @@ function ouvreVolet(d){
 }
 function fermeVolet(d, parHistorique){
   if(d.open) d.close();
-  if(![loupe,panneau].some(x=>x.open)) document.body.classList.remove("volet-ouvert");
+  if(!document.querySelector("dialog[open]")) document.body.classList.remove("volet-ouvert");
   if(!parHistorique && history.state && history.state.volet===d.id) history.back();
 }
 addEventListener("popstate",()=>{
@@ -1862,6 +1985,116 @@ document.querySelectorAll(".grand .cimaise").forEach(c=>{ c.setAttribute("role",
   const ouvre=()=>{ const n=numeroDe(c); if(n) chezSoi(n); };
   c.addEventListener("click",ouvre); c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } }); });
 document.getElementById("pan-grille").addEventListener("click",e=>{ const f=e.target.closest("figure"); if(!f) return; const n=numeroDe(f); if(n) chezSoi(n); });
+/* ---------- v36 : textes de l'interface (gabarit traduit), sélection, recherche, sur mesure ---------- */
+const TX=k=>{ const e=document.querySelector('#txt').content.querySelector('[data-k="'+k+'"]'); return e?e.textContent:k; };
+const tiroirs=[...document.querySelectorAll("dialog.tiroir")];
+tiroirs.forEach(d=>d.querySelectorAll("[data-ferme]").forEach(b=>b.addEventListener("click",()=>fermeVolet(d))));
+addEventListener("popstate",()=>{ tiroirs.forEach(d=>{ if(d.open && !(history.state&&history.state.volet===d.id)) fermeVolet(d,true); }); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ const d=tiroirs.find(x=>x.open); if(d){ e.preventDefault(); fermeVolet(d); } } });
+const ouvreTiroir=d=>{ tiroirs.forEach(x=>{ if(x!==d && x.open) fermeVolet(x,true); }); ouvreVolet(d); d.scrollTop=0; };
+const courrielOK=v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const envoieCourriel=(objet,lignes)=>{ location.href="mailto:isasator@gmail.com?subject="+encodeURIComponent(objet)+"&body="+encodeURIComponent(lignes.join("\n")); };
+
+/* --- la sélection --- */
+let SEL=[]; try{ SEL=JSON.parse(localStorage.getItem("isa-selection")||"[]"); if(!Array.isArray(SEL)) SEL=[]; }catch(_){ SEL=[]; }
+const sauveSel=()=>{ try{ localStorage.setItem("isa-selection",JSON.stringify(SEL)); }catch(_){} };
+const prixDe=cle=>{ const o=OEUVRES.find(x=>x[0]===cle); return o?o[3]:null; };
+function majCompte(){ const c=document.getElementById("panier-compte"); c.textContent=SEL.length; c.hidden=!SEL.length; }
+function majBoutonAjouter(){
+  const b=document.getElementById("btn-ajouter"), dans=courante&&SEL.some(x=>x.cle===courante.cle);
+  b.classList.toggle("dedans",!!dans); b.textContent=dans?TX("ajoutee"):TX("ajouter");
+}
+function rendSel(){
+  const ul=document.getElementById("selection"); ul.innerHTML="";
+  SEL.forEach((x,i)=>{ const li=document.createElement("li");
+    li.innerHTML='<img src="'+x.img+'" alt="" loading="lazy"><div><p class="t">'+echappe(x.titre)+'</p><p class="d">'+echappe(x.det||"")+'</p><p class="p">'+(x.prix?euros(x.prix):echappe(TX("surdemande")))+'</p></div><button type="button" class="retirer" data-i="'+i+'">'+echappe(TX("retirer"))+'</button>';
+    ul.appendChild(li); });
+  document.getElementById("selection-vide").hidden=!!SEL.length;
+  document.getElementById("selection-suite").hidden=!SEL.length;
+  const t=SEL.reduce((s,x)=>s+(x.prix||0),0); document.getElementById("selection-total").textContent=t?euros(t):"·";
+  majCompte();
+}
+document.getElementById("selection").addEventListener("click",e=>{ const b=e.target.closest(".retirer"); if(!b) return; SEL.splice(+b.dataset.i,1); sauveSel(); rendSel(); if(loupe.open) majBoutonAjouter(); });
+document.getElementById("btn-panier").addEventListener("click",()=>{ rendSel(); ouvreTiroir(document.getElementById("tiroir-panier")); });
+document.getElementById("btn-ajouter").addEventListener("click",()=>{
+  if(!courante) return; const i=SEL.findIndex(x=>x.cle===courante.cle);
+  if(i>=0){ SEL.splice(i,1); }
+  else { SEL.push({cle:courante.cle, titre:courante.titre||TX("sanstitre"), det:document.getElementById("loupe-detail").textContent, prix:prixDe(courante.cle), img:courante.src}); const p=document.getElementById("btn-panier"); p.classList.remove("pulse"); void p.offsetWidth; p.classList.add("pulse"); }
+  sauveSel(); majCompte(); majBoutonAjouter();
+});
+document.getElementById("form-achat").addEventListener("submit",e=>{
+  e.preventDefault(); const f=e.currentTarget, v=n=>(f.elements[n].value||"").trim();
+  const ok=v("nom")&&courrielOK(v("courriel")); document.getElementById("achat-erreur").hidden=ok; if(!ok) return;
+  const L=[TX("oeuvres")+" :"]; SEL.forEach(x=>L.push("- "+x.titre+" ("+x.cle+") · "+(x.det||"")+" · "+(x.prix?euros(x.prix):TX("surdemande"))));
+  const t=SEL.reduce((s,x)=>s+(x.prix||0),0); if(t) L.push(TX("total")+" : "+euros(t));
+  L.push("",TX("nom")+" : "+v("nom"),TX("courriel")+" : "+v("courriel"),TX("ville")+" : "+v("ville"),TX("livraison")+" : "+(f.elements.livraison.value==="atelier"?TX("atelier"):TX("domicile")));
+  if(v("message")) L.push("",TX("message")+" :",v("message"));
+  L.push("","("+location.href.split("#")[0].split("?")[0]+")");
+  envoieCourriel(TX("objet_achat"),L); document.getElementById("achat-ok").hidden=false;
+});
+majCompte(); if(loupe.open) majBoutonAjouter();
+
+/* --- la recherche --- */
+const sansAccent=s=>(s||"").toString().normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const seriesDe=n=>SERIES.filter(s=>s[2].includes(n)).map(s=>s[0]);
+const INDEX=[
+  ...OEUVRES.map((o,i)=>({type:"dispo",i,cle:o[0],titre:o[1]||TX("sanstitre"),annee:o[2],prix:o[3],h:o[5],l:o[6],img:"oeuvres/"+o[0]+".jpg",teinte:TEINTES[o[0]]||"",series:[],det:detail(o)})),
+  ...Object.values(CAT).map(c=>{ const n=c[0], cle="TB"+String(n).padStart(2,"0"), d=DIMS[n]; return {type:"cat",n,cle,titre:c[1],annee:"",prix:null,h:d?d[0]:null,l:d?d[1]:null,img:(GRANDS.includes(n)?"grand/":"catalogue/")+cle+".jpg",teinte:TEINTES[cle]||"",series:seriesDe(n),det:cle+(d?" · "+d[0]+" × "+d[1]+" cm":"")}; })
+];
+const rs=document.getElementById("r-serie");
+SERIES.forEach((s,i)=>{ if(s[2].length){ const o=document.createElement("option"); o.value=i; o.textContent=s[0]; rs.appendChild(o); } });
+let rType="";
+document.getElementById("r-type").addEventListener("click",e=>{ const b=e.target.closest("button[data-v]"); if(!b) return; rType=b.dataset.v; [...e.currentTarget.children].forEach(x=>x.classList.toggle("actif",x===b)); cherche(); });
+["r-texte","r-format","r-teinte","r-serie","r-prix"].forEach(id=>document.getElementById(id).addEventListener("input",cherche));
+function cherche(){
+  const q=sansAccent(document.getElementById("r-texte").value.trim()), fmt=document.getElementById("r-format").value, te=document.getElementById("r-teinte").value,
+        se=document.getElementById("r-serie").value, px=+document.getElementById("r-prix").value||0;
+  const res=INDEX.filter(x=>{
+    if(rType && x.type!==rType) return false;
+    if(px && !(x.prix && x.prix<=px)) return false;
+    if(te && x.teinte!==te) return false;
+    if(se!=="" && !(x.type==="cat" && SERIES[+se][2].includes(x.n))) return false;
+    if(fmt){ if(!x.h||!x.l) return false; const g=Math.max(x.h,x.l); if(fmt==="petit"&&g>60) return false; if(fmt==="moyen"&&(g<=60||g>120)) return false; if(fmt==="grand"&&g<=120) return false; }
+    if(q){ const hay=sansAccent([x.titre,x.cle,x.annee,x.series.join(" ")].join(" ")); if(!q.split(/\s+/).every(m=>hay.includes(m))) return false; }
+    return true; });
+  const liste=document.getElementById("r-liste"); liste.innerHTML="";
+  res.forEach(x=>{ const b=document.createElement("button"); b.type="button"; b.dataset.k=INDEX.indexOf(x);
+    b.innerHTML='<span class="vg"><img src="'+x.img+'" alt="" loading="lazy"></span>'+(x.type==="dispo"?'<span class="badge">'+echappe(TX("disponible"))+'</span>':'')+'<span class="t">'+echappe(x.titre)+'</span><span class="d">'+echappe(x.det)+(x.prix?" · "+euros(x.prix):"")+'</span>';
+    liste.appendChild(b); });
+  document.getElementById("r-nombre").textContent=res.length; document.getElementById("r-aucun").hidden=!!res.length;
+}
+document.getElementById("r-liste").addEventListener("click",e=>{
+  const b=e.target.closest("button[data-k]"); if(!b) return; const x=INDEX[+b.dataset.k];
+  fermeVolet(document.getElementById("tiroir-recherche"),true);
+  if(x.type==="dispo"){ const o=OEUVRES[x.i]; ouvreLoupe("oeuvres/"+o[0]+".jpg", o[1], detail(o), euros(o[3]), o[5], o[6], o[2]); }
+  else chezSoi(x.n);
+});
+document.getElementById("btn-recherche").addEventListener("click",()=>{ cherche(); ouvreTiroir(document.getElementById("tiroir-recherche")); setTimeout(()=>{ if(!matchMedia("(pointer:coarse)").matches) document.getElementById("r-texte").focus(); },60); });
+
+/* --- sur mesure --- */
+function ouvreMesure(depuis){
+  const f=document.getElementById("form-mesure"), dp=document.getElementById("m-depuis");
+  document.getElementById("mesure-ok").hidden=true; document.getElementById("mesure-erreur").hidden=true;
+  if(depuis){ dp.hidden=false; dp.textContent=TX("m_depuis")+" : « "+depuis.titre+" » ("+depuis.cle+")"; f.dataset.depuis=depuis.titre+" ("+depuis.cle+")";
+    if(depuis.format) f.elements.format.value=depuis.format; if(depuis.piece) f.elements.piece.value=depuis.piece; }
+  else { dp.hidden=true; delete f.dataset.depuis; }
+  ouvreTiroir(document.getElementById("tiroir-mesure"));
+}
+document.getElementById("btn-mesure-contact").addEventListener("click",()=>ouvreMesure(null));
+document.getElementById("btn-mesure").addEventListener("click",()=>{
+  if(!courante) return; const b=document.querySelector("#choix-int button.actif span");
+  ouvreMesure({titre:courante.titre||TX("sanstitre"), cle:courante.cle, format:(courante.hr&&courante.lr)?courante.hr+" × "+courante.lr:"", piece:b?b.textContent:""});
+});
+document.getElementById("form-mesure").addEventListener("submit",e=>{
+  e.preventDefault(); const f=e.currentTarget, v=n=>(f.elements[n].value||"").trim();
+  const ok=v("nom")&&courrielOK(v("courriel")); document.getElementById("mesure-erreur").hidden=ok; if(!ok) return;
+  const L=[]; if(f.dataset.depuis) L.push(TX("m_depuis")+" : "+f.dataset.depuis,"");
+  [["format","m_format"],["piece","m_piece"],["couleurs","m_couleurs"],["sujet","m_sujet"],["budget","m_budget"],["delai","m_delai"]].forEach(([n,k])=>{ if(v(n)) L.push(TX(k)+" : "+v(n)); });
+  L.push("",TX("nom")+" : "+v("nom"),TX("courriel")+" : "+v("courriel")); if(v("message")) L.push("",TX("message")+" :",v("message"));
+  L.push("",TX("m_photo"));
+  envoieCourriel(TX("objet_mesure"),L); document.getElementById("mesure-ok").hidden=false;
+});
+
 </script>
 
 </body>
