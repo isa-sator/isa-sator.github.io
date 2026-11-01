@@ -334,7 +334,12 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   transition:opacity .6s ease,filter .6s ease;
 }
 .cimaise .toile{position:relative;z-index:1}
-.cimaise .toile img{width:100%;box-shadow:0 0 0 7px #191310,0 0 0 8px rgba(255,236,206,.16),0 30px 52px rgba(0,0,0,.8),0 8px 16px rgba(0,0,0,.62)}
+/* cadre doré mouluré : une tuile en 9 tranches (cadre-or.png), largeur réglée par --cadre */
+.cimaise .toile img{width:100%;box-sizing:border-box;border:var(--cadre,12px) solid transparent;border-image:url("cadre-or.png") 40 / var(--cadre,12px) round;background:#0E0902;
+  box-shadow:0 0 0 1px rgba(0,0,0,.55),0 30px 52px rgba(0,0,0,.8),0 8px 16px rgba(0,0,0,.62)}
+.grand .toile img{--cadre:clamp(12px,1.2vw,20px)}
+.panneau .grille .toile img{--cadre:8px}
+.entree .cimaise .toile img{--cadre:12px}
 .cimaise .toile::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to bottom,rgba(255,234,198,.38) 0%,rgba(255,234,198,.15) 20%,rgba(255,234,198,.03) 52%,rgba(0,0,0,.3) 100%);
@@ -415,7 +420,7 @@ section{scroll-margin-top:84px}
 .fiche .cone{top:-4%;height:60%;width:120%}
 .fiche .rebond{opacity:.3;filter:blur(34px) saturate(1.8)}
 .fiche:hover .rebond{opacity:.45}
-.fiche .toile img{width:100%;height:auto;box-shadow:0 0 0 4px #141210,0 0 0 5px rgba(255,236,206,.14),0 16px 28px rgba(0,0,0,.7)}
+.fiche .toile img{--cadre:7px;width:100%;height:auto;box-shadow:0 0 0 1px rgba(0,0,0,.5),0 16px 28px rgba(0,0,0,.7)}
 .fiche .num{font-size:.66rem;letter-spacing:.14em;color:var(--orange);margin:.7em 0 0;font-variant-numeric:tabular-nums;position:relative;z-index:1}
 .fiche .t{font-family:var(--display);font-size:.92rem;line-height:1.25;margin:.1em 0 0;overflow-wrap:anywhere;position:relative;z-index:1}
 
@@ -488,6 +493,7 @@ dialog.loupe::backdrop{background:rgba(5,8,18,.94)}
 .loupe .boite{height:100%;display:flex;flex-direction:column;gap:16px;padding:max(18px,env(safe-area-inset-top,0px)) max(18px,env(safe-area-inset-right,0px)) max(18px,env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px))}
 .loupe .scene{flex:1;display:grid;grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr);place-items:center;position:relative;min-height:0}
 .loupe .scene img{max-height:100%;max-width:100%;width:auto;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.8);position:relative;z-index:1}
+.loupe .scene>img{box-sizing:border-box;border:clamp(10px,1.4vw,18px) solid transparent;border-image:url("cadre-or.png") 40 / clamp(10px,1.4vw,18px) round;background:#0E0902}
 .loupe .scene .rebond{position:absolute;inset:4% 8%;background-image:var(--toile);background-size:cover;background-position:center;filter:blur(70px) saturate(2);opacity:.5;z-index:0}
 .loupe .pied{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
 .loupe .fermer,.panneau .fermer{background:none;border:1px solid var(--trait);color:var(--cendre);font:inherit;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;padding:.55em 1.2em;cursor:pointer;flex:none}
@@ -512,10 +518,15 @@ dialog canvas.trace{position:absolute;z-index:5}
 
 /* ---------- chez vous : la toile à l'échelle ---------- */
 .loupe .outils{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.choix-int{display:inline-flex;border:1px solid var(--trait)}
-.choix-int button{background:none;border:0;color:var(--cendre);font:inherit;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;padding:.55em 1em;cursor:pointer;border-right:1px solid var(--trait)}
-.choix-int button:last-child{border-right:0}
-.choix-int button.actif{color:var(--orange);background:rgba(245,166,35,.1)}
+.choix-int{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
+.choix-int i{font-style:normal;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#E2C063;margin-right:2px}
+.choix-int button{position:relative;width:88px;height:58px;border:1px solid var(--trait);background:var(--img) center/cover no-repeat #0C1426;color:#fff;font:inherit;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  display:flex;align-items:flex-end;justify-content:center;padding:0 0 .35em;cursor:pointer;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
+.choix-int button::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,12,24,.85),rgba(7,12,24,0) 60%)}
+.choix-int button span{position:relative;text-shadow:0 1px 4px #000}
+.choix-int button:hover{transform:translateY(-3px);box-shadow:0 0 0 1px rgba(212,175,55,.85),0 10px 22px rgba(0,0,0,.55)}
+.choix-int button.actif{box-shadow:0 0 0 2px #D4AF37}
+@media(max-width:520px){.choix-int{width:100%}.choix-int i{width:100%;margin:0 0 2px}.choix-int button{width:calc((100% - 16px)/3);height:56px}}
 .loupe .fermer.actif{border-color:var(--orange);color:var(--orange)}
 .loupe .fermer.gardien{color:var(--orange);border-color:rgba(245,166,35,.5)}
 .loupe .fermer.gardien:hover{background:var(--orange);color:var(--nuit)}
@@ -529,9 +540,10 @@ dialog canvas.trace{position:absolute;z-index:5}
 .salon .deco.nat,.salon .deco.ombre{position:absolute;display:block;max-width:none;max-height:none;box-shadow:none;object-fit:fill;z-index:auto}
 .salon .deco.objet img{position:static;max-width:none;max-height:none;box-shadow:none}
 .salon .deco.ombre{filter:brightness(0) blur(3px);opacity:.3;transform:translate(3px,6px)}
-.salon .cimaise .toile img{width:100%;height:100%;object-fit:cover;box-shadow:0 0 0 3px #1a1511,0 0 0 4px rgba(255,236,206,.18),0 22px 40px rgba(0,0,0,.55),0 6px 12px rgba(0,0,0,.4)}
+.salon .cimaise .toile img{box-sizing:content-box;width:100%;height:100%;object-fit:cover;border:var(--cadre,8px) solid transparent;border-image:url("cadre-or.png") 40 / var(--cadre,8px) round;margin:calc(-1 * var(--cadre,8px));background:#0E0902;
+  box-shadow:0 0 0 1px rgba(0,0,0,.5),0 22px 40px rgba(0,0,0,.55),0 6px 12px rgba(0,0,0,.4)}
 .salon .cimaise .toile{height:100%}
-.salon .cimaise .lampe{top:auto;bottom:calc(100% - 4px);width:min(72%,360px)}
+.salon .cimaise .lampe{top:auto;bottom:calc(100% + var(--cadre,8px) - 4px);width:min(72%,360px)}
 .salon .cimaise .cone{top:-6%;height:70%;width:130%}
 .salon .cimaise .rebond{opacity:.18;inset:-6% -8%}
 .salon .cimaise:hover .rebond{opacity:.26}
@@ -920,7 +932,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       </div>
       <div class="outils">
         <button class="fermer" id="btn-salon" type="button" hidden>Chez vous, à l'échelle</button>
-        <span class="choix-int" id="choix-int" hidden><button type="button" data-int="salon">Salon</button><button type="button" data-int="chambre">Chambre</button><button type="button" data-int="loft">Loft</button></span>
+        <span class="choix-int" id="choix-int" hidden><i>Voir chez vous :</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>Salon</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>Chambre</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>Loft</span></button></span>
         <a class="fermer gardien" id="btn-gardien" href="mailto:isasator@gmail.com">Cette toile cherche son gardien</a>
         <button class="fermer" id="loupe-fermer" type="button">Fermer</button>
       </div>
@@ -1125,36 +1137,37 @@ function dessineSalon(){
     return ombre+'<span class="deco objet" style="'+geo(d)+'background:'+pal[d.c]+';opacity:'+d.a+';-webkit-mask-image:url(\''+d.img+'\');mask-image:url(\''+d.img+'\')"><img src="'+d.img+'" alt=""></span>';
   }).join("");
   salon.innerHTML=deco+
-    '<div class="cimaise allume" style="left:'+x.toFixed(1)+'px;top:'+top.toFixed(1)+'px;width:'+L.toFixed(1)+'px;height:'+H.toFixed(1)+'px;--toile:url(\''+courante.src+'\')">'+
+    '<div class="cimaise allume" style="left:'+x.toFixed(1)+'px;top:'+top.toFixed(1)+'px;width:'+L.toFixed(1)+'px;height:'+H.toFixed(1)+'px;--cadre:'+Math.max(3,Math.round(0.06*ppm))+'px;--toile:url(\''+courante.src+'\')">'+
       '<span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
       '<div class="toile"><img src="'+courante.src+'" alt=""></div><span class="flaque"></span></div>'+
     '<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.l+' cm</span></div>'+
-    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>Chez vous, à l\'échelle</b>'+courante.h+' × '+courante.l+' cm, '+I.legende+', sous son applique. Le décor prend les couleurs de la toile.'+(courante.estime?'<i>Dimensions non renseignées : présentée au format indicatif de 100 cm.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
+    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>Chez vous, à l\'échelle</b>'+courante.h+' × '+courante.l+' cm, '+I.legende+', sous son applique. Le décor prend les couleurs de la toile ; choisissez une autre pièce en bas.'+(courante.estime?'<i>Dimensions non renseignées : présentée au format indicatif de 100 cm.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
 }
 document.getElementById("choix-int").addEventListener("click",e=>{
   const b=e.target.closest("button[data-int]"); if(!b) return;
-  interieurChoisi=b.dataset.int; dessineSalon();
+  interieurChoisi=b.dataset.int;
+  loupe.classList.add("chez-vous"); btnSalon.hidden=false; btnSalon.classList.add("actif");
+  dessineSalon();
 });
 btnSalon.addEventListener("click",()=>{
-  const actif=loupe.classList.toggle("chez-vous");
-  btnSalon.classList.toggle("actif",actif);
-  btnSalon.textContent = actif ? "Voir la toile seule" : "Chez vous, à l'échelle";
-  document.getElementById("choix-int").hidden=!actif;
-  if(actif) dessineSalon();
+  /* retour à la toile seule : les vignettes restent pour y revenir */
+  loupe.classList.remove("chez-vous"); btnSalon.hidden=true;
+  document.querySelectorAll("#choix-int button").forEach(x=>x.classList.remove("actif"));
 });
 addEventListener("resize",()=>{ if(loupe.classList.contains("chez-vous")) dessineSalon(); });
 
 function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
   courante={src,titre,h,l,estime:!!estime,cle:src.replace(/^.*\//,"").replace(/\.jpg$/,"")};
-  interieurChoisi=null; document.getElementById("choix-int").hidden=true;
+  interieurChoisi=null;
   document.getElementById("loupe-img").src=src;
   document.getElementById("loupe-img").alt=titre||"Œuvre sans titre";
   document.getElementById("loupe-rebond").style.setProperty("--toile","url('"+src+"')");
   document.getElementById("loupe-nom").textContent=titre||"Sans titre";
   document.getElementById("loupe-detail").textContent=det;
   document.getElementById("loupe-prix").textContent=prix;
-  loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); btnSalon.textContent="Chez vous, à l'échelle";
-  btnSalon.hidden = !(h&&l);
+  loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); btnSalon.textContent="Voir la toile seule";
+  btnSalon.hidden = true;
+  document.getElementById("choix-int").hidden = !(h&&l);
   btnGardien.href="mailto:isasator@gmail.com?subject="+encodeURIComponent("Mon intérêt pour votre tableau « "+(titre||"Sans titre")+" »"+(ref?" ("+ref+")":""))+
     "&body="+encodeURIComponent("Bonjour Isa,\n\nJe vous écris au sujet de la toile « "+(titre||"Sans titre")+" »"+(ref?" ("+ref+")":"")+".\n\n");
   if(loupe.showModal) loupe.showModal();
@@ -1418,7 +1431,7 @@ function chezSoi(n){
   let h=dim?dim[0]:null, l=dim?dim[1]:null, estime=false;
   if(!dim){ const r=o[3]/o[2]; if(r>=1){h=100;l=Math.round(100/r);} else {l=100;h=Math.round(100*r);} estime=true; }
   ouvreLoupe(src, o[1], id+(dim?" — "+dim[0]+" × "+dim[1]+" cm":" — dimensions à préciser"), "", h, l, id, estime);
-  loupe.classList.add("chez-vous"); btnSalon.classList.add("actif"); btnSalon.textContent="Voir la toile seule";
+  loupe.classList.add("chez-vous"); btnSalon.hidden=false; btnSalon.classList.add("actif");
   document.getElementById("choix-int").hidden=false; dessineSalon();
 }
 cg.addEventListener("click",e=>{ const b=e.target.closest(".fiche"); if(b) chezSoi(+b.dataset.n); });
