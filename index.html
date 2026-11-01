@@ -13,6 +13,9 @@
 <link rel="alternate" hreflang="zh" href="https://isa-sator.github.io/zh.html">
 <link rel="alternate" hreflang="ru" href="https://isa-sator.github.io/ru.html">
 <link rel="alternate" hreflang="ja" href="https://isa-sator.github.io/ja.html">
+<link rel="alternate" hreflang="ar" href="https://isa-sator.github.io/ar.html">
+<link rel="alternate" hreflang="ko" href="https://isa-sator.github.io/ko.html">
+<link rel="alternate" hreflang="pt" href="https://isa-sator.github.io/pt.html">
 <link rel="alternate" hreflang="x-default" href="https://isa-sator.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Isa Sator">
@@ -31,7 +34,7 @@
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 <script>/* langue : un choix mémorisé, sinon celle du navigateur ; la page française renvoie vers la bonne version */
 (function(){try{var L=document.documentElement.lang,p=null;try{p=localStorage.getItem("isa-langue");}catch(_){}
-var d={en:"en.html",de:"de.html",it:"it.html",es:"es.html",zh:"zh.html",ru:"ru.html",ja:"ja.html"},n=(navigator.language||"").slice(0,2).toLowerCase(),c=p||(d[n]?n:"fr");
+var d={en:"en.html",de:"de.html",it:"it.html",es:"es.html",zh:"zh.html",ru:"ru.html",ja:"ja.html",ar:"ar.html",ko:"ko.html",pt:"pt.html"},n=(navigator.language||"").slice(0,2).toLowerCase(),c=p||(d[n]?n:"fr");
 if(L==="fr"&&c!=="fr"&&d[c]&&!/claude\.ai$/.test(location.hostname)) location.replace(d[c]+location.hash);}catch(e){}})();</script>
 <title>Isa Sator</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -288,7 +291,7 @@ body.pages .grands{padding-top:22px}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--nuit)}
 .barre{position:sticky;top:env(safe-area-inset-top,0px);z-index:29;background:rgba(12,20,38,.5);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid rgba(201,162,39,.22)}
 .barre .dedans{display:flex;align-items:center;gap:clamp(12px,3vw,34px);flex-wrap:wrap;padding-block:13px}
-.marque{display:flex;align-items:center;gap:10px;margin-right:auto;min-width:0}
+.marque{display:flex;align-items:center;gap:10px;margin-inline-end:auto;min-width:0}
 .marque img{width:30px;height:32px;flex:none}
 .marque span{font-family:var(--display);font-size:1.9rem;letter-spacing:.01em;line-height:1}
 .marque img{width:40px;height:43px}
@@ -301,20 +304,39 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   background-size:240% 100%,100% 100%;background-position:120% 0,0 0;background-repeat:no-repeat;
   box-shadow:0 0 0 1px rgba(251,235,180,.55),0 6px 18px rgba(201,162,39,.35),inset 0 1px 0 rgba(255,255,255,.5);animation:reflet 1.1s ease 1}
 .barre nav a.actif:hover{border-bottom-color:transparent}
-/* le choix de la langue : six petites plaques, la langue en cours en or plein */
-.langues{display:flex;align-items:center;gap:1px;flex:none}
-.langues a{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;line-height:1;padding:.5em .55em;border-radius:2px;color:#C9A64A;opacity:.72;text-decoration:none;transition:opacity .25s ease,color .25s ease,background-color .25s ease}
-.langues a[lang="zh"],.langues a[lang="ja"]{letter-spacing:.04em;font-size:.7rem;padding:.38em .5em}
-.langues a:hover,.langues a:focus-visible{opacity:1;color:#FBEBB4;text-decoration:none;background:rgba(212,175,55,.14)}
-.langues a.actif{opacity:1;color:var(--nuit);background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227)}
+/* le choix de la langue : une plaque d'or avec le code de la langue, qui déroule la liste des langues */
+.langues{position:relative;flex:none}
+.langues summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:.5em;font-size:.66rem;letter-spacing:.12em;line-height:1;padding:.55em .7em;border-radius:2px;
+  color:var(--nuit);background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227);box-shadow:0 0 0 1px rgba(251,235,180,.4);transition:box-shadow .25s ease}
+.langues summary::-webkit-details-marker{display:none}
+.langues summary::after{content:"";width:6px;height:6px;border-right:1.5px solid var(--nuit);border-bottom:1.5px solid var(--nuit);transform:translateY(-2px) rotate(45deg);transition:transform .25s ease}
+.langues[open] summary::after{transform:translateY(1px) rotate(225deg)}
+.langues summary:hover,.langues[open] summary{box-shadow:0 0 0 1px rgba(251,235,180,.8),0 6px 18px rgba(201,162,39,.35)}
+.langues .liste{position:absolute;top:calc(100% + 8px);inset-inline-end:0;z-index:40;min-width:11em;background:rgba(7,12,24,.97);border:1px solid rgba(212,175,55,.45);box-shadow:0 18px 40px rgba(0,0,0,.6);padding:.35em 0;display:grid}
+.langues .liste a{display:block;padding:.5em 1em;font-size:.84rem;color:var(--ivoire);text-decoration:none;white-space:nowrap;letter-spacing:.02em}
+.langues .liste a:hover{background:rgba(212,175,55,.14);color:#FBEBB4;text-decoration:none}
+.langues .liste a.actif{color:#E2C063}
+.langues .liste a.actif::before{content:"✦ ";font-size:.7em;vertical-align:.2em}
 html[lang="zh"]{--display:"Bodoni Moda","Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC","Noto Serif SC",SimSun,serif;--texte:"Jost","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",sans-serif}
 html[lang="zh"] .barre nav a,html[lang="ja"] .barre nav a{letter-spacing:.1em}
 html[lang="ja"]{--display:"Bodoni Moda","Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif CJK JP","Noto Serif JP",serif;--texte:"Jost","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP","Noto Sans JP",sans-serif}
 html[lang="ru"]{--display:"Bodoni Moda","Playfair Display",Georgia,"Times New Roman",serif}
+html[lang="ko"]{--display:"Bodoni Moda","Apple Myungjo","Nanum Myeongjo","Noto Serif CJK KR","Noto Serif KR",serif;--texte:"Jost","Apple SD Gothic Neo","Malgun Gothic","Noto Sans CJK KR","Noto Sans KR",sans-serif}
+html[lang="ko"] .barre nav a{letter-spacing:.1em}
+/* arabe : de droite à gauche, polices de secours, aucun espacement de lettres (il casserait les liaisons) */
+html[lang="ar"]{direction:rtl;--display:"Bodoni Moda","Noto Naskh Arabic","Geeza Pro","Amiri","Times New Roman",serif;--texte:"Jost","Noto Sans Arabic","Geeza Pro","Segoe UI",Tahoma,sans-serif}
+html[lang="ar"] *{letter-spacing:0!important}
+html[lang="ar"] .ouverture h1,html[lang="ar"] .marque span{direction:ltr}
+/* arabe, ouverture sur ordinateur : le bloc de texte reste à gauche (là où la photo se fond dans le bleu nuit), le texte y est aligné à droite */
+@media(min-width:761px){html[lang="ar"] .ouverture .dit .centre{direction:ltr} html[lang="ar"] .ouverture .dit .centre>*{direction:rtl;text-align:right} html[lang="ar"] .ouverture .actions{justify-content:flex-end;max-width:42ch}}
+html[lang="ar"] .salon .legende{left:auto;right:3%}
+html[lang="ar"] .salon .legende.droite{right:auto;left:3%}
+html[lang="ar"] .presse a::after,html[lang="ar"] .serie-lien .fleche{transform:scaleX(-1)}
+html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visible .fleche{transform:scaleX(-1) translateX(5px)}
 /* largeurs intermédiaires : le sélecteur à droite de la marque, le menu sur sa propre ligne */
 @media (min-width:661px) and (max-width:1180px){.barre nav{order:3;width:100%} .langues{order:2}}
 /* écrans d'ordinateur courants : tout tient sur une ligne, menu un peu plus serré */
-@media (min-width:1181px){.barre nav{gap:12px} .barre nav a{font-size:.67rem;letter-spacing:.11em;padding:.5em .5em} .marque span{font-size:1.55rem} .langues a{padding:.5em .42em}}
+@media (min-width:1181px){.barre nav{gap:12px} .barre nav a{font-size:.67rem;letter-spacing:.11em;padding:.5em .5em} .marque span{font-size:1.55rem}}
 @media(max-width:660px){
   .barre .dedans{padding-block:9px;gap:7px}
   .marque img{width:28px;height:30px}
@@ -323,8 +345,7 @@ html[lang="ru"]{--display:"Bodoni Moda","Playfair Display",Georgia,"Times New Ro
   .barre nav::-webkit-scrollbar{display:none}
   .barre nav a{white-space:nowrap;font-size:.7rem}
   .barre nav{order:3}
-  .langues{order:2;margin-left:auto}
-  .langues a{font-size:.58rem;padding:.45em .42em}
+  .langues{order:2;margin-inline-start:auto}
   section{scroll-margin-top:104px}
 }
 
@@ -652,7 +673,9 @@ dialog canvas.trace{position:absolute;z-index:5}
       <a href="#actualite">Actualité</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="langues" aria-label="Langue"><a href="./" hreflang="fr" lang="fr" class="actif">FR</a><a href="en.html" hreflang="en" lang="en">EN</a><a href="de.html" hreflang="de" lang="de">DE</a><a href="it.html" hreflang="it" lang="it">IT</a><a href="es.html" hreflang="es" lang="es">ES</a><a href="zh.html" hreflang="zh" lang="zh">中文</a><a href="ru.html" hreflang="ru" lang="ru">RU</a><a href="ja.html" hreflang="ja" lang="ja">日本語</a></div>
+    <details class="langues" id="langues"><summary aria-label="Langue"><span class="code">FR</span></summary>
+      <div class="liste"><a href="./" hreflang="fr" lang="fr" class="actif">Français</a><a href="en.html" hreflang="en" lang="en">English</a><a href="de.html" hreflang="de" lang="de">Deutsch</a><a href="it.html" hreflang="it" lang="it">Italiano</a><a href="es.html" hreflang="es" lang="es">Español</a><a href="pt.html" hreflang="pt" lang="pt">Português</a><a href="ru.html" hreflang="ru" lang="ru">Русский</a><a href="ar.html" hreflang="ar" lang="ar">العربية</a><a href="zh.html" hreflang="zh" lang="zh">中文</a><a href="ja.html" hreflang="ja" lang="ja">日本語</a><a href="ko.html" hreflang="ko" lang="ko">한국어</a></div>
+    </details>
   </div>
 </div>
 
@@ -1490,7 +1513,7 @@ function montreToast(t){ toast.textContent=t; toast.classList.add("visible"); cl
 document.addEventListener("click",e=>{
   const a=e.target.closest('a[href^="mailto:"]'); if(!a) return;
   const adresse=a.getAttribute("href").replace(/^mailto:/,"").split("?")[0];
-  try{ navigator.clipboard&&navigator.clipboard.writeText(adresse); }catch(_){}
+  try{ if(navigator.clipboard) navigator.clipboard.writeText(adresse).catch(()=>{}); }catch(_){}
   montreToast("Adresse copiée : "+adresse+". Si votre messagerie ne s'ouvre pas, collez-la dans un nouveau message.");
 });
 /* changement de langue : on retient le choix (pour la prochaine visite) et on reste sur la même section */
@@ -1498,6 +1521,8 @@ document.querySelectorAll(".langues a").forEach(a=>a.addEventListener("click",()
   try{ localStorage.setItem("isa-langue", a.getAttribute("hreflang")); }catch(_){}
   a.href = a.getAttribute("href").split("#")[0] + location.hash;
 }));
+document.addEventListener("click",e=>{ const l=document.getElementById("langues"); if(l&&l.open&&!l.contains(e.target)) l.open=false; });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ const l=document.getElementById("langues"); if(l) l.open=false; } });
 const btn=document.getElementById("btn-copier");
 btn.addEventListener("click",async()=>{
   const t=document.getElementById("courriel").textContent;
