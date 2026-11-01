@@ -1388,9 +1388,9 @@ function chargeImage(src){ return IMAGES_DECO[src]||(IMAGES_DECO[src]=new Promis
 function peintObjets(zone){
   zone.querySelectorAll("canvas.deco.objet").forEach(async c=>{
     const im=await chargeImage(c.dataset.img); if(!im||!c.isConnected) return;
-    const r=c.getBoundingClientRect(); if(!r.width||!r.height) return;
+    const lw=parseFloat(c.style.width)||c.getBoundingClientRect().width, lh=parseFloat(c.style.height)||c.getBoundingClientRect().height; if(!lw||!lh) return;
     const dpr=Math.min(2,window.devicePixelRatio||1);
-    c.width=Math.max(1,Math.round(r.width*dpr)); c.height=Math.max(1,Math.round(r.height*dpr));
+    c.width=Math.max(1,Math.round(lw*dpr)); c.height=Math.max(1,Math.round(lh*dpr));
     const x=c.getContext("2d"); x.clearRect(0,0,c.width,c.height);
     x.drawImage(im,0,0,c.width,c.height);
     x.globalCompositeOperation="multiply"; x.fillStyle=c.dataset.c; x.fillRect(0,0,c.width,c.height);
