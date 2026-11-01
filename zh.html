@@ -11,6 +11,8 @@
 <link rel="alternate" hreflang="it" href="https://isa-sator.github.io/it.html">
 <link rel="alternate" hreflang="es" href="https://isa-sator.github.io/es.html">
 <link rel="alternate" hreflang="zh" href="https://isa-sator.github.io/zh.html">
+<link rel="alternate" hreflang="ru" href="https://isa-sator.github.io/ru.html">
+<link rel="alternate" hreflang="ja" href="https://isa-sator.github.io/ja.html">
 <link rel="alternate" hreflang="x-default" href="https://isa-sator.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Isa Sator">
@@ -29,7 +31,7 @@
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 <script>/* langue : un choix mémorisé, sinon celle du navigateur ; la page française renvoie vers la bonne version */
 (function(){try{var L=document.documentElement.lang,p=null;try{p=localStorage.getItem("isa-langue");}catch(_){}
-var d={en:"en.html",de:"de.html",it:"it.html",es:"es.html",zh:"zh.html"},n=(navigator.language||"").slice(0,2).toLowerCase(),c=p||(d[n]?n:"fr");
+var d={en:"en.html",de:"de.html",it:"it.html",es:"es.html",zh:"zh.html",ru:"ru.html",ja:"ja.html"},n=(navigator.language||"").slice(0,2).toLowerCase(),c=p||(d[n]?n:"fr");
 if(L==="fr"&&c!=="fr"&&d[c]&&!/claude\.ai$/.test(location.hostname)) location.replace(d[c]+location.hash);}catch(e){}})();</script>
 <title>Isa Sator</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -45,6 +47,10 @@ if(L==="fr"&&c!=="fr"&&d[c]&&!/claude\.ai$/.test(location.hostname)) location.re
 @font-face{font-family:"Jost";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/jost-latin-300-normal.woff2") format("woff2")}
 @font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-latin-400-normal.woff2") format("woff2")}
 @font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-latin-500-normal.woff2") format("woff2")}
+/* cyrillique (page russe) : mêmes graisses, chargées seulement si le texte en contient */
+@font-face{font-family:"Jost";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/jost-cyrillic-300-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-cyrillic-400-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-cyrillic-500-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 </style>
 <style>
 /* Une grande toile d'encre bleu nuit, travaillée à la brosse, sert de mur. L'emblème de
@@ -214,6 +220,16 @@ body.torche .fond .torche{opacity:1}
 .planches .vignette img{width:clamp(140px,17vw,230px)}
 .planches .vignette:hover img,.planches .vignette:focus-visible img{transform:translateY(-4px) scale(1.02);box-shadow:0 0 0 1px rgba(201,162,39,.75),0 0 30px rgba(201,162,39,.28),0 30px 60px rgba(0,0,0,.65)}
 .vignette small{display:block;margin-top:.6em;font-size:.72rem;color:var(--cendre);letter-spacing:.04em;max-width:230px}
+/* la traduction du journal : un volet dépliable, texte de lecture */
+.traduction{margin-top:1.6em;border:1px solid rgba(212,175,55,.35);background:rgba(7,12,24,.5);max-width:72ch;scroll-margin-top:120px}
+.traduction summary{cursor:pointer;list-style:none;padding:.9em 1.1em;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#E2C063;display:flex;align-items:center;gap:.8em}
+.traduction summary::-webkit-details-marker{display:none}
+.traduction summary::before{content:"";width:9px;height:9px;border-right:1px solid #E2C063;border-bottom:1px solid #E2C063;transform:rotate(-45deg);transition:transform .3s ease;flex:none}
+.traduction[open] summary::before{transform:rotate(45deg)}
+.traduction summary:hover{background:rgba(212,175,55,.1)}
+.traduction .texte{padding:.2em 1.3em 1.3em;color:var(--cendre);font-size:.92rem;line-height:1.65;border-top:1px solid rgba(212,175,55,.25)}
+.traduction h4{font-family:var(--display);font-weight:400;font-size:1.12rem;color:var(--ivoire);margin:1.4em 0 .5em}
+.traduction p{margin:0 0 .9em}
 .entree .cimaise{max-width:760px;margin:clamp(44px,5vw,70px) 0 1.2em;cursor:pointer}
 .entree .cimaise.portrait-toile{max-width:min(100%,260px);float:right;margin:clamp(40px,4vw,56px) 0 1em clamp(18px,3vw,40px)}
 .entree>div::after{content:"";display:block;clear:both}
@@ -221,6 +237,7 @@ body.torche .fond .torche{opacity:1}
 .entree .cimaise .toile img{box-shadow:none;transition:none}
 .entree .cimaise .toile img{width:100%;height:auto;display:block}
 .loupe.doc .gardien,.loupe.doc #btn-salon,.loupe.doc #choix-int{display:none}
+.loupe .fermer#btn-traduction{color:#E2C063;border-color:rgba(212,175,55,.6)}
 
 /* ---------- le reflet d'or : un balayage lumineux sur fond doré léger, au survol ---------- */
 .reflet-or,.serie-lien:hover,.serie-lien:focus-visible,.presse a:hover,.faits li:hover,.expos li:hover,.ventes li:hover,.entree:hover,.chiffres li:hover,.couleur:hover{
@@ -269,7 +286,7 @@ body.pages .grands{padding-top:22px}
 
 /* ---------- barre ---------- */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--nuit)}
-.barre{position:sticky;top:env(safe-area-inset-top,0px);z-index:29;background:rgba(7,12,24,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--trait)}
+.barre{position:sticky;top:env(safe-area-inset-top,0px);z-index:29;background:rgba(12,20,38,.5);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid rgba(201,162,39,.22)}
 .barre .dedans{display:flex;align-items:center;gap:clamp(12px,3vw,34px);flex-wrap:wrap;padding-block:13px}
 .marque{display:flex;align-items:center;gap:10px;margin-right:auto;min-width:0}
 .marque img{width:30px;height:32px;flex:none}
@@ -287,11 +304,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* le choix de la langue : six petites plaques, la langue en cours en or plein */
 .langues{display:flex;align-items:center;gap:1px;flex:none}
 .langues a{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;line-height:1;padding:.5em .55em;border-radius:2px;color:#C9A64A;opacity:.72;text-decoration:none;transition:opacity .25s ease,color .25s ease,background-color .25s ease}
-.langues a[lang="zh"]{letter-spacing:.04em;font-size:.7rem;padding:.38em .5em}
+.langues a[lang="zh"],.langues a[lang="ja"]{letter-spacing:.04em;font-size:.7rem;padding:.38em .5em}
 .langues a:hover,.langues a:focus-visible{opacity:1;color:#FBEBB4;text-decoration:none;background:rgba(212,175,55,.14)}
 .langues a.actif{opacity:1;color:var(--nuit);background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227)}
 html[lang="zh"]{--display:"Bodoni Moda","Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC","Noto Serif SC",SimSun,serif;--texte:"Jost","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",sans-serif}
-html[lang="zh"] .barre nav a{letter-spacing:.1em}
+html[lang="zh"] .barre nav a,html[lang="ja"] .barre nav a{letter-spacing:.1em}
+html[lang="ja"]{--display:"Bodoni Moda","Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif CJK JP","Noto Serif JP",serif;--texte:"Jost","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP","Noto Sans JP",sans-serif}
+html[lang="ru"]{--display:"Bodoni Moda","Playfair Display",Georgia,"Times New Roman",serif}
 /* largeurs intermédiaires : le sélecteur à droite de la marque, le menu sur sa propre ligne */
 @media (min-width:661px) and (max-width:1180px){.barre nav{order:3;width:100%} .langues{order:2}}
 /* écrans d'ordinateur courants : tout tient sur une ligne, menu un peu plus serré */
@@ -313,8 +332,13 @@ html[lang="zh"] .barre nav a{letter-spacing:.1em}
 .scene{position:relative;display:grid;min-height:clamp(520px,80vh,820px);isolation:isolate}
 .scene .fresque{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 34%;z-index:0}
 .scene .rideau{position:absolute;inset:0;z-index:1;background:
-  linear-gradient(100deg,rgba(7,12,24,.96) 0%,rgba(7,12,24,.9) 26%,rgba(7,12,24,.5) 52%,rgba(7,12,24,.18) 72%,rgba(7,12,24,.42) 100%),
-  linear-gradient(to bottom,rgba(7,12,24,.62) 0%,rgba(7,12,24,0) 24%,rgba(7,12,24,0) 58%,var(--nuit) 100%)}
+  linear-gradient(100deg,rgba(12,20,38,.42) 0%,rgba(12,20,38,.32) 30%,rgba(12,20,38,.16) 55%,rgba(7,12,24,.08) 75%,rgba(7,12,24,.28) 100%),
+  linear-gradient(to bottom,rgba(7,12,24,.35) 0%,rgba(7,12,24,0) 22%,rgba(7,12,24,0) 62%,rgba(7,12,24,.5) 100%)}
+/* sur ordinateur, la photo se fond à gauche et en bas dans la toile bleu nuit du site (le fond reste visible derrière) */
+@media(min-width:761px){
+  .scene .fresque{-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.72) 40%,#000 56%),linear-gradient(to bottom,#000 0%,#000 70%,rgba(0,0,0,.55) 88%,transparent 100%);
+    -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.72) 40%,#000 56%),linear-gradient(to bottom,#000 0%,#000 70%,rgba(0,0,0,.55) 88%,transparent 100%);mask-composite:intersect}
+}
 .scene .dit{position:relative;z-index:2;align-self:center;width:100%;padding-block:clamp(44px,7vw,86px)}
 @media(max-width:760px){
   .scene{min-height:clamp(560px,88vh,760px)}
@@ -628,7 +652,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       <a href="#actualite">动态</a>
       <a href="#contact">联系</a>
     </nav>
-    <div class="langues" aria-label="Langue"><a href="./" hreflang="fr" lang="fr">FR</a><a href="en.html" hreflang="en" lang="en">EN</a><a href="de.html" hreflang="de" lang="de">DE</a><a href="it.html" hreflang="it" lang="it">IT</a><a href="es.html" hreflang="es" lang="es">ES</a><a href="zh.html" hreflang="zh" lang="zh" class="actif">中文</a></div>
+    <div class="langues" aria-label="Langue"><a href="./" hreflang="fr" lang="fr">FR</a><a href="en.html" hreflang="en" lang="en">EN</a><a href="de.html" hreflang="de" lang="de">DE</a><a href="it.html" hreflang="it" lang="it">IT</a><a href="es.html" hreflang="es" lang="es">ES</a><a href="zh.html" hreflang="zh" lang="zh" class="actif">中文</a><a href="ru.html" hreflang="ru" lang="ru">RU</a><a href="ja.html" hreflang="ja" lang="ja">日本語</a></div>
   </div>
 </div>
 
@@ -866,7 +890,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p class="date">2026 年 10 月 7 日</p>
         <div>
           <h3>《Smart Barby on a VIP》上拍</h3>
-          <div class="cimaise vignette portrait-toile" role="button" tabindex="0" style="--toile:url('actu-smart-barby.jpg')" data-doc="actu-smart-barby.jpg" data-titre="Smart Barby on a VIP" data-det="2007, acrylique sur toile, 60 × 120 cm" data-oeuvre="1">
+          <div class="cimaise vignette portrait-toile" role="button" tabindex="0" style="--toile:url('actu-smart-barby.jpg')" data-doc="actu-smart-barby.jpg" data-titre="Smart Barby on a VIP" data-det="2007 年，布面丙烯，60 × 120 cm" data-oeuvre="1">
             <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
             <div class="toile"><img src="actu-smart-barby.jpg" alt="《Smart Barby on a VIP》：一位金发女子仰倚在香槟杯中，脚边一只黑色贵宾犬，红色背景" width="334" height="654" loading="lazy"></div>
           </div>
@@ -886,7 +910,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p class="date">2026 年 2 月 5 日</p>
         <div>
           <h3>新作《Magic City》</h3>
-          <div class="cimaise vignette" role="button" tabindex="0" style="--toile:url('actu-magic-city.jpg')" data-doc="actu-magic-city.jpg" data-titre="Magic City" data-det="Toile présentée le 5 février 2026" data-oeuvre="1">
+          <div class="cimaise vignette" role="button" tabindex="0" style="--toile:url('actu-magic-city.jpg')" data-doc="actu-magic-city.jpg" data-titre="Magic City" data-det="2026 年 2 月 5 日发布的画作" data-oeuvre="1">
             <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
             <div class="toile"><img src="actu-magic-city.jpg" alt="《Magic City》：头戴高帽、身着绿松石色长裙的舞伴们在粉色条纹与金色光斑的雨中起舞" width="1482" height="757" loading="lazy"></div>
           </div>
@@ -902,10 +926,40 @@ dialog canvas.trace{position:absolute;z-index:5}
             <p>画廊刊物以两页篇幅介绍她：“一位二十一世纪的毕加索，或许可以这样定义她”，维托里奥·E·皮苏写道；“一位光彩夺目的艺术家，她的作品不仅已在巴黎的参议院橘园及其他画廊展出，也曾亮相纽约、迈阿密、东京，目前正应邀在俄罗斯展出”，戈纳里亚·内维娜·莱补充道。</p>
           </div>
           <div class="planches">
-            <button class="vignette" type="button" data-doc="actu-affiche-nuoro.jpg" data-titre="Les Vierges Polaires, affiche" data-det="Casa Vacanze Ortobene Arte, Nuoro, du 3 au 31 janvier 2026"><img src="actu-affiche-nuoro.jpg" alt="努奥罗《极地圣女》展览海报" width="1008" height="1514" loading="lazy"><small>海报</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, page 1" data-det="Nuoro, décembre 2025, textes de Gonaria Nevina Lai et Vittorio E. Pisu"><img src="actu-presse-1.jpg" alt="Casa Vacanze Ortobene Arte News 刊物以伊莎·萨托尔为主题的第一页" width="1070" height="1514" loading="lazy"><small>刊物第 1 页</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, page 2" data-det="Nuoro, décembre 2025, suite de l'article de Vittorio E. Pisu"><img src="actu-presse-2.jpg" alt="刊物第二页，载有伊莎·萨托尔的一幅画作及展览日程" width="1070" height="1514" loading="lazy"><small>刊物第 2 页</small></button>
+            <button class="vignette" type="button" data-doc="actu-affiche-nuoro.jpg" data-titre="《极地圣女》，海报" data-det="Casa Vacanze Ortobene Arte，努奥罗，2026 年 1 月 3 日至 31 日"><img src="actu-affiche-nuoro.jpg" alt="努奥罗《极地圣女》展览海报" width="1008" height="1514" loading="lazy"><small>海报</small></button>
+            <button class="vignette" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News，第 1 页" data-det="努奥罗，2025 年 12 月，戈纳里亚·内维娜·莱与维托里奥·E·皮苏的文章"><img src="actu-presse-1.jpg" alt="Casa Vacanze Ortobene Arte News 刊物以伊莎·萨托尔为主题的第一页" width="1070" height="1514" loading="lazy"><small>刊物第 1 页</small></button>
+            <button class="vignette" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News，第 2 页" data-det="努奥罗，2025 年 12 月，维托里奥·E·皮苏文章的续篇"><img src="actu-presse-2.jpg" alt="刊物第二页，载有伊莎·萨托尔的一幅画作及展览日程" width="1070" height="1514" loading="lazy"><small>刊物第 2 页</small></button>
           </div>
+          <details class="traduction" id="traduction-nuoro">
+            <summary>阅读刊物中文译文（译自意大利语）</summary>
+            <div class="texte lisible">
+            <h4>戈纳里亚·内维娜·莱的社论，第 1 页</h4>
+            <p>在回望 2025 年的同时迎来 2026 年，怎能不感到欣喜：2025 年，这个献给艺术的空间得以诞生，不仅是造型艺术，还有音乐与文学；这里曾是照料身体的场所，如今则照料心灵。我们几乎数不清举办过的所有活动：从已接纳五位法国摄影师的绘画联展，到伊尼亚齐奥·帕尼关于“树”的讲座。帕尼此前已展出过他的“云”系列摄影，这些作品邀请我们以不同的眼光看待层积云与其他积层云，也看待我们的星球；它正通过这些影像向我们诉说并发出警示。</p>
+            <p>我们无比自豪地在努奥罗迎来一位光彩夺目的艺术家。她的作品不仅已在巴黎（参议院橘园及其他画廊）展出，也曾亮相纽约、迈阿密、东京，目前正应邀在俄罗斯展出。Sardonia 协会曾说服她来到撒丁岛，她最终不仅在卡利亚里，也在伊格莱西亚斯的雷莫·布兰卡协会，展出了两幅大型画作和十余幅为此专门创作的小幅作品，以回应我们的提议；正因如此，我们得以在努奥罗向诸位介绍她。</p>
+            <p>我们自然要感谢所有参与我们所办活动的人士，无论是新锐还是声名卓著的艺术家；他们坚定了我们的信念：继续为大家呈现的不仅有绘画与摄影，还有音乐、文学，乃至盆景——这要感谢伊尼亚齐奥·帕尼。祝愿各位新年伊始一切顺遂，我们期待这一年充满艺术的前景，并恭候大家光临本次展览。G. N. 莱</p>
+            <h4>《极地圣女》：维托里奥·E·皮苏的文章，第 1 至 2 页</h4>
+            <p>谈论伊莎·萨托尔的绘画，一如谈论她本人，在浮浅的记者看来或许容易，其实绝非如此。试问，如何去描述一种宇宙创生般的绘画？它的色彩如烟花般噼啪作响，展现出一个曾被我们忽略的现实，更重要的是，它直面那些最深沉、最少被探索的女性神话——至多只被某些心不在焉的大男子主义者浮光掠影地触及。</p>
+            <p>她丰腴的体态、迷人的笑容、闪烁着狡黠光芒、迅速将你掂量并归类的双眼，都令人无法忽视。倘若她的绘画不像她本人，那才叫不可思议（尽管这也可能在一夜之间发生）。</p>
+            <p>二十一世纪的毕加索——或许可以这样定义她，而她也许正真正地成为这样的人物。这位色彩画家在她参与的每一次个展、每一次受邀参加的联展中，不断向我们展现其爆发性的才华。</p>
+            <p>但让我们试着描述她的绘画。它乍看之下向我们展示了现实的某个侧面，而我们这些凡夫俗子——何况不幸还是男性——一时难以立即把握。说实话，人们需要与伊莎·萨托尔的画作共同生活，在睡梦中被它们浸润。</p>
+            <p>此外，她在这里描绘的是女性：无论是“Grandes Cocottes”（美好年代的交际花），还是因故事而闻名的人物，比如《一千零一夜》中的 Elf Lilla Ulilla——由马布鲁克与加朗以两个版本引入欧洲，其中英文版被删改得尤其厉害。光彩夺目，正是你的名字。</p>
+            <p>在这个幻影般的画廊里，肖像一幅接一幅，各不相同；那些极具意味的神情，将这些女子的性格呈现给我们：她们实则是坚强的亚马逊女战士，主宰一切，是自己命运的主人，哪怕那命运是悲剧性的。</p>
+            <p>这并非苍白的沙龙女权主义，而无疑是对女性优越地位的宣告，仿佛她想对我们说：“女人不再是男人的未来。先生们，自己看着办吧。”</p>
+            <p>她的画布确实令人着迷：从不吝啬，而是广阔，洋溢着生命力，足以占据整个空间，无论是客厅还是展览画廊。巴黎的参议院橘园几乎容不下她的“Grandes Cocottes”，更不必说在沙漠中策马的舍赫拉查德和她的柏柏尔女伴了。伊莎·萨托尔的画布常常不加画框展出——画框几乎难以容纳它们——它们与文艺复兴宫廷或佛兰德斯、西班牙黄金时代的大型肖像一脉相承，那些肖像不仅让我们了解那个时代大人物的外貌与个性，也让我们看到日常生活的细节；而这些描绘往往充满有待解读的小谜题。</p>
+            <p>知名画廊主兼专栏作家“L'Œil de la Femme à Barbe”对她的描述十分精彩：“伊莎·萨托尔从摇篮里跌出来便是画家，她在学会读写之前就会画画。她曾成为律师，以便‘把自己的疯狂埋在无可指摘、完美无缺的女性外衣之下’，随后却让这个形象在半空中炸裂！她就这样毫无预告地离开巴黎，去往太平洋彼岸近十年，然后以她此时已成为的自学画家身份，从新喀里多尼亚参加巴黎的一项比赛，并赢得了它。”</p>
+            <p>2015 年，知名艺术评论家让-路易·普瓦特万这样写她：“色彩存在于我们每个人心中，如同无法抵达的大陆。伊莎·萨托尔的力量在于，在这场彩色底子与更为绚烂的炽热线条之间的游戏中，把流淌在她血脉里的那一点外星 DNA 传递给我们。”</p>
+            <p>若有幸追随伊莎·萨托尔从新喀里多尼亚至今的创作，便不难发现：随着时间推移，她那尤为绚烂如焰火的光芒，开始找到一种看似不那么浓烈、不那么爆裂的体系，变得更加凝练、更加神秘。</p>
+            <p>她钟爱的主题自然是女性，尤其是像她自己一样身处前线的女性；将她推向舞台中央的这些新冒险，清楚地证明了这一点。她画中的风景把人物置于一个并非完全属于我们的时空，但只要稍加想象，它也可以成为我们的时空。</p>
+            <p>伊莎确实在邀请我们跟随她，走出我们的宇宙，进入她的宇宙：在那里，最不可思议的大胆都成为可能，绘画的大胆自然也在其中。有时，伊莎颠覆西方透视法则，接近中国式的人物布局方式——正是在一个未加区分的空间里，如同一片灵薄狱，思想、欲望与梦想都成为可能。</p>
+            <p>除了两件近期的大型作品，她还为我们带来十余幅小幅作品；您也可以观看一系列记录她即兴表演的影片：vimeo.com/156673880、168433823、191741876、230489357、448604484、454817684、491087936、1120458813、1114674543。</p>
+            <p>在恭候各位到来之际，我们遗憾艺术家本人无法出席——她目前正在俄罗斯巡展。祝您阅读愉快。维托里奥·E·皮苏</p>
+            <h4>专栏：Sardonia 协会，第 2 页</h4>
+            <p>Sardonia 协会创立于 1993 年，三十二年来持续举办文化与节庆活动，尤其是艺术展览：自 2016 年起，“Cagliari je t'aime”系列邀请法国一流女性艺术家在卡利亚里的 Lazzaretto 与 MEM 展出；自 2021 年起，“Meglio una Donna”系列邀请了十余位撒丁岛本地、旅居撒丁岛或外国的女性艺术家，在卡利亚里维拉诺瓦区、奥里斯塔诺（Arrubiu Art Gallery Café）以及伊格莱西亚斯的雷莫·布兰卡展出。协会还与 Insulae Lab 合作，向贝尔基达市长安德烈亚·尼耶杜提议在葡萄酒博物馆举办画家与摄影师的展览，并于 2023、2024 和 2025 年夏季成功举办，深受公众与评论界好评。</p>
+            <p>协会通过本刊物、影片（vimeo.com/unisvers）与在线图录记录其活动。目前，协会在一个新空间举办绘画联展（六位女性艺术家与三位男性艺术家），随后由两位艺术家在 La Madusa 协会（Via Italia 124，卡利亚里皮里区）呈现纺织艺术展；在努奥罗的戈纳里亚·莱艺术工作室，则举办摄影联展，继以保拉·普鲁纳的木刻版画，目前正展出伊尼亚齐奥·帕尼的摄影作品。维托里奥·E·皮苏</p>
+            <h4>海报</h4>
+            <p>《极地圣女》（Les Vierges Polaires）。伊莎·萨托尔，策展人戈纳里亚·内维娜·莱。2026 年 1 月 3 日至 31 日。开幕式：2026 年 1 月 3 日（星期六）18 时起。Casa Ortobene Vacanze Arte，Via Monte Jaca 47 bis，08100 努奥罗。Sardonia 协会参与。</p>
+            </div>
+          </details>
         </div>
       </li>
     </ol>
@@ -969,6 +1023,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       </div>
       <div class="outils">
         <button class="fermer" id="btn-salon" type="button" hidden>置于您家，真实比例</button>
+        <button class="fermer" id="btn-traduction" type="button" hidden>阅读译文</button>
         <span class="choix-int" id="choix-int" hidden><i>看看挂在您家的效果：</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>客厅</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>卧室</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>Loft</span></button></span>
         <a class="fermer gardien" id="btn-gardien" href="mailto:isasator@gmail.com">这幅画正在寻找它的守护者</a>
         <button class="fermer" id="loupe-fermer" type="button">关闭</button>
@@ -1203,6 +1258,7 @@ function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
   document.getElementById("loupe-detail").textContent=det;
   document.getElementById("loupe-prix").textContent=prix;
   loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); btnSalon.textContent="单独查看画作";
+  document.getElementById("btn-traduction").hidden=true;
   btnSalon.hidden = true;
   document.getElementById("choix-int").hidden = !(h&&l);
   btnGardien.href="mailto:isasator@gmail.com?subject="+encodeURIComponent("我对您的画作“"+(titre||"无题")+"”"+(ref?" ("+ref+")":""))+
@@ -1215,9 +1271,16 @@ mur.addEventListener("click",e=>{
   ouvreLoupe("oeuvres/"+o[0]+".jpg", o[1], detail(o), euros(o[3]), o[5], o[6], o[2]);
 });
 document.getElementById("loupe-fermer").addEventListener("click",()=>loupe.close());
+const btnTrad=document.getElementById("btn-traduction");
+btnTrad.addEventListener("click",()=>{
+  const d=document.getElementById(btnTrad.dataset.cible); loupe.close();
+  if(d){ d.open=true; setTimeout(()=>d.scrollIntoView({behavior:"smooth",block:"start"}),60); }
+});
 /* actualités : affiches et pages de presse s'ouvrent dans la loupe, sans bouton d'achat ; les toiles gardent le leur */
 document.querySelectorAll(".vignette[data-doc]").forEach(v=>{
-  const ouvre=()=>{ ouvreLoupe(v.dataset.doc, v.dataset.titre, v.dataset.det, "", 0, 0, ""); if(!v.dataset.oeuvre) loupe.classList.add("doc"); };
+  const ouvre=()=>{ ouvreLoupe(v.dataset.doc, v.dataset.titre, v.dataset.det, "", 0, 0, ""); if(!v.dataset.oeuvre) loupe.classList.add("doc");
+    /* pièce de presse en italien : le bouton mène à sa traduction */
+    btnTrad.hidden = !v.closest("li") || !v.closest("li").querySelector(".traduction"); btnTrad.dataset.cible = btnTrad.hidden ? "" : v.closest("li").querySelector(".traduction").id; };
   v.addEventListener("click",ouvre);
   v.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } });
 });

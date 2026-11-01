@@ -11,6 +11,8 @@
 <link rel="alternate" hreflang="it" href="https://isa-sator.github.io/it.html">
 <link rel="alternate" hreflang="es" href="https://isa-sator.github.io/es.html">
 <link rel="alternate" hreflang="zh" href="https://isa-sator.github.io/zh.html">
+<link rel="alternate" hreflang="ru" href="https://isa-sator.github.io/ru.html">
+<link rel="alternate" hreflang="ja" href="https://isa-sator.github.io/ja.html">
 <link rel="alternate" hreflang="x-default" href="https://isa-sator.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Isa Sator">
@@ -29,7 +31,7 @@
 <style>img{max-width:100%}[hidden]{display:none!important}</style>
 <script>/* langue : un choix mémorisé, sinon celle du navigateur ; la page française renvoie vers la bonne version */
 (function(){try{var L=document.documentElement.lang,p=null;try{p=localStorage.getItem("isa-langue");}catch(_){}
-var d={en:"en.html",de:"de.html",it:"it.html",es:"es.html",zh:"zh.html"},n=(navigator.language||"").slice(0,2).toLowerCase(),c=p||(d[n]?n:"fr");
+var d={en:"en.html",de:"de.html",it:"it.html",es:"es.html",zh:"zh.html",ru:"ru.html",ja:"ja.html"},n=(navigator.language||"").slice(0,2).toLowerCase(),c=p||(d[n]?n:"fr");
 if(L==="fr"&&c!=="fr"&&d[c]&&!/claude\.ai$/.test(location.hostname)) location.replace(d[c]+location.hash);}catch(e){}})();</script>
 <title>Isa Sator</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -45,6 +47,10 @@ if(L==="fr"&&c!=="fr"&&d[c]&&!/claude\.ai$/.test(location.hostname)) location.re
 @font-face{font-family:"Jost";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/jost-latin-300-normal.woff2") format("woff2")}
 @font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-latin-400-normal.woff2") format("woff2")}
 @font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-latin-500-normal.woff2") format("woff2")}
+/* cyrillique (page russe) : mêmes graisses, chargées seulement si le texte en contient */
+@font-face{font-family:"Jost";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/jost-cyrillic-300-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-cyrillic-400-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-cyrillic-500-normal.woff2") format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 </style>
 <style>
 /* Une grande toile d'encre bleu nuit, travaillée à la brosse, sert de mur. L'emblème de
@@ -214,6 +220,16 @@ body.torche .fond .torche{opacity:1}
 .planches .vignette img{width:clamp(140px,17vw,230px)}
 .planches .vignette:hover img,.planches .vignette:focus-visible img{transform:translateY(-4px) scale(1.02);box-shadow:0 0 0 1px rgba(201,162,39,.75),0 0 30px rgba(201,162,39,.28),0 30px 60px rgba(0,0,0,.65)}
 .vignette small{display:block;margin-top:.6em;font-size:.72rem;color:var(--cendre);letter-spacing:.04em;max-width:230px}
+/* la traduction du journal : un volet dépliable, texte de lecture */
+.traduction{margin-top:1.6em;border:1px solid rgba(212,175,55,.35);background:rgba(7,12,24,.5);max-width:72ch;scroll-margin-top:120px}
+.traduction summary{cursor:pointer;list-style:none;padding:.9em 1.1em;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:#E2C063;display:flex;align-items:center;gap:.8em}
+.traduction summary::-webkit-details-marker{display:none}
+.traduction summary::before{content:"";width:9px;height:9px;border-right:1px solid #E2C063;border-bottom:1px solid #E2C063;transform:rotate(-45deg);transition:transform .3s ease;flex:none}
+.traduction[open] summary::before{transform:rotate(45deg)}
+.traduction summary:hover{background:rgba(212,175,55,.1)}
+.traduction .texte{padding:.2em 1.3em 1.3em;color:var(--cendre);font-size:.92rem;line-height:1.65;border-top:1px solid rgba(212,175,55,.25)}
+.traduction h4{font-family:var(--display);font-weight:400;font-size:1.12rem;color:var(--ivoire);margin:1.4em 0 .5em}
+.traduction p{margin:0 0 .9em}
 .entree .cimaise{max-width:760px;margin:clamp(44px,5vw,70px) 0 1.2em;cursor:pointer}
 .entree .cimaise.portrait-toile{max-width:min(100%,260px);float:right;margin:clamp(40px,4vw,56px) 0 1em clamp(18px,3vw,40px)}
 .entree>div::after{content:"";display:block;clear:both}
@@ -221,6 +237,7 @@ body.torche .fond .torche{opacity:1}
 .entree .cimaise .toile img{box-shadow:none;transition:none}
 .entree .cimaise .toile img{width:100%;height:auto;display:block}
 .loupe.doc .gardien,.loupe.doc #btn-salon,.loupe.doc #choix-int{display:none}
+.loupe .fermer#btn-traduction{color:#E2C063;border-color:rgba(212,175,55,.6)}
 
 /* ---------- le reflet d'or : un balayage lumineux sur fond doré léger, au survol ---------- */
 .reflet-or,.serie-lien:hover,.serie-lien:focus-visible,.presse a:hover,.faits li:hover,.expos li:hover,.ventes li:hover,.entree:hover,.chiffres li:hover,.couleur:hover{
@@ -269,7 +286,7 @@ body.pages .grands{padding-top:22px}
 
 /* ---------- barre ---------- */
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--nuit)}
-.barre{position:sticky;top:env(safe-area-inset-top,0px);z-index:29;background:rgba(7,12,24,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--trait)}
+.barre{position:sticky;top:env(safe-area-inset-top,0px);z-index:29;background:rgba(12,20,38,.5);backdrop-filter:blur(16px) saturate(1.2);-webkit-backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid rgba(201,162,39,.22)}
 .barre .dedans{display:flex;align-items:center;gap:clamp(12px,3vw,34px);flex-wrap:wrap;padding-block:13px}
 .marque{display:flex;align-items:center;gap:10px;margin-right:auto;min-width:0}
 .marque img{width:30px;height:32px;flex:none}
@@ -287,11 +304,13 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* le choix de la langue : six petites plaques, la langue en cours en or plein */
 .langues{display:flex;align-items:center;gap:1px;flex:none}
 .langues a{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;line-height:1;padding:.5em .55em;border-radius:2px;color:#C9A64A;opacity:.72;text-decoration:none;transition:opacity .25s ease,color .25s ease,background-color .25s ease}
-.langues a[lang="zh"]{letter-spacing:.04em;font-size:.7rem;padding:.38em .5em}
+.langues a[lang="zh"],.langues a[lang="ja"]{letter-spacing:.04em;font-size:.7rem;padding:.38em .5em}
 .langues a:hover,.langues a:focus-visible{opacity:1;color:#FBEBB4;text-decoration:none;background:rgba(212,175,55,.14)}
 .langues a.actif{opacity:1;color:var(--nuit);background:linear-gradient(170deg,#FBEBB4,#E2C063 45%,#C9A227)}
 html[lang="zh"]{--display:"Bodoni Moda","Songti SC","STSong","Noto Serif CJK SC","Source Han Serif SC","Noto Serif SC",SimSun,serif;--texte:"Jost","PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Source Han Sans SC","Microsoft YaHei",sans-serif}
-html[lang="zh"] .barre nav a{letter-spacing:.1em}
+html[lang="zh"] .barre nav a,html[lang="ja"] .barre nav a{letter-spacing:.1em}
+html[lang="ja"]{--display:"Bodoni Moda","Hiragino Mincho ProN","Yu Mincho","YuMincho","Noto Serif CJK JP","Noto Serif JP",serif;--texte:"Jost","Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP","Noto Sans JP",sans-serif}
+html[lang="ru"]{--display:"Bodoni Moda","Playfair Display",Georgia,"Times New Roman",serif}
 /* largeurs intermédiaires : le sélecteur à droite de la marque, le menu sur sa propre ligne */
 @media (min-width:661px) and (max-width:1180px){.barre nav{order:3;width:100%} .langues{order:2}}
 /* écrans d'ordinateur courants : tout tient sur une ligne, menu un peu plus serré */
@@ -313,8 +332,13 @@ html[lang="zh"] .barre nav a{letter-spacing:.1em}
 .scene{position:relative;display:grid;min-height:clamp(520px,80vh,820px);isolation:isolate}
 .scene .fresque{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:52% 34%;z-index:0}
 .scene .rideau{position:absolute;inset:0;z-index:1;background:
-  linear-gradient(100deg,rgba(7,12,24,.96) 0%,rgba(7,12,24,.9) 26%,rgba(7,12,24,.5) 52%,rgba(7,12,24,.18) 72%,rgba(7,12,24,.42) 100%),
-  linear-gradient(to bottom,rgba(7,12,24,.62) 0%,rgba(7,12,24,0) 24%,rgba(7,12,24,0) 58%,var(--nuit) 100%)}
+  linear-gradient(100deg,rgba(12,20,38,.42) 0%,rgba(12,20,38,.32) 30%,rgba(12,20,38,.16) 55%,rgba(7,12,24,.08) 75%,rgba(7,12,24,.28) 100%),
+  linear-gradient(to bottom,rgba(7,12,24,.35) 0%,rgba(7,12,24,0) 22%,rgba(7,12,24,0) 62%,rgba(7,12,24,.5) 100%)}
+/* sur ordinateur, la photo se fond à gauche et en bas dans la toile bleu nuit du site (le fond reste visible derrière) */
+@media(min-width:761px){
+  .scene .fresque{-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.72) 40%,#000 56%),linear-gradient(to bottom,#000 0%,#000 70%,rgba(0,0,0,.55) 88%,transparent 100%);
+    -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.72) 40%,#000 56%),linear-gradient(to bottom,#000 0%,#000 70%,rgba(0,0,0,.55) 88%,transparent 100%);mask-composite:intersect}
+}
 .scene .dit{position:relative;z-index:2;align-self:center;width:100%;padding-block:clamp(44px,7vw,86px)}
 @media(max-width:760px){
   .scene{min-height:clamp(560px,88vh,760px)}
@@ -628,7 +652,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       <a href="#actualite">Aktuelles</a>
       <a href="#contact">Kontakt</a>
     </nav>
-    <div class="langues" aria-label="Langue"><a href="./" hreflang="fr" lang="fr">FR</a><a href="en.html" hreflang="en" lang="en">EN</a><a href="de.html" hreflang="de" lang="de" class="actif">DE</a><a href="it.html" hreflang="it" lang="it">IT</a><a href="es.html" hreflang="es" lang="es">ES</a><a href="zh.html" hreflang="zh" lang="zh">中文</a></div>
+    <div class="langues" aria-label="Langue"><a href="./" hreflang="fr" lang="fr">FR</a><a href="en.html" hreflang="en" lang="en">EN</a><a href="de.html" hreflang="de" lang="de" class="actif">DE</a><a href="it.html" hreflang="it" lang="it">IT</a><a href="es.html" hreflang="es" lang="es">ES</a><a href="zh.html" hreflang="zh" lang="zh">中文</a><a href="ru.html" hreflang="ru" lang="ru">RU</a><a href="ja.html" hreflang="ja" lang="ja">日本語</a></div>
   </div>
 </div>
 
@@ -866,7 +890,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p class="date">7. Oktober 2026</p>
         <div>
           <h3>Smart Barby on a VIP kommt zur Auktion</h3>
-          <div class="cimaise vignette portrait-toile" role="button" tabindex="0" style="--toile:url('actu-smart-barby.jpg')" data-doc="actu-smart-barby.jpg" data-titre="Smart Barby on a VIP" data-det="2007, acrylique sur toile, 60 × 120 cm" data-oeuvre="1">
+          <div class="cimaise vignette portrait-toile" role="button" tabindex="0" style="--toile:url('actu-smart-barby.jpg')" data-doc="actu-smart-barby.jpg" data-titre="Smart Barby on a VIP" data-det="2007, Acryl auf Leinwand, 60 × 120 cm" data-oeuvre="1">
             <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
             <div class="toile"><img src="actu-smart-barby.jpg" alt="Smart Barby on a VIP: eine goldhaarige Frau, zurückgelehnt in einer Champagnerschale, ein schwarzer Pudel zu ihren Füßen, auf rotem Grund" width="334" height="654" loading="lazy"></div>
           </div>
@@ -886,7 +910,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p class="date">5. Februar 2026</p>
         <div>
           <h3>„Magic City“, eine neue Leinwand</h3>
-          <div class="cimaise vignette" role="button" tabindex="0" style="--toile:url('actu-magic-city.jpg')" data-doc="actu-magic-city.jpg" data-titre="Magic City" data-det="Toile présentée le 5 février 2026" data-oeuvre="1">
+          <div class="cimaise vignette" role="button" tabindex="0" style="--toile:url('actu-magic-city.jpg')" data-doc="actu-magic-city.jpg" data-titre="Magic City" data-det="Leinwand vorgestellt am 5. Februar 2026" data-oeuvre="1">
             <span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>
             <div class="toile"><img src="actu-magic-city.jpg" alt="Magic City: Paare in Zylindern und türkisfarbenen Kleidern tanzen unter einem Regen aus rosa Streifen und goldenen Funken" width="1482" height="757" loading="lazy"></div>
           </div>
@@ -902,10 +926,40 @@ dialog canvas.trace{position:absolute;z-index:5}
             <p>Die Zeitung der Galerie widmet ihr zwei Seiten: „ein Picasso des 21. Jahrhunderts, wie man sie wohl bezeichnen könnte“, schreibt Vittorio E. Pisu; „eine schillernde Künstlerin, die bereits nicht nur in Paris, in der Orangerie du Sénat und in anderen Galerien ausstellt, sondern auch in New York, Miami und Tokio, und derzeit in Russland, wohin sie eingeladen wurde“, ergänzt Gonaria Nevina Lai.</p>
           </div>
           <div class="planches">
-            <button class="vignette" type="button" data-doc="actu-affiche-nuoro.jpg" data-titre="Les Vierges Polaires, affiche" data-det="Casa Vacanze Ortobene Arte, Nuoro, du 3 au 31 janvier 2026"><img src="actu-affiche-nuoro.jpg" alt="Plakat der Ausstellung Les Vierges Polaires in Nuoro" width="1008" height="1514" loading="lazy"><small>Das Plakat</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, page 1" data-det="Nuoro, décembre 2025, textes de Gonaria Nevina Lai et Vittorio E. Pisu"><img src="actu-presse-1.jpg" alt="Erste Seite der Casa Vacanze Ortobene Arte News, Isa Sator gewidmet" width="1070" height="1514" loading="lazy"><small>Die Zeitung, Seite 1</small></button>
-            <button class="vignette" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, page 2" data-det="Nuoro, décembre 2025, suite de l'article de Vittorio E. Pisu"><img src="actu-presse-2.jpg" alt="Zweite Seite der Zeitung, mit einer Leinwand von Isa Sator und dem Ausstellungsprogramm" width="1070" height="1514" loading="lazy"><small>Die Zeitung, Seite 2</small></button>
+            <button class="vignette" type="button" data-doc="actu-affiche-nuoro.jpg" data-titre="Les Vierges Polaires, Plakat" data-det="Casa Vacanze Ortobene Arte, Nuoro, 3. bis 31. Januar 2026"><img src="actu-affiche-nuoro.jpg" alt="Plakat der Ausstellung Les Vierges Polaires in Nuoro" width="1008" height="1514" loading="lazy"><small>Das Plakat</small></button>
+            <button class="vignette" type="button" data-doc="actu-presse-1.jpg" data-titre="Casa Vacanze Ortobene Arte News, Seite 1" data-det="Nuoro, Dezember 2025, Texte von Gonaria Nevina Lai und Vittorio E. Pisu"><img src="actu-presse-1.jpg" alt="Erste Seite der Casa Vacanze Ortobene Arte News, Isa Sator gewidmet" width="1070" height="1514" loading="lazy"><small>Die Zeitung, Seite 1</small></button>
+            <button class="vignette" type="button" data-doc="actu-presse-2.jpg" data-titre="Casa Vacanze Ortobene Arte News, Seite 2" data-det="Nuoro, Dezember 2025, Fortsetzung des Artikels von Vittorio E. Pisu"><img src="actu-presse-2.jpg" alt="Zweite Seite der Zeitung, mit einer Leinwand von Isa Sator und dem Ausstellungsprogramm" width="1070" height="1514" loading="lazy"><small>Die Zeitung, Seite 2</small></button>
           </div>
+          <details class="traduction" id="traduction-nuoro">
+            <summary>Die Zeitung auf Deutsch lesen (aus dem Italienischen übersetzt)</summary>
+            <div class="texte lisible">
+            <h4>Editorial von Gonaria Nevina Lai, Seite 1</h4>
+            <p>Wie sollte man sich nicht freuen, dieses Jahr 2026 zu eröffnen und dabei auf 2025 zurückzublicken, das die Entstehung dieses Raumes für die Kunst sah, nicht nur die bildende, sondern auch die musikalische und literarische, an einem Ort, der einst der Pflege des Körpers gewidmet war und heute der des Geistes. Wir haben fast den Überblick über all die Veranstaltungen verloren, von der Gemeinschaftsausstellung der Malerei, die bereits fünf französische Fotografen aufnahm, bis zum Vortrag über den Baum von Ignazio Pani, der schon mit seinen Wolkenfotografien ausgestellt hatte, die uns einladen, nicht nur Stratocumuli und andere Cumulostrati anders zu betrachten, sondern auch unseren Planeten, der durch diese Bilder zu uns spricht und uns warnt.</p>
+            <p>Und wir sind wirklich stolz, in Nuoro eine schillernde Künstlerin zu empfangen, die bereits nicht nur in Paris (in der Orangerie du Sénat und in anderen Galerien), sondern auch in New York, Miami, Tokio und derzeit in Russland ausstellt, wohin sie eingeladen wurde. Der Verein Sardonia hatte sie überzeugt, nach Sardinien zu kommen, wo sie schließlich nicht nur in Cagliari, sondern auch in Iglesias, beim Verein Remo Branca, zwei große Leinwände und ein Dutzend für den Anlass geschaffener kleiner Formate zeigte, als Antwort auf unseren Vorschlag, was uns erlaubt, sie Ihnen hier in Nuoro vorzustellen.</p>
+            <p>Wir sind natürlich allen Menschen dankbar, aufstrebenden wie etablierten Künstlerinnen, die an den von uns organisierten Veranstaltungen teilgenommen haben und die uns in der Absicht bestärken, Ihnen weiterhin nicht nur Malerei oder Fotografie anzubieten, sondern auch Musik, Literatur und sogar Bonsai, dank Ignazio Pani. Mit den besten Wünschen für einen glücklichen Beginn des neuen Jahres, das wir voller künstlerischer Perspektiven sehen, erwarten wir Sie zu dieser Ausstellung. G. N. Lai</p>
+            <h4>„Les Vierges Polaires“, der Artikel von Vittorio E. Pisu, Seiten 1 und 2</h4>
+            <p>Über die Malerei von Isa Sator zu sprechen, wie über ihre Person, mag oberflächlichen Berichterstattern leicht erscheinen, ist es aber keineswegs. Wie soll man eine kosmogonische Malerei beschreiben, die vor Farben knistert wie ein Feuerwerk, die eine Wirklichkeit zeigt, die uns entgangen war, und die sich vor allem an die dichtesten und am wenigsten erforschten weiblichen Mythen wagt, die höchstens oberflächlich von irgendeinem zerstreuten Macho erkundet wurden.</p>
+            <p>Ihre üppigen Formen, ihr gewinnendes Lächeln, ihre vor Schalk funkelnden Augen, die einen rasch abwägen und einordnen, lassen sich unmöglich übersehen. Es wäre unglaublich gewesen, hätte ihre Malerei ihr nicht geähnelt (auch wenn das von einem Tag auf den anderen geschehen könnte).</p>
+            <p>Ein Picasso des 21. Jahrhunderts, wie man sie wohl bezeichnen könnte, und vielleicht wird sie es sogar wirklich: Diese Koloristin zeigt uns unablässig ihr explosives Talent in all ihren Einzelausstellungen und in den Gemeinschaftsausstellungen, zu denen sie eingeladen wird.</p>
+            <p>Doch versuchen wir, ihre Malerei zu beschreiben, die uns auf den ersten Blick einen Aspekt der Wirklichkeit zeigt, den wir gewöhnlichen Sterblichen, und noch dazu leider männlichen Geschlechts, nicht ohne weiteres sofort erfassen. In Wahrheit müsste man mit den Bildern von Isa Sator leben, um sich im Schlaf von ihnen durchdringen zu lassen.</p>
+            <p>Zudem zeigt sie uns hier Frauen, seien es die „Grandes Cocottes“ (Kurtisanen der Belle Époque) oder durch Erzählungen berühmt gewordene Gestalten wie Elf Lilla Ulilla (Tausendundeine Nacht), von Mabrouk und Galland in zwei Fassungen nach Europa gebracht, darunter die besonders gereinigte englische. Flammend ist dein Name.</p>
+            <p>In dieser geisterhaften Galerie, in der die Porträts aufeinanderfolgen und alle verschieden sind, geben uns die besonders sprechenden Gesichtsausdrücke den Charakter dieser Damen zurück: in Wahrheit starke Amazonen, dominant und Herrinnen ihres Schicksals, sei es auch ein tragisches.</p>
+            <p>Es geht hier nicht um einen blassen Salonfeminismus, sondern gewiss um die Behauptung der Vorherrschaft des weiblichen Geschlechts, als wollte sie uns sagen: „Die Frau ist nicht mehr die Zukunft des Mannes. Meine Herren, kommen Sie allein zurecht.“</p>
+            <p>Es gibt in der Tat allen Grund, sich von ihren Leinwänden fesseln zu lassen, die nie sparsam, sondern weit sind, vor Vitalität sprühend, fähig, den Raum zu füllen, sei es ein Salon oder eine Ausstellungsgalerie. Die Orangerie des Senats in Paris konnte ihre „Grandes Cocottes“ kaum fassen, und was soll man von Scheherazade und ihren Berberfreundinnen sagen, die durch die Wüste reiten? Oft ohne Rahmen gezeigt, der sie kaum halten könnte, sind die Leinwände von Isa Sator den großen Porträts der Renaissancehöfe oder des flämischen und spanischen Goldenen Zeitalters verwandt, die uns nicht nur das Aussehen und die Persönlichkeit der Großen jener Epoche, sondern auch die Einzelheiten des täglichen Lebens beschreiben und nahebringen; und oft sind diese Darstellungen voller kleiner Rätsel, die es zu deuten gilt.</p>
+            <p>L'Œil de la Femme à Barbe, bekannter Galerist und Kolumnist, beschreibt sie vortrefflich: „Isa Sator ist Malerin, seit sie aus der Wiege gefallen ist; sie konnte malen, bevor sie lesen und schreiben konnte. Anwältin geworden, um ‚ihren Wahnsinn unter dem Gewand der makellosen, fehlerlosen Frau zu begraben‘, lässt sie diese Figur im Flug zerspringen! Nachdem sie Paris so ohne Vorwarnung für fast zehn Jahre in Richtung der anderen Seite des Pazifiks verlassen hat, nimmt sie von Neukaledonien aus an einem Pariser Wettbewerb teil, als die autodidaktische Malerin, die sie inzwischen geworden ist, und gewinnt ihn.“</p>
+            <p>2015 schrieb der bekannte Kunstkritiker Jean-Louis Poitevin über sie: „Die Farben sind in jedem von uns wie unzugängliche Kontinente. Die Kraft von Isa Sator besteht darin, uns in diesem Spiel zwischen farbigem Grund und noch farbigeren glühenden Linien ein wenig von jener außerirdischen DNA zu übertragen, die in ihren Adern fließt.“</p>
+            <p>Wer das Glück hatte, die Arbeit von Isa Sator von Neukaledonien bis heute zu verfolgen, wird leicht festgestellt haben, dass ihr besonders pyrotechnisches Lodern mit der Zeit zu einem System findet, das weniger bunt und explosiv scheint, um dichter und geheimnisvoller zu werden.</p>
+            <p>Ihre Lieblingsthemen sind natürlich die Frauen, vor allem jene in der vordersten Reihe, wie sie selbst, wie diese neuen Abenteuer, die sie ins Rampenlicht rücken, deutlich zeigen. Die Landschaften ihrer Bilder versetzen ihre Figuren in eine Raum-Zeit, die nicht genau die unsere ist, es aber mit ein wenig Fantasie werden könnte.</p>
+            <p>Tatsächlich lädt Isa uns ein, ihr zu folgen, unser Universum zu verlassen und in das ihre einzutreten: jenes, in dem die unwahrscheinlichsten Kühnheiten möglich sind, und natürlich die der Malerei. Manchmal setzt Isa die Gesetze der westlichen Perspektive außer Kraft, um sich der chinesischen Art der Figurenanordnung zu nähern, eben in einem undifferenzierten Raum, wie ein Limbus, in dem Gedanken, Wünsche und Träume möglich werden.</p>
+            <p>Zusammen mit ihren beiden jüngsten großen Werken bietet sie uns ein Dutzend kleiner Formate; Sie können auch eine Reihe von Filmen über ihre Happenings ansehen: vimeo.com/156673880, 168433823, 191741876, 230489357, 448604484, 454817684, 491087936, 1120458813, 1114674543.</p>
+            <p>In Erwartung, Sie zu empfangen, und mit Bedauern über die Abwesenheit der Künstlerin, die derzeit in Russland auf Tournee ist, wünsche ich Ihnen eine gute Lektüre. Vittorio E. Pisu</p>
+            <h4>Kasten: der Verein Sardonia, Seite 2</h4>
+            <p>Der 1993 gegründete Verein Sardonia veranstaltet seit zweiunddreißig Jahren kulturelle und festliche Ereignisse und insbesondere Kunstausstellungen: Seit 2016 lädt die Reihe „Cagliari je t'aime“ bedeutende französische Künstlerinnen ein, im Lazzaretto und im MEM von Cagliari auszustellen; seit 2021 hat die Reihe „Meglio una Donna“ ein Dutzend sardische, in Sardinien lebende oder ausländische Künstlerinnen eingeladen, in Cagliari Villanova, in Oristano (Arrubiu Art Gallery Café) und in der Remo Branca in Iglesias auszustellen. Mit Insulae Lab schlug er dem Bürgermeister von Berchidda, Andrea Nieddu, Ausstellungen von Malern und Fotografen im Weinmuseum vor, die in den Sommern 2023, 2024 und 2025 mit großem Publikums- und Kritikererfolg stattfanden.</p>
+            <p>Der Verein dokumentiert seine Veranstaltungen mit dieser Zeitung, mit Filmen (vimeo.com/unisvers) und mit Online-Katalogen. Derzeit zeigt er in einem neuen Raum eine Gemeinschaftsausstellung der Malerei (sechs Künstlerinnen und drei Künstler), gefolgt von einer Textilkunstausstellung zweier Künstlerinnen beim Verein La Madusa (Via Italia 124, Cagliari Pirri); und im Kunstatelier von Gonaria Lai in Nuoro eine Gemeinschaftsausstellung der Fotografie, gefolgt von Holzschnitten von Paola Pruna, das derzeit die Fotografien von Ignazio Pani beherbergt. Vittorio E. Pisu</p>
+            <h4>Das Plakat</h4>
+            <p>Les Vierges Polaires. Isa Sator, kuratiert von Gonaria Nevina Lai. Vom 3. bis 31. Januar 2026. Vernissage am Samstag, 3. Januar 2026, ab 18 Uhr. Casa Ortobene Vacanze Arte, Via Monte Jaca 47 bis, 08100 Nuoro. Unter Mitwirkung des Vereins Sardonia.</p>
+            </div>
+          </details>
         </div>
       </li>
     </ol>
@@ -969,6 +1023,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       </div>
       <div class="outils">
         <button class="fermer" id="btn-salon" type="button" hidden>Bei Ihnen, maßstabsgetreu</button>
+        <button class="fermer" id="btn-traduction" type="button" hidden>Übersetzung lesen</button>
         <span class="choix-int" id="choix-int" hidden><i>Bei Ihnen ansehen:</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>Wohnzimmer</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>Schlafzimmer</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>Loft</span></button></span>
         <a class="fermer gardien" id="btn-gardien" href="mailto:isasator@gmail.com">Diese Leinwand sucht ihren Hüter</a>
         <button class="fermer" id="loupe-fermer" type="button">Schließen</button>
@@ -1203,6 +1258,7 @@ function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
   document.getElementById("loupe-detail").textContent=det;
   document.getElementById("loupe-prix").textContent=prix;
   loupe.classList.remove("chez-vous","doc"); btnSalon.classList.remove("actif"); btnSalon.textContent="Nur die Leinwand ansehen";
+  document.getElementById("btn-traduction").hidden=true;
   btnSalon.hidden = true;
   document.getElementById("choix-int").hidden = !(h&&l);
   btnGardien.href="mailto:isasator@gmail.com?subject="+encodeURIComponent("Mein Interesse an Ihrem Gemälde „"+(titre||"Ohne Titel")+"“"+(ref?" ("+ref+")":""))+
@@ -1215,9 +1271,16 @@ mur.addEventListener("click",e=>{
   ouvreLoupe("oeuvres/"+o[0]+".jpg", o[1], detail(o), euros(o[3]), o[5], o[6], o[2]);
 });
 document.getElementById("loupe-fermer").addEventListener("click",()=>loupe.close());
+const btnTrad=document.getElementById("btn-traduction");
+btnTrad.addEventListener("click",()=>{
+  const d=document.getElementById(btnTrad.dataset.cible); loupe.close();
+  if(d){ d.open=true; setTimeout(()=>d.scrollIntoView({behavior:"smooth",block:"start"}),60); }
+});
 /* actualités : affiches et pages de presse s'ouvrent dans la loupe, sans bouton d'achat ; les toiles gardent le leur */
 document.querySelectorAll(".vignette[data-doc]").forEach(v=>{
-  const ouvre=()=>{ ouvreLoupe(v.dataset.doc, v.dataset.titre, v.dataset.det, "", 0, 0, ""); if(!v.dataset.oeuvre) loupe.classList.add("doc"); };
+  const ouvre=()=>{ ouvreLoupe(v.dataset.doc, v.dataset.titre, v.dataset.det, "", 0, 0, ""); if(!v.dataset.oeuvre) loupe.classList.add("doc");
+    /* pièce de presse en italien : le bouton mène à sa traduction */
+    btnTrad.hidden = !v.closest("li") || !v.closest("li").querySelector(".traduction"); btnTrad.dataset.cible = btnTrad.hidden ? "" : v.closest("li").querySelector(".traduction").id; };
   v.addEventListener("click",ouvre);
   v.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } });
 });
