@@ -158,3 +158,11 @@ v35 (01/11/2026, 23 h)
 - Arabe : la légende se place du côté opposé à la toile, comme dans les autres langues.
 - Serbe et bulgare : le texte d'Isa est traduit, le surtitre ne dit plus « en français » et précise que la voix est créée par intelligence artificielle à partir de celle d'Isa, avec son accord.
 - Nouvel audit des parcours : audit_parcours.py (PC, tablette, téléphone ; français, serbe, arabe ; 20 parcours chacun).
+
+v36 (02/11/2026)
+- Ma sélection : icône panier dans la barre avec compteur, bouton « Ajouter à ma sélection » sur chaque œuvre, récapitulatif (vignettes, dimensions, prix, total), formulaire, demande d'acquisition préparée par e-mail ; sélection conservée d'une langue à l'autre (stockage du navigateur).
+- Recherche : titre, série, année, numéro ; filtres disponibles/catalogue, format, couleurs, série, prix maximum.
+- Certificat d'authenticité numéroté, signé à la main par Isa : mention sur les œuvres à prix affiché et dans le panier.
+- Œuvre sur mesure : formulaire (page Contact et « Chez vous », pré-rempli).
+- Textes de l'interface dans <template id="txt"> ; traductions dans trad_v36.py puis tables trad_*.
+- Audit des parcours étendu : 306 contrôles (PC, tablette, téléphone ; français, serbe, arabe).

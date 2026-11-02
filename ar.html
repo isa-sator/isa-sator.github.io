@@ -1985,6 +1985,11 @@ document.querySelectorAll(".grand .cimaise").forEach(c=>{ c.setAttribute("role",
   const ouvre=()=>{ const n=numeroDe(c); if(n) chezSoi(n); };
   c.addEventListener("click",ouvre); c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } }); });
 document.getElementById("pan-grille").addEventListener("click",e=>{ const f=e.target.closest("figure"); if(!f) return; const n=numeroDe(f); if(n) chezSoi(n); });
+
+</script>
+<script>
+/* v36 bis : panier, recherche et sur mesure dans leur propre script ; une erreur éventuelle est signalée à l'écran (diagnostic) */
+addEventListener("error",e=>{ try{ if(e&&e.message&&typeof montreToast==="function") montreToast("Erreur technique : "+e.message+" ("+(e.lineno||"")+")"); }catch(_){} });
 /* ---------- v36 : textes de l'interface (gabarit traduit), sélection, recherche, sur mesure ---------- */
 const TX=k=>{ const e=document.querySelector('#txt').content.querySelector('[data-k="'+k+'"]'); return e?e.textContent:k; };
 const tiroirs=[...document.querySelectorAll("dialog.tiroir")];
@@ -2045,7 +2050,7 @@ const rs=document.getElementById("r-serie");
 SERIES.forEach((s,i)=>{ if(s[2].length){ const o=document.createElement("option"); o.value=i; o.textContent=s[0]; rs.appendChild(o); } });
 let rType="";
 document.getElementById("r-type").addEventListener("click",e=>{ const b=e.target.closest("button[data-v]"); if(!b) return; rType=b.dataset.v; [...e.currentTarget.children].forEach(x=>x.classList.toggle("actif",x===b)); cherche(); });
-["r-texte","r-format","r-teinte","r-serie","r-prix"].forEach(id=>document.getElementById(id).addEventListener("input",cherche));
+["r-texte","r-format","r-teinte","r-serie","r-prix"].forEach(id=>{ const el=document.getElementById(id); el.addEventListener("input",cherche); if(el.tagName==="SELECT") el.addEventListener("change",cherche); });  /* pas de « change » sur le champ texte : il reconstruisait la liste au moment du clic */
 function cherche(){
   const q=sansAccent(document.getElementById("r-texte").value.trim()), fmt=document.getElementById("r-format").value, te=document.getElementById("r-teinte").value,
         se=document.getElementById("r-serie").value, px=+document.getElementById("r-prix").value||0;
