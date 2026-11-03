@@ -31,13 +31,18 @@ a{color:#E2C063}
 <div class="encart">
   <h2>Sur le téléphone, 3 gestes</h2>
   <ol>
-    <li>Touchez le bouton doré <b>« Voir sur mon mur »</b> sous la toile.</li>
+    <li>Touchez le bouton doré <b>« Voir sur mon mur »</b> sous la toile (ou, sur iPhone, l'image juste au-dessus).</li>
     <li>L'appareil photo s'ouvre. <b>Visez un mur</b> de la pièce et bougez doucement le téléphone 2 ou 3 secondes.</li>
     <li>La toile <b>s'accroche sur le mur</b>. Reculez, approchez-vous : elle reste en place, à sa vraie taille.</li>
   </ol>
 </div>
 
-<model-viewer id="mv" src="la_licorne_TB64.glb" alt="La Licorne, Isa Sator, 130 × 90 cm" ar ar-modes="webxr scene-viewer quick-look" ar-placement="wall" ar-scale="fixed" camera-controls touch-action="pan-y" shadow-intensity="0.6" exposure="1.05" camera-orbit="0deg 90deg 2.6m">
+<div class="encart" id="iphone">
+  <h2>Sur iPhone : touchez l'image ci-dessous</h2>
+  <a rel="ar" href="la_licorne_TB64.usdz" style="display:flex;gap:14px;align-items:center;text-decoration:none"><img src="vignette.jpg" alt="Voir La Licorne sur mon mur" style="width:110px;border-radius:4px;border:2px solid #D4AF37"></a>
+  <p style="margin:.6em 0 0">L'iPhone ouvre la toile. En haut, choisissez <b>« AR »</b>, puis visez un mur.</p>
+</div>
+<model-viewer id="mv" src="la_licorne_TB64.glb" ios-src="la_licorne_TB64.usdz" alt="La Licorne, Isa Sator, 130 × 90 cm" ar ar-modes="webxr scene-viewer quick-look" ar-placement="wall" ar-scale="fixed" camera-controls touch-action="pan-y" shadow-intensity="0.6" exposure="1.05" camera-orbit="0deg 90deg 2.6m">
 <button slot="ar-button" class="bouton">Voir sur mon mur</button>
 </model-viewer>
 <p style="font-size:.9rem;color:#b9ad97">Sur ordinateur, vous pouvez seulement faire tourner la toile avec la souris.</p>
@@ -47,6 +52,7 @@ a{color:#E2C063}
 const mv=document.getElementById('mv'), pc=document.getElementById('pc');
 const tactile=matchMedia('(pointer:coarse)').matches;
 if(!tactile) pc.classList.add('vu');
+if(!/iPhone|iPad|iPod/.test(navigator.userAgent) && !(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1)) document.getElementById('iphone').style.display='none';
 mv.addEventListener('load',()=>{ if(!mv.canActivateAR && !tactile) pc.classList.add('vu'); });
 </script>
 </body></html>
