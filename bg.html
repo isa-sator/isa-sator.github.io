@@ -573,6 +573,10 @@ dialog.panneau::backdrop{background:transparent}
 .faits li{border-bottom:1px solid var(--trait);padding:.95em 0;display:grid;gap:.15em;min-width:0}
 .faits b{font-family:var(--display);font-weight:400;font-size:1.04rem}
 .faits span{color:var(--cendre);font-size:.86rem}
+.faits li:has(a){padding:0}
+.faits li a{display:grid;gap:.15em;padding:.95em .4em .95em 0;color:inherit;text-decoration:none;position:relative}
+.faits li a b::after{content:" \2197";font-size:.8em;color:#D4AF37;margin-left:.3em}
+.faits li a:hover b,.faits li a:focus-visible b{color:#E2C063}
 
 /* ---------- actualité ---------- */
 .actu{border-block:1px solid var(--trait);background:rgba(7,12,24,.5);backdrop-filter:blur(3px)}
@@ -1006,10 +1010,10 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p>Творчеството ѝ възпява женствеността, вътрешната сила и тайната на живото. Всяка творба е уникат, замислен като бижу с характер.</p>
       </div>
       <ul class="faits">
-        <li><b>New York, 2007</b><span>Първа американска изложба, National Arts Club, Gramercy Park.</span></li>
-        <li><b>Galerie JPHT, Paris</b><span>Изложба на тема ADN Sator.</span></li>
-        <li><b>Théâtre Déjazet, Paris</b><span>Изложба, критика от Жан-Пол Гавар-Пере.</span></li>
-        <li><b>South Art Dealer Gallery</b><span>Интервю с Карли Агилера, Ню Йорк.</span></li>
+        <li><a href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><b>New York, 2007</b><span>Първа американска изложба, National Arts Club, Gramercy Park.</span></a></li>
+        <li><a href="https://www.galeriejpht.com/portfolio-items/exposition-isa-sator-adn-sator" target="_blank" rel="noopener"><b>Galerie JPHT, Paris</b><span>Изложба на тема ADN Sator.</span></a></li>
+        <li><a href="https://www.carnetdart.com/isa-sator/" target="_blank" rel="noopener"><b>Théâtre Déjazet, Paris</b><span>Изложба, критика от Жан-Пол Гавар-Пере.</span></a></li>
+        <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" target="_blank" rel="noopener"><b>South Art Dealer Gallery</b><span>Интервю с Карли Агилера, Ню Йорк.</span></a></li>
       </ul>
     </div>
     <div class="parcours">

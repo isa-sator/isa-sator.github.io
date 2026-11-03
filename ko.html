@@ -573,6 +573,10 @@ dialog.panneau::backdrop{background:transparent}
 .faits li{border-bottom:1px solid var(--trait);padding:.95em 0;display:grid;gap:.15em;min-width:0}
 .faits b{font-family:var(--display);font-weight:400;font-size:1.04rem}
 .faits span{color:var(--cendre);font-size:.86rem}
+.faits li:has(a){padding:0}
+.faits li a{display:grid;gap:.15em;padding:.95em .4em .95em 0;color:inherit;text-decoration:none;position:relative}
+.faits li a b::after{content:" \2197";font-size:.8em;color:#D4AF37;margin-left:.3em}
+.faits li a:hover b,.faits li a:focus-visible b{color:#E2C063}
 
 /* ---------- actualité ---------- */
 .actu{border-block:1px solid var(--trait);background:rgba(7,12,24,.5);backdrop-filter:blur(3px)}
@@ -1006,10 +1010,10 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p>그녀의 작업은 여성성, 내면의 힘, 생명의 신비를 찬미합니다. 모든 작품은 개성 있는 보석처럼 구상된 유일무이한 작품입니다.</p>
       </div>
       <ul class="faits">
-        <li><b>New York, 2007</b><span>첫 미국 전시, 내셔널 아츠 클럽, 그래머시 파크.</span></li>
-        <li><b>Galerie JPHT, Paris</b><span>“ADN Sator”를 주제로 한 전시.</span></li>
-        <li><b>Théâtre Déjazet, Paris</b><span>전시, 장폴 가바르페레의 평론.</span></li>
-        <li><b>South Art Dealer Gallery</b><span>칼리 아길레라와의 인터뷰, 뉴욕.</span></li>
+        <li><a href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><b>New York, 2007</b><span>첫 미국 전시, 내셔널 아츠 클럽, 그래머시 파크.</span></a></li>
+        <li><a href="https://www.galeriejpht.com/portfolio-items/exposition-isa-sator-adn-sator" target="_blank" rel="noopener"><b>Galerie JPHT, Paris</b><span>“ADN Sator”를 주제로 한 전시.</span></a></li>
+        <li><a href="https://www.carnetdart.com/isa-sator/" target="_blank" rel="noopener"><b>Théâtre Déjazet, Paris</b><span>전시, 장폴 가바르페레의 평론.</span></a></li>
+        <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" target="_blank" rel="noopener"><b>South Art Dealer Gallery</b><span>칼리 아길레라와의 인터뷰, 뉴욕.</span></a></li>
       </ul>
     </div>
     <div class="parcours">

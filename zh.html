@@ -573,6 +573,10 @@ dialog.panneau::backdrop{background:transparent}
 .faits li{border-bottom:1px solid var(--trait);padding:.95em 0;display:grid;gap:.15em;min-width:0}
 .faits b{font-family:var(--display);font-weight:400;font-size:1.04rem}
 .faits span{color:var(--cendre);font-size:.86rem}
+.faits li:has(a){padding:0}
+.faits li a{display:grid;gap:.15em;padding:.95em .4em .95em 0;color:inherit;text-decoration:none;position:relative}
+.faits li a b::after{content:" \2197";font-size:.8em;color:#D4AF37;margin-left:.3em}
+.faits li a:hover b,.faits li a:focus-visible b{color:#E2C063}
 
 /* ---------- actualité ---------- */
 .actu{border-block:1px solid var(--trait);background:rgba(7,12,24,.5);backdrop-filter:blur(3px)}
@@ -1006,10 +1010,10 @@ dialog canvas.trace{position:absolute;z-index:5}
         <p>她的作品颂扬女性、内在力量与生命的神秘。每件作品都是独一无二的，如同一枚个性鲜明的珠宝。</p>
       </div>
       <ul class="faits">
-        <li><b>New York, 2007</b><span>首次美国展览，国家艺术俱乐部，格拉梅西公园。</span></li>
-        <li><b>Galerie JPHT, Paris</b><span>以《ADN Sator》为主题的展览。</span></li>
-        <li><b>Théâtre Déjazet, Paris</b><span>展览，让-保罗·加瓦尔-佩雷撰写评论。</span></li>
-        <li><b>South Art Dealer Gallery</b><span>与卡莉·阿吉莱拉的访谈，纽约。</span></li>
+        <li><a href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><b>New York, 2007</b><span>首次美国展览，国家艺术俱乐部，格拉梅西公园。</span></a></li>
+        <li><a href="https://www.galeriejpht.com/portfolio-items/exposition-isa-sator-adn-sator" target="_blank" rel="noopener"><b>Galerie JPHT, Paris</b><span>以《ADN Sator》为主题的展览。</span></a></li>
+        <li><a href="https://www.carnetdart.com/isa-sator/" target="_blank" rel="noopener"><b>Théâtre Déjazet, Paris</b><span>展览，让-保罗·加瓦尔-佩雷撰写评论。</span></a></li>
+        <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" target="_blank" rel="noopener"><b>South Art Dealer Gallery</b><span>与卡莉·阿吉莱拉的访谈，纽约。</span></a></li>
       </ul>
     </div>
     <div class="parcours">
