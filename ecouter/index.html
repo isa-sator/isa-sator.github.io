@@ -3,37 +3,50 @@
 <title>Isa Sator · Écoutez La Licorne</title>
 <meta name="robots" content="noindex">
 <style>
-:root{--fond:#0b1324;--or:#D4AF37;--or2:#E2C063;--texte:#EAE0D0}
+:root{--fond:#0b1324;--or:#D4AF37;--or2:#E2C063;--texte:#EAE0D0;--cendre:#b9ad97}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--fond);color:var(--texte);font-family:Georgia,serif;-webkit-tap-highlight-color:transparent}
-.cadre{max-width:980px;margin:0 auto;padding:16px 16px 30px}
-h1{font-weight:400;font-size:clamp(1.5rem,4vw,2.2rem);margin:.1em 0 .2em;color:var(--or2)}
-.chapo{font-size:1.05rem;line-height:1.5;margin:0 0 12px;max-width:44em}
-.scene{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:18px;align-items:start}
-@media (max-width:760px){.scene{grid-template-columns:1fr}}
+.cadre{max-width:1040px;margin:0 auto;padding:16px 16px 34px}
+h1{font-weight:400;font-size:clamp(1.6rem,4.4vw,2.4rem);margin:.1em 0 .3em;color:var(--or2)}
+.intro{max-width:46em;font-size:1.06rem;line-height:1.62}
+.intro p{margin:0 0 .8em}
+.intro .ouverture{font-size:1.2rem;color:#f3ead8;font-style:italic}
+.scene{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start;margin-top:14px}
+@media (max-width:780px){.scene{grid-template-columns:1fr}}
 .toile{position:relative;max-width:calc(84vh * 0.6923);margin:0 auto;width:100%;touch-action:none;user-select:none;-webkit-user-select:none;border-radius:3px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 0 1px #2b3a5c}
 .toile img{display:block;width:100%;height:auto;pointer-events:none}
 .toile canvas{position:absolute;inset:0;width:100%;height:100%}
-.voile{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,12,24,.55);backdrop-filter:blur(1px);transition:opacity .6s}
+.voile{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(8,12,24,.55);transition:opacity .6s}
 .voile.cache{opacity:0;pointer-events:none}
 .go{background:var(--or);color:#111;border:0;border-radius:40px;padding:1em 1.6em;font:700 1.1rem system-ui,sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.5);cursor:pointer}
 .go span{display:block;font:400 .8rem system-ui,sans-serif;margin-top:.25em;opacity:.8}
-.panneau{border:1px solid #D4AF3755;border-radius:8px;padding:14px 14px 10px;background:#ffffff07}
-.panneau h2{font-weight:400;color:var(--or2);font-size:1.1rem;margin:.1em 0 .6em}
-.leg{display:flex;align-items:center;gap:10px;margin:.5em 0;font-size:.98rem;line-height:1.3;transition:transform .2s}
-.leg i{width:22px;height:22px;border-radius:50%;flex:none;box-shadow:0 0 0 2px #0b1324,0 0 0 3px #ffffff30}
-.leg.on{transform:translateX(6px)}
-.leg.on i{box-shadow:0 0 0 2px #0b1324,0 0 14px 4px currentColor}
-.leg small{display:block;color:#b9ad97;font-size:.8rem}
-.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.btn{background:transparent;color:var(--or2);border:1px solid var(--or);border-radius:30px;padding:.6em 1em;font:600 .92rem system-ui,sans-serif;cursor:pointer}
+.panneau{border:1px solid #D4AF3755;border-radius:8px;padding:14px;background:#ffffff07;margin-bottom:14px}
+.panneau h2{font-weight:400;color:var(--or2);font-size:1.12rem;margin:.1em 0 .6em}
+.direct{display:flex;gap:12px;align-items:center;min-height:74px}
+.direct i{width:46px;height:46px;border-radius:50%;flex:none;background:#2b3a5c;box-shadow:0 0 0 2px #0b1324,0 0 0 3px #ffffff30;transition:background .15s,box-shadow .2s}
+.direct b{display:block;font-weight:400;font-size:1.05rem;color:#f3ead8}
+.direct span{display:block;font:500 .86rem system-ui,sans-serif;color:var(--cendre);line-height:1.5}
+.direct span em{font-style:normal;color:var(--or2)}
+.leg{display:flex;align-items:center;gap:10px;margin:.45em 0;font-size:.95rem;line-height:1.3}
+.leg i{width:18px;height:18px;border-radius:50%;flex:none;box-shadow:0 0 0 2px #0b1324,0 0 0 3px #ffffff30}
+.leg small{display:block;color:var(--cendre);font-size:.78rem}
+.btns{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.btn{background:transparent;color:var(--or2);border:1px solid var(--or);border-radius:30px;padding:.65em 1em;font:600 .92rem system-ui,sans-serif;cursor:pointer;text-align:left}
 .btn[aria-pressed=true]{background:var(--or);color:#111}
-.note{font-size:.85rem;color:#b9ad97;line-height:1.45;margin-top:12px}
-.cite{font-style:italic;color:#d9cdb5;border-left:2px solid var(--or);padding-left:10px;margin:14px 0 0;font-size:.95rem;line-height:1.5}
+.btn small{display:block;font-weight:400;opacity:.8;font-size:.78rem;margin-top:.15em}
+.note{font-size:.84rem;color:var(--cendre);line-height:1.5;margin:.6em 0}
+.cite{font-style:italic;color:#d9cdb5;border-left:2px solid var(--or);padding-left:10px;margin:10px 0;font-size:.95rem;line-height:1.5}
+.alpha{max-width:46em;margin-top:22px;border-top:1px solid #D4AF3740;padding-top:14px;line-height:1.6}
+.alpha h2{font-weight:400;color:var(--or2);font-size:1.25rem;margin:.1em 0 .4em}
 a{color:var(--or2)}
 </style></head><body><div class="cadre">
 <h1>Écoutez La Licorne</h1>
-<p class="chapo">Pour Isa Sator, chaque couleur porte une émotion et une vibration. Écoutez-les : <b>chaque couleur de la toile a sa voix</b>. Promenez le doigt, ou la souris, sur la peinture.</p>
+<div class="intro">
+<p class="ouverture">La peinture est matière. La couleur, elle, est énergie : une lumière qui vibre.</p>
+<p>Le rouge de la Licorne vibre environ 430 000 milliards de fois par seconde, le bleu de ses ailes près de 670 000 milliards. L'oreille ne perçoit pas ces vitesses. Mais descendez cette vibration de quarante octaves, comme on descend une gamme note après note, et elle devient un son : le rouge chante autour du <b>sol</b>, l'orangé autour du <b>la</b>, le bleu autour du <b>ré dièse</b>. Ici, chaque couleur de la toile vous est rendue dans sa propre note.</p>
+<p>On sait aujourd'hui faire entendre la musique des végétaux, en traduisant en sons leurs infimes variations électriques. Ici, c'est la toile qui chante : la matière d'Isa, rendue à sa fréquence.</p>
+<p>Isa Sator donne à ses couleurs des correspondances émotionnelles, vibratoires et symboliques. Elle s'inscrit dans une longue lignée : Newton accordait les sept couleurs de l'arc-en-ciel aux sept notes de la gamme, et Kandinsky entendait le jaune sonner comme une trompette, le bleu clair comme une flûte, le bleu profond comme un orgue. Promenez le doigt, ou la souris, sur la peinture.</p>
+</div>
 
 <div class="scene">
   <div class="toile" id="toile">
@@ -44,122 +57,117 @@ a{color:var(--or2)}
 
   <div>
     <div class="panneau">
+      <h2>Vous entendez</h2>
+      <div class="direct"><i id="pastille"></i><div><b id="dNom">Touchez la toile</b><span id="dLum">lumière : la vibration de la couleur</span><span id="dSon">son : la même vibration, quarante octaves plus bas</span></div></div>
+    </div>
+    <div class="panneau">
       <h2>Les couleurs et leur voix</h2>
-      <div class="leg" data-f="rouge" style="color:#e2452f"><i style="background:#d8402c"></i><div>Rouge · la passion<small>violoncelle chaud, dans le grave</small></div></div>
-      <div class="leg" data-f="or" style="color:#e8c04a"><i style="background:#e3bb3e"></i><div>Jaune et or · la fulgurance<small>cloches de cristal, dans l'aigu</small></div></div>
-      <div class="leg" data-f="bleu" style="color:#5a7cf0"><i style="background:#4a63d8"></i><div>Bleu · la profondeur, le mystère<small>nappes lentes, comme l'océan</small></div></div>
-      <div class="leg" data-f="ciel" style="color:#7fd0e8"><i style="background:#79c6dc"></i><div>Bleu clair · le souffle<small>flûte légère</small></div></div>
-      <div class="leg" data-f="nuit" style="color:#8f86c8"><i style="background:#23214a"></i><div>Nuit · le silence<small>une basse très douce</small></div></div>
-      <div class="btns">
-        <button class="btn" id="balayer" type="button" aria-pressed="false">▶ Écouter toute la toile</button>
-      </div>
+      <div class="leg"><i style="background:#d8402c"></i><div>Rouge · la passion<small>vers 390 Hz, un sol · cordes chaudes</small></div></div>
+      <div class="leg"><i style="background:#e3bb3e"></i><div>Jaune et or · la fulgurance<small>vers 470 Hz · éclat de trompette et de cristal</small></div></div>
+      <div class="leg"><i style="background:#79c6dc"></i><div>Bleu clair · le souffle<small>vers 560 Hz · flûte</small></div></div>
+      <div class="leg"><i style="background:#4a63d8"></i><div>Bleu · le mystère<small>vers 600 Hz · violoncelle</small></div></div>
+      <div class="leg"><i style="background:#23214a"></i><div>Bleu nuit · la profondeur<small>la même note, deux octaves plus bas · orgue</small></div></div>
+      <p class="note" style="margin-bottom:0">Plus la couleur est sombre, plus sa note descend. Plus vous touchez haut sur la toile, plus elle s'éclaire.</p>
+    </div>
+    <div class="btns">
+      <button class="btn" id="balayer" type="button" aria-pressed="false">▶ Écouter toute la toile<small>une ligne d'or la lit de gauche à droite</small></button>
+      <button class="btn" id="alphaBtn" type="button" aria-pressed="false">◐ Contemplation, au casque<small>une pulsation douce à 10 battements par seconde</small></button>
     </div>
     <p class="cite">« Je lui donne des correspondances émotionnelles, vibrationnelles et symboliques. »</p>
-    <p class="cite">« Le rouge, pour moi, c'est la passion ; le jaune, la fulgurance. »<br><span style="font-style:normal;color:#b9ad97">Isa Sator</span></p>
-    <p class="note">Sur iPhone, désactivez le mode silencieux (le petit bouton sur le côté) pour entendre le son. Essai de démonstration, non relié au site.</p>
-    <p class="note"><a href="../">Retour au site d'Isa Sator</a></p>
+    <p class="cite">« Le rouge, pour moi, c'est la passion ; le jaune, la fulgurance. »<br><span style="font-style:normal;color:var(--cendre)">Isa Sator</span></p>
   </div>
+</div>
+
+<div class="alpha">
+<h2>La contemplation et les ondes alpha</h2>
+<p>Quand on regarde une œuvre les yeux mi-clos, l'esprit au repos, le cerveau ralentit son rythme et produit des ondes dites <b>alpha</b>, entre 8 et 12 battements par seconde. Ce sont les ondes de la rêverie éveillée, celle d'où Isa dit tirer ses toiles, peintes au réveil, à partir de ses rêves.</p>
+<p>Le mode <b>Contemplation</b> fait entendre une note légèrement différente dans chaque oreille. L'écart de 10 vibrations par seconde crée, au casque, une pulsation intérieure lente, au rythme des ondes alpha. Une invitation à regarder la toile autrement, sans promesse : l'effet de ces sons sur le cerveau est encore étudié, sans conclusion établie à ce jour.</p>
+<p class="note">Sur iPhone, désactivez le mode silencieux (le petit bouton sur le côté) pour entendre le son. Essai de démonstration, non relié au site. <a href="../">Retour au site d'Isa Sator</a></p>
 </div>
 </div>
 <script>
 (()=>{
 const img=document.getElementById('img'), fx=document.getElementById('fx'), toile=document.getElementById('toile');
 const ctx=fx.getContext('2d'); let W=0,H=0,dpr=Math.min(2,devicePixelRatio||1);
-/* --- échantillonnage des couleurs (grille réduite) --- */
 const GW=90, GH=130; let grille=null;
-function prepare(){
-  const c=document.createElement('canvas'); c.width=GW; c.height=GH; const g=c.getContext('2d',{willReadFrequently:true});
-  g.drawImage(img,0,0,GW,GH); grille=g.getImageData(0,0,GW,GH).data;
-}
+function prepare(){ const c=document.createElement('canvas'); c.width=GW; c.height=GH; const g=c.getContext('2d',{willReadFrequently:true}); g.drawImage(img,0,0,GW,GH); grille=g.getImageData(0,0,GW,GH).data; }
 function couleurA(u,v){ const x=Math.max(0,Math.min(GW-1,Math.floor(u*GW))), y=Math.max(0,Math.min(GH-1,Math.floor(v*GH))), i=(y*GW+x)*4; return [grille[i],grille[i+1],grille[i+2]]; }
 function hsl(r,g,b){ r/=255;g/=255;b/=255; const mx=Math.max(r,g,b),mn=Math.min(r,g,b),l=(mx+mn)/2; let h=0,s=0;
   if(mx!==mn){ const d=mx-mn; s=l>.5?d/(2-mx-mn):d/(mx+mn); h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4; h*=60; } return [h,s,l]; }
-/* famille de couleur selon la teinte, la saturation et la lumière */
-function famille([r,g,b]){ const [h,s,l]=hsl(r,g,b);
-  if(l<.16) return 'nuit';
-  if(s<.18) return l>.75?'or':'nuit';
-  if(h<22||h>=330) return 'rouge';
-  if(h<75) return 'or';
-  if(h<205) return 'ciel';
-  if(h<330) return l>.62?'ciel':'bleu';
-  return 'bleu'; }
+/* teinte -> longueur d'onde (nm), approximation du spectre visible */
+function longueur(h){ const P=[[0,700],[30,610],[60,580],[120,530],[180,490],[240,450],[275,420],[300,640],[360,700]];
+  for(let i=1;i<P.length;i++) if(h<=P[i][0]){ const [h0,l0]=P[i-1],[h1,l1]=P[i]; return l0+(l1-l0)*(h-h0)/(h1-h0); } return 700; }
+const NOTES=['la','la dièse','si','do','do dièse','ré','ré dièse','mi','fa','fa dièse','sol','sol dièse'];
+function nomNote(f){ const n=Math.round(12*Math.log2(f/440)); return NOTES[((n%12)+12)%12]; }
+function famille(h,s,l){ if(l<.2) return 'nuit'; if(s<.16) return l>.72?'or':'nuit'; if(h<22||h>=330) return 'rouge'; if(h<75) return 'or'; if(h<205) return 'ciel'; return l>.62?'ciel':'bleu'; }
+const NOMS={rouge:'Rouge · la passion',or:'Jaune et or · la fulgurance',ciel:'Bleu clair · le souffle',bleu:'Bleu · le mystère',nuit:'Bleu nuit · la profondeur'};
+/* la couleur devient une note : fréquence de la lumière / 2^40 */
+function analyse(rgb){ const [h,s,l]=hsl(...rgb), f=famille(h,s,l), nm=longueur(h), thz=299792.458/nm, hz=thz*1e12/Math.pow(2,40);
+  const oct=f==='nuit'?-2:(l<.35?-1:0); return {f,nm,thz,hz,son:hz*Math.pow(2,oct)}; }
 /* --- son --- */
-let A=null, sortie=null, rev=null;
-const GAMME=[0,3,5,7,10]; /* pentatonique mineure de ré : toujours harmonieux */
-function freq(n){ return 146.83*Math.pow(2,n/12); } /* ré grave = 146,83 Hz */
-function degre(i,oct){ return GAMME[((i%5)+5)%5]+12*(oct+Math.floor(i/5)); }
-function demarre(){
-  if(A) return; A=new (window.AudioContext||window.webkitAudioContext)();
-  sortie=A.createGain(); sortie.gain.value=.55;
-  const comp=A.createDynamicsCompressor(); comp.threshold.value=-18; comp.ratio.value=4;
-  rev=A.createConvolver(); const L=A.sampleRate*2.8, buf=A.createBuffer(2,L,A.sampleRate);
-  for(let c=0;c<2;c++){ const d=buf.getChannelData(c); for(let i=0;i<L;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/L,2.6); }
-  rev.buffer=buf; const revG=A.createGain(); revG.gain.value=.38;
-  sortie.connect(comp); sortie.connect(rev); rev.connect(revG); revG.connect(comp); comp.connect(A.destination);
-}
+let A=null, sortie=null;
+function demarre(){ if(A) return; A=new (window.AudioContext||window.webkitAudioContext)();
+  sortie=A.createGain(); sortie.gain.value=.5; const comp=A.createDynamicsCompressor(); comp.threshold.value=-18; comp.ratio.value=4;
+  const rev=A.createConvolver(), L=A.sampleRate*3, buf=A.createBuffer(2,L,A.sampleRate);
+  for(let c=0;c<2;c++){ const d=buf.getChannelData(c); for(let i=0;i<L;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/L,2.5); }
+  rev.buffer=buf; const rg=A.createGain(); rg.gain.value=.42; sortie.connect(comp); sortie.connect(rev); rev.connect(rg); rg.connect(comp); comp.connect(A.destination); }
 function env(g,t,att,dur,pic){ g.gain.setValueAtTime(0.0001,t); g.gain.exponentialRampToValueAtTime(pic,t+att); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); }
-function joue(fam,u,v,force=1){
-  if(!A) return; const t=A.currentTime+.01, pan=A.createStereoPanner?A.createStereoPanner():null; if(pan) pan.pan.value=(u-.5)*1.4;
+function joue(a,u,v,force=1){ if(!A) return; const t=A.currentTime+.01, f=a.son*(v<.35?2:1);
+  const pan=A.createStereoPanner?A.createStereoPanner():null; if(pan) pan.pan.value=(u-.5)*1.4;
   const g=A.createGain(); g.connect(pan||sortie); if(pan) pan.connect(sortie);
-  const haut=1-v; /* plus haut sur la toile = plus aigu */
-  const idx=Math.round(haut*7);
-  if(fam==='rouge'){ /* violoncelle chaud */
-    const f=freq(degre(idx,-1)); const o=A.createOscillator(), o2=A.createOscillator(), lp=A.createBiquadFilter();
-    o.type='sawtooth'; o2.type='sawtooth'; o.frequency.value=f; o2.frequency.value=f*1.004; lp.type='lowpass'; lp.frequency.value=900; lp.Q.value=2;
-    o.connect(lp); o2.connect(lp); lp.connect(g); env(g,t,.06,1.6,.22*force); o.start(t); o2.start(t); o.stop(t+1.7); o2.stop(t+1.7);
-  } else if(fam==='or'){ /* cloche de cristal */
-    const f=freq(degre(idx,2)); [1,2.76,5.4].forEach((m,k)=>{ const o=A.createOscillator(), gg=A.createGain(); o.type='sine'; o.frequency.value=f*m; gg.connect(g); o.connect(gg); env(gg,t,.004,2.4/(k+1),[.25,.08,.04][k]*force); o.start(t); o.stop(t+2.5); });
-    g.gain.value=1;
-  } else if(fam==='bleu'){ /* nappe lente */
-    const f=freq(degre(idx,0)); [1,1.5,2].forEach((m,k)=>{ const o=A.createOscillator(); o.type=k?'sine':'triangle'; o.frequency.value=f*m*(1+(k-1)*.002); o.connect(g); o.start(t); o.stop(t+3.2); });
-    env(g,t,.5,3.1,.09*force);
-  } else if(fam==='ciel'){ /* flûte */
-    const f=freq(degre(idx,1)); const o=A.createOscillator(), vib=A.createOscillator(), vg=A.createGain(); o.type='sine'; o.frequency.value=f; vib.frequency.value=5.2; vg.gain.value=f*.006; vib.connect(vg); vg.connect(o.frequency);
-    o.connect(g); env(g,t,.08,1.3,.16*force); o.start(t); vib.start(t); o.stop(t+1.4); vib.stop(t+1.4);
-  } else { /* nuit : basse douce */
-    const f=freq(degre(Math.round(idx/2),-2)); const o=A.createOscillator(); o.type='sine'; o.frequency.value=f; o.connect(g); env(g,t,.12,2.2,.2*force); o.start(t); o.stop(t+2.3);
-  }
-  allume(fam);
+  const osc=(type,fr,dest)=>{ const o=A.createOscillator(); o.type=type; o.frequency.value=fr; o.connect(dest); return o; };
+  if(a.f==='rouge'){ const lp=A.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=1400; lp.Q.value=1.5; lp.connect(g);
+    const o=osc('sawtooth',f/2,lp), o2=osc('sawtooth',f/2*1.004,lp); env(g,t,.07,1.7,.2*force); [o,o2].forEach(x=>{x.start(t);x.stop(t+1.8);}); }
+  else if(a.f==='or'){ const bp=A.createBiquadFilter(); bp.type='bandpass'; bp.frequency.value=f*2; bp.Q.value=1.2; bp.connect(g);
+    const o=osc('sawtooth',f,bp); const gb=A.createGain(); gb.connect(g); const c=osc('sine',f*4,gb); env(gb,t,.004,2.2,.08*force);
+    env(g,t,.03,1.2,.3*force); o.start(t); o.stop(t+1.3); c.start(t); c.stop(t+2.3); }
+  else if(a.f==='ciel'){ const o=osc('sine',f,g), vib=A.createOscillator(), vg=A.createGain(); vib.frequency.value=5.2; vg.gain.value=f*.006; vib.connect(vg); vg.connect(o.frequency);
+    env(g,t,.09,1.4,.18*force); o.start(t); vib.start(t); o.stop(t+1.5); vib.stop(t+1.5); }
+  else if(a.f==='bleu'){ const lp=A.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=900; lp.connect(g);
+    const o=osc('sawtooth',f/2,lp), o2=osc('triangle',f/2*1.003,lp); env(g,t,.25,2.6,.14*force); [o,o2].forEach(x=>{x.start(t);x.stop(t+2.7);}); }
+  else { [1,2,3,4].forEach((m,k)=>{ const gg=A.createGain(); gg.gain.value=[.5,.25,.12,.08][k]; gg.connect(g); const o=osc('sine',f*m,gg); o.start(t); o.stop(t+3); }); env(g,t,.35,2.9,.22*force); }
 }
-/* --- effets visuels : ondes de couleur --- */
-const ondes=[];
-function onde(u,v,rgb,grand){ ondes.push({x:u*W,y:v*H,r:0,max:(grand?.28:.16)*Math.max(W,H),a:1,c:rgb}); }
-let ligne=-1;
-function dessine(){
-  ctx.clearRect(0,0,fx.width,fx.height); ctx.save(); ctx.scale(dpr,dpr);
-  for(let i=ondes.length-1;i>=0;i--){ const o=ondes[i]; o.r+=(o.max-o.r)*.06+0.6; o.a*=.955;
-    ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,7); ctx.lineWidth=2.2; ctx.strokeStyle=`rgba(${o.c[0]},${o.c[1]},${o.c[2]},${o.a})`; ctx.shadowColor=`rgba(${o.c[0]},${o.c[1]},${o.c[2]},${o.a})`; ctx.shadowBlur=14; ctx.stroke();
-    ctx.beginPath(); ctx.arc(o.x,o.y,o.r*.45,0,7); ctx.lineWidth=1; ctx.strokeStyle=`rgba(255,240,200,${o.a*.6})`; ctx.stroke();
-    if(o.a<.03) ondes.splice(i,1); }
-  if(ligne>=0){ const x=ligne*W; const gr=ctx.createLinearGradient(x-30,0,x+30,0); gr.addColorStop(0,'rgba(226,192,99,0)'); gr.addColorStop(.5,'rgba(255,230,160,.55)'); gr.addColorStop(1,'rgba(226,192,99,0)'); ctx.shadowBlur=0; ctx.fillStyle=gr; ctx.fillRect(x-30,0,60,H); }
-  ctx.restore(); requestAnimationFrame(dessine);
-}
+/* --- affichage « Vous entendez » --- */
+const pastille=document.getElementById('pastille'), dNom=document.getElementById('dNom'), dLum=document.getElementById('dLum'), dSon=document.getElementById('dSon');
+function montre(rgb,a){ pastille.style.background=`rgb(${rgb})`; pastille.style.boxShadow=`0 0 0 2px #0b1324,0 0 18px 4px rgb(${rgb})`;
+  dNom.textContent=NOMS[a.f]; dLum.innerHTML=`lumière : <em>${Math.round(a.thz)} THz</em>, soit ${Math.round(a.thz)} 000 milliards de vibrations par seconde`;
+  dSon.innerHTML=`son : <em>${Math.round(a.son)} Hz</em>, un <em>${nomNote(a.son)}</em>`; }
+/* --- effets visuels --- */
+const ondes=[]; let ligne=-1;
+function onde(u,v,c,grand){ ondes.push({x:u*W,y:v*H,r:0,max:(grand?.28:.16)*Math.max(W,H),a:1,c}); }
+function dessine(){ ctx.clearRect(0,0,fx.width,fx.height); ctx.save(); ctx.scale(dpr,dpr);
+  for(let i=ondes.length-1;i>=0;i--){ const o=ondes[i]; o.r+=(o.max-o.r)*.06+.6; o.a*=.955;
+    ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,7); ctx.lineWidth=2.2; ctx.strokeStyle=`rgba(${o.c},${o.a})`; ctx.shadowColor=`rgba(${o.c},${o.a})`; ctx.shadowBlur=14; ctx.stroke();
+    ctx.beginPath(); ctx.arc(o.x,o.y,o.r*.45,0,7); ctx.lineWidth=1; ctx.strokeStyle=`rgba(255,240,200,${o.a*.6})`; ctx.stroke(); if(o.a<.03) ondes.splice(i,1); }
+  if(ligne>=0){ const x=ligne*W, gr=ctx.createLinearGradient(x-30,0,x+30,0); gr.addColorStop(0,'rgba(226,192,99,0)'); gr.addColorStop(.5,'rgba(255,230,160,.55)'); gr.addColorStop(1,'rgba(226,192,99,0)'); ctx.shadowBlur=0; ctx.fillStyle=gr; ctx.fillRect(x-30,0,60,H); }
+  ctx.restore(); requestAnimationFrame(dessine); }
 function taille(){ const r=toile.getBoundingClientRect(); W=r.width; H=r.height; fx.width=W*dpr; fx.height=H*dpr; }
-/* légende qui s'allume */
-const legs={}; document.querySelectorAll('.leg').forEach(l=>legs[l.dataset.f]=l); let tl=null;
-function allume(f){ Object.values(legs).forEach(l=>l.classList.toggle('on',l.dataset.f===f)); clearTimeout(tl); tl=setTimeout(()=>Object.values(legs).forEach(l=>l.classList.remove('on')),700); }
 /* --- toucher et souris --- */
 let derniere='', dernierT=0;
 function sous(e){ const r=toile.getBoundingClientRect(); return [(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height]; }
 function caresse(e,force){ if(!grille||!A) return; const [u,v]=sous(e); if(u<0||u>1||v<0||v>1) return;
-  const c=couleurA(u,v), f=famille(c), cle=f+Math.round(u*14)+'-'+Math.round(v*18), now=performance.now();
-  if(cle!==derniere && now-dernierT>85){ derniere=cle; dernierT=now; joue(f,u,v,force||1); onde(u,v,c,false); } }
-toile.addEventListener('pointerdown',e=>{ demarre(); derniere=''; caresse(e,1.2); });
+  const rgb=couleurA(u,v), a=analyse(rgb), cle=a.f+Math.round(u*14)+'-'+Math.round(v*18), now=performance.now();
+  if(cle!==derniere && now-dernierT>85){ derniere=cle; dernierT=now; joue(a,u,v,force||1); onde(u,v,rgb.join(','),false); montre(rgb.join(','),a); } }
+toile.addEventListener('pointerdown',e=>{ demarre(); document.getElementById('voile').classList.add('cache'); derniere=''; caresse(e,1.2); });
 toile.addEventListener('pointermove',e=>{ if(e.pointerType==='mouse'||e.buttons||e.pressure>0) caresse(e,1); });
-/* --- écouter toute la toile : une ligne d'or la parcourt --- */
+/* --- écouter toute la toile --- */
 let balaie=null; const bb=document.getElementById('balayer');
-function stopBalayage(){ clearInterval(balaie); balaie=null; ligne=-1; bb.setAttribute('aria-pressed','false'); bb.textContent='▶ Écouter toute la toile'; }
-bb.addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache');
-  if(balaie){ stopBalayage(); return; }
-  bb.setAttribute('aria-pressed','true'); bb.textContent='■ Arrêter'; let pas=0; const N=64;
-  balaie=setInterval(()=>{ const u=(pas+.5)/N; ligne=u;
-    /* dans cette colonne : les couleurs les plus présentes, une note par famille */
-    const vu={}; for(let k=0;k<GH;k+=3){ const v=(k+.5)/GH, c=couleurA(u,v), f=famille(c), [h,s]=hsl(...c); const sc=s+.2; if(!vu[f]||sc>vu[f].sc) vu[f]={v,c,sc}; }
-    const choix=Object.entries(vu).sort((a,b)=>b[1].sc-a[1].sc).slice(0,pas%4===0?3:2);
-    choix.forEach(([f,o],j)=>{ joue(f,u,o.v,j?.55:.85); onde(u,o.v,o.c,j===0); });
-    if(++pas>=N) stopBalayage(); },360);
-});
-document.getElementById('go').addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); joue('or',.5,.2,1); joue('bleu',.5,.7,1); });
+function stopBalayage(){ clearInterval(balaie); balaie=null; ligne=-1; bb.setAttribute('aria-pressed','false'); bb.firstChild.textContent='▶ Écouter toute la toile'; }
+bb.addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); if(balaie){ stopBalayage(); return; }
+  bb.setAttribute('aria-pressed','true'); bb.firstChild.textContent='■ Arrêter'; let pas=0; const N=64;
+  balaie=setInterval(()=>{ const u=(pas+.5)/N; ligne=u; const vu={};
+    for(let k=0;k<GH;k+=3){ const v=(k+.5)/GH, rgb=couleurA(u,v), [h,s]=hsl(...rgb), a=analyse(rgb), sc=s+.2; if(!vu[a.f]||sc>vu[a.f].sc) vu[a.f]={v,rgb,a,sc}; }
+    const choix=Object.values(vu).sort((x,y)=>y.sc-x.sc).slice(0,pas%4===0?3:2);
+    choix.forEach((o,j)=>{ joue(o.a,u,o.v,j?.55:.85); onde(u,o.v,o.rgb.join(','),j===0); if(j===0) montre(o.rgb.join(','),o.a); });
+    if(++pas>=N) stopBalayage(); },360); });
+/* --- contemplation : battement binaural à 10 Hz --- */
+let alpha=null; const ab=document.getElementById('alphaBtn');
+ab.addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache');
+  if(alpha){ const t=A.currentTime; alpha.g.gain.cancelScheduledValues(t); alpha.g.gain.setValueAtTime(alpha.g.gain.value,t); alpha.g.gain.linearRampToValueAtTime(0,t+2); const a=alpha; setTimeout(()=>a.o.forEach(x=>x.stop()),2200); alpha=null; ab.setAttribute('aria-pressed','false'); return; }
+  const t=A.currentTime, base=389.5/2, m=A.createChannelMerger(2), g=A.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.16,t+4);
+  const oL=A.createOscillator(), oR=A.createOscillator(); oL.frequency.value=base; oR.frequency.value=base+10; oL.connect(m,0,0); oR.connect(m,0,1); m.connect(g); g.connect(A.destination);
+  oL.start(t); oR.start(t); alpha={o:[oL,oR],g}; ab.setAttribute('aria-pressed','true'); });
+document.getElementById('go').addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); const rgb=[216,64,44], a=analyse(rgb); joue(a,.5,.5,1); montre(rgb.join(','),a); });
 function pret(){ prepare(); taille(); dessine(); }
 if(img.complete) pret(); else img.addEventListener('load',pret);
 addEventListener('resize',taille);
