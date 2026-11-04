@@ -69,7 +69,7 @@ a{color:var(--or2)}
       <div class="direct"><i id="pastille"></i><div><b id="dNom">Touchez la toile</b><span id="dLum">lumière : la vibration de la couleur</span><span id="dSon">son : la même vibration, quarante octaves plus bas</span></div></div>
     </div>
     <div class="btns">
-      <button class="btn" id="balayer" type="button" aria-pressed="false">▶ Écouter toute la toile<small>une ligne d'or la lit de gauche à droite</small></button>
+      <button class="btn" id="balayer" type="button" aria-pressed="false">▶ Écouter toute la toile<small>une spirale d'or la parcourt, du cœur vers les bords</small></button>
       <button class="btn" id="alphaBtn" type="button" aria-pressed="false">◐ Contemplation, au casque<small>une pulsation douce à 10 battements par seconde</small></button>
     </div>
     <p class="cite">« Le rouge, pour moi, c'est la passion ; le jaune, la fulgurance. »<br><span style="font-style:normal;color:var(--cendre)">Isa Sator</span></p>
@@ -79,6 +79,7 @@ a{color:var(--or2)}
 <div class="alpha">
 <h2>Rendre audible l'invisible</h2>
 <p>La peinture est matière ; la couleur est énergie. Un rouge vibre environ 430 000 milliards de fois par seconde, un bleu près de 670 000 milliards. L'oreille ne perçoit pas ces vitesses. Descendez cette vibration de quarante octaves, comme on descend une gamme, et elle devient un son : le rouge chante autour du sol, le bleu autour du ré. Chaque toile a ainsi sa note, celle de sa couleur dominante, et chaque couleur qu'on touche s'accorde à elle.</p>
+<p>Pour écouter la toile entière, une spirale d'or la parcourt, du cœur vers les bords. Elle est construite sur le nombre d'or, 1,618 : à chaque quart de tour, elle s'ouvre de cette proportion, celle que l'on retrouve dans l'enroulement des graines au cœur du tournesol.</p>
 <p>On sait déjà faire entendre la musique des plantes, en traduisant en sons leurs infimes variations électriques. Avec Isa Sator, c'est la toile qui chante. Elle s'inscrit dans une longue lignée : Newton accordait les sept couleurs de l'arc-en-ciel aux sept notes de la gamme, et Kandinsky entendait le jaune sonner comme une trompette, le bleu profond comme un orgue.</p>
 <h2 style="margin-top:1em">La contemplation et les ondes alpha</h2>
 <p>Isa peint au réveil, encore au bord de ses rêves. C'est l'état des ondes dites alpha : quand l'esprit se repose, les yeux mi-clos, le cerveau ralentit son rythme, entre 8 et 12 battements par seconde. Au casque, le mode Contemplation fait naître une pulsation lente à ce rythme. Une invitation à regarder la toile autrement, sans promesse : l'effet de ces sons sur le cerveau est encore étudié.</p>
@@ -157,7 +158,9 @@ function dessine(){ ctx.clearRect(0,0,fx.width,fx.height); ctx.save(); ctx.scale
   for(let i=ondes.length-1;i>=0;i--){ const o=ondes[i]; o.r+=(o.max-o.r)*.05+.5; o.a*=.96;
     ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,7); ctx.lineWidth=2; ctx.strokeStyle=`rgba(${o.c},${o.a})`; ctx.shadowColor=`rgba(${o.c},${o.a})`; ctx.shadowBlur=14; ctx.stroke();
     ctx.beginPath(); ctx.arc(o.x,o.y,o.r*.45,0,7); ctx.lineWidth=1; ctx.strokeStyle=`rgba(255,240,200,${o.a*.55})`; ctx.stroke(); if(o.a<.03) ondes.splice(i,1); }
-  if(ligne>=0){ const x=ligne*W, gr=ctx.createLinearGradient(x-30,0,x+30,0); gr.addColorStop(0,'rgba(226,192,99,0)'); gr.addColorStop(.5,'rgba(255,230,160,.5)'); gr.addColorStop(1,'rgba(226,192,99,0)'); ctx.shadowBlur=0; ctx.fillStyle=gr; ctx.fillRect(x-30,0,60,H); }
+  if(ligne>=0 && trace.length){ ctx.shadowBlur=10; ctx.shadowColor='rgba(255,225,150,.7)'; ctx.lineWidth=2; let prev=null;
+    trace.forEach((pt,i)=>{ if(!pt){ prev=null; return; } if(prev){ ctx.beginPath(); ctx.moveTo(prev[0],prev[1]); ctx.lineTo(pt[0],pt[1]); ctx.strokeStyle=`rgba(255,226,160,${.25+.6*(i/trace.length)})`; ctx.stroke(); } prev=pt; });
+    const z=trace.filter(Boolean).pop(); if(z){ ctx.beginPath(); ctx.arc(z[0],z[1],6,0,7); ctx.fillStyle='rgba(255,236,180,.95)'; ctx.fill(); } }
   ctx.restore(); requestAnimationFrame(dessine); }
 function taille(){ const r=toile.getBoundingClientRect(); W=r.width; H=r.height; fx.width=W*dpr; fx.height=H*dpr; }
 /* toile pas trop haute à l'écran */
@@ -171,16 +174,21 @@ function caresse(e,force){ if(!grille||!A) return; const [u,v]=sous(e); if(u<0||
   if(k!==derniere && now-dernierT>140){ derniere=k; dernierT=now; joue(a,u,v,force||1); onde(u,v,rgb.join(','),false); montre(rgb.join(','),a); } }
 toile.addEventListener('pointerdown',e=>{ demarre(); document.getElementById('voile').classList.add('cache'); derniere=''; caresse(e,1.1); });
 toile.addEventListener('pointermove',e=>{ if(e.pointerType==='mouse'||e.buttons||e.pressure>0) caresse(e,1); });
-/* --- écouter toute la toile : une phrase lente --- */
-let balaie=null; const bb=document.getElementById('balayer');
-function stopBalayage(){ clearInterval(balaie); balaie=null; ligne=-1; bb.setAttribute('aria-pressed','false'); bb.firstChild.textContent='▶ Écouter toute la toile'; }
+/* --- écouter toute la toile : une spirale d'or, du cœur vers les bords --- */
+const PHI=(1+Math.sqrt(5))/2; let balaie=null, trace=[]; const bb=document.getElementById('balayer');
+function stopBalayage(){ clearTimeout(balaie); balaie=null; ligne=-1; trace=[]; bb.setAttribute('aria-pressed','false'); bb.firstChild.textContent='▶ Écouter toute la toile'; }
 bb.addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); if(balaie){ stopBalayage(); return; }
-  bb.setAttribute('aria-pressed','true'); bb.firstChild.textContent='■ Arrêter'; let pas=0; const N=40;
-  balaie=setInterval(()=>{ const u=(pas+.5)/N; ligne=u; let best=null;
-    for(let k=0;k<GH;k+=2){ const v=(k+.5)/GH, rgb=couleurA(u,v), [h,s,l]=hsl(...rgb); const sc=s*(1-Math.abs(l-.5)); if(!best||sc>best.sc) best={v,rgb,sc}; }
-    const a=lumiere(best.rgb); joue(a,u,best.v,.9); onde(u,best.v,best.rgb.join(','),true); montre(best.rgb.join(','),a);
-    if(pas%4===0){ const b2=couleurA(u,.85); joue({...lumiere(b2),f:'nuit'},u,.85,.5); }
-    if(++pas>=N) stopBalayage(); },520); });
+  bb.setAttribute('aria-pressed','true'); bb.firstChild.textContent='■ Arrêter'; trace=[];
+  /* spirale d'or : r = r0 · φ^(θ / 90°). Pas réguliers le long de la courbe : le rayon grandit d'un même écart à chaque note */
+  const N=55, rmax=Math.hypot(W,H)/2, r0=Math.min(W,H)*.02; let k=0;
+  const pas=()=>{ if(k>N){ stopBalayage(); return; }
+    const r=r0+(rmax-r0)*k/N, th=(Math.PI/2)*Math.log(r/r0)/Math.log(PHI), x=W/2+r*Math.cos(th), y=H/2+r*Math.sin(th); k++;
+    if(x<0||x>W||y<0||y>H){ trace.push(null); balaie=setTimeout(pas,60); return; }
+    const u=x/W, v=y/H, rgb=couleurA(u,v), a=lumiere(rgb); trace.push([x,y,rgb.join(',')]); ligne=1;
+    joue(a,u,v,.9); onde(u,v,rgb.join(','),k<6); montre(rgb.join(','),a);
+    if(k%5===1){ joue({...lumiere(rgb),f:'nuit'},u,v,.45); }
+    balaie=setTimeout(pas, 420+Math.round(380*(1-k/N))); };  /* lent au cœur, plus fluide vers les bords */
+  pas(); });
 /* --- contemplation --- */
 let alpha=null; const ab=document.getElementById('alphaBtn');
 ab.addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache');
