@@ -81,7 +81,7 @@ a{color:var(--or2)}
 <p>La peinture est matière ; la couleur est énergie. Un rouge vibre environ 430 000 milliards de fois par seconde, un bleu près de 670 000 milliards. L'oreille ne perçoit pas ces vitesses. Descendez cette vibration de quarante octaves, comme on descend une gamme, et elle devient un son : le rouge chante autour du sol, le bleu autour du ré. Chaque toile a ainsi sa note, celle de sa couleur dominante, et chaque couleur qu'on touche s'accorde à elle.</p>
 <p>On sait déjà faire entendre la musique des plantes, en traduisant en sons leurs infimes variations électriques. Avec Isa Sator, c'est la toile qui chante. Elle s'inscrit dans une longue lignée : Newton accordait les sept couleurs de l'arc-en-ciel aux sept notes de la gamme, et Kandinsky entendait le jaune sonner comme une trompette, le bleu profond comme un orgue.</p>
 <h2 style="margin-top:1em">Pourquoi une spirale d'or</h2>
-<p>Pour écouter la toile entière, une spirale d'or s'y dessine, tourne et voyage d'elle-même. Vous pouvez aussi la guider du doigt ou de la souris : elle suit votre geste, puis reprend sa route.</p>
+<p>Pour écouter la toile entière, une spirale d'or s'y dessine, tourne et voyage d'elle-même. Elle se teinte des couleurs qu'elle traverse : rouge sur le rouge, bleu sur le bleu, comme si la toile coulait dans son tracé. Vous pouvez aussi la guider du doigt ou de la souris : elle suit votre geste, puis reprend sa route.</p>
 <p>Elle est construite sur le nombre d'or, 1,618 : à chaque quart de tour, elle s'ouvre de cette proportion. C'est une forme que la nature emploie sans cesse. Les graines au cœur du tournesol s'enroulent selon elle, et les feuilles de bien des plantes se disposent ainsi autour de leur tige.</p>
 <p>La spirale ne saute jamais. Chaque couleur qu'elle lit touche la précédente : elle passe d'un rouge à un rouge voisin, d'un bleu à un bleu plus profond, comme l'œil glisse sur une toile. Les notes s'enchaînent alors sans heurt. Une ligne droite qui balaierait la toile passerait au contraire brutalement d'une couleur à une autre.</p>
 <p>Le son suit le même principe. Chaque note naît doucement et se fond dans la suivante, comme les cordes d'une harpe que l'on effleure. En dessous, une nappe très douce tient la note propre de la toile, celle de sa couleur dominante, et toutes les notes s'accordent sur elle : aucune ne se heurte à une autre.</p>
@@ -210,13 +210,24 @@ function animeSpirale(now){ const dt=Math.min(.05,(now-tPrec)/1000); tPrec=now; 
   if(now-tSon>200){ const p=pointSpi(spi.tete*THMAX*spi.croiss); if(p[0]>=0&&p[0]<=W&&p[1]>=0&&p[1]<=H){ tSon=now; const u=p[0]/W,v=p[1]/H, rgb=couleurA(u,v), a=lumiere(rgb); plume(a,u,v); montre(rgb.join(','),a); spi.coul=rgb.join(','); } } }
 function rayonMax(){ return Math.min(W,H)*.42; }
 function pointSpi(th){ const r0=rayonMax()/Math.exp(KB*THMAX), r=r0*Math.exp(KB*th), an=th+spi.phase; return [spi.cx+r*Math.cos(an), spi.cy+r*Math.sin(an)]; }
-function dessineSpirale(){ const thv=THMAX*spi.croiss, N=260; ctx.lineCap='round'; ctx.lineJoin='round';
-  for(const [dec,alphaMax] of [[Math.PI,.16],[0,1]]){ /* un bras fantôme opposé donne le tourbillon */
-    const sav=spi.phase; spi.phase+=dec; let prev=pointSpi(0);
-    for(let i=1;i<=N;i++){ const f=i/N, p=pointSpi(thv*f);
-      ctx.beginPath(); ctx.moveTo(prev[0],prev[1]); ctx.lineTo(p[0],p[1]);
-      const al=alphaMax*(.95-.6*f); ctx.strokeStyle=`rgba(255,224,150,${al})`; ctx.lineWidth=(1+2.6*f)*(dec?0.7:1); ctx.shadowColor=`rgba(255,215,120,${al})`; ctx.shadowBlur=dec?0:12; ctx.stroke(); prev=p; }
-    spi.phase=sav; }
+/* la couleur de la toile sous chaque point de la spirale, avivée pour rester visible sur son propre fond */
+function vive(p){ const u=Math.max(0,Math.min(1,p[0]/W)), v=Math.max(0,Math.min(1,p[1]/H)), [r,g,b]=couleurA(u,v), [h,s,l]=hsl(r,g,b);
+  const S=Math.min(1,s*1.4+.2), L=Math.min(.68,Math.max(.52,l+.18)), q=L<.5?L*(1+S):L+S-L*S, pp=2*L-q;
+  const f=t=>{ t=(t%1+1)%1; return t<1/6?pp+(q-pp)*6*t:t<1/2?q:t<2/3?pp+(q-pp)*(2/3-t)*6:pp; }, hh=h/360;
+  return [f(hh+1/3),f(hh),f(hh-1/3)].map(x=>Math.round(x*255)).join(','); }
+const calque=document.createElement('canvas'), c2=calque.getContext('2d');
+function dessineSpirale(){ const thv=THMAX*spi.croiss, N=260;
+  if(calque.width!==fx.width||calque.height!==fx.height){ calque.width=fx.width; calque.height=fx.height; }
+  /* chaque bras est tracé opaque sur un calque, puis posé avec sa transparence : un trait continu, sans perles */
+  for(const [dec,alphaMax] of [[Math.PI,.22],[0,.92]]){ /* un bras fantôme opposé donne le tourbillon */
+    const sav=spi.phase; spi.phase+=dec; const pts=[]; for(let i=0;i<=N;i++) pts.push(pointSpi(thv*i/N)); spi.phase=sav;
+    c2.setTransform(1,0,0,1,0,0); c2.clearRect(0,0,calque.width,calque.height); c2.setTransform(dpr,0,0,dpr,0,0); c2.lineCap='round'; c2.lineJoin='round';
+    const cols=pts.map(vive);
+    for(let i=1;i<=N;i++){ const f=i/N, w=(1.8+3.6*f)*(dec?0.6:1); c2.beginPath(); c2.moveTo(pts[i-1][0],pts[i-1][1]); c2.lineTo(pts[i][0],pts[i][1]);
+      c2.strokeStyle=`rgb(${cols[i]})`; c2.lineWidth=w; c2.shadowColor=`rgb(${cols[i]})`; c2.shadowBlur=dec?0:10; c2.stroke(); }
+    if(!dec){ c2.shadowBlur=0; for(let i=1;i<=N;i++){ const f=i/N, w=(1.8+3.6*f), cl=cols[i].split(',').map(x=>Math.round(+x+(255-x)*.6)).join(',');
+      c2.beginPath(); c2.moveTo(pts[i-1][0],pts[i-1][1]); c2.lineTo(pts[i][0],pts[i][1]); c2.strokeStyle=`rgb(${cl})`; c2.lineWidth=Math.max(.9,w*.3); c2.stroke(); } }
+    ctx.save(); ctx.setTransform(1,0,0,1,0,0); ctx.globalAlpha=alphaMax; ctx.shadowBlur=0; ctx.drawImage(calque,0,0); ctx.restore(); }
   const h=pointSpi(spi.tete*thv); ctx.shadowBlur=22; ctx.shadowColor=`rgba(${spi.coul||'255,236,180'},1)`;
   ctx.beginPath(); ctx.arc(h[0],h[1],7,0,7); ctx.fillStyle='rgba(255,244,210,.95)'; ctx.fill();
   ctx.beginPath(); ctx.arc(h[0],h[1],13,0,7); ctx.lineWidth=2; ctx.strokeStyle=`rgba(${spi.coul||'255,236,180'},.9)`; ctx.stroke(); ctx.shadowBlur=0; }
