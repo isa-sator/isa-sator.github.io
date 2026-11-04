@@ -70,7 +70,7 @@ a{color:var(--or2)}
     </div>
     <div class="btns">
       <button class="btn" id="balayer" type="button" aria-pressed="false">▶ Écouter la toile en spirale<small>une spirale d'or tourne et voyage sur la toile ; guidez-la du doigt ou de la souris</small></button>
-      <button class="btn" id="alphaBtn" type="button" aria-pressed="false">◐ Contemplation, au casque<small>une pulsation douce à 10 battements par seconde</small></button>
+      <button class="btn" id="alphaBtn" type="button" aria-pressed="false">◐ Contemplation<small>une nappe qui respire lentement ; au casque, une pulsation alpha s'y ajoute</small></button>
     </div>
     <p class="cite">« Le rouge, pour moi, c'est la passion ; le jaune, la fulgurance. »<br><span style="font-style:normal;color:var(--cendre)">Isa Sator</span></p>
   </div>
@@ -87,7 +87,7 @@ a{color:var(--or2)}
 <p>Le son suit le même principe. Chaque note naît doucement et se fond dans la suivante, comme les cordes d'une harpe que l'on effleure. En dessous, une nappe très douce tient la note propre de la toile, celle de sa couleur dominante, et toutes les notes s'accordent sur elle : aucune ne se heurte à une autre.</p>
 <p>Le résultat s'écoute plus qu'il ne s'explique. En suivant une géométrie venue de la nature, la toile donne une musique plus continue, plus vibrante, plus douce à l'oreille. Une expérience à vivre plutôt qu'une promesse.</p>
 <h2 style="margin-top:1em">La contemplation et les ondes alpha</h2>
-<p>Isa peint au réveil, encore au bord de ses rêves. C'est l'état des ondes dites alpha : quand l'esprit se repose, les yeux mi-clos, le cerveau ralentit son rythme, entre 8 et 12 battements par seconde. Au casque, le mode Contemplation fait naître une pulsation lente à ce rythme. Une invitation à regarder la toile autrement, sans promesse : l'effet de ces sons sur le cerveau est encore étudié.</p>
+<p>Isa peint au réveil, encore au bord de ses rêves. C'est l'état des ondes dites alpha : quand l'esprit se repose, les yeux mi-clos, le cerveau ralentit son rythme, entre 8 et 12 battements par seconde. Le mode Contemplation déploie une nappe sonore sur la note de la toile, qui enfle et s'apaise au rythme d'une respiration calme. Au casque, une pulsation à 10 battements par seconde s'y ajoute : chaque oreille reçoit une note légèrement différente, et c'est leur écart que le cerveau perçoit. Une invitation à regarder la toile autrement, sans promesse : l'effet de ces sons sur le cerveau est encore étudié.</p>
 <p class="note">Sur iPhone, désactivez le mode silencieux (le petit bouton sur le côté) pour entendre le son. Essai de démonstration, non relié au site. <a href="../">Retour au site d'Isa Sator</a></p>
 </div>
 </div>
@@ -226,9 +226,18 @@ function guide(e){ if(!spi.actif) return false; const r=toile.getBoundingClientR
 let alpha=null; const ab=document.getElementById('alphaBtn');
 ab.addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache');
   if(alpha){ const t=A.currentTime; alpha.g.gain.cancelScheduledValues(t); alpha.g.gain.setValueAtTime(alpha.g.gain.value,t); alpha.g.gain.linearRampToValueAtTime(0,t+2); const a=alpha; setTimeout(()=>a.o.forEach(x=>x.stop()),2200); alpha=null; ab.setAttribute('aria-pressed','false'); return; }
-  const t=A.currentTime, base=440*Math.pow(2,((tonique??-2)-24)/12), m=A.createChannelMerger(2), g=A.createGain(); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.12,t+4);
-  const oL=A.createOscillator(), oR=A.createOscillator(); oL.frequency.value=base; oR.frequency.value=base+10; oL.connect(m,0,0); oR.connect(m,0,1); m.connect(g); g.connect(A.destination);
-  oL.start(t); oR.start(t); alpha={o:[oL,oR],g}; ab.setAttribute('aria-pressed','true'); });
+  /* une nappe chaude (note de la toile, quinte, octave) qui respire lentement, belle sur haut-parleur ;
+     au casque, une paire de notes très discrète (10 Hz d'écart entre les deux oreilles) y ajoute la pulsation alpha */
+  const t=A.currentTime, base=440*Math.pow(2,((tonique??-2)-12)/12), g=A.createGain(), lp=A.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=900;
+  g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.09,t+5); lp.connect(g); g.connect(sortie);
+  const os=[];
+  [[1,.5,0],[1.5,.28,4],[2,.16,-3],[1,.25,7]].forEach(([m,amp,det],i)=>{ const o=A.createOscillator(), gg=A.createGain(); o.type=i===3?'triangle':'sine'; o.frequency.value=base*m/(i===3?2:1); o.detune.value=det; gg.gain.value=amp; o.connect(gg); gg.connect(lp); o.start(t); os.push(o); });
+  /* respiration : la nappe enfle et s'apaise toutes les 10 secondes, le rythme d'une respiration calme */
+  const lfo=A.createOscillator(), lg=A.createGain(); lfo.frequency.value=.1; lg.gain.value=.035; lfo.connect(lg); lg.connect(g.gain); lfo.start(t); os.push(lfo);
+  const m=A.createChannelMerger(2), gb=A.createGain(); gb.gain.setValueAtTime(0,t); gb.gain.linearRampToValueAtTime(.022,t+8);
+  const oL=A.createOscillator(), oR=A.createOscillator(); oL.frequency.value=base; oR.frequency.value=base+10; oL.connect(m,0,0); oR.connect(m,0,1); m.connect(gb); gb.connect(A.destination); oL.start(t); oR.start(t); os.push(oL,oR);
+  const gAll={gain:{cancelScheduledValues:x=>{g.gain.cancelScheduledValues(x);gb.gain.cancelScheduledValues(x);},setValueAtTime:(v,x)=>{g.gain.setValueAtTime(g.gain.value,x);gb.gain.setValueAtTime(gb.gain.value,x);},linearRampToValueAtTime:(v,x)=>{g.gain.linearRampToValueAtTime(0,x);gb.gain.linearRampToValueAtTime(0,x);},value:0}};
+  alpha={o:os,g:gAll}; ab.setAttribute('aria-pressed','true'); });
 document.getElementById('go').addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); if(tonique!==null){ const f=440*Math.pow(2,tonique/12); joue({f:'or',hz:f,thz:0,l:.5},.5,.5,1); } });
 dessine(); charge('licorne'); if(img.complete) { prepare(); cadre(); }
 })();
