@@ -69,7 +69,7 @@ a{color:var(--or2)}
       <div class="direct"><i id="pastille"></i><div><b id="dNom">Touchez la toile</b><span id="dLum">lumière : la vibration de la couleur</span><span id="dSon">son : la même vibration, quarante octaves plus bas</span></div></div>
     </div>
     <div class="btns">
-      <button class="btn" id="balayer" type="button" aria-pressed="false">▶ Écouter la toile en spirale<small>une spirale d'or tourne et voyage sur la toile ; guidez-la du doigt ou de la souris</small></button>
+      <button class="btn" id="balayer" type="button" aria-pressed="false">▶ La spirale chantante<small>elle tourne et voyage sur la toile ; guidez-la du doigt ou de la souris</small></button>
       <button class="btn" id="alphaBtn" type="button" aria-pressed="false">◐ Contemplation<small>une nappe qui respire lentement ; au casque, une pulsation alpha s'y ajoute</small></button>
     </div>
     <p class="cite">« Le rouge, pour moi, c'est la passion ; le jaune, la fulgurance. »<br><span style="font-style:normal;color:var(--cendre)">Isa Sator</span></p>
@@ -80,8 +80,8 @@ a{color:var(--or2)}
 <h2>Rendre audible l'invisible</h2>
 <p>La peinture est matière ; la couleur est énergie. Un rouge vibre environ 430 000 milliards de fois par seconde, un bleu près de 670 000 milliards. L'oreille ne perçoit pas ces vitesses. Descendez cette vibration de quarante octaves, comme on descend une gamme, et elle devient un son : le rouge chante autour du sol, le bleu autour du ré. Chaque toile a ainsi sa note, celle de sa couleur dominante, et chaque couleur qu'on touche s'accorde à elle.</p>
 <p>On sait déjà faire entendre la musique des plantes, en traduisant en sons leurs infimes variations électriques. Avec Isa Sator, c'est la toile qui chante. Elle s'inscrit dans une longue lignée : Newton accordait les sept couleurs de l'arc-en-ciel aux sept notes de la gamme, et Kandinsky entendait le jaune sonner comme une trompette, le bleu profond comme un orgue. De nos jours, l'écrivain Daniel Tammet, synesthète, ouvre son autobiographie, <em>Je suis né un jour bleu</em>, par cet aveu : il est né un mercredi, et le mercredi est toujours bleu dans son esprit. Chaque nombre a pour lui sa couleur, sa forme et sa texture. Chez certains, les sens se répondent naturellement.</p>
-<h2 style="margin-top:1em">Pourquoi une spirale d'or</h2>
-<p>Pour écouter la toile entière, une spirale d'or s'y dessine, tourne et voyage d'elle-même. Elle se teinte des couleurs qu'elle traverse : rouge sur le rouge, bleu sur le bleu, comme si la toile coulait dans son tracé. Vous pouvez aussi la guider du doigt ou de la souris : elle suit votre geste, puis reprend sa route.</p>
+<h2 style="margin-top:1em">La spirale chantante</h2>
+<p>Pour écouter la toile entière, une spirale chantante s'y dessine, tourne et voyage d'elle-même. Elle se teinte des couleurs qu'elle traverse : rouge sur le rouge, bleu sur le bleu, comme si la toile coulait dans son tracé. Vous pouvez aussi la guider du doigt ou de la souris : elle suit votre geste, puis reprend sa route.</p>
 <p>Elle est construite sur le nombre d'or, 1,618 : à chaque quart de tour, elle s'ouvre de cette proportion. C'est une forme que la nature emploie sans cesse. Les graines au cœur du tournesol s'enroulent selon elle, et les feuilles de bien des plantes se disposent ainsi autour de leur tige.</p>
 <p>La spirale ne saute jamais. Chaque couleur qu'elle lit touche la précédente : elle passe d'un rouge à un rouge voisin, d'un bleu à un bleu plus profond, comme l'œil glisse sur une toile. Les notes s'enchaînent alors sans heurt. Une ligne droite qui balaierait la toile passerait au contraire brutalement d'une couleur à une autre.</p>
 <p>Le son suit le même principe. Chaque note naît doucement et se fond dans la suivante, comme les cordes d'une harpe que l'on effleure. En dessous, une nappe très douce tient la note propre de la toile, celle de sa couleur dominante, et toutes les notes s'accordent sur elle : aucune ne se heurte à une autre.</p>
@@ -183,7 +183,7 @@ const spi={actif:false,cx:0,cy:0,phase:0,croiss:0,tete:0,tAuto:0,tCible:-1e9,tx:
 const bb=document.getElementById('balayer');
 function droneFreq(){ return 440*Math.pow(2,((tonique??-2)-24)/12); }
 function majDrone(){ if(!spi.drone||!A) return; const t=A.currentTime, f=droneFreq(); spi.drone.o[0].frequency.linearRampToValueAtTime(f,t+1.5); spi.drone.o[1].frequency.linearRampToValueAtTime(f*1.5,t+1.5); }
-function stopBalayage(){ if(!spi.actif) return; spi.actif=false; bb.setAttribute('aria-pressed','false'); bb.firstChild.textContent='▶ Écouter la toile en spirale';
+function stopBalayage(){ if(!spi.actif) return; spi.actif=false; bb.setAttribute('aria-pressed','false'); bb.firstChild.textContent='▶ La spirale chantante';
   if(spi.drone){ const d=spi.drone, t=A.currentTime; d.g.gain.cancelScheduledValues(t); d.g.gain.setValueAtTime(d.g.gain.value,t); d.g.gain.linearRampToValueAtTime(0,t+1.5); setTimeout(()=>d.o.forEach(o=>o.stop()),1700); spi.drone=null; } }
 bb.addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); if(spi.actif){ stopBalayage(); return; }
   Object.assign(spi,{actif:true,cx:W/2,cy:H/2,phase:0,croiss:0,tete:0,tAuto:0,tCible:-1e9,dernNote:0,dernF:0});
@@ -250,7 +250,7 @@ ab.addEventListener('click',()=>{ demarre(); document.getElementById('voile').cl
   const gAll={gain:{cancelScheduledValues:x=>{g.gain.cancelScheduledValues(x);gb.gain.cancelScheduledValues(x);},setValueAtTime:(v,x)=>{g.gain.setValueAtTime(g.gain.value,x);gb.gain.setValueAtTime(gb.gain.value,x);},linearRampToValueAtTime:(v,x)=>{g.gain.linearRampToValueAtTime(0,x);gb.gain.linearRampToValueAtTime(0,x);},value:0}};
   alpha={o:os,g:gAll}; ab.setAttribute('aria-pressed','true'); });
 document.getElementById('go').addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); if(tonique!==null){ const f=440*Math.pow(2,tonique/12); joue({f:'or',hz:f,thz:0,l:.5},.5,.5,1); } });
-dessine(); charge('licorne'); if(img.complete) { prepare(); cadre(); }
+dessine(); { const t=new URLSearchParams(location.search).get('t'); charge(TOILES.some(x=>x[0]===t)?t:'licorne'); } if(img.complete) { prepare(); cadre(); }
 })();
 </script>
 </body></html>
