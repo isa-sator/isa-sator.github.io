@@ -1481,8 +1481,10 @@ const INTERIEURS={
       dessus:{x:565,basPref:1.35,basMin:1.18,hautMax:2.48,largMax:2.6,fond:0.55},
       deco:[{x:284,y:1107,w:558,h:185,img:"deco/chambrep-tete.png",c:0,a:1.0},{x:497,y:1180,w:136,h:135,img:"deco/coussin.png",c:1,a:1,omb:1}]}},
   loft:{nom:"Loft",legende:"num loft, parede de tijolo",legendeGrand:"num loft, parede de tijolo, por cima de um banco",
-    grand:{src:"interieur-loft-grand.jpg",w:2246,h:1815,k:414,sol:1509,grand:true,
-      dessus:{x:957,basPref:0.62,basMin:0.45,hautMax:3.5,largMax:5.2,fond:0.45},deco:[]},
+    grand:{src:"interieur-loft-grand.jpg",w:4156,h:1815,k:414,sol:1509,grand:true,
+      dessus:{x:1867,basPref:0.62,basMin:0.45,hautMax:3.5,largMax:5.2,fond:0.45},deco:[]},
+    grandPortrait:{src:"interieur-loft-grand-portrait.jpg",w:1438,h:2576,k:420,sol:1939,grand:true,
+      dessus:{x:721,basPref:0.62,basMin:0.45,hautMax:4.4,largMax:3.3,fond:0.45},deco:[]},
     paysage:{src:"interieur-loft-paysage.jpg",w:2000,h:1116,k:400,sol:950,
       libre:{x:965,largMax:2.3,centreY:1.45,hautMax:2.37,fond:0.08},
       devant:[[1429,790],[1440,770],[1470,764],[1470,672],[1500,664],[1790,664],[1812,672],[1815,770],[1824,790],[1824,1035],[1429,1035]],
@@ -1525,8 +1527,8 @@ function place(I,hm,lm){
 function photoPour(I,hm,lm,portrait){
   const propre=V=>{const p=place(V,hm,lm); return p.ok&&!p.derriere;};
   if(portrait&&I.portrait&&propre(I.portrait)) return I.portrait;
+  if(portrait&&I.grandPortrait&&propre(I.grandPortrait)) return I.grandPortrait;   /* téléphone : rester en photo verticale */
   if(propre(I.paysage)) return I.paysage;
-  if(portrait&&I.grandPortrait&&propre(I.grandPortrait)) return I.grandPortrait;
   if(I.grand&&propre(I.grand)) return I.grand;      /* grande toile : la même pièce en version « grand mur », meubles bas */
   return (portrait&&I.portrait)?I.portrait:I.paysage;
 }
@@ -1554,6 +1556,8 @@ function dessineSalon(){
   if(V.grand){                                                     /* grand mur : la toile ET le meuble bas doivent rester visibles */
     const besoin=(P.bas+hm+0.35)*V.k, dispo=r.height*0.9;
     if(besoin*sc>dispo){ sc=dispo/besoin; reduit=true; }
+    const besoinL=(lm+0.3)*V.k, dispoL=r.width*0.96;                /* téléphone : la toile entière en largeur aussi */
+    if(besoinL*sc>dispoL){ sc=dispoL/besoinL; reduit=true; }
   }
   let ox=(r.width-V.w*sc)/2, oy=(r.height-V.h*sc)/2;
   const ppm=V.k*sc;                                                /* pixels par mètre à l'écran */
@@ -1563,7 +1567,7 @@ function dessineSalon(){
   const marge=0.07*r.height, yHautPx=V.sol-(P.bas+hm)*V.k, yBasPx=V.sol-P.bas*V.k;
   if(yHautPx*sc+oy<marge) oy=marge-yHautPx*sc;
   if(yBasPx*sc+oy>r.height-marge) oy=r.height-marge-yBasPx*sc;
-  if(reduit){ ox=r.width/2-P.x*sc; oy=r.height-(V.sol+0.25*V.k)*sc-0.04*r.height; }
+  if(reduit){ ox=r.width/2-P.x*sc; const mil=V.sol-((P.bas+hm+0.1)-0.25)/2*V.k; oy=Math.min(r.height-(V.sol+0.25*V.k)*sc-0.04*r.height, r.height/2-mil*sc); }
   else oy=Math.min(0, Math.max(r.height-V.h*sc, oy));
   const yDe=m=>oy+(V.sol-m*V.k)*sc;                                /* hauteur au-dessus du sol -> y écran */
   const L=lm*ppm, H=hm*ppm, x=ox+P.x*sc-L/2, top=yDe(P.bas+hm);
