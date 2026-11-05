@@ -54,7 +54,7 @@ ja:{t:"自分の壁で見る",intro:"スマートフォンのカメラで、イ�
 ko:{t:"내 벽에서 보기",intro:"휴대폰 카메라로 이자 사토르의 그림을 실제 크기 그대로 여러분의 벽에 걸어 보세요.",dim:"실제 크기: {h} × {w} cm",ind:"대략적인 크기: 카탈로그 기준 {h} × {w} cm, 사진 비율",pcT:"컴퓨터로 보고 계십니다",pcP:"이 기능은 휴대폰이나 태블릿에서 작동합니다. 휴대폰 카메라를 이 코드에 비춘 뒤 나타나는 링크를 누르세요.",etT:"휴대폰에서 3단계",e1:"그림 아래의 금색 버튼 \"내 벽에서 보기\"를 누르세요(iPhone에서는 바로 위의 이미지).",e2:"카메라가 열리면 벽을 비추고 2~3초 동안 휴대폰을 천천히 움직이세요.",e3:"그림이 벽에 걸립니다. 멀어지거나 다가가도 실제 크기 그대로 제자리에 있습니다.",ios:"iPhone에서는 이 이미지를 누른 뒤 화면 위쪽의 \"AR\"을 선택하세요.",note:"컴퓨터에서는 마우스로 그림을 돌려 볼 수 있습니다.",retour:"이자 사토르 사이트로 돌아가기",absent:"이 그림은 아직 벽에 걸어 볼 수 없습니다."}
 };
 const PAGES={fr:"",en:"en.html",de:"de.html",it:"it.html",es:"es.html",pt:"pt.html",pl:"pl.html",sr:"sr.html",bg:"bg.html",ru:"ru.html",ar:"ar.html",zh:"zh.html","zh-hant":"zh-hant.html",ja:"ja.html",ko:"ko.html"};
-const q=new URLSearchParams(location.search), n=parseInt(q.get('n'),10);
+const q=new URLSearchParams(location.search), n=(/^\d+$/.test(q.get('n')||'')?parseInt(q.get('n'),10):(q.get('n')||'').replace(/[^a-z0-9-]/g,''));
 let l=(q.get('l')||'fr').toLowerCase(); if(l==='sr-latn') l='sr'; if(!L[l]) l='fr';
 const T=L[l], $=id=>document.getElementById(id);
 document.documentElement.lang=l; if(l==='ar') document.documentElement.dir='rtl';
@@ -63,11 +63,11 @@ $('bt').textContent=T.t; $('iosP').textContent=T.ios; $('retour').textContent=T.
 const tactile=matchMedia('(pointer:coarse)').matches, ios=/iPhone|iPad|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
 fetch('toiles.json').then(r=>r.json()).then(D=>{
   const o=D[n]; if(!o){ $('titre').textContent=T.t; $('intro').textContent=T.absent; $('mv').remove(); return; }
-  const tb='TB'+String(n).padStart(2,'0');
+  const tb=/^\d+$/.test(n)?'TB'+String(n).padStart(2,'0'):n;
   $('titre').textContent=o.t; document.title=o.t+' · Isa Sator · '+T.t;
   $('sous').textContent=(o.ind?T.ind:T.dim).replace('{h}',o.h).replace('{w}',o.w);
   const mv=$('mv'); mv.src='t/'+tb+'.glb'; mv.setAttribute('ios-src','t/'+tb+'.usdz'); mv.alt=o.t+', Isa Sator';
-  $('iosA').href='t/'+tb+'.usdz'; $('iosI').src='../'+(o.g?'grand/':'catalogue/')+tb+'.jpg'; $('iosI').alt=o.t;
+  $('iosA').href='t/'+tb+'.usdz'; $('iosI').src='../'+(o.dir?o.dir+'/':o.g?'grand/':'catalogue/')+tb+'.jpg'; $('iosI').alt=o.t;
   if(ios) $('ios').classList.add('vu');
   if(!tactile){ $('pc').classList.add('vu');
     try{ const qr=qrcode(0,'M'); qr.addData(location.href); qr.make(); $('qr').innerHTML=qr.createSvgTag({cellSize:4,margin:0}); }catch(e){} }
