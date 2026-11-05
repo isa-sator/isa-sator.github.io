@@ -68,6 +68,9 @@ if(L==="fr"&&c!=="fr"&&d[c]&&!/claude\.ai$/.test(location.hostname)) location.re
 @font-face{font-family:"Jost";font-style:normal;font-weight:300;font-display:swap;src:url("fonts/jost-latin-ext-300-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:"Jost";font-style:normal;font-weight:400;font-display:swap;src:url("fonts/jost-latin-ext-400-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:"Jost";font-style:normal;font-weight:500;font-display:swap;src:url("fonts/jost-latin-ext-500-normal.woff2") format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+
+.fond-flou{position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(28px) brightness(.6);pointer-events:none}
+.fond-net{position:absolute;background-size:100% 100%;pointer-events:none;box-shadow:0 0 60px 30px rgba(0,0,0,.25)}
 </style>
 <style>
 /* Une grande toile d'encre bleu nuit, travaillée à la brosse, sert de mur. L'emblème de
@@ -1448,10 +1451,14 @@ let courante=null;   /* {src, titre, h_cm, l_cm} */
 
 /* « Chez vous » : la toile posée à sa vraie taille dans un intérieur photographié de face.
    Chaque photo porte son échelle (pixels par mètre), mesurée sur la hauteur sous plafond et recoupée
-   sur un meuble (tête de lit de 160, fauteuil club). Pour chaque intérieur : un emplacement préféré
+   sur un meuble (tête de lit de 160, fauteuil club) ; loft recalé le 05/11/2026 sur les rangs de briques (28 px pour 7 cm). Pour chaque intérieur : un emplacement préféré
    (au-dessus du canapé ou du lit) et, quand il existe, un pan de mur libre pour les grandes toiles. */
 const INTERIEURS={
-  salon:{nom:"Dnevna soba",legende:"u dnevnoj sobi, iznad sofe",legendeLibre:"u dnevnoj sobi, na zidu desno od sofe",
+  salon:{nom:"Dnevna soba",legende:"u dnevnoj sobi, iznad sofe",legendeLibre:"u dnevnoj sobi, na zidu desno od sofe",legendeGrand:"u dnevnoj sobi, iznad niske sofe",
+    grand:{src:"interieur-salon-grand.jpg",w:2576,h:1807,k:410,sol:1545,grand:true,
+      dessus:{x:1288,basPref:0.85,basMin:0.6,hautMax:3.5,largMax:5.9,fond:0.6},deco:[]},
+    grandPortrait:{src:"interieur-salon-grand-portrait.jpg",w:1438,h:2576,k:423,sol:1958,grand:true,
+      dessus:{x:732,basPref:1.0,basMin:0.6,hautMax:4.0,largMax:3.2,fond:0.6},deco:[]},
     paysage:{src:"interieur-salon-paysage.jpg",w:2000,h:1125,k:311.5,sol:905,
       dessus:{x:480,basPref:0.97,basMin:0.90,hautMax:2.48,largMax:2.4,fond:0.05},
       libre:{xg:1000,largMax:3.0,centreY:1.6,hautMax:2.48},
@@ -1461,7 +1468,11 @@ const INTERIEURS={
       dessus:{x:370,basPref:0.92,basMin:0.85,hautMax:2.48,largMax:2.2,fond:0.05},
       devant:[[0,1195],[640,1195],[700,1275],[705,1490],[0,1490]],
       deco:[{x:505,y:1193,w:209,h:207,img:"deco/coussin.png",c:1,a:1,omb:1},{x:350,y:1193,w:209,h:207,img:"deco/coussin.png",c:0,a:1,omb:1},{x:832,y:984,w:193,h:252,img:"deco/vase-tiges.png",nat:1},{x:836,y:1236,w:187,h:254,img:"deco/vase.png",c:1,a:1,omb:1}]}},
-  chambre:{nom:"Spavaća soba",legende:"u spavaćoj sobi, iznad kreveta od 160",legendeLibre:"u spavaćoj sobi, na zidu pored kreveta",
+  chambre:{nom:"Spavaća soba",legende:"u spavaćoj sobi, iznad kreveta od 160",legendeLibre:"u spavaćoj sobi, na zidu pored kreveta",legendeGrand:"u spavaćoj sobi, iznad futona od 160 cm",
+    grand:{src:"interieur-chambre-grand.jpg",w:2576,h:1795,k:397,sol:1453,grand:true,
+      dessus:{x:1290,basPref:0.6,basMin:0.45,hautMax:3.4,largMax:6.2,fond:0.45},deco:[]},
+    grandPortrait:{src:"interieur-chambre-grand-portrait.jpg",w:1438,h:2576,k:540,sol:2022,grand:true,
+      dessus:{x:719,basPref:1.0,basMin:0.5,hautMax:3.3,largMax:2.6,fond:0.5},deco:[]},
     paysage:{src:"interieur-chambre.jpg",w:2000,h:1116,k:307.7,sol:914,
       dessus:{x:1007,basPref:1.22,basMin:1.05,hautMax:2.48,largMax:2.4,fond:0.5},
       libre:{xg:1360,largMax:2.0,centreY:1.5,hautMax:2.48},
@@ -1469,14 +1480,16 @@ const INTERIEURS={
     portrait:{src:"interieur-chambre-portrait.jpg",w:1125,h:2015,k:300,sol:1430,
       dessus:{x:565,basPref:1.35,basMin:1.18,hautMax:2.48,largMax:2.6,fond:0.55},
       deco:[{x:284,y:1107,w:558,h:185,img:"deco/chambrep-tete.png",c:0,a:1.0},{x:497,y:1180,w:136,h:135,img:"deco/coussin.png",c:1,a:1,omb:1}]}},
-  loft:{nom:"Loft",legende:"u loftu s visokim plafonom, zid od cigle",
-    paysage:{src:"interieur-loft-paysage.jpg",w:2000,h:1125,k:218,sol:1075,
-      libre:{x:960,largMax:3.9,centreY:2.4,hautMax:4.3,fond:0.08},
-      devant:[[1000,548],[1098,540],[1105,468],[1272,468],[1282,560],[1282,720],[1003,720]],
+  loft:{nom:"Loft",legende:"u loftu, zid od cigle",legendeGrand:"u loftu, zid od cigle, iznad klupe",
+    grand:{src:"interieur-loft-grand.jpg",w:2246,h:1815,k:414,sol:1509,grand:true,
+      dessus:{x:957,basPref:0.62,basMin:0.45,hautMax:3.5,largMax:5.2,fond:0.45},deco:[]},
+    paysage:{src:"interieur-loft-paysage.jpg",w:2000,h:1116,k:400,sol:950,
+      libre:{x:965,largMax:2.3,centreY:1.45,hautMax:2.37,fond:0.08},
+      devant:[[1429,790],[1440,770],[1470,764],[1470,672],[1500,664],[1790,664],[1812,672],[1815,770],[1824,790],[1824,1035],[1429,1035]],
       deco:[{x:1423,y:262,w:184,h:139,img:"deco/loft-abatjour.png",c:0,a:1.0},{x:191,y:840,w:173,h:155,img:"deco/loft-pot.png",c:1,a:1.0}]},
-    portrait:{src:"interieur-loft-portrait.jpg",w:1125,h:2015,k:420,sol:1440,
-      libre:{x:410,largMax:1.5,centreY:2.08,hautMax:3.2,fond:0.08},
-      devant:[[842,1180],[900,1170],[905,1095],[995,1092],[1003,1180],[1003,1440],[845,1440]],
+    portrait:{src:"interieur-loft-portrait.jpg",w:1125,h:2015,k:357,sol:1366,
+      libre:{x:482,largMax:1.2,centreY:1.6,hautMax:3.38,fond:0.08},
+      devant:[[701,1230],[712,1209],[735,1200],[740,1125],[770,1113],[1040,1113],[1062,1125],[1062,1200],[1068,1230],[1068,1460],[701,1460]],
       deco:[{x:733,y:690,w:169,h:116,img:"deco/loftp-abatjour.png",c:0,a:1.0},{x:3,y:1255,w:154,h:149,img:"deco/loftp-pot.png",c:1,a:1.0}]}}
 };
 /* les deux couleurs principales de chaque toile, pour teinter coussins, tête de lit, pot : calculées sur les 104 images */
@@ -1510,11 +1523,12 @@ function place(I,hm,lm){
 /* la photo à employer : la verticale sur téléphone, sauf si la toile n'y tient qu'au sol derrière le meuble alors
    que la photo large sait l'accrocher ; la photo large est alors recadrée sur la toile */
 function photoPour(I,hm,lm,portrait){
-  if(!(portrait&&I.portrait)) return I.paysage;
-  const p1=place(I.portrait,hm,lm);
-  if(p1.ok&&!p1.derriere) return I.portrait;
-  const p2=place(I.paysage,hm,lm);
-  return (p2.ok&&!p2.derriere)?I.paysage:I.portrait;
+  const propre=V=>{const p=place(V,hm,lm); return p.ok&&!p.derriere;};
+  if(portrait&&I.portrait&&propre(I.portrait)) return I.portrait;
+  if(propre(I.paysage)) return I.paysage;
+  if(portrait&&I.grandPortrait&&propre(I.grandPortrait)) return I.grandPortrait;
+  if(I.grand&&propre(I.grand)) return I.grand;      /* grande toile : la même pièce en version « grand mur », meubles bas */
+  return (portrait&&I.portrait)?I.portrait:I.paysage;
 }
 function choisitInterieur(hm,lm,portrait){
   if(interieurChoisi) return interieurChoisi;
@@ -1534,20 +1548,26 @@ function dessineSalon(){
   courante.lr=Math.round(lm*100); courante.hr=Math.round(hm*100);
   const nomI=choisitInterieur(hm,lm,portrait), I=INTERIEURS[nomI], V=photoPour(I,hm,lm,portrait);
   document.querySelectorAll("#choix-int button").forEach(b=>b.classList.toggle("actif",b.dataset.int===nomI));
-  const sc=Math.max(r.width/V.w, r.height/V.h);                  /* cadrage « cover » de la photo */
+  const P=place(V,hm,lm);
+  let sc=Math.max(r.width/V.w, r.height/V.h);                    /* cadrage « cover » de la photo */
+  let reduit=false;
+  if(V.grand){                                                     /* grand mur : la toile ET le meuble bas doivent rester visibles */
+    const besoin=(P.bas+hm+0.35)*V.k, dispo=r.height*0.9;
+    if(besoin*sc>dispo){ sc=dispo/besoin; reduit=true; }
+  }
   let ox=(r.width-V.w*sc)/2, oy=(r.height-V.h*sc)/2;
   const ppm=V.k*sc;                                                /* pixels par mètre à l'écran */
-  const P=place(V,hm,lm);
   /* le cadrage horizontal suit aussi la toile quand la photo déborde de l'écran (téléphone sur la photo large) */
   if(V.w*sc>r.width+1){ const cx=ox+P.x*sc; if(cx<0.3*r.width||cx>0.7*r.width){ ox=r.width/2-P.x*sc; ox=Math.min(0, Math.max(r.width-V.w*sc, ox)); } }
   /* le cadrage vertical suit la toile : jamais coupée en haut ni en bas (la photo reste en « cover ») */
   const marge=0.07*r.height, yHautPx=V.sol-(P.bas+hm)*V.k, yBasPx=V.sol-P.bas*V.k;
   if(yHautPx*sc+oy<marge) oy=marge-yHautPx*sc;
   if(yBasPx*sc+oy>r.height-marge) oy=r.height-marge-yBasPx*sc;
-  oy=Math.min(0, Math.max(r.height-V.h*sc, oy));
+  if(reduit){ ox=r.width/2-P.x*sc; oy=r.height-(V.sol+0.25*V.k)*sc-0.04*r.height; }
+  else oy=Math.min(0, Math.max(r.height-V.h*sc, oy));
   const yDe=m=>oy+(V.sol-m*V.k)*sc;                                /* hauteur au-dessus du sol -> y écran */
   const L=lm*ppm, H=hm*ppm, x=ox+P.x*sc-L/2, top=yDe(P.bas+hm);
-  salon.style.backgroundImage="url('"+V.src+"')";
+  salon.style.backgroundImage=reduit?"none":"url('"+V.src+"')";
   salon.style.backgroundSize=(V.w*sc).toFixed(1)+"px "+(V.h*sc).toFixed(1)+"px";
   salon.style.backgroundPosition=ox.toFixed(1)+"px "+oy.toFixed(1)+"px";
   const pal=PALS[courante.cle]||["#C8321A","#F5A623"];
@@ -1560,13 +1580,13 @@ function dessineSalon(){
   }).join("");
   /* le meuble (canapé, fauteuil) découpé dans la photo, posé devant la toile quand elle descend derrière lui */
   const meuble=(P.derriere&&V.devant)?'<img class="deco nat devant" style="left:'+ox.toFixed(1)+'px;top:'+oy.toFixed(1)+'px;width:'+(V.w*sc).toFixed(1)+'px;height:'+(V.h*sc).toFixed(1)+'px;clip-path:polygon('+V.devant.map(p=>(100*p[0]/V.w).toFixed(2)+'% '+(100*p[1]/V.h).toFixed(2)+'%').join(',')+')" src="'+V.src+'" alt="">':'';
-  salon.innerHTML=
+  salon.innerHTML=(reduit?'<div class="fond-flou" style="background-image:url(\''+V.src+'\')"></div><div class="fond-net" style="left:'+ox.toFixed(1)+'px;top:'+oy.toFixed(1)+'px;width:'+(V.w*sc).toFixed(1)+'px;height:'+(V.h*sc).toFixed(1)+'px;background-image:url(\''+V.src+'\')"></div>':'')+
     '<div class="cimaise allume" style="left:'+x.toFixed(1)+'px;top:'+top.toFixed(1)+'px;width:'+L.toFixed(1)+'px;height:'+H.toFixed(1)+'px;--cadre:'+Math.max(3,Math.round(0.06*ppm))+'px;--toile:url(\''+courante.src+'\')">'+
       '<span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
       '<div class="toile"><img src="'+courante.src+'" alt=""></div><span class="flaque"></span></div>'+
     meuble+deco+
     (P.derriere?'':'<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.lr+' cm</span></div>')+
-    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>Kod vas, u razmeri</b>'+courante.hr+' × '+courante.lr+' cm, '+((P.libre&&I.legendeLibre)?I.legendeLibre:I.legende)+', pod svojom zidnom lampom. Enterijer poprima boje platna; izaberite drugu prostoriju dole.'+(courante.estime?'<i>Dimenzije nisu navedene: prikazano u orijentacionom formatu od 100 cm.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
+    '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>Kod vas, u razmeri</b>'+courante.hr+' × '+courante.lr+' cm, '+((P.libre&&I.legendeLibre)?I.legendeLibre:(V.grand&&I.legendeGrand)?I.legendeGrand:I.legende)+', pod svojom zidnom lampom. Enterijer poprima boje platna; izaberite drugu prostoriju dole.'+(courante.estime?'<i>Dimenzije nisu navedene: prikazano u orijentacionom formatu od 100 cm.</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+'</div>';
   peintObjets(salon);
   document.getElementById("btn-mesure").hidden=false;
   const lg=salon.querySelector(".legende"); document.getElementById("legende-bas").innerHTML=lg?lg.innerHTML:"";
