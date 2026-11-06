@@ -18,7 +18,9 @@ h1{font-weight:400;font-size:clamp(1.6rem,4.4vw,2.4rem);margin:.1em 0 .3em;color
 .choix button[aria-current=true]{color:var(--or2)}
 .choix span{display:block;margin-top:4px;line-height:1.2}
 .scene{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;align-items:start;margin-top:8px}
-@media (max-width:780px){.scene{grid-template-columns:1fr}}
+.alire{display:none}
+@media (max-width:780px){.scene{grid-template-columns:1fr}.alire{display:block;text-align:center;margin:.6em 0 0;color:var(--or2);font:500 .85rem system-ui,sans-serif;text-decoration:none}}
+html{scroll-behavior:smooth}
 .toile{position:relative;margin:0 auto;width:100%;touch-action:none;user-select:none;-webkit-user-select:none;border-radius:3px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 0 1px #2b3a5c}
 .toile img{display:block;width:100%;height:auto;pointer-events:none}
 .toile canvas{position:absolute;inset:0;width:100%;height:100%}
@@ -49,7 +51,7 @@ a{color:var(--or2)}
 <h1 id="titre">La Licorne, expérience sensorielle</h1>
 <div class="intro">
 <p class="ouverture">« Je lui donne des correspondances émotionnelles, vibrationnelles et symboliques. »<br><span style="font-style:normal;font-size:.9rem;color:var(--cendre)">Isa Sator, à propos de la couleur</span></p>
-<p>Chaque couleur est une lumière qui vibre. Choisissez une toile, puis touchez-la : vous entendrez la sienne.</p>
+<p id="consigne">Chaque couleur est une lumière qui vibre. Choisissez une toile, puis touchez-la : vous entendrez la sienne.</p>
 </div>
 <div class="choix" id="choix" role="tablist" aria-label="Choisir une toile"></div>
 
@@ -61,6 +63,7 @@ a{color:var(--or2)}
       <div class="voile" id="voile"><button class="go" id="go" type="button">♪ Faire chanter la toile<span>activez le son de votre appareil</span></button></div>
     </div>
     <p class="legende" id="legende"></p>
+    <a class="alire" href="#lire">↓ À lire sous la toile : rendre audible l’invisible</a>
   </div>
   <div>
     <div class="panneau"><h2>La note de cette toile</h2><p class="lanote" id="lanote">…</p></div>
@@ -77,7 +80,7 @@ a{color:var(--or2)}
 </div>
 
 <div class="alpha">
-<h2>Rendre audible l'invisible</h2>
+<h2 id="lire">Rendre audible l'invisible</h2>
 <p>La peinture est matière ; la couleur est énergie. Un rouge vibre environ 430 000 milliards de fois par seconde, un bleu près de 670 000 milliards. L'oreille ne perçoit pas ces vitesses. Descendez cette vibration de quarante octaves, comme on descend une gamme, et elle devient un son : le rouge chante autour du sol, le bleu autour du ré. Chaque toile a ainsi sa note, celle de sa couleur dominante, et chaque couleur qu'on touche s'accorde à elle.</p>
 <p>On sait déjà faire entendre la musique des plantes, en traduisant en sons leurs infimes variations électriques. Avec Isa Sator, c'est la toile qui chante. Elle s'inscrit dans une longue lignée : Newton accordait les sept couleurs de l'arc-en-ciel aux sept notes de la gamme, et Kandinsky entendait le jaune sonner comme une trompette, le bleu profond comme un orgue. De nos jours, l'écrivain Daniel Tammet, synesthète, ouvre son autobiographie, <em>Je suis né un jour bleu</em>, par cet aveu : il est né un mercredi, et le mercredi est toujours bleu dans son esprit. Chaque nombre a pour lui sa couleur, sa forme et sa texture. Chez certains, les sens se répondent naturellement.</p>
 <h2 style="margin-top:1em">La spirale chantante</h2>
@@ -254,6 +257,8 @@ ab.addEventListener('click',()=>{ demarre(); document.getElementById('voile').cl
   const gAll={gain:{cancelScheduledValues:x=>{g.gain.cancelScheduledValues(x);gb.gain.cancelScheduledValues(x);},setValueAtTime:(v,x)=>{g.gain.setValueAtTime(g.gain.value,x);gb.gain.setValueAtTime(gb.gain.value,x);},linearRampToValueAtTime:(v,x)=>{g.gain.linearRampToValueAtTime(0,x);gb.gain.linearRampToValueAtTime(0,x);},value:0}};
   alpha={o:os,g:gAll}; ab.setAttribute('aria-pressed','true'); });
 document.getElementById('go').addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); if(tonique!==null){ const f=440*Math.pow(2,tonique/12); joue({f:'or',hz:f,thz:0,l:.5},.5,.5,1); } });
+/* v48 : venu d'une toile du site, on ne montre que cette toile (demande du 07/11) */
+if(Q.get('t')||QS){ ch.hidden=true; ch.style.display='none'; document.getElementById('consigne').textContent='Chaque couleur est une lumière qui vibre. Touchez la toile : vous entendrez la sienne.'; }
 dessine(); { const t=new URLSearchParams(location.search).get('t'); charge(TOILES[0][0]==='site'?'site':TOILES.some(x=>x[0]===t)?t:'licorne'); } if(img.complete) { prepare(); cadre(); }
 })();
 </script>
