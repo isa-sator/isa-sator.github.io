@@ -271,12 +271,12 @@ a.fermer.lien-outil[hidden]{display:none}
 .loupe .fermer#btn-traduction{color:#E2C063;border-color:rgba(212,175,55,.6)}
 
 /* ---------- le reflet d'or : un balayage lumineux sur fond doré léger, au survol ---------- */
-.reflet-or,.serie-lien:hover,.serie-lien:focus-visible,.presse a:hover,.faits li:hover,.expos li:hover,.ventes li:hover,.entree:hover,.chiffres li:hover,.couleur:hover{
+.reflet-or,.serie-lien:hover,.serie-lien:focus-visible,.presse a:hover,.faits li:hover,.ventes li:hover,.chiffres li:hover,.couleur:hover{
   background-image:linear-gradient(100deg,transparent 0 35%,rgba(255,255,255,.16) 50%,transparent 65% 100%),
     linear-gradient(90deg,rgba(251,235,180,.20),rgba(226,192,99,.10) 45%,rgba(184,144,42,.05) 75%,transparent 95%);
   background-size:240% 100%,100% 100%;background-position:120% 0,0 0;background-repeat:no-repeat;
   animation:reflet 1.4s ease 1}
-.presse a,.faits li,.expos li,.ventes li,.entree,.chiffres li,.couleur{transition:background-color .3s ease}
+.presse a,.faits li,.ventes li,.chiffres li,.couleur{transition:background-color .3s ease}
 .porte::after{transition:opacity .4s ease}
 .porte:hover::after{background:linear-gradient(to top,rgba(7,12,24,.92) 0%,rgba(7,12,24,.45) 45%,rgba(7,12,24,.05) 100%),
   linear-gradient(100deg,transparent 0 35%,rgba(251,235,180,.22) 50%,transparent 65% 100%);background-size:100% 100%,240% 100%;background-position:0 0,120% 0;background-repeat:no-repeat;animation:reflet-porte 1.3s ease 1}
@@ -775,6 +775,24 @@ dialog canvas.trace{position:absolute;z-index:5}
 .fiche .voix-badge.joue{box-shadow:0 0 0 2px rgba(251,235,180,.9),0 0 22px rgba(226,192,99,.8)}
 .fiche .voix-badge.joue i{transform-origin:bottom;animation:barre-voix .8s ease-in-out infinite}
 .fiche .voix-badge.joue i:nth-child(2){animation-delay:.15s} .fiche .voix-badge.joue i:nth-child(3){animation-delay:.3s}
+/* v45f : le visage d'Isa dans le cercle « Isa raconte », barres de son en or sur un bandeau */
+.fiche .voix-badge,.loupe .voix .lecture{background:#0c1426 url("isa-voix.jpg") center/cover no-repeat}
+.fiche .voix-badge.p2,.loupe .voix.p2 .lecture{background-image:url("isa-voix-2.jpg")}
+.fiche .voix-badge{width:50px;height:50px;right:-10px;bottom:-10px;box-shadow:0 0 0 2px #E2C063,0 0 0 3px rgba(12,20,38,.9),0 8px 18px rgba(0,0,0,.6)}
+.loupe .voix .lecture{width:54px;height:54px;box-shadow:0 0 0 2px #E2C063,0 0 0 3px rgba(12,20,38,.9),0 8px 20px rgba(201,162,39,.35);position:relative}
+.loupe .voix .lecture:hover{box-shadow:0 0 0 2px #FBEBB4,0 0 0 3px rgba(12,20,38,.9),0 10px 26px rgba(201,162,39,.55)}
+.fiche .voix-badge>span,.loupe .voix .lecture .ondes{position:absolute;left:50%;bottom:3px;transform:translateX(-50%);height:15px;padding:2px 5px;gap:2px;border-radius:8px;background:rgba(7,12,24,.8);display:flex;align-items:flex-end}
+.fiche .voix-badge i,.loupe .voix .ondes i{width:2.2px;margin:0;background:#E2C063;border-radius:1px;transform-origin:bottom;animation:barre-voix 1.6s ease-in-out infinite}
+.fiche .voix-badge i:nth-child(1),.loupe .voix .ondes i:nth-child(1){height:6px}
+.fiche .voix-badge i:nth-child(2),.loupe .voix .ondes i:nth-child(2){height:11px;animation-delay:.25s}
+.fiche .voix-badge i:nth-child(3),.loupe .voix .ondes i:nth-child(3){height:15px;animation-delay:.5s}
+.fiche .voix-badge i:nth-child(4),.loupe .voix .ondes i:nth-child(4){height:9px;animation-delay:.15s}
+.fiche .voix-badge i:nth-child(5),.loupe .voix .ondes i:nth-child(5){height:13px;animation-delay:.4s}
+.fiche .voix-badge i:nth-child(6),.loupe .voix .ondes i:nth-child(6){height:7px;animation-delay:.65s}
+.fiche .voix-badge.joue i,.loupe .voix.joue .ondes i{animation-duration:.7s;background:#FBEBB4}
+.fiche .voix-badge.joue{box-shadow:0 0 0 2px #FBEBB4,0 0 22px rgba(226,192,99,.85)}
+@media(max-width:600px){.fiche .voix-badge{width:44px;height:44px;right:-6px;bottom:-6px}}
+@media (prefers-reduced-motion:reduce){.fiche .voix-badge i,.loupe .voix .ondes i{animation:none}}
 .fiche .mention-voix{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#E2C063;margin:.35em 0 0;position:relative;z-index:1}
 .choix-int{display:inline-flex;gap:8px;align-items:center;flex-wrap:wrap}
 .choix-int i{cursor:pointer;font-style:normal;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#E2C063;margin-right:2px}
@@ -1314,7 +1332,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       <div class="salon" id="salon" aria-hidden="true"></div>
     </div>
     <div class="voix" id="voix" hidden>
-      <button type="button" class="lecture" id="voix-lecture" aria-label="Ouvir"><span class="ondes"><i></i><i></i><i></i></span></button>
+      <button type="button" class="lecture" id="voix-lecture" aria-label="Ouvir"><span class="ondes"><i></i><i></i><i></i><i></i><i></i><i></i></span></button>
       <div class="piste">
         <span class="titre-voix">Isa conta esta tela</span>
         <span class="barre-voix" id="voix-barre"><span id="voix-avance"></span></span>
@@ -1762,8 +1780,11 @@ document.querySelectorAll(".barre nav a, .marque").forEach(a=>a.addEventListener
 const voixBloc=document.getElementById("voix"), voixTexte=document.getElementById("voix-texte"), voixAudio=new Audio();
 voixAudio.preload="metadata";
 const fmt=s=>{ s=Math.max(0,Math.round(s||0)); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); };
+/* deux portraits d'Isa en alternance dans le cercle (choix de Christophe du 06/11 : n° 3 et n° 4) */
+function portraitVoix(cle){ const k=VOIX[cle]?cle:VOIXALIAS[cle]; const tri=Object.keys(VOIX).sort((x,y)=>parseInt(x.slice(2))-parseInt(y.slice(2))); return tri.indexOf(k)%2===1; }
 function montreVoix(cle){
   const v=VOIX[cle]||VOIX[VOIXALIAS[cle]];
+  voixBloc.classList.toggle("p2",!!v&&portraitVoix(cle));
   voixAudio.pause(); voixBloc.classList.remove("joue"); voixTexte.hidden=true;
   voixBloc.hidden=!v; if(!v) return;
   /* mp3 : lu par tous les navigateurs actuels */
@@ -2082,7 +2103,7 @@ Object.keys(CAT).map(Number).sort((a,b)=>((VOIX["TB"+String(a).padStart(2,"0")]?
     (VOIX[id] ? '<p class="mention-voix">'+"Isa conta"+'</p>' : '')+
     (DETAILS[n] ? '<p class="dim manque">'+"pormenor da tela, foto parcial"+'</p>' : '');
   if(VOIX[id]){
-    b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge" role="button" tabindex="0" aria-label="'+"Isa conta"+'"><span><i></i><i></i><i></i></span></span>');
+    b.querySelector(".cimaise").insertAdjacentHTML("beforeend",'<span class="voix-badge'+(portraitVoix(id)?' p2':'')+'" role="button" tabindex="0" aria-label="'+"Isa conta"+'"><span><i></i><i></i><i></i><i></i><i></i><i></i></span></span>');
     const bd=b.querySelector(".voix-badge");
     bd.addEventListener("click",e=>{ e.stopPropagation(); e.preventDefault(); ecouteDirect(id,bd); });
     bd.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.stopPropagation(); e.preventDefault(); ecouteDirect(id,bd); } });
