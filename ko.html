@@ -524,10 +524,11 @@ section{scroll-margin-top:84px}
 
 
 /* ---------- catalogue complet ---------- */
-.catalogue{columns:2;column-gap:clamp(14px,2vw,26px)}
-@media(min-width:560px){.catalogue{columns:3}}
-@media(min-width:860px){.catalogue{columns:4}}
-@media(min-width:1180px){.catalogue{columns:5}}
+/* lecture ligne par ligne : les toiles racontées remplissent les premières lignes */
+.catalogue{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(14px,2vw,26px);align-items:start}
+@media(min-width:560px){.catalogue{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:860px){.catalogue{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:1180px){.catalogue{grid-template-columns:repeat(5,minmax(0,1fr))}}
 .fiche{background:none;border:0;padding:0;font:inherit;color:inherit;text-align:left;cursor:zoom-in;display:block;width:100%;min-width:0;break-inside:avoid;margin:0 0 clamp(22px,3vw,36px)}
 .fiche .cimaise{padding-top:min(18.5%,47.5px);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .fiche:hover .cimaise,.fiche:focus-visible .cimaise{transform:scale(1.07);z-index:3}
@@ -1704,9 +1705,12 @@ if(window.ResizeObserver){ let hSalon=0; new ResizeObserver(()=>{ const h=Math.r
 
 function outilsToile(n){ const m=document.getElementById("btn-mur"), so=document.getElementById("btn-son"), lg=document.documentElement.lang||"fr";
   if(typeof n==="string"){ if(MURO.includes(n)){ m.href="mur/?n="+encodeURIComponent(n)+"&l="+encodeURIComponent(lg); m.hidden=false; }
-    if(SONO[n]){ so.href="ecouter/?t="+SONO[n]; so.hidden=false; } return; }
+    if(SONO[n]){ so.href="ecouter/?t="+SONO[n]; so.hidden=false; } else sonGenerique(so); return; }
   if(MUR.includes(n)){ m.href="mur/?n="+n+"&l="+encodeURIComponent(lg); m.hidden=false; }
-  if(SON[n]){ so.href="ecouter/?t="+SON[n]; so.hidden=false; } }
+  if(SON[n]){ so.href="ecouter/?t="+SON[n]; so.hidden=false; } else sonGenerique(so); }
+/* toutes les autres toiles : la page lit les couleurs de l'image de la toile elle-même */
+function lienSon(src,titre,h,l){ return "ecouter/?src="+encodeURIComponent(src)+"&titre="+encodeURIComponent(titre||"")+(h&&l?"&d="+encodeURIComponent("H "+h+" × L "+l+" cm"):""); }
+function sonGenerique(so){ if(!courante||!courante.src) return; so.href=lienSon(courante.src,courante.titre,courante.h,courante.l); so.hidden=false; }
 const MURO=["la-loba", "adn-sator", "les-archi-drolesse", "hotel-du-cul-tourne", "ubus-le-rebus", "meme-longueur-donde", "erectus", "rien-ne-va-plus", "jardin-deden", "guns-and-roses", "distance-terre-soleil", "yvette-guilbert", "le-bain", "gaby-deslys", "patti-smith", "cochon-hurlant", "baiser-givre", "come-8", "sans-titre-2003-a", "sans-titre-2003-b", "sans-titre-2001", "women-leopard", "actu-smart-barby", "actu-magic-city"], SONO={"gaby-deslys":"gaby","yvette-guilbert":"yvette","guns-and-roses":"guns","distance-terre-soleil":"terre-soleil"};
 const MUR=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116], SON={64:"licorne",1:"paiva",33:"gaby",40:"yvette",52:"fanfan",21:"guns",35:"gaia",59:"sator",81:"marcel",82:"hieroglyphes",31:"terre-soleil"};
 function ouvreLoupe(src,titre,det,prix,h,l,ref,estime){
@@ -2115,7 +2119,7 @@ document.querySelectorAll(".grand .cimaise").forEach(c=>{ c.setAttribute("role",
     const d=document.createElement("div"); d.className="outils-grand";
     { const b=document.createElement("button"); b.type="button"; b.className="fermer"; b.textContent=L.chez; b.addEventListener("click",()=>chezSoi(n)); d.appendChild(b); }
     if(MUR.includes(n)){ const a=document.createElement("a"); a.className="fermer lien-outil"; a.href="mur/?n="+n+"&l="+encodeURIComponent(lg); a.target="_blank"; a.rel="noopener"; a.textContent=L.mur; d.appendChild(a); }
-    if(SON[n]){ const a=document.createElement("a"); a.className="fermer lien-outil"; a.href="ecouter/?t="+SON[n]; a.target="_blank"; a.rel="noopener"; a.textContent=L.son; d.appendChild(a); }
+    { const im=f.querySelector("img"); const a=document.createElement("a"); a.className="fermer lien-outil"; a.href=SON[n]?"ecouter/?t="+SON[n]:lienSon(im.getAttribute("src"),im.alt); a.target="_blank"; a.rel="noopener"; a.textContent=L.son; d.appendChild(a); }
     if(d.children.length) f.querySelector("figcaption").appendChild(d);
   });
 })();

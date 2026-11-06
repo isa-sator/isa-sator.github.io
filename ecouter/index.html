@@ -88,7 +88,7 @@ a{color:var(--or2)}
 <p>Le résultat s'écoute plus qu'il ne s'explique. En suivant une géométrie venue de la nature, la toile donne une musique plus continue, plus vibrante, plus douce à l'oreille. Une expérience à vivre plutôt qu'une promesse.</p>
 <h2 style="margin-top:1em">La contemplation et les ondes alpha</h2>
 <p>Isa peint au réveil, encore au bord de ses rêves. C'est l'état des ondes dites alpha : quand l'esprit se repose, les yeux mi-clos, le cerveau ralentit son rythme, entre 8 et 12 battements par seconde. Le mode Contemplation déploie une nappe sonore sur la note de la toile, qui enfle et s'apaise au rythme d'une respiration calme. Au casque, une pulsation à 10 battements par seconde s'y ajoute : chaque oreille reçoit une note légèrement différente, et c'est leur écart que le cerveau perçoit. Une invitation à regarder la toile autrement, sans promesse : l'effet de ces sons sur le cerveau est encore étudié.</p>
-<p class="note">Sur iPhone, désactivez le mode silencieux (le petit bouton sur le côté) pour entendre le son. Essai de démonstration, non relié au site. <a href="../">Retour au site d'Isa Sator</a></p>
+<p class="note">Sur iPhone, désactivez le mode silencieux (le petit bouton sur le côté) pour entendre le son. <a href="../">Retour au site d'Isa Sator</a></p>
 </div>
 </div>
 <script>
@@ -125,10 +125,14 @@ function prepare(){ GH=Math.max(30,Math.round(GW*img.naturalHeight/img.naturalWi
   taille(); }
 function couleurA(u,v){ const x=Math.max(0,Math.min(GW-1,Math.floor(u*GW))), y=Math.max(0,Math.min(GH-1,Math.floor(v*GH))), i=(y*GW+x)*4; return [grille[i],grille[i+1],grille[i+2]]; }
 function charge(k){ cle=k; const t=TOILES.find(x=>x[0]===k); document.getElementById('titre').textContent=t[1]+', expérience sensorielle';
-  img.alt=t[1]+', Isa Sator'; img.src='toiles/'+k+'.jpg'; document.getElementById('legende').textContent=t[1]+(t[2]?' · '+t[2]:'');
+  img.alt=t[1]+', Isa Sator'; img.src=t[3]||('toiles/'+k+'.jpg'); document.getElementById('legende').textContent=t[1]+(t[2]?' · '+t[2]:'');
   document.querySelectorAll('#choix button').forEach(b=>b.setAttribute('aria-current',b.dataset.k===k)); }
 const ch=document.getElementById('choix');
-TOILES.forEach(([k,t])=>{ const b=document.createElement('button'); b.type='button'; b.dataset.k=k; b.innerHTML=`<img src="toiles/${k}.jpg" alt=""><span>${t}</span>`; b.onclick=()=>charge(k); ch.appendChild(b); });
+/* une toile venue du site : ?src=catalogue/TB12.jpg&titre=…&d=… (seules les images du site sont acceptées) */
+const Q=new URLSearchParams(location.search), QS=Q.get('src')||'';
+if(/^(catalogue|oeuvres|grand)\/[\w-]+\.jpg$|^actu-[\w-]+\.jpg$/.test(QS)){ const g=QS.replace(/^catalogue\/(TB(?:35|59|64|71|81|82))\.jpg$/,'grand/$1.jpg');
+  TOILES.unshift(['site',(Q.get('titre')||'Une toile d\'Isa Sator').slice(0,120),(Q.get('d')||'').slice(0,40),'../'+g]); }
+TOILES.forEach(([k,t,d,src])=>{ const b=document.createElement('button'); b.type='button'; b.dataset.k=k; b.innerHTML=`<img src="${src||'toiles/'+k+'.jpg'}" alt=""><span></span>`; b.querySelector('span').textContent=t; b.onclick=()=>charge(k); ch.appendChild(b); });
 img.addEventListener('load',prepare);
 /* --- son doux --- */
 let A=null, sortie=null;
@@ -250,7 +254,7 @@ ab.addEventListener('click',()=>{ demarre(); document.getElementById('voile').cl
   const gAll={gain:{cancelScheduledValues:x=>{g.gain.cancelScheduledValues(x);gb.gain.cancelScheduledValues(x);},setValueAtTime:(v,x)=>{g.gain.setValueAtTime(g.gain.value,x);gb.gain.setValueAtTime(gb.gain.value,x);},linearRampToValueAtTime:(v,x)=>{g.gain.linearRampToValueAtTime(0,x);gb.gain.linearRampToValueAtTime(0,x);},value:0}};
   alpha={o:os,g:gAll}; ab.setAttribute('aria-pressed','true'); });
 document.getElementById('go').addEventListener('click',()=>{ demarre(); document.getElementById('voile').classList.add('cache'); if(tonique!==null){ const f=440*Math.pow(2,tonique/12); joue({f:'or',hz:f,thz:0,l:.5},.5,.5,1); } });
-dessine(); { const t=new URLSearchParams(location.search).get('t'); charge(TOILES.some(x=>x[0]===t)?t:'licorne'); } if(img.complete) { prepare(); cadre(); }
+dessine(); { const t=new URLSearchParams(location.search).get('t'); charge(TOILES[0][0]==='site'?'site':TOILES.some(x=>x[0]===t)?t:'licorne'); } if(img.complete) { prepare(); cadre(); }
 })();
 </script>
 </body></html>
