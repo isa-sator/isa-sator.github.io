@@ -1400,6 +1400,8 @@ const OEUVRES = [
 ];
 
 const GRANDS=[35,59,64,71,81,82];
+/* v47 : photos haute définition (1600 px max, signées, droits inscrits dans le fichier) reçues d'Isa le 06/11 */
+const HD=[3,5,6,9,12,13,14,17,20,21,23,24,25,30,31,32,34,36,38,43,44,45,46,48,49,50,51,52,54,55,56,58,60,67,85,92,93,94,97,99,100,101,106,109,111];
 /* photos qui ne montrent qu'un détail de la toile (sans ses bords) : pas de mise en scène possible */
 const DETAILS={26:1,35:1,59:1,81:1,82:1};   /* 26 : photo recadrée (haut et bas coupés), toile H 200 × L 180 validée par Isa le 05/11 */
 /* dimensions connues (hauteur, largeur en cm) pour « chez vous » */
@@ -2114,7 +2116,7 @@ surveille(cg);
 function chezSoi(n){
   const o=CAT[n]; if(!o) return;
   const id="TB"+String(n).padStart(2,"0");
-  const src=(GRANDS.includes(n))?"grand/"+id+".jpg":"catalogue/"+id+".jpg";
+  const src=GRANDS.includes(n)?"grand/"+id+".jpg":HD.includes(n)?"hd/"+id+".jpg":"catalogue/"+id+".jpg";
   const dim=DIMS[n];
   /* dimensions inconnues : format indicatif, grand côté 100 cm, dans les proportions de la photo */
   let h=dim?dim[0]:null, l=dim?dim[1]:null, estime=false;

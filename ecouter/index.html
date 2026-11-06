@@ -130,7 +130,7 @@ function charge(k){ cle=k; const t=TOILES.find(x=>x[0]===k); document.getElement
 const ch=document.getElementById('choix');
 /* une toile venue du site : ?src=catalogue/TB12.jpg&titre=…&d=… (seules les images du site sont acceptées) */
 const Q=new URLSearchParams(location.search), QS=Q.get('src')||'';
-if(/^(catalogue|oeuvres|grand)\/[\w-]+\.jpg$|^actu-[\w-]+\.jpg$/.test(QS)){ const g=QS.replace(/^catalogue\/(TB(?:35|59|64|71|81|82))\.jpg$/,'grand/$1.jpg');
+if(/^(catalogue|oeuvres|grand|hd)\/[\w-]+\.jpg$|^actu-[\w-]+\.jpg$/.test(QS)){ const g=QS.replace(/^catalogue\/(TB(?:35|59|64|71|81|82))\.jpg$/,'grand/$1.jpg');
   TOILES.unshift(['site',(Q.get('titre')||'Une toile d\'Isa Sator').slice(0,120),(Q.get('d')||'').slice(0,40),'../'+g]); }
 TOILES.forEach(([k,t,d,src])=>{ const b=document.createElement('button'); b.type='button'; b.dataset.k=k; b.innerHTML=`<img src="${src||'toiles/'+k+'.jpg'}" alt=""><span></span>`; b.querySelector('span').textContent=t; b.onclick=()=>charge(k); ch.appendChild(b); });
 img.addEventListener('load',prepare);
