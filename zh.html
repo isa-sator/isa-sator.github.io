@@ -1318,9 +1318,9 @@ dialog canvas.trace{position:absolute;z-index:5}
       <button type="button" class="fermer" id="voix-mots">阅读她的话</button>
     </div>
     <div class="voix-texte" id="voix-texte" hidden>
-      <p class="surtitre">她的话（法语）</p>
+      <p class="surtitre"><span class="v-o">她的话（法语）</span><span class="v-t" hidden>她的话</span></p>
       <div id="voix-paragraphes"></div>
-      <p class="note">她语音留言的文字记录，待伊莎确认。</p>
+      <p class="note"><span class="v-o">伊莎在录音中朗读的文字。</span><span class="v-t" hidden>她讲述内容的译文。这段声音由人工智能根据伊莎本人的声音生成，已获得她的同意。</span></p>
     </div>
     <div class="pied">
       <div>
@@ -1405,7 +1405,28 @@ const SERIES=[
 ];
 
 /* la parole d'Isa : clé = numéro TB (catalogue) ou identifiant d'œuvre ; fichier audio, durée affichée, texte transcrit */
-const VOIX={"TB01":{src:"voix/TB01.mp3",texte:["La Païva. Cette toile d'un mètre sur un mètre fait partie de la série des Grandes Cocottes, que j'ai créée lorsque l'Orangerie du Sénat, à Paris, m'a proposé d'exposer au mois d'août 2017. J'ai choisi de parler des grandes cocottes, ces grandes allongées, ces femmes du Second Empire, pour remettre les femmes à l'honneur dans ce centre de pouvoir qui, à l'époque, ne comportait aucune femme.", "J'ai mis en avant leur goût pour la liberté, pour une vérité aussi de vivre et d'être. Elles ont été des femmes complètement phares dans le monde ; il n'y a aucun équivalent nulle part ailleurs de ces femmes, qui évoquent aussi la fête, la joie, le spectacle. Beaucoup d'entre elles étaient des femmes talentueuses, avec souvent des destins qui finissaient mal, malheureusement, mais des femmes qui ont choisi d'être libres, de ne pas exister à travers un mari ou une famille nombreuse, de ne pas être esclaves, et qui ont choisi de se servir de leurs attributs pour pouvoir surnager avec ce qu'on leur laissait.", "J'ai donc été très honorée de peindre toute cette galerie de portraits, dont la Païva, une femme d'origine russe qui se faisait, comme on dirait, combler, tellement qu'elle a pu acheter un très bel hôtel particulier, qui se trouve sur les Champs-Élysées à Paris et qui accueille aujourd'hui, je crois, le Travellers Club ; il se visite."]}};
+const VOIX={
+"TB01":{src:"voix/TB01-zh.mp3",tr:1,texte:["拉·帕伊娃，一位以胆识和勇气著称的非凡女性，是一位“大交际花”。在1840年至1870年的法兰西第二帝国时期，巴黎人就是这样称呼她们的。她出生于俄国，后来竟让人送给她一座位于巴黎香榭丽舍大街的华美公馆。", "这幅一米见方的画作，属于“大交际花”系列。2017年8月，巴黎参议院橘园邀请我举办展览，我便创作了这个系列。我选择讲述这些女性，人们也称她们为“横卧的美人”，因为我的调色板偏爱香粉、粉质的香气、羽毛、帽子、美丽与女性气质。我让她们在那个当年没有一位女性的权力中心里受到礼遇。", "我突出了她们对自由的热爱，对真实地生活、真实地做自己的追求。在我看来，这些绝无仅有的女性也创造了巴黎之光：节庆、欢乐、演出、奢华。她们中许多人才华横溢：演员莎拉·伯恩哈特，巴黎歌剧院舞蹈家克莱奥·德·梅罗德，还有美人奥特罗。她们拒绝包办婚姻，拒绝子女成群的家庭，不愿沦为奴隶，于是选择凭借自身的魅力，在仅剩的空间里努力立足。", "拉·帕伊娃得到了当时最有名的情人们的百般宠爱。她得以买下香榭丽舍大街上的那座公馆，如今那里是旅行者俱乐部所在地，而且可以参观。"]},
+"TB06":{src:"voix/TB06-zh.mp3",tr:1,texte:["这幅画是我在新喀里多尼亚的努美阿创作的，我在那片太平洋的中心生活了十二年。", "那时候，根本找不到棉布或亚麻画布。", "于是我就用岛上能找到的东西：遮阳篷的帆布。我把它分成好几块来画，大小各不相同，像拼图一样拼在一起。整幅作品大约两米乘两米。", "一种限制，最后变成了一种标志。", "我的画室在一个造船厂里。想象一下：金属的气味，船体的气味，船用油漆的气味，四周则是泻湖的光。", "《豹纹女人》就是我。这是一幅自画像，但画的是一个仪式。", "多年来，每天早上，我都在海浪声中醒来，所有窗户都敞开着。不需要闹钟：是泻湖在呼唤我。我系上一条豹纹纱笼，就在我家正对面的柠檬湾，一头扎进水里。", "那里的水清澈得不真实。清澈到我能看见五颜六色的鱼的骨刺在我身下滑过，像活的图画。", "这里的豹纹不是陈词滥调。它是自由，是本能，是一个觉得自己像猫科动物一样灵活、在自己的天地里自在自如的女人。", "这幅画是那种简单幸福的痕迹：海水，清晨，光，自由的身体。", "在造船厂里，把这个场景画在一块临时找来的画布上，是我把太平洋留在身边的方式。", "今天，当我看着《豹纹女人》，我仍然能听见海浪声。希望你们也能听见。", "谢谢。"]},
+"TB21":{src:"voix/TB21-zh.mp3",tr:1,texte:["我来介绍我的画作《枪炮与玫瑰》，它属于我的“摇滚偶像”系列，2009年10月在巴黎香榭丽舍大街的维珍大卖场展出。", "有些乐队是用来听的，有些乐队则会一下子砸到你身上。枪炮与玫瑰属于后一种。八十年代末，摇滚已经变得圆滑、规矩。然后五个小伙子带着他们的愤怒和放肆出现了，把一切都掀翻了。阿克塞尔·罗斯的嗓音，像一道撕裂一样升起。斯拉什的吉他不是在弹奏：它在燃烧。", "我选择这些偶像，是因为他们在舞台上的力量，那种贯穿全场观众的原始能量。也因为他们的创造力：他们不遵守规则，而是创造规则。这幅画的每一种颜色、每一笔，都想表达声音爆发时人们的感受。", "有些艺术家不会过去，他们会留下烙印。希望这幅画能像带给我一样，让你们也想把音量调大。"]},
+"TB31":{src:"voix/TB31-zh.mp3",tr:1,texte:["地日距离。想象一幅画：一轮金黄明亮的太阳在红色和橙色的背景上放射光芒。在它旁边，地球仿佛保持着平衡，呈现出深绿和深蓝。两颗星球，两种能量，同一个画面：这是一场宇宙的对话。", "这件作品属于我的太空系列，是我题为《方程式的艺术方阵》展览的核心，曾在兰斯的大陆大酒店展出。它源于我与天体物理学家米奥阿拉·曼德亚的相遇。她在巴黎大皇宫的一场讲座之后来找我，提出了一个既简单又大胆的约定：“我给您数学方程式，作为交换，您把它们带给您的灵感画出来。”其实我自己也曾悄悄想过：这就是生命的同步性。", "在这里，我不解释方程式，我去感受它们。数学符号像思想的痕迹一样漂浮在画面空间里，而色彩开口说话。红色代表激情，黄色代表灵光一闪。太阳变成一颗跳动的心，一场生命的爆发。空间从来不是虚无：是我们在观察中创造了它。就让你们的目光把这两颗星球连接起来吧。", "我从摇篮里掉下来就开始画画，那时我还不会读书写字。我画画的时候，就像一只鹰飞越山谷：自由、大胆、明亮。所以，站在《地日距离》前面，让自己随它而去吧。因为在我看来，不幸并不存在：只有没被照亮的人。"]},
+"TB33":{src:"voix/TB33-zh.mp3",tr:1,texte:["嘉比·德丝莉不属于第二帝国，而是属于紧随其后的美好年代。她原名玛丽-埃莉斯-加布里埃尔·凯尔，生于马赛，是一位歌舞厅的舞蹈家、歌手和演员。二十世纪一十年代，也就是第二帝国之后半个世纪，她在巴黎大获成功，也风靡伦敦和纽约，尤其是与舞蹈家哈里·皮尔瑟同台的时候。", "她最为人所知的，是与葡萄牙国王曼努埃尔二世的恋情，当年轰动一时。她以珠宝、备受媒体追捧的珍珠、插着数百根羽毛、一顶比一顶夸张的帽子，以及她的宣传天赋而引人注目。她是最早在国际范围内打造明星形象的艺人之一。", "这正是她与拉·帕伊娃的不同之处。泰蕾兹·拉赫曼，人称拉·帕伊娃，是第二帝国真正的大交际花：她先嫁给帕伊娃侯爵，后又嫁给吉多·亨克尔·冯·唐纳斯马克伯爵，并在香榭丽舍大街建起那座著名的公馆，在那里举办沙龙。她代表了通过婚姻和财富跻身上流社会的交际花。", "而嘉比·德丝莉始终是一位舞台艺术家，一位歌舞厅明星。她的名气来自舞台、报刊和那桩王室丑闻。她具有国际明星的分量，更接近今天演艺圈的艺人。"]},
+"TB35":{src:"voix/TB35-zh.mp3",tr:1,texte:["盖娅的斗篷。盖娅就是大地。但对我来说，她首先是一个鲜活的存在，一位会动、会呼吸、永不停歇地生活着的母亲。当米奥阿拉·曼德亚请我画出方程式带给我的灵感时，我立刻想到了那层保护我们的无形外衣：地球磁场，那面围绕地球舞动的盾牌，它让太阳风暴偏离方向，我们看不见它，却全部生命都依赖着它。于是我送给她一件斗篷。", "看这些深蓝：那是海洋，也是神秘。这些绿色、红色、明亮的黄色，是流动、盘绕、交错的能量之流。这里没有什么是静止的，一切都在旋转，就像地球本身，即使我们以为自己一动不动，它也在不停地转。对我来说，运动就是生命。我以波的形式感知时间，把空间看作一个视角。", "我用双手、用画笔画下这幅画，满怀喜悦，也带着一点住在我心里的温柔的疯狂。因为科学给我们方程式，艺术给我们情感，两者讲述的是同一个故事：一个永恒运动、值得赞美的世界。盖娅披上了她的色彩斗篷。现在轮到你们来看它，让自己被它包围。"]},
+"TB36":{src:"voix/TB36-zh.mp3",tr:1,texte:["这幅画属于我的“爱”系列，这个系列由十五幅画组成，讲述我们每个人在一段感情中会经历的种种情感。", "一切始于吸引，那第一眼，那一点火花。", "接着是欲望，对应作品《直立》。然后是伊甸园，一对对恋人缠绕在树枝上，体现了初恋时的交融与无忧无虑。《满足》延续了这一刻：那是爱与被爱的幸福，是两人世界的圆满。", "可是爱情并不是一条平静的长河。苦涩渐渐滋生，我把它画成了作品《不再同频》：两个人不再以同样的频率振动，彼此说话却听不见对方。", "就在这时，出现了《背对背旅馆》。法语原标题故意说得很形象，一下子就道尽了一切：睡在同一张床上，却背对着背。", "旅馆让人想到一个过路的地方，人们住在一起，却并没有真正住进对方心里。困难是实实在在的，距离在拉大，沉默在蔓延。然而一切还没有失去：局面并非不可挽回。还有一扇半开的门，还有转过身来、重新找回彼此的可能。这是坠落之前最后一刻的悬停。", "因为接下来就是《危机》，对应作品《天上的老鼠》：一个打扮成修女的女人，穿着网袜，四肢着地，嘴里咬着一把刀，龇着獠牙。那就是决裂，暴烈而原始。", "所以，《背对背旅馆》是一幅转折点之作：在这里，人们还可以选择和好，或者让一切彻底崩塌。"]},
+"TB40":{src:"voix/TB40-zh.mp3",tr:1,texte:["伊薇特·吉尔贝与嘉比·德丝莉属于同一个时代：她生于1865年，卒于1944年。但她们的艺术生涯毫无共同之处。两人都属于美好年代，却都不属于拉·帕伊娃的世界。", "伊薇特·吉尔贝是出身寒微的巴黎人，起初在春天百货当售货员，十九世纪九十年代才登上舞台。人们称她为咖啡音乐厅的“说唱女”。她最出名的是那双黑色长手套、纤瘦的身形，以及写实乃至讽刺的曲目：她歌唱贫困、卖淫和资产阶级的虚伪，吐字精雕细琢，因此得了“说唱女”这个名号。图卢兹-罗特列克在他的海报和素描中让她永垂不朽。", "她的艺术生涯非常长，长达四五十年。后来她转向中世纪歌曲，在美国任教，并受到弗洛伊德的赞赏。她的私生活一直很体面：她嫁给了马克斯·席勒，从来没有人把她当作交际花。"]},
+"TB51":{src:"voix/TB51-zh.mp3",tr:1,texte:["有一种冰霜之吻。那是在机场重逢时的吻，一个人刚下夜班飞机，眼睛疲惫，大衣上还带着世界另一端的寒气。两人匆匆一吻，几乎有些羞涩，就像触碰一件怕被打碎的珍贵东西。这个吻是冰冷的，因为时间已经过去，一切都需要重新温暖。", "接着是甜蜜之吻。最初的几个小时，最初的几天。", "一切都那么甜，一切都那么强烈。人们不谈缺少的东西，只品味眼前拥有的。彼此讲着美好的事，把烦恼放在一边。糖，就是用来掩盖思念滋味的东西。", "然后是巴黎到里约的吻。十一个小时的飞行，五个小时的时差。一个人睡下，另一个人起床。隔着屏幕亲吻，错着时间相爱。还有巴黎到纽约的吻，更短，更频繁，也更具欺骗性：人们以为距离很近，其实只是在两次会议、两只行李箱、两趟转机之间擦肩而过。", "所以，是的，这样的爱可以持久。分离让欲望保持鲜活，稀少让每一刻都显得珍贵。彼此不会消磨，不会厌倦，既不分担洗碗，也不分享沉默。", "可问题恰恰在这里：两人共同分享的东西太少了。这就是为什么很少有伴侣能坚持下去。爱，不只是重逢，也是在什么都没有发生的时候陪在身边，在一个普普通通的星期二晚上，没有飞机，没有行李箱，没有出发的约定。", "这些吻讲述的正是这个悖论：它们美，是因为稀少；它们脆弱，也是因为同样的原因。"]},
+"TB52":{src:"voix/TB52-zh.mp3",tr:1,texte:["芳芳，或者叫“郁金香芳芳”：一幅画可以有好几个名字。它常被称为“芳芳”，有时也叫“郁金香芳芳”，看心情而定。作为画家，我们可以给自己的作品起至少三个名字。", "郁金香芳芳。在农场里这些诺曼底人中间，他们结实、饱经风霜、扎根于自己的土地，而她就在那里。一个小小的诺曼底姑娘，小得几乎看不见，像糖果盒上的小娃娃一样被放在那儿。她穿着一条粉色带蓝格子的裙子，是那种要仔细熨好的礼拜天的裙子。粉色温柔，几乎甜得像糖，蓝格子又给她添了几分雨后诺曼底天空的气息。", "人们叫她郁金香芳芳。为什么是郁金香？因为她清新、挺拔，像前一天刚刚绽放。她仿佛刚从春天里走出来，带着一种还什么都没有失去的青春，既没有失去温柔，也没有失去纯真。看看那脸颊：那是牛棚里清晨的颜色，是人们赶在太阳之前起床的时候。", "如果能走近这幅画，仿佛能闻到她身上带着的气息：刚挤出来的牛奶，碗里慢慢浮起的浓稠奶油，干草，金黄的麦秸。她身上是农场的味道，但那是幸福的农场，有黄油和熟苹果的农场。她不是在扮演农家姑娘，她本来就是，带着瓷器般的优雅。", "在这个系列里，男人们讲述劳作、力量和记忆。她讲述的是另一样东西：一片土地的温情。她是诺曼底的微笑。所以我把她画成这样，小小的、粉粉的、亮亮的：为了让粗犷之中永远留着一点温柔。"]},
+"TB55":{src:"voix/TB55-zh.mp3",tr:1,texte:["2007年，我有幸在曼哈顿中心格拉梅西公园的国家艺术俱乐部举办展览。我在那里展出了一个名为“聪明芭比”的系列。", "出发点很简单：今天的女性积极、出色、有成就。她们可以是消防员、国家总统、外科医生、歌剧演唱家。然而，人们仍然要求她们保持迷人、无可挑剔、光彩照人。仿佛为了被认真对待，她们还必须在“美丽”这一栏里打上勾。", "我借芭比来呈现的正是这个悖论。表面上，她肤浅、性感，几乎像一幅漫画。但仔细看：她有抱负，有才华，在这个世界上有属于她的位置要去争取。", "她是讨论这种双重要求的完美偶像：既要成功，又要讨人喜欢。", "在这幅《聪明芭比·卡内基音乐厅》里，芭比是一位歌剧演唱家。她站在曼哈顿最具传奇色彩的舞台上，那是所有艺术家梦想有一天能踏上的舞台。卡内基音乐厅是巅峰，是加冕，是一个凭才华和自律才能走进去的地方。", "然而，她依然戴着亮片，化着妆，闪闪发光。她不在嗓音和外表之间做选择：两样她都要。", "这就是这个系列想说的：一个女人可以既光彩照人又才华出众，既有女人味又有力量，外表轻盈而内在深刻。", "不要只停留在表面。每一个芭比背后，都有一个会唱歌、会领导、会拯救生命的女人。而她丝毫不打算为自己同时拥有这两面而道歉。", "谢谢。"]},
+"TB59":{src:"voix/TB59-zh.mp3",tr:1,texte:["萨托尔的距离。在我为这个系列献给太空的画作中，这一幅无疑是最私密的，因为萨托尔就是我，是我为自己选的名字。萨托尔的距离，是我与世界之间的距离，或者是世界要走过来与我相遇的距离。", "第一眼打动人的是颜色：一片明亮的黄色，穿插着红色和蓝色的形状，还有让人联想到方程式的符号和字母。这次展览源于一次相遇，天体物理学家米奥阿拉·曼德亚对我提议：“我给您数学方程式，作为交换，您把它们带给您的灵感画出来。”在这里，公式变成了笔触，测量变成了颜色。因为对我来说，颜色从来不只是装饰：我赋予它情感的、振动的、象征的对应。黄色就是灵光一闪。所以这段距离不是以米计算的数字：它是一道闪电，一次穿越。", "我相信，没有视角就没有空间。空间不是虚无，从来都不是：是我们在观察中创造了它。测量一段距离，首先要选择自己站在哪里。所以我不强加任何答案。我讲一个故事，让你们的目光把它延续下去。走近一点，退后一点，换个位置：萨托尔的距离，就是你们的距离。"]},
+"TB64":{src:"voix/TB64-zh.mp3",tr:1,texte:["您好，谢谢您在这幅画前停下脚步。", "它叫《独角兽》。我在2019年画了它，它属于一个我深深牵挂的系列：《末日决战》。", "在这个系列里，我讲述世界的倾覆。那是一切都在动摇、邪恶与黑暗的力量似乎占了上风的时刻。但我不只想展示坠落。我想展示那些回来的东西。", "在这些作品中，出现了一匹有翅膀的母马，象征神圣女性力量的回归。那是世界遗忘了太久、而它为了重新站起来所需要的能量。", "然后就是她，独角兽。", "这只神话中的动物让我感受到一种无比的庄严。她不是来自我们的世界：她来自其他维度，陪伴着那匹有翅膀的母马，像一种前来扶起倒下之物的存在。我不能让她留在另一幅画的阴影里。她值得被放到光亮之中，拥有一幅属于自己的作品。", "所以我把她画成了红色。一种炽烈、燃烧、鲜活的红。因为我的独角兽不只是纯洁的：她是火。她是面对黑暗时的力量和勇气。我把她放在蓝色的背景上，一种形成对比的蓝，它包裹着她，又让她更加醒目，就像一团穿过黑夜的火焰。", "当你们看这幅画时，我邀请你们不要只去寻找一只动物。去寻找它所预示的东西：希望，新生，以及在倾覆之后，一个更公正的世界能够重生的可能。", "谢谢你们给了我目光。"]},
+"TB66":{src:"voix/TB66-zh.mp3",tr:1,texte:["我画《凯尔特之龙》的时候，画的不是一个生物：我是让一段记忆重新回来。", "它是宝蓝色的，深邃而威严，是群星排列有序的夜晚的那种蓝。在它身后，背景燃起一片橙色，像余烬，像黄昏，像正在燃烧的世界。我想要那种强烈的碰撞。蓝色和橙色像平静与大火一样针锋相对，而正是在这种碰撞中，龙找到了它全部的威严。它不向火焰低头：它从火中穿过，泰然自若，头顶着自己力量的冠冕。", "这条龙身上承载着整个凯尔特神话。它是大地的气息，是古老秘密的守护者。我把萨莫特斯王的记忆托付给了它，这位国王统一了高卢，懂得播撒非常古老的知识。在这些知识里，天空与石头彼此呼应：宇宙起源的观念融入建筑艺术，大教堂像一篇篇面向星辰的几何祈祷一样拔地而起。", "我想，这正是我想要画的：一种不需要咆哮来让人听见、仅凭存在本身就能主宰一切的力量。它身体的每一道曲线都是一股能量的波浪，每一片鳞片都是一段传说的碎片。", "在我的《末日决战》系列里，我讲述世界的终结。但我画的不是恐惧，我画的是留下来的东西。当一切崩塌时，留下的是记忆，是知识，是那些懂得仰望星空的人的高贵。", "所以，站在它面前，请记住你们从哪里来：龙依然在守望。"]},
+"TB67":{src:"voix/TB67-zh.mp3",tr:1,texte:["这幅画源于一次委托。一位收藏马蒂斯画作的藏家请我画《萨莫色雷斯的胜利女神》，去参加在卢浮宫举办的一场比赛。2007年，我就曾有幸受邀来到卢浮宫，参加最初几届卢浮宫卡鲁塞尔艺术展，当时的口号是“明日的大师”。", "画这座雕像，我不想只照着一张图片来画。所以我多次去卢浮宫，在大楼梯的顶端久久地欣赏她。每一次都是同样的感受：那股冲劲，那阵把衣料紧贴在身上的风，那股向前推进的力量，尽管她身上几乎什么都没有留下。", "因为她既没有手臂，也没有头。就在那时我有了一个想法：为什么不还给她一个头呢？我想把米开朗基罗的大卫的头送给她。", "我把她整个画成粉色的、透明的，像一个显现的幻影，仿佛光穿透了石头。那颗头与其说是展现出来的，不如说是让人隐约感觉到的，还有一头卷发。人们可以在里面看到一个年轻男子的头，也可以看到一个女人的头，这种模糊正合我意：它让每个人都可以自由地看见自己想看的东西。", "我很喜欢这个结果。我想这幅画是成功的，因为它保留了雕塑的动感，同时又增添了一份神秘。胜利女神依然是胜利女神，但她重新找回了一张脸，或者说，找回了拥有好几张脸的可能。", "谢谢大家的聆听。"]},
+"TB77":{src:"voix/TB77-zh.mp3",tr:1,texte:["这幅画叫《母狼》。它属于我的“印第安女子与非洲女王”系列，这些是坚强女性的肖像，她们扎根于自己的土地和记忆。它的灵感来自克拉丽莎·平科拉·埃斯蒂斯的书《与狼同奔的女人》。", "画上是这样的。一个心不在焉的印第安少女望着别处。她只听进去一半，就像在那个以为时间还多得很的年纪里常有的那样。在她身旁，她的祖母，一位新墨西哥的印第安女人，借着月光向她传授一堂根本的课，也许是所有课中最重要的一堂：学会说不。", "画面以绿色为主，那是鲜活大地的绿，又被奶油色和温暖的沙色衬托出来。祖母戴着全白和蓝色的羽毛，就像她从中获得智慧的天空和月亮。少女只戴着一根羽毛：它说明她刚刚走上这条路，一切都有待学习，一切都有待赢得。", "为了让这条训诫有血有肉，我选择画出两只合为一体的金色动物。金色是光和珍贵的颜色，因为这堂课价值千金。一边是猴子，象征思维的敏捷：能理解、能预判、能用计谋、不让自己落入圈套。另一边是母狼，张着大嘴，露出獠牙。她不低语，也不道歉。她以全部的本能之力，表明她的拒绝和反抗。", "两者合在一起是在说：说不，既需要智慧，也需要勇气。要懂得看清局面，然后敢于划出自己的界限，不羞愧，也不解释。", "祖母明白这一点。她知道这堂课不是从书本上学来的，而是在月亮的注视下，从女人传给女人，一代传给一代。她并不强迫孙女去听。她只是播种。即使少女看上去心不在焉，这堂课也已经在走进她的心里。", "这就是母狼的教诲：学会说不，并让别人尊重自己。", "谢谢大家的聆听。"]},
+"TB81":{src:"voix/TB81-zh.mp3",tr:1,texte:["马塞尔的旋转。一切都在转动，却没有什么迷失。在一片鲜活的绿色背景上，我抛出一圈圈同心的花环，像许多行星、细胞、车轮，周围环绕着热情的红色和耀眼的黄色闪光。我不想让目光停下来：我要它被卷进这场圆舞。", "这幅画是献给马塞尔·吉奥朗的，这位朋友多年来一直关注我的创作，他为我提供了兰斯这座城市来办展，还有一个让艺术与科学终于能够共舞的圈子。在他创立的这个艺术与科学的圈子里，旋转对我来说成了一种象征：一种不断把艺术家和科学家、方程式和色彩、时间和空间连接起来的运动。", "在这里，旋转不只是一个几何图形：它是生命的冲动。我以波的形式而不是以年份来感知时间，我的画就像我感受到的那样旋转，没有开始也没有结束，被一种欢快而温暖的能量推动着。《马塞尔的旋转》邀请你们任由自己被带走。说到底，不幸并不存在：只有没被照亮的人。"]},
+"TB82":{src:"voix/TB82-zh.mp3",tr:1,texte:["太空的象形文字与重写本。对我来说，空间不是虚无，从来都不是。没有视角就没有空间：是我们在观察中创造了空间。", "这幅画源于一次相遇。天体物理学家米奥阿拉·曼德亚有一天开门见山地对我说：“我给您数学方程式，作为交换，您把它们带给您的灵感画出来。”于是我就画了。看这些在画面上奔跑的符号：它们是象形文字，一种我不想去破译、只想让它振动的文字。对我来说，方程式是一种古老而神圣的语言，是早在我们之前就刻在宇宙中的密码。", "然后是重写本，那些一层叠一层的材料和色彩，仿佛空间保存着它所经历的一切的记忆。每一笔下面还有另一笔，每一个视角下面还有另一个视角。对我来说，红色是激情，黄色是灵光一闪。我用双手、用各种大小的画笔把它们画上去，有时甚至直接用瓶子倒。", "我像画大多数作品一样画了这幅画：从我的梦出发。醒来时，自动绘画就开始了。我不去试图理解，我喜欢这种与非理性的对话。有时一个人要用一辈子才能改变视角，也许还需要好几辈子。这幅画是一个邀请：如果你们愿意，就用自己的目光把故事延续下去。"]}
+};
+/* les œuvres disponibles qui ont aussi leur récit */
+const VOIXALIAS={"gaby-deslys":"TB33","yvette-guilbert":"TB40","guns-and-roses":"TB21","la-loba":"TB77","baiser-givre":"TB51","hotel-du-cul-tourne":"TB36","women-leopard":"TB06"};
 const euros = n => n.toLocaleString("zh-CN") + " €";
 const echappe = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
 
@@ -1588,7 +1609,9 @@ function dessineSalon(){
   const im=document.getElementById("loupe-img"), rp=courante.partiel?courante.l/courante.h:(im.naturalWidth&&im.naturalHeight)?im.naturalWidth/im.naturalHeight:(courante.l/courante.h);   /* photo de détail : proportions réelles de la toile */
   const grand=Math.max(courante.h,courante.l)/100;
   const lm=rp>=1?grand:grand*rp, hm=rp>=1?grand/rp:grand;
-  courante.lr=Math.round(lm*100); courante.hr=Math.round(hm*100);
+  /* affichage : les dimensions déclarées quand la photo a le même sens (le dessin suit la photo) ; sinon celles déduites de la photo */
+  const memeSens=(rp>=1)===(courante.l>=courante.h);
+  courante.lr=memeSens?courante.l:Math.round(lm*100); courante.hr=memeSens?courante.h:Math.round(hm*100);
   const nomI=choisitInterieur(hm,lm,portrait), I=INTERIEURS[nomI], V=photoPour(I,hm,lm,portrait);
   document.querySelectorAll("#choix-int button").forEach(b=>b.classList.toggle("actif",b.dataset.int===nomI));
   const P=place(V,hm,lm);
@@ -1599,6 +1622,10 @@ function dessineSalon(){
     if(besoin*sc>dispo){ sc=dispo/besoin; reduit=true; }
     const besoinL=(lm+0.3)*V.k, dispoL=r.width*0.96;                /* téléphone : la toile entière en largeur aussi */
     if(besoinL*sc>dispoL){ sc=dispoL/besoinL; reduit=true; }
+  } else {                                                         /* mur ordinaire : une très grande toile ne doit jamais dépasser la scène (barre de la voix ouverte) */
+    const besoinH=(hm+0.12)*V.k, dispoH=r.height*0.85, besoinL=(lm+0.12)*V.k, dispoL=r.width*0.96;
+    if(besoinH*sc>dispoH){ sc=dispoH/besoinH; reduit=true; }
+    if(besoinL*sc>dispoL){ sc=dispoL/besoinL; reduit=true; }
   }
   let ox=(r.width-V.w*sc)/2, oy=(r.height-V.h*sc)/2;
   const ppm=V.k*sc;                                                /* pixels par mètre à l'écran */
@@ -1608,7 +1635,8 @@ function dessineSalon(){
   const marge=0.07*r.height, yHautPx=V.sol-(P.bas+hm)*V.k, yBasPx=V.sol-P.bas*V.k;
   if(yHautPx*sc+oy<marge) oy=marge-yHautPx*sc;
   if(yBasPx*sc+oy>r.height-marge) oy=r.height-marge-yBasPx*sc;
-  if(reduit){ ox=r.width/2-P.x*sc; const mil=V.sol-((P.bas+hm+0.1)-0.25)/2*V.k; oy=Math.min(r.height-(V.sol+0.25*V.k)*sc-0.04*r.height, r.height/2-mil*sc); }
+  if(reduit&&!V.grand){ ox=r.width/2-P.x*sc; oy=r.height/2-(V.sol-(P.bas+hm/2)*V.k)*sc; }
+  else if(reduit){ ox=r.width/2-P.x*sc; const mil=V.sol-((P.bas+hm+0.1)-0.25)/2*V.k; oy=Math.min(r.height-(V.sol+0.25*V.k)*sc-0.04*r.height, r.height/2-mil*sc); }
   else oy=Math.min(0, Math.max(r.height-V.h*sc, oy));
   const yDe=m=>oy+(V.sol-m*V.k)*sc;                                /* hauteur au-dessus du sol -> y écran */
   const L=lm*ppm, H=hm*ppm, x=ox+P.x*sc-L/2, top=yDe(P.bas+hm);
@@ -1632,6 +1660,7 @@ function dessineSalon(){
     meuble+deco+
     (P.derriere?'':'<div class="mesure" style="left:'+x.toFixed(1)+'px;width:'+L.toFixed(1)+'px;top:'+(top+H+14).toFixed(1)+'px"><span>'+courante.lr+' cm</span></div>')+
     '<div class="legende'+((x+L/2)<r.width*0.45?' droite':'')+'"><b>置于您家，真实比例</b>'+dimTxt(courante.hr,courante.lr)+virg()+((P.libre&&I.legendeLibre)?I.legendeLibre:(V.grand&&I.legendeGrand)?I.legendeGrand:I.legende)+'，壁灯之下。室内陈设随画作换上它的色彩；可在下方选择另一个房间。'+(courante.estime?'<i>尺寸未登记：以 100 cm 的参考尺寸展示。</i>':'')+(P.note?'<i>'+P.note+'</i>':'')+(courante.partiel?'<i class="partiel">'+"画作局部，照片不完整"+'</i>':'')+'</div>';
+  if(reduit&&!V.grand){ const c=salon.querySelector('.cimaise'); if(c){ const s=salon.getBoundingClientRect(), b=c.getBoundingClientRect(), dy=(s.top+s.height/2)-(b.top+b.height/2); if(Math.abs(dy)>1) salon.querySelectorAll(':scope > [style*="top:"]').forEach(e=>{ e.style.top=(parseFloat(e.style.top)+dy).toFixed(1)+'px'; }); } }   /* très grande toile sur mur ordinaire : centrée dans la scène */
   peintObjets(salon);
   document.getElementById("btn-mesure").hidden=false;
   const lg=salon.querySelector(".legende"); document.getElementById("legende-bas").innerHTML=lg?lg.innerHTML:"";
@@ -1666,6 +1695,8 @@ btnSalon.addEventListener("click",()=>{
   document.querySelectorAll("#choix-int button").forEach(x=>x.classList.remove("actif"));
 });
 addEventListener("resize",()=>{ if(loupe.classList.contains("chez-vous")) dessineSalon(); });
+/* la scène change de taille sans redimensionner la fenêtre (barre de la voix, texte, téléphone) : on redessine */
+if(window.ResizeObserver){ let hSalon=0; new ResizeObserver(()=>{ const h=Math.round(salon.getBoundingClientRect().height); if(h!==hSalon){ hSalon=h; if(loupe.classList.contains("chez-vous")) dessineSalon(); } }).observe(salon); }
 
 function outilsToile(n){ const m=document.getElementById("btn-mur"), so=document.getElementById("btn-son"), lg=document.documentElement.lang||"fr";
   if(typeof n==="string"){ if(MURO.includes(n)){ m.href="mur/?n="+encodeURIComponent(n)+"&l="+encodeURIComponent(lg); m.hidden=false; }
@@ -1724,15 +1755,16 @@ const voixBloc=document.getElementById("voix"), voixTexte=document.getElementByI
 voixAudio.preload="metadata";
 const fmt=s=>{ s=Math.max(0,Math.round(s||0)); return Math.floor(s/60)+":"+String(s%60).padStart(2,"0"); };
 function montreVoix(cle){
-  const v=VOIX[cle];
+  const v=VOIX[cle]||VOIX[VOIXALIAS[cle]];
   voixAudio.pause(); voixBloc.classList.remove("joue"); voixTexte.hidden=true;
   voixBloc.hidden=!v; if(!v) return;
-  /* mp3 partout, ogg (opus) en secours */
-  const src=(voixAudio.canPlayType("audio/mpeg")||!voixAudio.canPlayType("audio/ogg; codecs=opus"))?v.src:v.src.replace(/\.mp3$/,".ogg");
+  /* mp3 : lu par tous les navigateurs actuels */
+  const src=v.src;
   if(voixAudio.getAttribute("src")!==src){ voixAudio.src=src; voixAudio.load(); }
   document.getElementById("voix-avance").style.width="0";
   document.getElementById("voix-temps").textContent="0:00 / "+fmt(voixAudio.duration);
   document.getElementById("voix-paragraphes").innerHTML=v.texte.map(t=>"<p>"+echappe(t)+"</p>").join("");
+  document.querySelectorAll("#voix-texte .v-o").forEach(x=>x.hidden=!!v.tr); document.querySelectorAll("#voix-texte .v-t").forEach(x=>x.hidden=!v.tr);
 }
 voixAudio.addEventListener("loadedmetadata",()=>{ document.getElementById("voix-temps").textContent=fmt(voixAudio.currentTime)+" / "+fmt(voixAudio.duration); });
 voixAudio.addEventListener("timeupdate",()=>{
@@ -1743,7 +1775,7 @@ voixAudio.addEventListener("ended",()=>voixBloc.classList.remove("joue"));
 /* la pastille du catalogue : la voix d'Isa sans ouvrir la toile */
 function ecouteDirect(cle,bd){
   const v=VOIX[cle]; if(!v) return;
-  const src=(voixAudio.canPlayType("audio/mpeg")||!voixAudio.canPlayType("audio/ogg; codecs=opus"))?v.src:v.src.replace(/\.mp3$/,".ogg");
+  const src=v.src;
   if(voixAudio.getAttribute("src")!==src){ voixAudio.src=src; voixAudio.load(); }
   if(voixAudio.paused){ voixAudio.play().then(()=>{ document.querySelectorAll(".voix-badge.joue").forEach(x=>x.classList.remove("joue")); bd.classList.add("joue"); }).catch(()=>{}); }
   else { voixAudio.pause(); }
@@ -2032,7 +2064,7 @@ document.addEventListener("dragstart",e=>{ if(e.target.tagName==="IMG") e.preven
 
 /* catalogue complet */
 const cg=document.getElementById("catalogue-grille");
-Object.keys(CAT).map(Number).sort((a,b)=>a-b).forEach(n=>{
+Object.keys(CAT).map(Number).sort((a,b)=>((VOIX["TB"+String(a).padStart(2,"0")]?0:1)-(VOIX["TB"+String(b).padStart(2,"0")]?0:1))||a-b).forEach(n=>{
   const o=CAT[n], id="TB"+String(n).padStart(2,"0");
   const b=document.createElement("button"); b.type="button"; b.className="fiche"; b.dataset.n=n;
   b.innerHTML='<div class="cimaise" style="--toile:url(\'catalogue/'+id+'.jpg\')"><span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
