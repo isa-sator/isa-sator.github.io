@@ -1044,7 +1044,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <li><a href="https://www.galeriejpht.com/portfolio-items/exposition-isa-sator-adn-sator" target="_blank" rel="noopener"><b>Galerie JPHT, Paris</b><span>Изложба на тема ADN Sator.</span></a></li>
         <li><a href="https://www.carnetdart.com/isa-sator/" target="_blank" rel="noopener"><b>Théâtre Déjazet, Paris</b><span>Изложба, критика от Жан-Пол Гавар-Пере.</span></a></li>
         <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" target="_blank" rel="noopener"><b>South Art Dealer Gallery</b><span>Интервю с Карли Агилера, Ню Йорк.</span></a></li>
-        <li><a href="ecouter/" target="_blank" rel="noopener"><b>Чуйте картината</b><span>Цветът става звук: пееща спирала пробягва по картината.</span></a></li>
+        <li><a href="ecouter/" target="_blank" rel="noopener"><b>Сетивно преживяване</b><span>Цветът става звук: пееща спирала пробягва по картината.</span></a></li>
       </ul>
     </div>
     <div class="parcours">
@@ -1334,7 +1334,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <button class="fermer" id="btn-mesure" type="button" hidden>Платно по поръчка за тази стена</button>
         <button class="fermer" id="btn-salon" type="button" hidden>У вас, в мащаб</button>
         <a class="fermer lien-outil" id="btn-mur" href="mur/" target="_blank" rel="noopener" hidden>Вижте на моята стена</a>
-        <a class="fermer lien-outil" id="btn-son" href="ecouter/" target="_blank" rel="noopener" hidden>Чуйте картината</a>
+        <a class="fermer lien-outil" id="btn-son" href="ecouter/" target="_blank" rel="noopener" hidden>Сетивно преживяване</a>
         <button class="fermer" id="btn-traduction" type="button" hidden>Прочетете превода</button>
         <span class="choix-int" id="choix-int" hidden><i>Вижте у вас:</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>Хол</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>Спалня</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>Лофт</span></button></span>
         <button class="fermer retour" id="loupe-fermer" type="button">Назад</button>
@@ -2102,7 +2102,7 @@ function numeroDe(el){ const img=el.querySelector("img"); const m=img&&/TB(\d+)\
 document.querySelectorAll(".grand .cimaise").forEach(c=>{ c.setAttribute("role","button"); c.tabIndex=0; c.style.cursor="pointer";
   const ouvre=()=>{ const n=numeroDe(c); if(n) chezSoi(n); };
   c.addEventListener("click",ouvre); c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } }); });
-/* sous chaque grand format, les mêmes outils que dans la loupe : chez vous à l'échelle, sur mon mur, écouter la toile */
+/* sous chaque grand format, les mêmes outils que dans la loupe : chez vous à l'échelle, sur mon mur, expérience sensorielle */
 (function(){
   const lg=document.documentElement.lang||"fr";
   const L={chez:document.getElementById("btn-salon").textContent, mur:document.getElementById("btn-mur").textContent, son:document.getElementById("btn-son").textContent};

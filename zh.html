@@ -1044,7 +1044,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <li><a href="https://www.galeriejpht.com/portfolio-items/exposition-isa-sator-adn-sator" target="_blank" rel="noopener"><b>Galerie JPHT, Paris</b><span>以《ADN Sator》为主题的展览。</span></a></li>
         <li><a href="https://www.carnetdart.com/isa-sator/" target="_blank" rel="noopener"><b>Théâtre Déjazet, Paris</b><span>展览，让-保罗·加瓦尔-佩雷撰写评论。</span></a></li>
         <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" target="_blank" rel="noopener"><b>South Art Dealer Gallery</b><span>与卡莉·阿吉莱拉的访谈，纽约。</span></a></li>
-        <li><a href="ecouter/" target="_blank" rel="noopener"><b>聆听画作</b><span>色彩化为声音：一道歌唱的螺旋在画面上游走。</span></a></li>
+        <li><a href="ecouter/" target="_blank" rel="noopener"><b>感官体验</b><span>色彩化为声音：一道歌唱的螺旋在画面上游走。</span></a></li>
       </ul>
     </div>
     <div class="parcours">
@@ -1334,7 +1334,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <button class="fermer" id="btn-mesure" type="button" hidden>为这面墙定制一幅画</button>
         <button class="fermer" id="btn-salon" type="button" hidden>置于您家，真实比例</button>
         <a class="fermer lien-outil" id="btn-mur" href="mur/" target="_blank" rel="noopener" hidden>挂到我家墙上看看</a>
-        <a class="fermer lien-outil" id="btn-son" href="ecouter/" target="_blank" rel="noopener" hidden>聆听画作</a>
+        <a class="fermer lien-outil" id="btn-son" href="ecouter/" target="_blank" rel="noopener" hidden>感官体验</a>
         <button class="fermer" id="btn-traduction" type="button" hidden>阅读译文</button>
         <span class="choix-int" id="choix-int" hidden><i>看看挂在您家的效果：</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>客厅</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>卧室</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>Loft</span></button></span>
         <button class="fermer retour" id="loupe-fermer" type="button">返回</button>
@@ -2102,7 +2102,7 @@ function numeroDe(el){ const img=el.querySelector("img"); const m=img&&/TB(\d+)\
 document.querySelectorAll(".grand .cimaise").forEach(c=>{ c.setAttribute("role","button"); c.tabIndex=0; c.style.cursor="pointer";
   const ouvre=()=>{ const n=numeroDe(c); if(n) chezSoi(n); };
   c.addEventListener("click",ouvre); c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } }); });
-/* sous chaque grand format, les mêmes outils que dans la loupe : chez vous à l'échelle, sur mon mur, écouter la toile */
+/* sous chaque grand format, les mêmes outils que dans la loupe : chez vous à l'échelle, sur mon mur, expérience sensorielle */
 (function(){
   const lg=document.documentElement.lang||"fr";
   const L={chez:document.getElementById("btn-salon").textContent, mur:document.getElementById("btn-mur").textContent, son:document.getElementById("btn-son").textContent};

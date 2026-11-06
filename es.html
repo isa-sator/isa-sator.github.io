@@ -1044,7 +1044,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <li><a href="https://www.galeriejpht.com/portfolio-items/exposition-isa-sator-adn-sator" target="_blank" rel="noopener"><b>Galerie JPHT, Paris</b><span>Exposición sobre el tema ADN Sator.</span></a></li>
         <li><a href="https://www.carnetdart.com/isa-sator/" target="_blank" rel="noopener"><b>Théâtre Déjazet, Paris</b><span>Exposición, crítica de Jean-Paul Gavard-Perret.</span></a></li>
         <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" target="_blank" rel="noopener"><b>South Art Dealer Gallery</b><span>Entrevista con Carly Aguilera, Nueva York.</span></a></li>
-        <li><a href="ecouter/" target="_blank" rel="noopener"><b>Escuche el cuadro</b><span>El color se vuelve sonido: una espiral cantante recorre el cuadro.</span></a></li>
+        <li><a href="ecouter/" target="_blank" rel="noopener"><b>Experiencia sensorial</b><span>El color se vuelve sonido: una espiral cantante recorre el cuadro.</span></a></li>
       </ul>
     </div>
     <div class="parcours">
@@ -1334,7 +1334,7 @@ dialog canvas.trace{position:absolute;z-index:5}
         <button class="fermer" id="btn-mesure" type="button" hidden>Un lienzo por encargo para esta pared</button>
         <button class="fermer" id="btn-salon" type="button" hidden>En su casa, a escala</button>
         <a class="fermer lien-outil" id="btn-mur" href="mur/" target="_blank" rel="noopener" hidden>Ver en mi pared</a>
-        <a class="fermer lien-outil" id="btn-son" href="ecouter/" target="_blank" rel="noopener" hidden>Escuche el cuadro</a>
+        <a class="fermer lien-outil" id="btn-son" href="ecouter/" target="_blank" rel="noopener" hidden>Experiencia sensorial</a>
         <button class="fermer" id="btn-traduction" type="button" hidden>Leer la traducción</button>
         <span class="choix-int" id="choix-int" hidden><i>Verlo en su casa:</i><button type="button" data-int="salon" style="--img:url('interieur-salon-paysage.jpg')"><span>Salón</span></button><button type="button" data-int="chambre" style="--img:url('interieur-chambre.jpg')"><span>Dormitorio</span></button><button type="button" data-int="loft" style="--img:url('interieur-loft-paysage.jpg')"><span>Loft</span></button></span>
         <button class="fermer retour" id="loupe-fermer" type="button">Volver</button>
@@ -2102,7 +2102,7 @@ function numeroDe(el){ const img=el.querySelector("img"); const m=img&&/TB(\d+)\
 document.querySelectorAll(".grand .cimaise").forEach(c=>{ c.setAttribute("role","button"); c.tabIndex=0; c.style.cursor="pointer";
   const ouvre=()=>{ const n=numeroDe(c); if(n) chezSoi(n); };
   c.addEventListener("click",ouvre); c.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); ouvre(); } }); });
-/* sous chaque grand format, les mêmes outils que dans la loupe : chez vous à l'échelle, sur mon mur, écouter la toile */
+/* sous chaque grand format, les mêmes outils que dans la loupe : chez vous à l'échelle, sur mon mur, expérience sensorielle */
 (function(){
   const lg=document.documentElement.lang||"fr";
   const L={chez:document.getElementById("btn-salon").textContent, mur:document.getElementById("btn-mur").textContent, son:document.getElementById("btn-son").textContent};

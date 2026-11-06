@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>Isa Sator · Écoutez la toile</title>
+<title>Isa Sator · Expérience sensorielle</title>
 <meta name="robots" content="noindex">
 <style>
 :root{--fond:#0b1324;--or:#D4AF37;--or2:#E2C063;--texte:#EAE0D0;--cendre:#b9ad97}
@@ -46,7 +46,7 @@ h1{font-weight:400;font-size:clamp(1.6rem,4.4vw,2.4rem);margin:.1em 0 .3em;color
 .alpha h2{font-weight:400;color:var(--or2);font-size:1.25rem;margin:.1em 0 .4em}
 a{color:var(--or2)}
 </style></head><body><div class="cadre">
-<h1 id="titre">Écoutez La Licorne</h1>
+<h1 id="titre">La Licorne, expérience sensorielle</h1>
 <div class="intro">
 <p class="ouverture">« Je lui donne des correspondances émotionnelles, vibrationnelles et symboliques. »<br><span style="font-style:normal;font-size:.9rem;color:var(--cendre)">Isa Sator, à propos de la couleur</span></p>
 <p>Chaque couleur est une lumière qui vibre. Choisissez une toile, puis touchez-la : vous entendrez la sienne.</p>
@@ -124,7 +124,7 @@ function prepare(){ GH=Math.max(30,Math.round(GW*img.naturalHeight/img.naturalWi
   majDrone(); document.getElementById('lanote').innerHTML=`<b>${n1}</b>${n2?`, traversée d'un <b>${n2}</b>`:''}<br><span class="note" style="margin:0">calculée sur les couleurs de ${t}</span>`;
   taille(); }
 function couleurA(u,v){ const x=Math.max(0,Math.min(GW-1,Math.floor(u*GW))), y=Math.max(0,Math.min(GH-1,Math.floor(v*GH))), i=(y*GW+x)*4; return [grille[i],grille[i+1],grille[i+2]]; }
-function charge(k){ cle=k; const t=TOILES.find(x=>x[0]===k); document.getElementById('titre').textContent='Écoutez '+(t[1].startsWith('La ')||t[1].startsWith('Le ')?t[1]:t[1]);
+function charge(k){ cle=k; const t=TOILES.find(x=>x[0]===k); document.getElementById('titre').textContent=t[1]+', expérience sensorielle';
   img.alt=t[1]+', Isa Sator'; img.src='toiles/'+k+'.jpg'; document.getElementById('legende').textContent=t[1]+(t[2]?' · '+t[2]:'');
   document.querySelectorAll('#choix button').forEach(b=>b.setAttribute('aria-current',b.dataset.k===k)); }
 const ch=document.getElementById('choix');
