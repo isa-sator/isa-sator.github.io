@@ -409,21 +409,44 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .accroche b{font-weight:400;letter-spacing:.02em;text-shadow:none;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
 .sous{color:var(--cendre);margin:0 0 2em;max-width:42ch;text-shadow:0 2px 12px rgba(0,0,0,.85)}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
+.vers-crit{margin:1.1em 0 0}
+.vers-crit a{display:inline-flex;align-items:center;gap:.5em;color:#F1D27E;text-decoration:none;border-bottom:1px solid rgba(241,210,126,.45);padding-bottom:2px;font-size:.92rem;letter-spacing:.02em}
+.vers-crit a::after{content:"→"}
+.vers-crit a:hover{color:#FFF6D2;border-color:#FFF6D2}
+.critiques .eloges{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(14px,2vw,22px);margin:0 0 1.6em}
+.eloge{margin:0;padding:clamp(20px,2.4vw,28px);border:1px solid rgba(226,192,99,.32);border-radius:4px;background:linear-gradient(160deg,rgba(28,33,58,.92),rgba(7,11,22,.92));display:flex;flex-direction:column;justify-content:space-between;gap:1.1em;transition:border-color .3s,transform .3s}
+.eloge:hover{border-color:rgba(241,210,126,.75);transform:translateY(-2px)}
+.eloge blockquote{margin:0;font-family:var(--display);font-size:clamp(1.12rem,1.5vw,1.3rem);line-height:1.38;color:var(--ivoire)}
+.eloge.une{grid-column:1/-1}
+@media(min-width:1000px){.critiques .eloges{grid-template-columns:repeat(3,1fr)}.eloge.large{grid-column:span 2}}
+.eloge.une blockquote{font-size:clamp(1.35rem,2.3vw,1.8rem);background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent;max-width:46ch}
+.eloge figcaption{display:flex;flex-wrap:wrap;align-items:baseline;gap:.25em .8em;font-size:.8rem;color:var(--cendre);border-top:1px solid rgba(226,192,99,.22);padding-top:.9em}
+.eloge figcaption b{color:#E2C063;font-weight:500;font-size:.9rem;letter-spacing:.02em}
+.eloge figcaption a{margin-left:auto;color:#F1D27E;text-decoration:none;white-space:nowrap}
+.eloge figcaption a::after{content:" →"}
+.eloge figcaption a:hover{color:#FFF6D2}
+.note-crit{font-size:.78rem;color:var(--cendre);margin:0 0 1.4em}
+html[lang="ar"] .eloge figcaption a{margin-left:0;margin-right:auto}
+html[lang="ar"] .eloge figcaption a::after,html[lang="ar"] .vers-crit a::after{content:" ←"}
 .sceaux{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px);flex-wrap:wrap;margin-top:clamp(22px,3.2vw,34px)}
-.macaron{position:relative;flex:none;width:clamp(128px,13vw,156px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.28em;padding:16px;text-align:center;text-decoration:none;color:var(--ivoire);
-  background:radial-gradient(circle at 34% 28%,#2A2F46 0%,#11152A 58%,#070B16 100%);box-shadow:0 0 0 2px #C9A227,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(226,192,99,.55),0 14px 34px rgba(0,0,0,.6);transform:rotate(-6deg);transition:transform .35s ease,box-shadow .35s ease}
+.macaron{position:relative;flex:none;width:clamp(132px,13.4vw,160px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3em;padding:16px;text-align:center;text-decoration:none!important;color:var(--ivoire);
+  background:radial-gradient(circle at 34% 28%,#2A2F46 0%,#11152A 58%,#070B16 100%);box-shadow:0 0 0 2px #C9A227,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(226,192,99,.55),0 14px 34px rgba(0,0,0,.6),0 0 26px rgba(241,210,126,.18);transform:rotate(-6deg);transition:transform .35s ease,box-shadow .35s ease}
+.macaron *{text-decoration:none!important}
 .macaron::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed rgba(226,192,99,.55);pointer-events:none}
 .macaron i{display:block;font-style:normal;font-size:.56rem;letter-spacing:.24em;color:#E2C063;line-height:1}
 .macaron i::before{content:"★ ★ ★"}
-.macaron b{font-family:var(--display);font-weight:400;font-size:clamp(.92rem,1.15vw,1.06rem);line-height:1.08;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.macaron span{font-size:.66rem;line-height:1.25;color:var(--ivoire);max-width:13ch}
+.macaron b{font-family:var(--display);font-weight:400;font-size:clamp(.9rem,1.1vw,1.02rem);line-height:1.08;color:var(--ivoire)}
+.macaron span{font-size:.72rem;font-weight:600;line-height:1.22;max-width:13ch;letter-spacing:.01em;background-image:linear-gradient(100deg,#C9A227 0%,#F1D27E 30%,#FFF6D2 50%,#F1D27E 70%,#C9A227 100%);background-size:220% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 6px rgba(241,210,126,.55))}
 .macaron small{font-size:.54rem;letter-spacing:.05em;color:var(--cendre);max-width:15ch;line-height:1.3}
-.macaron:hover,.macaron:focus-visible{transform:rotate(0) scale(1.06);box-shadow:0 0 0 2px #F1D27E,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(241,210,126,.85),0 18px 40px rgba(0,0,0,.65)}
+.macaron:hover,.macaron:focus-visible{transform:rotate(0) scale(1.07);box-shadow:0 0 0 2px #F1D27E,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(241,210,126,.9),0 18px 40px rgba(0,0,0,.65),0 0 42px rgba(241,210,126,.45)}
+.macaron:hover span,.macaron:focus-visible span{animation:eclat-or 1.6s ease-in-out infinite;filter:drop-shadow(0 0 10px rgba(255,236,170,.9))}
+@keyframes eclat-or{0%{background-position:100% 0}100%{background-position:-120% 0}}
+@media(prefers-reduced-motion:reduce){.macaron:hover span{animation:none}}
 .wiki{display:inline-flex;align-items:center;gap:.6em;padding:.55em 1em .55em .55em;border:1px solid rgba(226,192,99,.45);border-radius:999px;background:rgba(7,11,22,.72);color:var(--ivoire);text-decoration:none;font-size:.86rem;line-height:1.2;transition:border-color .25s,background .25s}
 .wiki::before{content:"W";flex:none;display:grid;place-items:center;width:2em;height:2em;border-radius:50%;background:#F4F1EA;color:#111;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:.9rem}
 .wiki em{font-style:normal;text-decoration:underline;text-decoration-color:rgba(226,192,99,.6);text-underline-offset:3px}
 .wiki:hover,.wiki:focus-visible{border-color:#E2C063;background:rgba(20,26,48,.9)}
-@media(max-width:760px){.sceaux{flex-wrap:nowrap;gap:14px}.wiki{font-size:.8rem}.macaron{width:118px;padding:12px}.macaron b{font-size:.84rem}.macaron span{font-size:.62rem}.macaron small{font-size:.5rem}}
+@media(max-width:760px){.sceaux{flex-wrap:nowrap;gap:14px}.wiki{font-size:.8rem}.macaron{width:118px;padding:12px}.macaron b{font-size:.84rem}.macaron span{font-size:.66rem}.macaron small{font-size:.5rem}}
 .bouton{display:inline-block;padding:.74em 1.6em;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border:1px solid var(--orange);color:var(--orange);background:rgba(7,12,24,.4)}
 .bouton:hover{background:var(--orange);color:var(--nuit);text-decoration:none}
 .bouton.plein{background:var(--orange);color:var(--nuit)}
@@ -912,11 +935,11 @@ dialog canvas.trace{position:absolute;z-index:5}
           <a class="bouton" href="mailto:isasator@gmail.com?subject=Contact%20from%20the%20website">Write to the studio</a>
         </div>
         <div class="sceaux">
-          <a class="macaron" href="#regards" aria-label="International standing, praised by several art critics: read their texts">
+          <a class="macaron" href="#critiques" aria-label="International standing, praised by several art critics: read their texts">
             <i aria-hidden="true"></i>
             <b>International standing</b>
             <span>Praised by several art critics</span>
-            <small>Paris · New York · London · Dubai</small>
+            <small>Paris · New York · Sardinia</small>
           </a>
           <a class="wiki" href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><em>Her Wikipedia entry (in French)</em></a>
         </div>
@@ -946,7 +969,8 @@ dialog canvas.trace{position:absolute;z-index:5}
           <p>A self-taught colorist painter who came back from New Caledonia with color as her language, Isa Sator has exhibited since 2003 in Paris, New York, Dubai, London, Houston and, in 2026, in Sardinia. Listed on Artprice, which records twenty-four of her works sold at public auction, from 2005 at Aguttes to 2026, she is represented by the Jyb'Art gallery (Levallois-Perret) and the Galerie JPHT (Paris), listed in the Delarge dictionary of visual arts, and her rights are managed by ADAGP. The Sardinian press describes her as “a Picasso of the 21<sup>st</sup> century”.</p>
         </div>
         <blockquote class="mot-critique">“Isa Sator is a painter, absolutely a painter. [...] For some years now she has established herself as a major painter on the Parisian scene.”<cite>Jean-Louis Poitevin, art critic, Artprice profile</cite></blockquote>
-        <ul class="presse" id="regards">
+        <p class="vers-crit"><a href="#critiques">What the critics say, in one minute</a></p>
+        <ul class="presse">
           <li><a href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><b>Encyclopedia</b><span>Her entry on Wikipedia, the free encyclopedia (in French)</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" rel="noopener"><b>Interview</b><span>Carly Aguilera, South Art Dealer Gallery, New York</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=wCfDITSZXts" rel="noopener"><b>Interview</b><span>Jean-Philippe Théron, ADN Sator exhibition, Galerie JPHT, Paris</span></a></li>
@@ -976,6 +1000,42 @@ dialog canvas.trace{position:absolute;z-index:5}
       <li><b>2</b><span>galleries: Jyb'Art in Levallois-Perret, Galerie JPHT in Paris</span></li>
       <li><b>2005</b><span>gold medal in Fréjus, bronze medals in Paris (Académie de Lutèce) and Verdun</span></li>
     </ul>
+  </div>
+</section>
+
+<section class="bande critiques gouttiere" id="critiques" data-page="critiques" aria-labelledby="t-critiques">
+  <div class="dedans centre">
+    <p class="surtitre">Critical views</p>
+    <h2 class="titre" id="t-critiques">What the critics say</h2>
+    <p class="chapeau">Praised by several art critics, in Paris, New York and Sardinia. The essentials, in one minute.</p>
+    <div class="eloges">
+      <figure class="eloge une">
+        <blockquote>“Isa Sator is a painter, absolutely a painter. […] In recent years she has established herself as a major painter of the Parisian scene.”</blockquote>
+        <figcaption><b>Jean-Louis Poitevin</b><span>Art critic · Paris</span><a href="https://fr.artprice.com/artiste/319130/isa-sator" target="_blank" rel="noopener">Read on Artprice</a></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>“How could one not look at canvases that tear us away from widespread indifference?”</blockquote>
+        <figcaption><b>Jean-Paul Gavard-Perret</b><span>Le Littéraire · Paris · 2024</span><a href="https://www.lelitteraire.com/isa-sator-la-palette-magique-exposition/" target="_blank" rel="noopener">Read the text</a></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>“An artist is born, who radiates upon us with colors of an almost blinding intensity and overwhelms us with her generosity.”</blockquote>
+        <figcaption><b>Mylène Vignon</b><span>Saisons de culture · Paris</span><a href="https://www.saisonsdeculture.com/arts/isa-sator/" target="_blank" rel="noopener">Read the text</a></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>“A Picasso of the 21st century, as one might well define her.”</blockquote>
+        <figcaption><b>Vittorio E. Pisu</b><span>Casa Vacanze Ortobene Arte News · Nuoro, Sardinia · 2025</span><a href="#actualite">Read the article</a></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>“This painting undoes the ties of the visible so that the elusive paradoxically takes on a body.”</blockquote>
+        <figcaption><b>Jean-Paul Gavard-Perret</b><span>Le Littéraire · Paris · 2026</span><a href="https://www.lelitteraire.com/isa-sator-ouverture-de-son-atelier-a-magic-city/" target="_blank" rel="noopener">Read the text</a></figcaption>
+      </figure>
+      <figure class="eloge large">
+        <blockquote>“The artist's work does not go unnoticed: very strong contrasts, very joyful paintings.”</blockquote>
+        <figcaption><b>Le Petit Journal</b><span>New York · 2019</span><a href="https://lepetitjournal.com/new-york/isa-sator-expose-new-york-son-art-haut-en-couleur-267291" target="_blank" rel="noopener">Read the article</a></figcaption>
+      </figure>
+    </div>
+    <p class="note-crit">Excerpts translated from French and Italian, with a link to each full text.</p>
+    <p class="suite-crit"><a class="bouton" href="#artiste">Discover the artist</a></p>
   </div>
 </section>
 
@@ -2082,10 +2142,10 @@ if(!reduit){
 })();
 
 /* ---------- pages : sur ordinateur, une section à la fois ; sur téléphone, le fil continu ---------- */
-const PAGES={accueil:"accueil",portail:"accueil",artiste:"artiste",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",chanson:"chanson",contact:"contact"};
+const PAGES={accueil:"accueil",portail:"accueil",artiste:"artiste",critiques:"critiques",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",chanson:"chanson",contact:"contact"};
 const mqPages=matchMedia("(min-width:761px)");
 function montrePage(){
-  const h=decodeURIComponent(location.hash.replace("#","")), page=PAGES[h]||"accueil", enPages=mqPages.matches;
+  const h=decodeURIComponent(location.hash.replace("#","")), el=h&&!PAGES[h]?document.getElementById(h):null, sec=el&&el.closest("[data-page]"), page=PAGES[h]||(sec&&PAGES[sec.dataset.page]?sec.dataset.page:"accueil"), enPages=mqPages.matches;   /* une ancre interne (ex. #regards) ouvre la page qui la contient */
   document.body.classList.toggle("pages",enPages);
   document.querySelectorAll("[data-page]").forEach(e=>{ e.hidden = enPages && e.dataset.page!==page; });
   const courant = (h && PAGES[h]) ? h : page;   /* onglet souligné : la cible exacte (ex. L'artiste, sur la page d'accueil) */
