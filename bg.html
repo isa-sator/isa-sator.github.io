@@ -420,7 +420,8 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .wiki-bas{margin:1.6em 0 0}
 .wiki-bas .wiki{font-size:.8rem}
 .sous-crit{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.7rem);color:#E2C063;margin:1.4em 0 .8em}
-.rapproche .eloge blockquote{font-style:italic;font-size:clamp(1.02rem,1.35vw,1.16rem)}
+.rapproche .eloge blockquote{font-size:clamp(1.02rem,1.35vw,1.16rem)}
+@media(min-width:1000px){.rapproche{grid-template-columns:repeat(2,1fr)!important}}
 .vers-crit{margin:1.1em 0 0}
 .vers-crit a{display:inline-flex;align-items:center;gap:.5em;color:#F1D27E;text-decoration:none;border-bottom:1px solid rgba(241,210,126,.45);padding-bottom:2px;font-size:.92rem;letter-spacing:.02em}
 .vers-crit a::after{content:"→"}
@@ -1031,7 +1032,7 @@ dialog canvas.trace{position:absolute;z-index:5}
     <div class="eloges">
       <figure class="eloge une">
         <blockquote>„Иса Сатор е художничка, изцяло художничка. […] От няколко години тя се утвърждава като значима художничка на парижката сцена.“</blockquote>
-        <figcaption><b>Jean-Louis Poitevin</b><span>Изкуствовед · Париж</span><a href="https://fr.artprice.com/artiste/319130/isa-sator" target="_blank" rel="noopener">Прочетете в Artprice</a></figcaption>
+        <figcaption><b>Jean-Louis Poitevin</b><span>Изкуствовед · Париж</span><a href="https://fr.artprice.com/artiste/319130/isa-sator/biographie" target="_blank" rel="noopener">Прочетете в Artprice</a></figcaption>
       </figure>
       <figure class="eloge">
         <blockquote>„Как да не гледаш платна, които ни изтръгват от всеобщото безразличие?“</blockquote>
@@ -1057,19 +1058,23 @@ dialog canvas.trace{position:absolute;z-index:5}
     <h3 class="sous-crit">Сравнявана с великите майстори</h3>
     <div class="eloges rapproche">
       <figure class="eloge">
-        <blockquote>Живопис, сравнявана с Шагал и Пикасо; път, който напомня за Гоген в южните морета.</blockquote>
-        <figcaption><b>Ward Morehouse III</b><span>National Arts Club · Ню Йорк · 2007</span></figcaption>
+        <blockquote>„По примера на художници като Пикасо и Шагал творбите на Сатор са рядко съчетание на чувственост, наивност, феминизъм и живост на цветовете и настроенията.“</blockquote>
+        <figcaption><b>Times Square</b><span>Times Square, „Crossroads of the World“ · Ню Йорк · септември 2007</span><a href="presse/times-square-2007.jpg" target="_blank" rel="noopener">Вижте статията</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>Език на кръстопътя между Нолде, Кокто, Масон, Жоел дьо Ла Казиниер и Баския.</blockquote>
-        <figcaption><b>Jean-Paul Gavard-Perret</b><span>Изкуствовед · Париж</span></figcaption>
+        <blockquote>„Като Пол Гоген, Сатор е усъвършенствала изкуството си в южните морета. Днес тя живее и твори в Париж, където критиците сравняват нейните абстрактно-експресионистични маслени платна с Шагал и дори с Пикасо.“</blockquote>
+        <figcaption><b>Ward Morehouse III</b><span>Предговор към каталога · National Arts Club · Ню Йорк · 2007</span><a href="presse/catalogue-new-york-2007.pdf" target="_blank" rel="noopener">Прочетете каталога (PDF)</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>Винаги присъстваща жизнена сила, характер, изтънчен с годините.</blockquote>
-        <figcaption><b>Patrick Wassef</b></figcaption>
+        <blockquote>„Невероятно надарена, с безграничен творчески импулс, художничката създава език на кръстопътя между художници като Нолде, Кокто, Масон, Жоел дьо Ла Казиниер и Баския.“</blockquote>
+        <figcaption><b>Jean-Paul Gavard-Perret</b><span>Изкуствовед · портфолио на художничката, 2017</span></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>„Силата все още е там, но линията се е изтънчила. […] Няма съмнение, силата е с нея.“</blockquote>
+        <figcaption><b>Patrick Wassef</b><span>Портфолио на художничката, 2017</span></figcaption>
       </figure>
     </div>
-    <p class="note-crit">Тези три погледа са обобщени по портфолиото на художничката (2026).</p>
+    <p class="note-crit">Текстовете от Ню Йорк са преведени от английски; тези на Жан-Пол Гавар-Перет и Патрик Васеф са цитирани по портфолиото на художничката (2017).</p>
     <p class="note-crit">Откъсите са преведени от френски и италиански, с връзка към всеки пълен текст.</p>
     <p class="suite-crit"><a class="bouton" href="#artiste">Открийте художничката</a></p>
   </div>
@@ -2325,7 +2330,7 @@ const TX=k=>{ const e=document.querySelector('#txt').content.querySelector('[dat
 /* ---------- v43 : liens extérieurs. Articles, galeries, vidéos s'ouvrent dans le site (liseuse) ; les sites qui refusent l'affichage intégré (Catawiki, Instagram) s'ouvrent dans un nouvel onglet ---------- */
 (function(){
   const lis=document.getElementById("liseuse"), cadre=document.getElementById("li-cadre"), onglet=document.getElementById("li-onglet");
-  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com)$/;
+  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com|artprice\.com|bnf\.fr)$/;   /* v56 : Artprice et la BnF refusent l'affichage intégré (vérifié le 07/11/2026) */
   const youtube=u=>{ const m=/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/.exec(u); return m?m[1]:null; };
   document.querySelectorAll('a[href^="http"]').forEach(a=>{ try{ if(new URL(a.href).host!==location.host){ a.target="_blank"; a.rel="noopener"; } }catch(_){} });
   function ouvreLiseuse(href,titre){

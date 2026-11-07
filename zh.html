@@ -420,7 +420,8 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .wiki-bas{margin:1.6em 0 0}
 .wiki-bas .wiki{font-size:.8rem}
 .sous-crit{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.7rem);color:#E2C063;margin:1.4em 0 .8em}
-.rapproche .eloge blockquote{font-style:italic;font-size:clamp(1.02rem,1.35vw,1.16rem)}
+.rapproche .eloge blockquote{font-size:clamp(1.02rem,1.35vw,1.16rem)}
+@media(min-width:1000px){.rapproche{grid-template-columns:repeat(2,1fr)!important}}
 .vers-crit{margin:1.1em 0 0}
 .vers-crit a{display:inline-flex;align-items:center;gap:.5em;color:#F1D27E;text-decoration:none;border-bottom:1px solid rgba(241,210,126,.45);padding-bottom:2px;font-size:.92rem;letter-spacing:.02em}
 .vers-crit a::after{content:"→"}
@@ -1031,7 +1032,7 @@ dialog canvas.trace{position:absolute;z-index:5}
     <div class="eloges">
       <figure class="eloge une">
         <blockquote>“伊莎·萨托是画家，彻头彻尾的画家。[……]近年来，她已成为巴黎画坛的重要画家。”</blockquote>
-        <figcaption><b>Jean-Louis Poitevin</b><span>艺术评论家 · 巴黎</span><a href="https://fr.artprice.com/artiste/319130/isa-sator" target="_blank" rel="noopener">在 Artprice 上阅读</a></figcaption>
+        <figcaption><b>Jean-Louis Poitevin</b><span>艺术评论家 · 巴黎</span><a href="https://fr.artprice.com/artiste/319130/isa-sator/biographie" target="_blank" rel="noopener">在 Artprice 上阅读</a></figcaption>
       </figure>
       <figure class="eloge">
         <blockquote>“这些画作将我们从普遍的冷漠中拽出，怎能不去看它们？”</blockquote>
@@ -1057,19 +1058,23 @@ dialog canvas.trace{position:absolute;z-index:5}
     <h3 class="sous-crit">与大师们相提并论</h3>
     <div class="eloges rapproche">
       <figure class="eloge">
-        <blockquote>她的绘画被拿来与夏加尔和毕加索相比；她的经历令人想起南太平洋的高更。</blockquote>
-        <figcaption><b>Ward Morehouse III</b><span>National Arts Club · 纽约 · 2007</span></figcaption>
+        <blockquote>“继承毕加索和夏加尔等艺术家的精神，萨托的作品罕见地融合了感性、天真、女性主义以及色彩与情绪的鲜活。”</blockquote>
+        <figcaption><b>Times Square</b><span>Times Square，“Crossroads of the World” · 纽约 · 2007年9月</span><a href="presse/times-square-2007.jpg" target="_blank" rel="noopener">查看文章</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>一种融汇诺尔德、科克托、马松、若埃勒·德·拉·卡西尼埃尔与巴斯奇亚的语言。</blockquote>
-        <figcaption><b>Jean-Paul Gavard-Perret</b><span>艺术评论家 · 巴黎</span></figcaption>
+        <blockquote>“和保罗·高更一样，萨托在南太平洋磨炼了她的技艺。她如今在巴黎生活和创作，评论家们将她的抽象表现主义油画与夏加尔、甚至毕加索相提并论。”</blockquote>
+        <figcaption><b>Ward Morehouse III</b><span>画册序言 · National Arts Club · 纽约 · 2007</span><a href="presse/catalogue-new-york-2007.pdf" target="_blank" rel="noopener">阅读画册（PDF）</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>始终在场的生命力，一种随岁月愈加精炼的个性。</blockquote>
-        <figcaption><b>Patrick Wassef</b></figcaption>
+        <blockquote>“她天赋惊人，拥有无限的创作冲动，创造出一种融汇诺尔德、科克托、马松、若埃勒·德·拉·卡西尼埃尔与巴斯奇亚等画家的语言。”</blockquote>
+        <figcaption><b>Jean-Paul Gavard-Perret</b><span>艺术评论家 · 艺术家作品集，2017</span></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>“力量始终都在，但笔触变得更加细腻。[……]毫无疑问，原力与她同在。”</blockquote>
+        <figcaption><b>Patrick Wassef</b><span>艺术家作品集，2017</span></figcaption>
       </figure>
     </div>
-    <p class="note-crit">以上三则评价摘自艺术家作品集（2026）的概述。</p>
+    <p class="note-crit">纽约的文字译自英文；Jean-Paul Gavard-Perret 与 Patrick Wassef 的文字引自艺术家作品集（2017）。</p>
     <p class="note-crit">摘录译自法语和意大利语，并附每篇全文链接。</p>
     <p class="suite-crit"><a class="bouton" href="#artiste">了解艺术家</a></p>
   </div>
@@ -2325,7 +2330,7 @@ const TX=k=>{ const e=document.querySelector('#txt').content.querySelector('[dat
 /* ---------- v43 : liens extérieurs. Articles, galeries, vidéos s'ouvrent dans le site (liseuse) ; les sites qui refusent l'affichage intégré (Catawiki, Instagram) s'ouvrent dans un nouvel onglet ---------- */
 (function(){
   const lis=document.getElementById("liseuse"), cadre=document.getElementById("li-cadre"), onglet=document.getElementById("li-onglet");
-  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com)$/;
+  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com|artprice\.com|bnf\.fr)$/;   /* v56 : Artprice et la BnF refusent l'affichage intégré (vérifié le 07/11/2026) */
   const youtube=u=>{ const m=/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/.exec(u); return m?m[1]:null; };
   document.querySelectorAll('a[href^="http"]').forEach(a=>{ try{ if(new URL(a.href).host!==location.host){ a.target="_blank"; a.rel="noopener"; } }catch(_){} });
   function ouvreLiseuse(href,titre){

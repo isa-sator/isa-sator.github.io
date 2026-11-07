@@ -420,7 +420,8 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .wiki-bas{margin:1.6em 0 0}
 .wiki-bas .wiki{font-size:.8rem}
 .sous-crit{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.7rem);color:#E2C063;margin:1.4em 0 .8em}
-.rapproche .eloge blockquote{font-style:italic;font-size:clamp(1.02rem,1.35vw,1.16rem)}
+.rapproche .eloge blockquote{font-size:clamp(1.02rem,1.35vw,1.16rem)}
+@media(min-width:1000px){.rapproche{grid-template-columns:repeat(2,1fr)!important}}
 .vers-crit{margin:1.1em 0 0}
 .vers-crit a{display:inline-flex;align-items:center;gap:.5em;color:#F1D27E;text-decoration:none;border-bottom:1px solid rgba(241,210,126,.45);padding-bottom:2px;font-size:.92rem;letter-spacing:.02em}
 .vers-crit a::after{content:"→"}
@@ -1031,7 +1032,7 @@ dialog canvas.trace{position:absolute;z-index:5}
     <div class="eloges">
       <figure class="eloge une">
         <blockquote>「イザ・サトールは画家、まさしく画家である。［…］ここ数年、彼女はパリの美術界を代表する画家としての地位を確立している。」</blockquote>
-        <figcaption><b>Jean-Louis Poitevin</b><span>美術評論家 · パリ</span><a href="https://fr.artprice.com/artiste/319130/isa-sator" target="_blank" rel="noopener">Artprice で読む</a></figcaption>
+        <figcaption><b>Jean-Louis Poitevin</b><span>美術評論家 · パリ</span><a href="https://fr.artprice.com/artiste/319130/isa-sator/biographie" target="_blank" rel="noopener">Artprice で読む</a></figcaption>
       </figure>
       <figure class="eloge">
         <blockquote>「蔓延する無関心から私たちを引き剥がす絵を、どうして見ずにいられようか。」</blockquote>
@@ -1057,19 +1058,23 @@ dialog canvas.trace{position:absolute;z-index:5}
     <h3 class="sous-crit">巨匠たちとの比較</h3>
     <div class="eloges rapproche">
       <figure class="eloge">
-        <blockquote>シャガールやピカソにたとえられる絵画。南洋のゴーギャンを思わせる歩み。</blockquote>
-        <figcaption><b>Ward Morehouse III</b><span>National Arts Club · ニューヨーク · 2007</span></figcaption>
+        <blockquote>「ピカソやシャガールのような芸術家に倣い、サトールの作品は官能性、素朴さ、フェミニズム、そして色彩と気分の鮮やかさを稀有なかたちで併せ持つ。」</blockquote>
+        <figcaption><b>Times Square</b><span>Times Square「Crossroads of the World」 · ニューヨーク · 2007年9月</span><a href="presse/times-square-2007.jpg" target="_blank" rel="noopener">記事を見る</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>ノルデ、コクトー、マッソン、ジョエル・ド・ラ・カジニエール、バスキアが交差する言語。</blockquote>
-        <figcaption><b>Jean-Paul Gavard-Perret</b><span>美術評論家 · パリ</span></figcaption>
+        <blockquote>「ポール・ゴーギャンのように、サトールは南の海で技を磨いた。現在はパリで暮らし制作しており、批評家たちは彼女の抽象表現主義の油彩をシャガール、さらにはピカソにたとえている。」</blockquote>
+        <figcaption><b>Ward Morehouse III</b><span>図録序文 · National Arts Club · ニューヨーク · 2007</span><a href="presse/catalogue-new-york-2007.pdf" target="_blank" rel="noopener">図録を読む（PDF）</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>常にそこにある生命力、年月とともに磨かれた個性。</blockquote>
-        <figcaption><b>Patrick Wassef</b></figcaption>
+        <blockquote>「驚くほどの才能と限りない創造の衝動を備えたこの画家は、ノルデ、コクトー、マッソン、ジョエル・ド・ラ・カジニエール、バスキアといった画家たちの接点に立つ言語を生み出している。」</blockquote>
+        <figcaption><b>Jean-Paul Gavard-Perret</b><span>美術評論家 · 作家ポートフォリオ、2017年</span></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>「力強さは今も健在だが、線はより繊細になった。［…］間違いなく、フォースは彼女と共にある。」</blockquote>
+        <figcaption><b>Patrick Wassef</b><span>作家ポートフォリオ、2017年</span></figcaption>
       </figure>
     </div>
-    <p class="note-crit">この3つの評は作家のポートフォリオ（2026年）からの要約です。</p>
+    <p class="note-crit">ニューヨークの文章は英語からの翻訳、ジャン＝ポール・ガヴァール＝ペレとパトリック・ワセフの文章は作家ポートフォリオ（2017年）からの引用です。</p>
     <p class="note-crit">抜粋はフランス語とイタリア語からの翻訳です。各全文へのリンク付き。</p>
     <p class="suite-crit"><a class="bouton" href="#artiste">アーティストを知る</a></p>
   </div>
@@ -2325,7 +2330,7 @@ const TX=k=>{ const e=document.querySelector('#txt').content.querySelector('[dat
 /* ---------- v43 : liens extérieurs. Articles, galeries, vidéos s'ouvrent dans le site (liseuse) ; les sites qui refusent l'affichage intégré (Catawiki, Instagram) s'ouvrent dans un nouvel onglet ---------- */
 (function(){
   const lis=document.getElementById("liseuse"), cadre=document.getElementById("li-cadre"), onglet=document.getElementById("li-onglet");
-  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com)$/;
+  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com|artprice\.com|bnf\.fr)$/;   /* v56 : Artprice et la BnF refusent l'affichage intégré (vérifié le 07/11/2026) */
   const youtube=u=>{ const m=/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/.exec(u); return m?m[1]:null; };
   document.querySelectorAll('a[href^="http"]').forEach(a=>{ try{ if(new URL(a.href).host!==location.host){ a.target="_blank"; a.rel="noopener"; } }catch(_){} });
   function ouvreLiseuse(href,titre){

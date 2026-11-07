@@ -420,7 +420,8 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .wiki-bas{margin:1.6em 0 0}
 .wiki-bas .wiki{font-size:.8rem}
 .sous-crit{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.7rem);color:#E2C063;margin:1.4em 0 .8em}
-.rapproche .eloge blockquote{font-style:italic;font-size:clamp(1.02rem,1.35vw,1.16rem)}
+.rapproche .eloge blockquote{font-size:clamp(1.02rem,1.35vw,1.16rem)}
+@media(min-width:1000px){.rapproche{grid-template-columns:repeat(2,1fr)!important}}
 .vers-crit{margin:1.1em 0 0}
 .vers-crit a{display:inline-flex;align-items:center;gap:.5em;color:#F1D27E;text-decoration:none;border-bottom:1px solid rgba(241,210,126,.45);padding-bottom:2px;font-size:.92rem;letter-spacing:.02em}
 .vers-crit a::after{content:"→"}
@@ -1031,7 +1032,7 @@ dialog canvas.trace{position:absolute;z-index:5}
     <div class="eloges">
       <figure class="eloge une">
         <blockquote>«Isa Sator è pittrice, assolutamente pittrice. […] Da qualche anno si impone come una pittrice di primo piano della scena parigina.»</blockquote>
-        <figcaption><b>Jean-Louis Poitevin</b><span>Critico d'arte · Parigi</span><a href="https://fr.artprice.com/artiste/319130/isa-sator" target="_blank" rel="noopener">Leggere su Artprice</a></figcaption>
+        <figcaption><b>Jean-Louis Poitevin</b><span>Critico d'arte · Parigi</span><a href="https://fr.artprice.com/artiste/319130/isa-sator/biographie" target="_blank" rel="noopener">Leggere su Artprice</a></figcaption>
       </figure>
       <figure class="eloge">
         <blockquote>«Come non guardare tele che ci strappano all'indifferenza generalizzata?»</blockquote>
@@ -1057,19 +1058,23 @@ dialog canvas.trace{position:absolute;z-index:5}
     <h3 class="sous-crit">Paragonata ai grandi maestri</h3>
     <div class="eloges rapproche">
       <figure class="eloge">
-        <blockquote>Una pittura accostata a Chagall e a Picasso; un percorso che evoca Gauguin nei mari del Sud.</blockquote>
-        <figcaption><b>Ward Morehouse III</b><span>National Arts Club · New York · 2007</span></figcaption>
+        <blockquote>«Sulla scia di artisti come Picasso e Chagall, le creazioni di Sator sono una rara unione di sensualità, ingenuità, femminismo e vivacità di colori e di umori.»</blockquote>
+        <figcaption><b>Times Square</b><span>Times Square, «Crossroads of the World» · New York · settembre 2007</span><a href="presse/times-square-2007.jpg" target="_blank" rel="noopener">Vedere l'articolo</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>Un linguaggio all'incrocio tra Nolde, Cocteau, Masson, Joëlle de La Casinière e Basquiat.</blockquote>
-        <figcaption><b>Jean-Paul Gavard-Perret</b><span>Critico d'arte · Parigi</span></figcaption>
+        <blockquote>«Come Paul Gauguin, Sator ha affinato la sua arte nei mari del Sud. Oggi vive e lavora a Parigi, dove i critici hanno paragonato i suoi oli espressionisti astratti a Chagall, e perfino a Picasso.»</blockquote>
+        <figcaption><b>Ward Morehouse III</b><span>Prefazione del catalogo · National Arts Club · New York · 2007</span><a href="presse/catalogue-new-york-2007.pdf" target="_blank" rel="noopener">Leggere il catalogo (PDF)</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>Una forza vitale sempre presente, un carattere che si è affinato con gli anni.</blockquote>
-        <figcaption><b>Patrick Wassef</b></figcaption>
+        <blockquote>«Incredibilmente dotata, animata da un impulso creativo senza limiti, l'artista inventa un linguaggio all'incrocio tra pittori come Nolde, Cocteau, Masson, Joëlle de La Casinière e Basquiat.»</blockquote>
+        <figcaption><b>Jean-Paul Gavard-Perret</b><span>Critico d'arte · portfolio dell'artista, 2017</span></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>«La forza c'è sempre, ma il tratto si è affinato. […] Non c'è dubbio, la forza è con lei.»</blockquote>
+        <figcaption><b>Patrick Wassef</b><span>Portfolio dell'artista, 2017</span></figcaption>
       </figure>
     </div>
-    <p class="note-crit">Questi tre sguardi sono riassunti dal portfolio dell'artista (2026).</p>
+    <p class="note-crit">I testi di New York sono tradotti dall'inglese; quelli di Jean-Paul Gavard-Perret e Patrick Wassef sono citati dal portfolio dell'artista (2017).</p>
     <p class="note-crit">Estratti tradotti dal francese, con il link a ciascun testo completo; la stampa sarda è citata in originale.</p>
     <p class="suite-crit"><a class="bouton" href="#artiste">Scoprire l'artista</a></p>
   </div>
@@ -2324,7 +2329,7 @@ const TX=k=>{ const e=document.querySelector('#txt').content.querySelector('[dat
 /* ---------- v43 : liens extérieurs. Articles, galeries, vidéos s'ouvrent dans le site (liseuse) ; les sites qui refusent l'affichage intégré (Catawiki, Instagram) s'ouvrent dans un nouvel onglet ---------- */
 (function(){
   const lis=document.getElementById("liseuse"), cadre=document.getElementById("li-cadre"), onglet=document.getElementById("li-onglet");
-  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com)$/;
+  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com|artprice\.com|bnf\.fr)$/;   /* v56 : Artprice et la BnF refusent l'affichage intégré (vérifié le 07/11/2026) */
   const youtube=u=>{ const m=/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/.exec(u); return m?m[1]:null; };
   document.querySelectorAll('a[href^="http"]').forEach(a=>{ try{ if(new URL(a.href).host!==location.host){ a.target="_blank"; a.rel="noopener"; } }catch(_){} });
   function ouvreLiseuse(href,titre){

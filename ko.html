@@ -420,7 +420,8 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .wiki-bas{margin:1.6em 0 0}
 .wiki-bas .wiki{font-size:.8rem}
 .sous-crit{font-family:var(--display);font-weight:400;font-size:clamp(1.3rem,2.2vw,1.7rem);color:#E2C063;margin:1.4em 0 .8em}
-.rapproche .eloge blockquote{font-style:italic;font-size:clamp(1.02rem,1.35vw,1.16rem)}
+.rapproche .eloge blockquote{font-size:clamp(1.02rem,1.35vw,1.16rem)}
+@media(min-width:1000px){.rapproche{grid-template-columns:repeat(2,1fr)!important}}
 .vers-crit{margin:1.1em 0 0}
 .vers-crit a{display:inline-flex;align-items:center;gap:.5em;color:#F1D27E;text-decoration:none;border-bottom:1px solid rgba(241,210,126,.45);padding-bottom:2px;font-size:.92rem;letter-spacing:.02em}
 .vers-crit a::after{content:"→"}
@@ -1031,7 +1032,7 @@ dialog canvas.trace{position:absolute;z-index:5}
     <div class="eloges">
       <figure class="eloge une">
         <blockquote>“이자 사토르는 화가, 그야말로 화가다. […] 몇 해 전부터 그녀는 파리 화단의 주요 화가로 자리 잡고 있다.”</blockquote>
-        <figcaption><b>Jean-Louis Poitevin</b><span>미술 평론가 · 파리</span><a href="https://fr.artprice.com/artiste/319130/isa-sator" target="_blank" rel="noopener">Artprice에서 읽기</a></figcaption>
+        <figcaption><b>Jean-Louis Poitevin</b><span>미술 평론가 · 파리</span><a href="https://fr.artprice.com/artiste/319130/isa-sator/biographie" target="_blank" rel="noopener">Artprice에서 읽기</a></figcaption>
       </figure>
       <figure class="eloge">
         <blockquote>“만연한 무관심에서 우리를 끌어내는 그림들을 어찌 보지 않을 수 있겠는가?”</blockquote>
@@ -1057,19 +1058,23 @@ dialog canvas.trace{position:absolute;z-index:5}
     <h3 class="sous-crit">거장들과 비교되다</h3>
     <div class="eloges rapproche">
       <figure class="eloge">
-        <blockquote>샤갈과 피카소에 비견되는 그림, 남태평양의 고갱을 떠올리게 하는 여정.</blockquote>
-        <figcaption><b>Ward Morehouse III</b><span>National Arts Club · 뉴욕 · 2007</span></figcaption>
+        <blockquote>“피카소와 샤갈 같은 예술가들의 뒤를 이어, 사토르의 작품은 관능, 순수함, 페미니즘, 그리고 색채와 감정의 생동감이 드물게 어우러진다.”</blockquote>
+        <figcaption><b>Times Square</b><span>Times Square 「Crossroads of the World」 · 뉴욕 · 2007년 9월</span><a href="presse/times-square-2007.jpg" target="_blank" rel="noopener">기사 보기</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>놀데, 콕토, 마송, 조엘 드 라 카지니에르, 바스키아가 교차하는 언어.</blockquote>
-        <figcaption><b>Jean-Paul Gavard-Perret</b><span>미술 평론가 · 파리</span></figcaption>
+        <blockquote>“폴 고갱처럼 사토르는 남태평양에서 기량을 갈고닦았다. 지금은 파리에서 살며 작업하는데, 비평가들은 그녀의 추상표현주의 유화를 샤갈, 나아가 피카소에 비유해 왔다.”</blockquote>
+        <figcaption><b>Ward Morehouse III</b><span>도록 서문 · National Arts Club · 뉴욕 · 2007</span><a href="presse/catalogue-new-york-2007.pdf" target="_blank" rel="noopener">도록 읽기 (PDF)</a></figcaption>
       </figure>
       <figure class="eloge">
-        <blockquote>언제나 살아 있는 생명력, 세월과 함께 더욱 다듬어진 개성.</blockquote>
-        <figcaption><b>Patrick Wassef</b></figcaption>
+        <blockquote>“놀라운 재능과 끝없는 창조적 충동을 지닌 이 작가는 놀데, 콕토, 마송, 조엘 드 라 카지니에르, 바스키아 같은 화가들이 만나는 지점에서 하나의 언어를 만들어 낸다.”</blockquote>
+        <figcaption><b>Jean-Paul Gavard-Perret</b><span>미술 평론가 · 작가 포트폴리오, 2017</span></figcaption>
+      </figure>
+      <figure class="eloge">
+        <blockquote>“힘은 여전하지만 선은 더욱 섬세해졌다. […] 의심할 여지 없이, 포스는 그녀와 함께한다.”</blockquote>
+        <figcaption><b>Patrick Wassef</b><span>작가 포트폴리오, 2017</span></figcaption>
       </figure>
     </div>
-    <p class="note-crit">이 세 평가는 작가 포트폴리오(2026)에서 요약한 것입니다.</p>
+    <p class="note-crit">뉴욕의 글은 영어에서 번역했고, 장폴 가바르페레와 파트리크 와세프의 글은 작가 포트폴리오(2017)에서 인용했습니다.</p>
     <p class="note-crit">발췌문은 프랑스어와 이탈리아어에서 번역했으며, 각 전문으로 가는 링크를 달았습니다.</p>
     <p class="suite-crit"><a class="bouton" href="#artiste">작가 알아보기</a></p>
   </div>
@@ -2325,7 +2330,7 @@ const TX=k=>{ const e=document.querySelector('#txt').content.querySelector('[dat
 /* ---------- v43 : liens extérieurs. Articles, galeries, vidéos s'ouvrent dans le site (liseuse) ; les sites qui refusent l'affichage intégré (Catawiki, Instagram) s'ouvrent dans un nouvel onglet ---------- */
 (function(){
   const lis=document.getElementById("liseuse"), cadre=document.getElementById("li-cadre"), onglet=document.getElementById("li-onglet");
-  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com)$/;
+  const REFUS=/(^|\.)(catawiki\.com|instagram\.com|facebook\.com|linkedin\.com|artprice\.com|bnf\.fr)$/;   /* v56 : Artprice et la BnF refusent l'affichage intégré (vérifié le 07/11/2026) */
   const youtube=u=>{ const m=/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{11})/.exec(u); return m?m[1]:null; };
   document.querySelectorAll('a[href^="http"]').forEach(a=>{ try{ if(new URL(a.href).host!==location.host){ a.target="_blank"; a.rel="noopener"; } }catch(_){} });
   function ouvreLiseuse(href,titre){
