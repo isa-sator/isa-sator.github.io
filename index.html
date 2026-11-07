@@ -324,7 +324,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .marque span{font-family:var(--display);font-size:1.9rem;letter-spacing:.01em;line-height:1}
 .marque img{width:40px;height:43px}
 .barre nav{display:flex;gap:clamp(11px,2.3vw,26px);flex-wrap:wrap}
-.barre nav a{font-size:.74rem;text-transform:uppercase;letter-spacing:.17em;background-image:linear-gradient(170deg,#E9CF86,#C9A64A 45%,#A8872A);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:.82;transition:opacity .3s}
+.barre nav a{font-size:.76rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em;background-image:linear-gradient(170deg,#FBEBB4,#E8C96E 45%,#C9A227);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:1;filter:drop-shadow(0 1px 1px rgba(0,0,0,.6));transition:opacity .3s}
 .barre nav a{padding:.5em .75em;margin:-.5em -.15em;border-radius:2px;transition:opacity .25s ease,box-shadow .25s ease}
 .barre nav a:hover,.barre nav a:focus-visible{opacity:1;text-decoration:none;color:var(--nuit);-webkit-text-fill-color:var(--nuit);
   -webkit-background-clip:padding-box;background-clip:padding-box;
@@ -364,7 +364,7 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 /* largeurs intermédiaires : le sélecteur à droite de la marque, le menu sur sa propre ligne */
 @media (min-width:661px) and (max-width:1180px){.barre nav{order:3;width:100%} .langues{order:2}}
 /* écrans d'ordinateur courants : tout tient sur une ligne, menu un peu plus serré */
-@media (min-width:1181px){.barre nav{gap:12px} .barre nav a{font-size:.67rem;letter-spacing:.11em;padding:.5em .5em} .marque span{font-size:1.55rem}}
+@media (min-width:1181px){.barre nav{gap:12px} .barre nav a{font-size:.7rem;letter-spacing:.1em;padding:.5em .5em} .marque span{font-size:1.55rem}}
 @media(max-width:660px){
   .barre .dedans{padding-block:9px;gap:7px}
   .marque img{width:28px;height:30px}
@@ -384,7 +384,7 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .scene .credit-photo{position:absolute;right:clamp(10px,1.6vw,22px);bottom:clamp(8px,1.2vw,16px);z-index:3;font-size:.7rem;letter-spacing:.04em;color:rgba(255,255,255,.78);text-shadow:0 1px 3px rgba(0,0,0,.9);pointer-events:none}
 .scene.v2 .credit-photo{display:none}
 .scene .rideau{position:absolute;inset:0;z-index:1;background:
-  linear-gradient(100deg,rgba(12,20,38,.42) 0%,rgba(12,20,38,.32) 30%,rgba(12,20,38,.16) 55%,rgba(7,12,24,.08) 75%,rgba(7,12,24,.28) 100%),
+  linear-gradient(100deg,rgba(12,20,38,.62) 0%,rgba(12,20,38,.5) 30%,rgba(12,20,38,.2) 52%,rgba(7,12,24,.08) 72%,rgba(7,12,24,.28) 100%),
   linear-gradient(to bottom,rgba(7,12,24,.35) 0%,rgba(7,12,24,0) 22%,rgba(7,12,24,0) 62%,rgba(7,12,24,.5) 100%)}
 /* sur ordinateur, la photo se fond à gauche et en bas dans la toile bleu nuit du site (le fond reste visible derrière) */
 @media(min-width:761px){
@@ -398,7 +398,7 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
   .scene.v2{overflow:hidden}
   .scene.v2 .fresque{inset:auto;left:0;top:-40%;width:100%;height:140%;object-position:54% 0}
   .scene .rideau{background:
-    linear-gradient(to bottom,rgba(7,12,24,.72) 0%,rgba(7,12,24,.3) 26%,rgba(7,12,24,.82) 58%,var(--nuit) 100%)}
+    linear-gradient(to bottom,rgba(7,12,24,.72) 0%,rgba(7,12,24,.42) 22%,rgba(7,12,24,.74) 36%,rgba(7,12,24,.86) 58%,var(--nuit) 100%)}
   .scene .dit{align-self:end}
 }
 .ouverture h1{font-family:var(--display);font-weight:400;font-size:clamp(3.4rem,11.5vw,7.6rem);line-height:.86;letter-spacing:-.02em;margin:0 0 .22em;text-wrap:balance;display:inline-block;
@@ -406,10 +406,12 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
   background-size:260% 100%,100% 100%;background-position:120% 0,0 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 4px 18px rgba(0,0,0,.75));animation:reflet 2.2s ease .6s 1}
 .ouverture h1 em{font-style:italic;display:block}
-.accroche{font-size:clamp(1.02rem,1.9vw,1.38rem);margin:0 0 .85em;color:var(--ivoire);max-width:40ch;line-height:1.35;text-shadow:0 2px 14px rgba(0,0,0,.8)}
-.accroche small{font-size:.72em;color:var(--cendre);letter-spacing:.04em}
-.accroche b{font-weight:400;letter-spacing:.02em;text-shadow:none;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
-.sous{color:var(--cendre);margin:0 0 2em;max-width:42ch;text-shadow:0 2px 12px rgba(0,0,0,.85)}
+.accroche{font-size:clamp(1.08rem,2vw,1.46rem);font-weight:400;margin:0 0 .85em;color:#FFF8E8;max-width:40ch;line-height:1.35;text-shadow:0 1px 2px rgba(0,0,0,.95),0 2px 14px rgba(0,0,0,.9)}
+.accroche small{font-size:.8em;letter-spacing:.04em}
+.accroche .ap{color:#F1D27E;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(241,210,126,.55);text-shadow:0 1px 2px rgba(0,0,0,.95),0 0 12px rgba(0,0,0,.8)}
+.accroche .ap:hover,.accroche .ap:focus-visible{color:#FFF1C2;border-bottom-color:#FFF1C2}
+.accroche b{font-weight:600;letter-spacing:.02em;text-shadow:none;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
+.sous{color:#EDE6D6;font-weight:400;margin:0 0 2em;max-width:42ch;text-shadow:0 1px 2px rgba(0,0,0,.95),0 2px 12px rgba(0,0,0,.9)}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
 .film-yt .clip{position:relative;width:100%;aspect-ratio:16/9;background:#070B16;border:1px solid rgba(212,175,55,.45);box-shadow:0 18px 40px rgba(0,0,0,.5);overflow:hidden}
 .film-yt .affiche,.film-yt iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
@@ -447,6 +449,15 @@ html[lang="ar"] .eloge figcaption a::after,html[lang="ar"] .vers-crit a::after{c
 .macaron{position:relative;flex:none;width:clamp(178px,16vw,214px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3em;padding:16px;text-align:center;text-decoration:none!important;color:var(--ivoire);
   background:radial-gradient(circle at 34% 28%,#2A2F46 0%,#11152A 58%,#070B16 100%);box-shadow:0 0 0 2px #C9A227,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(226,192,99,.55),0 14px 34px rgba(0,0,0,.6),0 0 26px rgba(241,210,126,.18);transform:rotate(-6deg);transition:transform .35s ease,box-shadow .35s ease}
 .macaron *{text-decoration:none!important}
+.macaron{animation:appel-macaron 3.2s ease-in-out infinite}
+@keyframes appel-macaron{0%,100%{box-shadow:0 0 0 2px #C9A227,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(201,162,39,.75),0 14px 34px rgba(0,0,0,.6),0 0 0 rgba(241,210,126,0)}50%{box-shadow:0 0 0 2px #E2C063,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(226,192,99,.9),0 14px 34px rgba(0,0,0,.6),0 0 30px rgba(241,210,126,.5)}}
+.macaron:hover,.macaron:focus-visible{animation:none}
+.vers-critiques{display:inline-flex;align-items:center;gap:.55em;color:#F1D27E;font-weight:600;font-size:.98rem;line-height:1.3;max-width:17ch;text-decoration:none;text-shadow:0 1px 2px rgba(0,0,0,.95),0 0 12px rgba(0,0,0,.8)}
+.vers-critiques span{border-bottom:1px solid rgba(241,210,126,.6);padding-bottom:2px}
+.vers-critiques i{font-style:normal;font-size:1.3em;transition:transform .3s}
+.vers-critiques:hover,.vers-critiques:focus-visible{color:#FFF1C2}
+.vers-critiques:hover i,.vers-critiques:focus-visible i{transform:translateX(5px)}
+@media(prefers-reduced-motion:reduce){.macaron{animation:none}}
 .macaron::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed rgba(226,192,99,.55);pointer-events:none}
 .macaron i{display:block;font-style:normal;font-size:.7rem;letter-spacing:.24em;color:#E2C063;line-height:1}
 .macaron i::before{content:"★ ★ ★"}
@@ -461,7 +472,7 @@ html[lang="ar"] .eloge figcaption a::after,html[lang="ar"] .vers-crit a::after{c
 .wiki::before{content:"W";flex:none;display:grid;place-items:center;width:2em;height:2em;border-radius:50%;background:#F4F1EA;color:#111;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:.9rem}
 .wiki em{font-style:normal;text-decoration:underline;text-decoration-color:rgba(226,192,99,.6);text-underline-offset:3px}
 .wiki:hover,.wiki:focus-visible{border-color:#E2C063;background:rgba(20,26,48,.9)}
-@media(max-width:760px){.sceaux{flex-wrap:nowrap;gap:14px}.wiki{font-size:.8rem}.macaron{width:156px;padding:14px}.macaron b{font-size:1rem}.macaron span{font-size:.8rem}.macaron small{font-size:.56rem}}
+@media(max-width:760px){.vers-critiques{font-size:.86rem;max-width:13ch}.sceaux{flex-wrap:nowrap;gap:14px}.wiki{font-size:.8rem}.macaron{width:156px;padding:14px}.macaron b{font-size:1rem}.macaron span{font-size:.8rem}.macaron small{font-size:.56rem}}
 .bouton{display:inline-block;padding:.74em 1.6em;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border:1px solid var(--orange);color:var(--orange);background:rgba(7,12,24,.4)}
 .bouton:hover{background:var(--orange);color:var(--nuit);text-decoration:none}
 .bouton.plein{background:var(--orange);color:var(--nuit)}
@@ -593,6 +604,7 @@ section{scroll-margin-top:84px}
 .fiche:hover .rebond{opacity:.45}
 .fiche .toile img{--cadre:7px;width:100%;height:auto;box-shadow:0 0 0 1px rgba(0,0,0,.5),0 16px 28px rgba(0,0,0,.7)}
 .fiche .num{font-size:.66rem;letter-spacing:.14em;color:var(--orange);margin:.7em 0 0;font-variant-numeric:tabular-nums;position:relative;z-index:1}
+.fiche .an{font-size:.72rem;color:var(--or,#d8b25a);margin:.15em 0 0;font-variant-numeric:tabular-nums;position:relative;z-index:1}
 .fiche .t{font-family:var(--display);font-size:.92rem;line-height:1.25;margin:.1em 0 0;overflow-wrap:anywhere;position:relative;z-index:1}
 .fiche .dim{font-size:.72rem;letter-spacing:.03em;color:var(--cendre);margin:.3em 0 0;font-variant-numeric:tabular-nums;position:relative;z-index:1}
 .fiche .dim.manque{font-style:italic;opacity:.55}
@@ -944,7 +956,7 @@ dialog canvas.trace{position:absolute;z-index:5}
     <div class="dit gouttiere">
       <div class="centre">
         <h1>Isa<em>Sator</em></h1>
-        <p class="accroche"><b>Artiste cotée à l'international</b> <small>(Artprice)</small><br>Coloriste plasticienne visionnaire</p>
+        <p class="accroche"><b>Artiste cotée à l'international</b> <a class="ap" href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener"><small>(Artprice)</small></a><br>Coloriste plasticienne visionnaire</p>
         <p class="sous">Vingt-quatre œuvres adjugées en ventes publiques depuis 2005. Exposée à Paris, New York, Dubaï, Londres et Houston. Couleur, énergie &amp; talisman, pour des âmes fortes.</p>
         <div class="actions">
           <a class="bouton plein" href="#oeuvres">Voir les œuvres</a>
@@ -957,6 +969,7 @@ dialog canvas.trace{position:absolute;z-index:5}
             <span>Saluée par plusieurs critiques d'art</span>
             <small>Paris · New York · Sardaigne</small>
           </a>
+          <a class="vers-critiques" href="#critiques"><span>Lire ce qu'en disent les critiques</span><i aria-hidden="true">→</i></a>
         </div>
       </div>
     </div>
@@ -1403,7 +1416,6 @@ dialog canvas.trace{position:absolute;z-index:5}
 <footer class="gouttiere">
   <div class="dedans centre">
     <span>© Isa Sator · toutes les œuvres reproduites sont protégées.</span>
-    <span>Portrait © Grégory Herpe</span>
     <span class="credit">Conception, design et marketing du site : Christophe Degraeve</span>
   </div>
 </footer>
@@ -2271,12 +2283,15 @@ document.addEventListener("dragstart",e=>{ if(e.target.tagName==="IMG") e.preven
 
 /* catalogue complet */
 const cg=document.getElementById("catalogue-grille");
-Object.keys(CAT).map(Number).sort((a,b)=>((VOIX["TB"+String(a).padStart(2,"0")]?0:1)-(VOIX["TB"+String(b).padStart(2,"0")]?0:1))||a-b).forEach(n=>{
+/* v61 : ordre chronologique du catalogue raisonné (07/11/2026) ; toiles non datées à la fin */
+const ORDRE=[161, 162, 29, 68, 6, 54, 74, 94, 51, 69, 136, 108, 141, 85, 65, 20, 111, 106, 45, 131, 155, 130, 156, 154, 86, 87, 88, 50, 13, 121, 120, 122, 43, 60, 34, 12, 52, 48, 41, 55, 58, 56, 3, 151, 144, 152, 143, 146, 148, 150, 147, 153, 149, 145, 159, 157, 160, 158, 139, 77, 140, 126, 135, 133, 128, 132, 127, 142, 124, 125, 118, 117, 119, 123, 129, 138, 137, 134, 2, 21, 109, 5, 9, 92, 23, 24, 44, 80, 19, 16, 36, 49, 67, 82, 31, 59, 14, 30, 27, 81, 35, 28, 7, 15, 10, 53, 78, 32, 17, 25, 11, 47, 42, 39, 18, 102, 40, 1, 37, 22, 33, 79, 95, 100, 38, 101, 97, 96, 103, 107, 99, 105, 110, 104, 98, 84, 89, 93, 91, 83, 90, 66, 4, 61, 73, 72, 63, 8, 76, 70, 62, 57, 112, 113, 114, 115, 116, 26, 46, 64, 71, 75], ANNEE={"161":1991,"162":1996,"29":2001,"68":2002,"6":2002,"54":2002,"74":2002,"94":2003,"51":2003,"69":2006,"136":2006,"108":2006,"141":2006,"85":2006,"65":2006,"20":2007,"111":2007,"106":2007,"45":2007,"131":2007,"155":2007,"130":2007,"156":2007,"154":2007,"86":2007,"87":2007,"88":2007,"50":2007,"13":2007,"121":2007,"120":2007,"122":2007,"43":2007,"60":2007,"34":2007,"12":2007,"52":2007,"48":2007,"41":2007,"55":2007,"58":2007,"56":2007,"3":2007,"151":2007,"144":2007,"152":2007,"143":2007,"146":2007,"148":2007,"150":2007,"147":2007,"153":2007,"149":2007,"145":2007,"159":2007,"157":2007,"160":2007,"158":2007,"139":2008,"77":2008,"140":2008,"126":2008,"135":2008,"133":2008,"128":2008,"132":2008,"127":2008,"142":2008,"124":2008,"125":2008,"118":2008,"117":2008,"119":2008,"123":2008,"129":2008,"138":2008,"137":2008,"134":2008,"2":2009,"21":2009,"109":2009,"5":2009,"9":2010,"92":2013,"23":2013,"24":2013,"44":2013,"80":2013,"19":2013,"16":2013,"36":2013,"49":2013,"67":2013,"82":2014,"31":2014,"59":2014,"14":2014,"30":2014,"27":2014,"81":2014,"35":2014,"28":2014,"7":2015,"15":2015,"10":2015,"53":2015,"78":2015,"32":2016,"17":2016,"25":2016,"11":2016,"47":2017,"42":2017,"39":2017,"18":2017,"102":2017,"40":2017,"1":2017,"37":2017,"22":2017,"33":2017,"79":2017,"95":2018,"100":2018,"38":2018,"101":2018,"97":2018,"96":2018,"103":2018,"107":2018,"99":2018,"105":2018,"110":2018,"104":2018,"98":2018,"84":2019,"89":2019,"93":2019,"91":2019,"83":2019,"90":2019,"66":2019,"4":2019,"61":2019,"73":2019,"72":2019,"63":2019,"8":2019,"76":2019,"70":2019,"62":2019,"57":2022,"112":2024,"113":2024,"114":2024,"115":2024,"116":2024,"26":2026};
+ORDRE.filter(n=>CAT[n]).forEach(n=>{
   const o=CAT[n], id="TB"+String(n).padStart(2,"0");
   const b=document.createElement("button"); b.type="button"; b.className="fiche"; b.dataset.n=n;
   b.innerHTML='<div class="cimaise" style="--toile:url(\'catalogue/'+id+'.jpg\')"><span class="lampe"></span><span class="cone"></span><span class="rebond"></span><span class="garde"></span>'+
     '<div class="toile"><img loading="lazy" src="catalogue/'+id+'.jpg" alt="'+echappe(o[1])+'" width="'+o[2]+'" height="'+o[3]+'"></div></div>'+
     '<p class="num">'+id+'</p><p class="t">'+echappe(o[1])+'</p>'+
+    (ANNEE[n] ? '<p class="an">'+ANNEE[n]+'</p>' : '')+
     (DIMS[n] ? '<p class="dim">'+dimTxt(DIMS[n][0],DIMS[n][1])+'</p>' : '<p class="dim manque">'+"dimensions à préciser"+'</p>')+
     (VOIX[id] ? '<p class="mention-voix">'+"Isa raconte"+'</p>' : '')+
     (DETAILS[n] ? '<p class="dim manque">'+"détail de la toile, photo partielle"+'</p>' : '');
