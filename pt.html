@@ -357,7 +357,7 @@ html[lang="ar"]{direction:rtl;--display:"Bodoni Moda","Noto Naskh Arabic","Geeza
 html[lang="ar"] *{letter-spacing:0!important}
 html[lang="ar"] .ouverture h1,html[lang="ar"] .marque span{direction:ltr}
 /* arabe, ouverture sur ordinateur : le bloc de texte reste à gauche (là où la photo se fond dans le bleu nuit), le texte y est aligné à droite */
-@media(min-width:761px){html[lang="ar"] .ouverture .dit .centre{direction:ltr} html[lang="ar"] .ouverture .dit .centre>*{direction:rtl;text-align:right} html[lang="ar"] .ouverture .actions{justify-content:flex-end;max-width:42ch}}
+@media(min-width:761px){html[lang="ar"] .ouverture .dit .centre{direction:ltr} html[lang="ar"] .ouverture .dit .centre>*{direction:rtl;text-align:right} html[lang="ar"] .ouverture .actions{justify-content:flex-end;max-width:42ch} html[lang="ar"] .ouverture .sceaux{justify-content:flex-end;max-width:62ch}}
 /* arabe : la légende suit la même règle physique (côté opposé à la toile) que les autres langues */
 html[lang="ar"] .presse a::after,html[lang="ar"] .serie-lien .fleche{transform:scaleX(-1)}
 html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visible .fleche{transform:scaleX(-1) translateX(5px)}
@@ -409,6 +409,21 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .accroche b{font-weight:400;letter-spacing:.02em;text-shadow:none;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
 .sous{color:var(--cendre);margin:0 0 2em;max-width:42ch;text-shadow:0 2px 12px rgba(0,0,0,.85)}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
+.sceaux{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px);flex-wrap:wrap;margin-top:clamp(22px,3.2vw,34px)}
+.macaron{position:relative;flex:none;width:clamp(128px,13vw,156px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.28em;padding:16px;text-align:center;text-decoration:none;color:var(--ivoire);
+  background:radial-gradient(circle at 34% 28%,#2A2F46 0%,#11152A 58%,#070B16 100%);box-shadow:0 0 0 2px #C9A227,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(226,192,99,.55),0 14px 34px rgba(0,0,0,.6);transform:rotate(-6deg);transition:transform .35s ease,box-shadow .35s ease}
+.macaron::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed rgba(226,192,99,.55);pointer-events:none}
+.macaron i{display:block;font-style:normal;font-size:.56rem;letter-spacing:.24em;color:#E2C063;line-height:1}
+.macaron i::before{content:"★ ★ ★"}
+.macaron b{font-family:var(--display);font-weight:400;font-size:clamp(.92rem,1.15vw,1.06rem);line-height:1.08;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.macaron span{font-size:.66rem;line-height:1.25;color:var(--ivoire);max-width:13ch}
+.macaron small{font-size:.54rem;letter-spacing:.05em;color:var(--cendre);max-width:15ch;line-height:1.3}
+.macaron:hover,.macaron:focus-visible{transform:rotate(0) scale(1.06);box-shadow:0 0 0 2px #F1D27E,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(241,210,126,.85),0 18px 40px rgba(0,0,0,.65)}
+.wiki{display:inline-flex;align-items:center;gap:.6em;padding:.55em 1em .55em .55em;border:1px solid rgba(226,192,99,.45);border-radius:999px;background:rgba(7,11,22,.72);color:var(--ivoire);text-decoration:none;font-size:.86rem;line-height:1.2;transition:border-color .25s,background .25s}
+.wiki::before{content:"W";flex:none;display:grid;place-items:center;width:2em;height:2em;border-radius:50%;background:#F4F1EA;color:#111;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:.9rem}
+.wiki em{font-style:normal;text-decoration:underline;text-decoration-color:rgba(226,192,99,.6);text-underline-offset:3px}
+.wiki:hover,.wiki:focus-visible{border-color:#E2C063;background:rgba(20,26,48,.9)}
+@media(max-width:760px){.sceaux{flex-wrap:nowrap;gap:14px}.wiki{font-size:.8rem}.macaron{width:118px;padding:12px}.macaron b{font-size:.84rem}.macaron span{font-size:.62rem}.macaron small{font-size:.5rem}}
 .bouton{display:inline-block;padding:.74em 1.6em;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border:1px solid var(--orange);color:var(--orange);background:rgba(7,12,24,.4)}
 .bouton:hover{background:var(--orange);color:var(--nuit);text-decoration:none}
 .bouton.plein{background:var(--orange);color:var(--nuit)}
@@ -600,7 +615,7 @@ dialog.panneau::backdrop{background:transparent}
 /* ---------- contact ---------- */
 .contact-deux{display:grid;gap:clamp(28px,4vw,64px);grid-template-columns:1fr;align-items:center}
 @media(min-width:820px){.contact-deux{grid-template-columns:minmax(260px,.9fr) 1.1fr}}
-.dedicace{margin:0;max-width:460px;position:relative}
+.etapes-chanson{margin:1em 0 1.2em;padding-left:1.4em;line-height:1.6}.etapes-chanson li{margin:.35em 0}.etapes-chanson li::marker{color:var(--orange);font-weight:600}.dedicace{margin:0;max-width:460px;position:relative}
 .dedicace img{width:100%;height:auto;box-shadow:0 0 0 8px #F4EDE3,0 0 0 9px rgba(255,255,255,.2),0 30px 60px rgba(0,0,0,.6)}
 .dedicace figcaption{margin-top:26px;font-size:.78rem;color:var(--cendre);letter-spacing:.04em}
 .dedicace figcaption b{font-family:var(--display);font-weight:400;font-size:1rem;color:var(--ivoire);display:block}
@@ -624,7 +639,7 @@ dialog.loupe::backdrop{background:transparent}
 @keyframes pulse{50%{transform:scale(1.18)}}
 @media (max-width:660px){.outils-barre{order:2;margin-inline-start:auto} .outil-barre{width:34px;height:32px}}
 dialog.tiroir{border:0;padding:0 0 max(18px,env(safe-area-inset-bottom,0px));margin:0;position:fixed;inset:var(--barre-h,70px) 0 0 auto;width:min(480px,100vw);height:auto;max-height:none;max-width:100vw;z-index:28;
-  background:rgba(7,11,22,.985);color:var(--ivoire);border-inline-start:1px solid rgba(212,175,55,.35);box-shadow:-30px 0 60px rgba(0,0,0,.55);overflow-y:auto;overscroll-behavior:contain}
+  background:#070B16;color:var(--ivoire);border-inline-start:1px solid rgba(212,175,55,.35);box-shadow:-30px 0 60px rgba(0,0,0,.55);overflow-y:auto;overscroll-behavior:contain}
 dialog.tiroir.large{width:min(860px,100vw)}
 /* v43 : liseuse, les articles et vidéos s'ouvrent dans le site, par-dessus, avec « Fermer » */
 dialog.liseuse{border:0;padding:0;margin:0;position:fixed;inset:var(--barre-h,70px) 0 0 0;width:100%;height:auto;max-width:100vw;max-height:none;z-index:28;background:rgba(5,8,18,.985);color:var(--ivoire);flex-direction:column}
@@ -638,7 +653,7 @@ dialog.liseuse[open]{display:flex}
 #li-cadre{flex:1;width:100%;border:0;background:#fff}
 #li-cadre.video{background:#000}
 
-.tiroir-tete{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;background:rgba(7,11,22,.97);border-bottom:1px solid rgba(212,175,55,.22)}
+.tiroir-tete{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;background:#070B16;border-bottom:1px solid rgba(212,175,55,.22)}
 .tiroir-tete h2{margin:0;font-family:var(--display);font-weight:400;font-size:1.45rem;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .tiroir .aide,.tiroir .vide,.tiroir .certif,.tiroir .total,.tiroir .compte-r{padding:0 20px}
 .tiroir .aide{font-size:.86rem;color:var(--cendre);line-height:1.5}
@@ -870,6 +885,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       <a href="#series">Séries</a>
       <a href="#atelier">O ateliê</a>
       <a href="#actualite">Novidades</a>
+      <a href="#chanson">A sua canção</a>
       <a href="#contact">Contacto</a>
     </nav>
     <div class="outils-barre"><button type="button" class="outil-barre" id="btn-recherche" aria-label="Pesquisar uma obra" title="Pesquisar uma obra"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button type="button" class="outil-barre" id="btn-panier" aria-label="O meu cesto" title="O meu cesto"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M5 8h14l-1.3 11.2a1.5 1.5 0 0 1-1.5 1.3H7.8a1.5 1.5 0 0 1-1.5-1.3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="compte" id="panier-compte" hidden>0</span></button></div>
@@ -894,6 +910,15 @@ dialog canvas.trace{position:absolute;z-index:5}
         <div class="actions">
           <a class="bouton plein" href="#oeuvres">Ver as obras</a>
           <a class="bouton" href="mailto:isasator@gmail.com?subject=Contacto%20a%20partir%20do%20site">Escrever ao ateliê</a>
+        </div>
+        <div class="sceaux">
+          <a class="macaron" href="#regards" aria-label="Projeção internacional, elogiada por vários críticos de arte: ler os seus textos">
+            <i aria-hidden="true"></i>
+            <b>Projeção internacional</b>
+            <span>Elogiada por vários críticos de arte</span>
+            <small>Paris · Nova Iorque · Londres · Dubai</small>
+          </a>
+          <a class="wiki" href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><em>O seu artigo na Wikipédia (em francês)</em></a>
         </div>
       </div>
     </div>
@@ -921,13 +946,17 @@ dialog canvas.trace{position:absolute;z-index:5}
           <p>Pintora colorista autodidata, regressada da Nova Caledónia com a cor por língua, Isa Sator expõe desde 2003 em Paris, Nova Iorque, Dubai, Londres, Houston e, em 2026, na Sardenha. Cotada na Artprice, que regista vinte e quatro das suas obras arrematadas em leilões públicos, de 2005 na Aguttes a 2026, é representada pela galeria Jyb'Art (Levallois-Perret) e pela Galerie JPHT (Paris), está referenciada no dicionário de artes plásticas Delarge e os seus direitos são geridos pela ADAGP. A imprensa sarda descreve-a como «um Picasso do século XXI».</p>
         </div>
         <blockquote class="mot-critique">«Isa Sator é pintora, absolutamente pintora. [...] Há alguns anos que se impõe como uma das grandes pintoras da cena parisiense.»<cite>Jean-Louis Poitevin, crítico de arte, ficha Artprice</cite></blockquote>
-        <ul class="presse">
+        <ul class="presse" id="regards">
+          <li><a href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><b>Enciclopédia</b><span>O seu artigo na Wikipédia, a enciclopédia livre (em francês)</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" rel="noopener"><b>Entrevista</b><span>Carly Aguilera, South Art Dealer Gallery, New York</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=wCfDITSZXts" rel="noopener"><b>Entrevista</b><span>Jean-Philippe Théron, exposição ADN Sator, Galerie JPHT, Paris</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=alIKO2gHwvU" rel="noopener"><b>Entrevista</b><span>Stéphanie Reynaud, Tribune Libre, 11 de março de 2025: a série Les Grandes Cocottes</span></a></li>
           <li><a href="https://www.carnetdart.com/isa-sator/" rel="noopener"><b>Crítica</b><span>Jean-Paul Gavard-Perret, exposição no Théâtre Déjazet, Paris</span></a></li>
           <li><a href="https://www.lelitteraire.com/isa-sator-ouverture-de-son-atelier-a-magic-city/" rel="noopener"><b>Crítica</b><span>Jean-Paul Gavard-Perret, Le Littéraire, junho de 2026: «Isa Sator, ouverture de son atelier à Magic City»</span></a></li>
           <li><a href="https://www.lelitteraire.com/isa-sator-la-palette-magique-exposition/" rel="noopener"><b>Crítica</b><span>Jean-Paul Gavard-Perret, Le Littéraire, junho de 2024: «Isa Sator, La palette magique»</span></a></li>
+          <li><a href="https://www.lelitteraire.com/isa-sator-les-grandes-cocottes-exposition/" rel="noopener"><b>Crítica</b><span>Jean-Paul Gavard-Perret, Le Littéraire, junho de 2017: «Isa Sator, Les Grandes Cocottes»</span></a></li>
+          <li><a href="https://www.saisonsdeculture.com/portraits/isa-sator-2/" rel="noopener"><b>Crítica</b><span>Mylène Vignon, Saisons de culture, 2017: «Les grandes cocottes»</span></a></li>
+          <li><a href="https://catalogue.bnf.fr/ark:/12148/cb171660616" rel="noopener"><b>Livro</b><span>Les Grandes Cocottes, L'Œil de la femme à barbe, 2017: catálogo bilingue, conservado na Bibliothèque nationale de France</span></a></li>
           <li><a href="https://culture-evasions.fr/2024/07/12/isa-sator/" rel="noopener"><b>Artigo</b><span>Léa Berroche, Arts Culture évasions, 12 de julho de 2024: «Isa Sator»</span></a></li>
           <li><a href="https://lepetitjournal.com/new-york/isa-sator-expose-new-york-son-art-haut-en-couleur-267291" rel="noopener"><b>Artigo</b><span>Le Petit Journal New York: «Isa Sator expõe em Nova Iorque a sua arte cheia de cor»</span></a></li>
           <li><a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener"><b>Cotação</b><span>A sua ficha Artprice: 24 resultados de leilão, biografia, galerias</span></a></li>
@@ -1225,6 +1254,30 @@ dialog canvas.trace{position:absolute;z-index:5}
   </div>
 </section>
 
+<section class="bande gouttiere" id="chanson" data-page="chanson" aria-labelledby="t-chanson">
+  <div class="dedans centre">
+    <div class="contact-deux">
+      <figure class="dedicace">
+        <img src="catalogue/TB26.jpg" alt="O Verão, tela da série Le Temps des cerises: sob uma grande árvore dourada, um flautista num jardim em flor" width="760" height="570" loading="lazy">
+        <figcaption><b>Le Temps des cerises</b>Uma série inteira nascida de uma canção.</figcaption>
+      </figure>
+      <div>
+        <h2 class="titre" id="t-chanson">Uma canção, uma tela</h2>
+        <p class="chapeau">Cantores, músicos, bandas: confiem a vossa canção a Isa. Ela ouve-a, deixa-se impregnar por ela e pinta-a.</p>
+        <p>Não é uma ilustração, é um encontro entre dois artistas. Isa já pintou uma série inteira em torno de uma canção, Le Temps des cerises: quatro grandes telas para as quatro estações. Neste momento trabalha sobre os poemas de um autor contemporâneo.</p>
+        <ol class="etapes-chanson">
+          <li>Enviam-lhe a vossa canção e o que ela representa para vós.</li>
+          <li>Isa ouve-a e responde-vos, de artista para artista.</li>
+          <li>Propõe-vos um esboço.</li>
+          <li>Pinta a tela, entregue com o certificado de autenticidade assinado à mão.</li>
+        </ol>
+        <p>A tela pode tornar-se a capa do vosso disco, o cenário do vosso videoclipe ou do vosso palco. Tudo se decide diretamente entre vós e Isa, e cada reprodução leva a menção «Obra original de Isa Sator».</p>
+        <p style="margin:1.4em 0 0"><button class="bouton" id="btn-chanson" type="button">Propor a minha canção a Isa</button></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="bande gouttiere" id="contact" data-page="contact" aria-labelledby="t-con">
   <div class="dedans centre">
     <div class="contact-deux">
@@ -1322,7 +1375,26 @@ dialog canvas.trace{position:absolute;z-index:5}
     <p class="ok" id="mesure-ok" hidden>O seu e-mail abre-se com o pedido pronto: só falta enviá-lo.</p>
   </form>
 </dialog>
-<template id="txt"><span data-k="panier">O meu cesto</span><span data-k="recherche">Pesquisar uma obra</span><span data-k="fermer">Fechar</span><span data-k="ajouter">Adicionar ao cesto</span><span data-k="ajoutee">No cesto</span><span data-k="retirer">Retirar</span><span data-k="vide">O seu cesto está vazio. Abra uma obra e escolha «Adicionar ao cesto».</span><span data-k="total">Total das obras com preço indicado</span><span data-k="surdemande">Preço e disponibilidade sob consulta</span><span data-k="certif">Cada obra é acompanhada do seu certificado de autenticidade numerado, assinado à mão por Isa.</span><span data-k="intro">O seu pedido segue por e-mail para o ateliê. Isa responder-lhe-á para confirmar a disponibilidade, a entrega e o pagamento.</span><span data-k="nom">Nome</span><span data-k="courriel">E-mail</span><span data-k="ville">Cidade e país de entrega</span><span data-k="message">Mensagem</span><span data-k="livraison">Entrega</span><span data-k="domicile">Entrega ao domicílio</span><span data-k="atelier">Recolha no ateliê</span><span data-k="envoyer">Enviar o meu pedido de aquisição</span><span data-k="objet_achat">Pedido de aquisição a partir do site</span><span data-k="oeuvres">Obras</span><span data-k="envoyee">O seu e-mail abre-se com o pedido pronto: só falta enviá-lo.</span><span data-k="manque">Indique o seu nome e um endereço de e-mail válido.</span><span data-k="motcle">Título, série, ano, número…</span><span data-k="toutes">Todas</span><span data-k="dispos">Disponíveis</span><span data-k="catalogue">Catálogo</span><span data-k="format">Formato</span><span data-k="tousformats">Todos os formatos</span><span data-k="petit">Pequeno (até 60 cm)</span><span data-k="moyen">Médio (61 a 120 cm)</span><span data-k="grand">Grande (mais de 120 cm)</span><span data-k="couleurs">Cores</span><span data-k="touscouleurs">Todas as cores</span><span data-k="chaudes">Quentes</span><span data-k="froides">Frias</span><span data-k="melangees">Mistas</span><span data-k="serie">Série</span><span data-k="touteseries">Todas as séries</span><span data-k="prixmax">Preço máximo</span><span data-k="sanslimite">Sem limite</span><span data-k="resultats">Resultados:</span><span data-k="aucun">Nenhuma obra corresponde. Experimente outra palavra ou menos filtros.</span><span data-k="disponible">Disponível</span><span data-k="sanstitre">Sem título</span><span data-k="mesure">Uma obra por encomenda</span><span data-k="mesure_intro">Uma cor, um tema, um formato preciso para a sua parede: Isa pode pintar uma tela só para si.</span><span data-k="m_format">Formato pretendido (em cm)</span><span data-k="m_piece">A divisão</span><span data-k="m_couleurs">Cores e ambiente</span><span data-k="m_sujet">Tema ou assunto</span><span data-k="m_budget">Orçamento indicativo</span><span data-k="m_delai">Prazo pretendido</span><span data-k="m_photo">Poderá anexar uma foto da sua parede ao responder ao e-mail de Isa.</span><span data-k="m_envoyer">Enviar o meu pedido por encomenda</span><span data-k="objet_mesure">Pedido de obra por encomenda</span><span data-k="m_depuis">Inspirada na tela</span><span data-k="m_pourmur">Uma tela por encomenda para esta parede</span><span data-k="m_contact">Pedir uma obra por encomenda</span></template>
+<dialog class="tiroir" id="tiroir-chanson" aria-labelledby="tc-titre">
+  <div class="tiroir-tete"><h2 id="tc-titre">Uma tela para a vossa canção</h2><button type="button" class="fermer" data-ferme>Fechar</button></div>
+  <p class="aide">Isa responder-vos-á pessoalmente, de artista para artista.</p>
+  <form class="formulaire" id="form-chanson" novalidate>
+    <label><span>Título da canção</span><input name="titre"></label>
+    <label><span>Artista ou banda</span><input name="artiste"></label>
+    <label><span>Ligação para a ouvir</span><input name="lien" type="url" inputmode="url"></label>
+    <label><span>Língua da canção</span><input name="langue"></label>
+    <label><span>O que conta a canção</span><textarea name="recit" rows="3"></textarea></label>
+    <label><span>Utilização prevista (tela, capa, videoclipe, palco…)</span><input name="usage"></label>
+    <label><span>Prazo pretendido</span><input name="delai"></label>
+    <label><span>Nome</span><input name="nom" autocomplete="name" required></label>
+    <label><span>E-mail</span><input name="courriel" type="email" autocomplete="email" required></label>
+    <label><span>Mensagem</span><textarea name="message" rows="3"></textarea></label>
+    <p class="erreur" id="chanson-erreur" hidden>Indique o seu nome e um endereço de e-mail válido.</p>
+    <button class="bouton" type="submit">Enviar a minha canção a Isa</button>
+    <p class="ok" id="chanson-ok" hidden>O seu e-mail abre-se com o pedido pronto: só falta enviá-lo.</p>
+  </form>
+</dialog>
+<template id="txt"><span data-k="objet_chanson">Uma tela para a vossa canção</span><span data-k="c_titre">Título da canção</span><span data-k="c_artiste">Artista ou banda</span><span data-k="c_lien">Ligação para a ouvir</span><span data-k="c_langue">Língua da canção</span><span data-k="c_recit">O que conta a canção</span><span data-k="c_usage">Utilização prevista (tela, capa, videoclipe, palco…)</span><span data-k="panier">O meu cesto</span><span data-k="recherche">Pesquisar uma obra</span><span data-k="fermer">Fechar</span><span data-k="ajouter">Adicionar ao cesto</span><span data-k="ajoutee">No cesto</span><span data-k="retirer">Retirar</span><span data-k="vide">O seu cesto está vazio. Abra uma obra e escolha «Adicionar ao cesto».</span><span data-k="total">Total das obras com preço indicado</span><span data-k="surdemande">Preço e disponibilidade sob consulta</span><span data-k="certif">Cada obra é acompanhada do seu certificado de autenticidade numerado, assinado à mão por Isa.</span><span data-k="intro">O seu pedido segue por e-mail para o ateliê. Isa responder-lhe-á para confirmar a disponibilidade, a entrega e o pagamento.</span><span data-k="nom">Nome</span><span data-k="courriel">E-mail</span><span data-k="ville">Cidade e país de entrega</span><span data-k="message">Mensagem</span><span data-k="livraison">Entrega</span><span data-k="domicile">Entrega ao domicílio</span><span data-k="atelier">Recolha no ateliê</span><span data-k="envoyer">Enviar o meu pedido de aquisição</span><span data-k="objet_achat">Pedido de aquisição a partir do site</span><span data-k="oeuvres">Obras</span><span data-k="envoyee">O seu e-mail abre-se com o pedido pronto: só falta enviá-lo.</span><span data-k="manque">Indique o seu nome e um endereço de e-mail válido.</span><span data-k="motcle">Título, série, ano, número…</span><span data-k="toutes">Todas</span><span data-k="dispos">Disponíveis</span><span data-k="catalogue">Catálogo</span><span data-k="format">Formato</span><span data-k="tousformats">Todos os formatos</span><span data-k="petit">Pequeno (até 60 cm)</span><span data-k="moyen">Médio (61 a 120 cm)</span><span data-k="grand">Grande (mais de 120 cm)</span><span data-k="couleurs">Cores</span><span data-k="touscouleurs">Todas as cores</span><span data-k="chaudes">Quentes</span><span data-k="froides">Frias</span><span data-k="melangees">Mistas</span><span data-k="serie">Série</span><span data-k="touteseries">Todas as séries</span><span data-k="prixmax">Preço máximo</span><span data-k="sanslimite">Sem limite</span><span data-k="resultats">Resultados:</span><span data-k="aucun">Nenhuma obra corresponde. Experimente outra palavra ou menos filtros.</span><span data-k="disponible">Disponível</span><span data-k="sanstitre">Sem título</span><span data-k="mesure">Uma obra por encomenda</span><span data-k="mesure_intro">Uma cor, um tema, um formato preciso para a sua parede: Isa pode pintar uma tela só para si.</span><span data-k="m_format">Formato pretendido (em cm)</span><span data-k="m_piece">A divisão</span><span data-k="m_couleurs">Cores e ambiente</span><span data-k="m_sujet">Tema ou assunto</span><span data-k="m_budget">Orçamento indicativo</span><span data-k="m_delai">Prazo pretendido</span><span data-k="m_photo">Poderá anexar uma foto da sua parede ao responder ao e-mail de Isa.</span><span data-k="m_envoyer">Enviar o meu pedido por encomenda</span><span data-k="objet_mesure">Pedido de obra por encomenda</span><span data-k="m_depuis">Inspirada na tela</span><span data-k="m_pourmur">Uma tela por encomenda para esta parede</span><span data-k="m_contact">Pedir uma obra por encomenda</span></template>
 <dialog class="loupe" id="loupe">
   <canvas class="trace" aria-hidden="true"></canvas>
   <div class="boite">
@@ -2010,7 +2082,7 @@ if(!reduit){
 })();
 
 /* ---------- pages : sur ordinateur, une section à la fois ; sur téléphone, le fil continu ---------- */
-const PAGES={accueil:"accueil",portail:"accueil",artiste:"artiste",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",contact:"contact"};
+const PAGES={accueil:"accueil",portail:"accueil",artiste:"artiste",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",chanson:"chanson",contact:"contact"};
 const mqPages=matchMedia("(min-width:761px)");
 function montrePage(){
   const h=decodeURIComponent(location.hash.replace("#","")), page=PAGES[h]||"accueil", enPages=mqPages.matches;
@@ -2287,6 +2359,16 @@ document.getElementById("form-mesure").addEventListener("submit",e=>{
   L.push("",TX("nom")+" : "+v("nom"),TX("courriel")+" : "+v("courriel")); if(v("message")) L.push("",TX("message")+" :",v("message"));
   L.push("",TX("m_photo"));
   envoieCourriel(TX("objet_mesure"),L); document.getElementById("mesure-ok").hidden=false;
+});
+
+/* --- v48 : une chanson, une toile (demande du 07/11) --- */
+document.getElementById("btn-chanson").addEventListener("click",()=>{ document.getElementById("chanson-ok").hidden=true; document.getElementById("chanson-erreur").hidden=true; ouvreTiroir(document.getElementById("tiroir-chanson")); });
+document.getElementById("form-chanson").addEventListener("submit",e=>{
+  e.preventDefault(); const f=e.currentTarget, v=n=>(f.elements[n].value||"").trim();
+  const ok=v("nom")&&courrielOK(v("courriel")); document.getElementById("chanson-erreur").hidden=ok; if(!ok) return;
+  const L=[]; [["titre","c_titre"],["artiste","c_artiste"],["lien","c_lien"],["langue","c_langue"],["recit","c_recit"],["usage","c_usage"],["delai","m_delai"]].forEach(([n,k])=>{ if(v(n)) L.push(TX(k)+" : "+v(n)); });
+  L.push("",TX("nom")+" : "+v("nom"),TX("courriel")+" : "+v("courriel")); if(v("message")) L.push("",TX("message")+" :",v("message"));
+  envoieCourriel(TX("objet_chanson"),L); document.getElementById("chanson-ok").hidden=false;
 });
 
 </script>

@@ -357,7 +357,7 @@ html[lang="ar"]{direction:rtl;--display:"Bodoni Moda","Noto Naskh Arabic","Geeza
 html[lang="ar"] *{letter-spacing:0!important}
 html[lang="ar"] .ouverture h1,html[lang="ar"] .marque span{direction:ltr}
 /* arabe, ouverture sur ordinateur : le bloc de texte reste à gauche (là où la photo se fond dans le bleu nuit), le texte y est aligné à droite */
-@media(min-width:761px){html[lang="ar"] .ouverture .dit .centre{direction:ltr} html[lang="ar"] .ouverture .dit .centre>*{direction:rtl;text-align:right} html[lang="ar"] .ouverture .actions{justify-content:flex-end;max-width:42ch}}
+@media(min-width:761px){html[lang="ar"] .ouverture .dit .centre{direction:ltr} html[lang="ar"] .ouverture .dit .centre>*{direction:rtl;text-align:right} html[lang="ar"] .ouverture .actions{justify-content:flex-end;max-width:42ch} html[lang="ar"] .ouverture .sceaux{justify-content:flex-end;max-width:62ch}}
 /* arabe : la légende suit la même règle physique (côté opposé à la toile) que les autres langues */
 html[lang="ar"] .presse a::after,html[lang="ar"] .serie-lien .fleche{transform:scaleX(-1)}
 html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visible .fleche{transform:scaleX(-1) translateX(5px)}
@@ -409,6 +409,21 @@ html[lang="ar"] .serie-lien:hover .fleche,html[lang="ar"] .serie-lien:focus-visi
 .accroche b{font-weight:400;letter-spacing:.02em;text-shadow:none;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
 .sous{color:var(--cendre);margin:0 0 2em;max-width:42ch;text-shadow:0 2px 12px rgba(0,0,0,.85)}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
+.sceaux{display:flex;align-items:center;gap:clamp(14px,2.4vw,26px);flex-wrap:wrap;margin-top:clamp(22px,3.2vw,34px)}
+.macaron{position:relative;flex:none;width:clamp(128px,13vw,156px);aspect-ratio:1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.28em;padding:16px;text-align:center;text-decoration:none;color:var(--ivoire);
+  background:radial-gradient(circle at 34% 28%,#2A2F46 0%,#11152A 58%,#070B16 100%);box-shadow:0 0 0 2px #C9A227,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(226,192,99,.55),0 14px 34px rgba(0,0,0,.6);transform:rotate(-6deg);transition:transform .35s ease,box-shadow .35s ease}
+.macaron::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1px dashed rgba(226,192,99,.55);pointer-events:none}
+.macaron i{display:block;font-style:normal;font-size:.56rem;letter-spacing:.24em;color:#E2C063;line-height:1}
+.macaron i::before{content:"★ ★ ★"}
+.macaron b{font-family:var(--display);font-weight:400;font-size:clamp(.92rem,1.15vw,1.06rem);line-height:1.08;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.macaron span{font-size:.66rem;line-height:1.25;color:var(--ivoire);max-width:13ch}
+.macaron small{font-size:.54rem;letter-spacing:.05em;color:var(--cendre);max-width:15ch;line-height:1.3}
+.macaron:hover,.macaron:focus-visible{transform:rotate(0) scale(1.06);box-shadow:0 0 0 2px #F1D27E,0 0 0 6px rgba(7,11,22,.9),0 0 0 7px rgba(241,210,126,.85),0 18px 40px rgba(0,0,0,.65)}
+.wiki{display:inline-flex;align-items:center;gap:.6em;padding:.55em 1em .55em .55em;border:1px solid rgba(226,192,99,.45);border-radius:999px;background:rgba(7,11,22,.72);color:var(--ivoire);text-decoration:none;font-size:.86rem;line-height:1.2;transition:border-color .25s,background .25s}
+.wiki::before{content:"W";flex:none;display:grid;place-items:center;width:2em;height:2em;border-radius:50%;background:#F4F1EA;color:#111;font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:.9rem}
+.wiki em{font-style:normal;text-decoration:underline;text-decoration-color:rgba(226,192,99,.6);text-underline-offset:3px}
+.wiki:hover,.wiki:focus-visible{border-color:#E2C063;background:rgba(20,26,48,.9)}
+@media(max-width:760px){.sceaux{flex-wrap:nowrap;gap:14px}.wiki{font-size:.8rem}.macaron{width:118px;padding:12px}.macaron b{font-size:.84rem}.macaron span{font-size:.62rem}.macaron small{font-size:.5rem}}
 .bouton{display:inline-block;padding:.74em 1.6em;font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;border:1px solid var(--orange);color:var(--orange);background:rgba(7,12,24,.4)}
 .bouton:hover{background:var(--orange);color:var(--nuit);text-decoration:none}
 .bouton.plein{background:var(--orange);color:var(--nuit)}
@@ -600,7 +615,7 @@ dialog.panneau::backdrop{background:transparent}
 /* ---------- contact ---------- */
 .contact-deux{display:grid;gap:clamp(28px,4vw,64px);grid-template-columns:1fr;align-items:center}
 @media(min-width:820px){.contact-deux{grid-template-columns:minmax(260px,.9fr) 1.1fr}}
-.dedicace{margin:0;max-width:460px;position:relative}
+.etapes-chanson{margin:1em 0 1.2em;padding-left:1.4em;line-height:1.6}.etapes-chanson li{margin:.35em 0}.etapes-chanson li::marker{color:var(--orange);font-weight:600}.dedicace{margin:0;max-width:460px;position:relative}
 .dedicace img{width:100%;height:auto;box-shadow:0 0 0 8px #F4EDE3,0 0 0 9px rgba(255,255,255,.2),0 30px 60px rgba(0,0,0,.6)}
 .dedicace figcaption{margin-top:26px;font-size:.78rem;color:var(--cendre);letter-spacing:.04em}
 .dedicace figcaption b{font-family:var(--display);font-weight:400;font-size:1rem;color:var(--ivoire);display:block}
@@ -624,7 +639,7 @@ dialog.loupe::backdrop{background:transparent}
 @keyframes pulse{50%{transform:scale(1.18)}}
 @media (max-width:660px){.outils-barre{order:2;margin-inline-start:auto} .outil-barre{width:34px;height:32px}}
 dialog.tiroir{border:0;padding:0 0 max(18px,env(safe-area-inset-bottom,0px));margin:0;position:fixed;inset:var(--barre-h,70px) 0 0 auto;width:min(480px,100vw);height:auto;max-height:none;max-width:100vw;z-index:28;
-  background:rgba(7,11,22,.985);color:var(--ivoire);border-inline-start:1px solid rgba(212,175,55,.35);box-shadow:-30px 0 60px rgba(0,0,0,.55);overflow-y:auto;overscroll-behavior:contain}
+  background:#070B16;color:var(--ivoire);border-inline-start:1px solid rgba(212,175,55,.35);box-shadow:-30px 0 60px rgba(0,0,0,.55);overflow-y:auto;overscroll-behavior:contain}
 dialog.tiroir.large{width:min(860px,100vw)}
 /* v43 : liseuse, les articles et vidéos s'ouvrent dans le site, par-dessus, avec « Fermer » */
 dialog.liseuse{border:0;padding:0;margin:0;position:fixed;inset:var(--barre-h,70px) 0 0 0;width:100%;height:auto;max-width:100vw;max-height:none;z-index:28;background:rgba(5,8,18,.985);color:var(--ivoire);flex-direction:column}
@@ -638,7 +653,7 @@ dialog.liseuse[open]{display:flex}
 #li-cadre{flex:1;width:100%;border:0;background:#fff}
 #li-cadre.video{background:#000}
 
-.tiroir-tete{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;background:rgba(7,11,22,.97);border-bottom:1px solid rgba(212,175,55,.22)}
+.tiroir-tete{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;background:#070B16;border-bottom:1px solid rgba(212,175,55,.22)}
 .tiroir-tete h2{margin:0;font-family:var(--display);font-weight:400;font-size:1.45rem;background-image:linear-gradient(170deg,#FBEBB4 0%,#E2C063 35%,#F1D27E 60%,#C9A227 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .tiroir .aide,.tiroir .vide,.tiroir .certif,.tiroir .total,.tiroir .compte-r{padding:0 20px}
 .tiroir .aide{font-size:.86rem;color:var(--cendre);line-height:1.5}
@@ -870,6 +885,7 @@ dialog canvas.trace{position:absolute;z-index:5}
       <a href="#series">시리즈</a>
       <a href="#atelier">아틀리에</a>
       <a href="#actualite">소식</a>
+      <a href="#chanson">당신의 노래</a>
       <a href="#contact">연락처</a>
     </nav>
     <div class="outils-barre"><button type="button" class="outil-barre" id="btn-recherche" aria-label="작품 검색" title="작품 검색"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button><button type="button" class="outil-barre" id="btn-panier" aria-label="내 장바구니" title="내 장바구니"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M5 8h14l-1.3 11.2a1.5 1.5 0 0 1-1.5 1.3H7.8a1.5 1.5 0 0 1-1.5-1.3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span class="compte" id="panier-compte" hidden>0</span></button></div>
@@ -894,6 +910,15 @@ dialog canvas.trace{position:absolute;z-index:5}
         <div class="actions">
           <a class="bouton plein" href="#oeuvres">작품 보기</a>
           <a class="bouton" href="mailto:isasator@gmail.com?subject=%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8%20%EB%AC%B8%EC%9D%98">아틀리에에 문의하기</a>
+        </div>
+        <div class="sceaux">
+          <a class="macaron" href="#regards" aria-label="국제적 위상, 여러 미술 평론가의 찬사: 평론 읽기">
+            <i aria-hidden="true"></i>
+            <b>국제적 위상</b>
+            <span>여러 미술 평론가의 찬사</span>
+            <small>파리 · 뉴욕 · 런던 · 두바이</small>
+          </a>
+          <a class="wiki" href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><em>위키백과 문서 (프랑스어)</em></a>
         </div>
       </div>
     </div>
@@ -921,13 +946,17 @@ dialog canvas.trace{position:absolute;z-index:5}
           <p>독학한 색채 화가로 뉴칼레도니아에서 색채를 언어 삼아 돌아온 이자 사토르는 2003년부터 파리, 뉴욕, 두바이, 런던, 휴스턴에서, 그리고 2026년에는 사르데냐에서 전시하고 있습니다. Artprice에 등재되어 2005년 Aguttes부터 2026년까지 공개 경매에서 낙찰된 작품 24점이 기록되어 있으며, Jyb'Art 갤러리(르발루아페레)와 JPHT 갤러리(파리)가 작품을 취급합니다. Delarge 미술가 사전에 등재되어 있고 저작권은 ADAGP가 관리합니다. 사르데냐 언론은 그녀를 “21세기의 피카소”라고 평합니다.</p>
         </div>
         <blockquote class="mot-critique">“이자 사토르는 화가, 그야말로 화가이다. […] 그녀는 몇 년 전부터 파리 미술계의 주요 화가로 자리 잡았다.”<cite>장루이 푸아트뱅, 미술 평론가, Artprice 프로필</cite></blockquote>
-        <ul class="presse">
+        <ul class="presse" id="regards">
+          <li><a href="https://fr.wikipedia.org/wiki/Isa_Sator" target="_blank" rel="noopener"><b>백과사전</b><span>자유 백과사전 위키백과의 문서 (프랑스어)</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=GyjRKhuW7ms" rel="noopener"><b>인터뷰</b><span>Carly Aguilera, South Art Dealer Gallery, New York</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=wCfDITSZXts" rel="noopener"><b>인터뷰</b><span>장필리프 테롱, 전시 ADN Sator, 파리 JPHT 갤러리</span></a></li>
           <li><a href="https://www.youtube.com/watch?v=alIKO2gHwvU" rel="noopener"><b>인터뷰</b><span>스테파니 레노, Tribune Libre, 2025년 3월 11일: 「Les Grandes Cocottes」 연작</span></a></li>
           <li><a href="https://www.carnetdart.com/isa-sator/" rel="noopener"><b>평론</b><span>장폴 가바르페레, 파리 데자제 극장 전시</span></a></li>
           <li><a href="https://www.lelitteraire.com/isa-sator-ouverture-de-son-atelier-a-magic-city/" rel="noopener"><b>평론</b><span>장폴 가바르페레, Le Littéraire, 2026년 6월: “Isa Sator, ouverture de son atelier à Magic City”</span></a></li>
           <li><a href="https://www.lelitteraire.com/isa-sator-la-palette-magique-exposition/" rel="noopener"><b>평론</b><span>장폴 가바르페레, Le Littéraire, 2024년 6월: “Isa Sator, La palette magique”</span></a></li>
+          <li><a href="https://www.lelitteraire.com/isa-sator-les-grandes-cocottes-exposition/" rel="noopener"><b>평론</b><span>장폴 가바르페레, 『Le Littéraire』, 2017년 6월: 「Isa Sator, Les Grandes Cocottes」</span></a></li>
+          <li><a href="https://www.saisonsdeculture.com/portraits/isa-sator-2/" rel="noopener"><b>평론</b><span>밀렌 비뇽, 『Saisons de culture』, 2017년: 「Les grandes cocottes」</span></a></li>
+          <li><a href="https://catalogue.bnf.fr/ark:/12148/cb171660616" rel="noopener"><b>도서</b><span>『Les Grandes Cocottes』, L'Œil de la femme à barbe, 2017년: 2개 국어 도록, 프랑스 국립도서관 소장</span></a></li>
           <li><a href="https://culture-evasions.fr/2024/07/12/isa-sator/" rel="noopener"><b>기사</b><span>레아 베로슈, Arts Culture évasions, 2024년 7월 12일: 「Isa Sator」</span></a></li>
           <li><a href="https://lepetitjournal.com/new-york/isa-sator-expose-new-york-son-art-haut-en-couleur-267291" rel="noopener"><b>기사</b><span>Le Petit Journal New York: “이자 사토르, 색채 넘치는 예술을 뉴욕에서 선보이다”</span></a></li>
           <li><a href="https://fr.artprice.com/artiste/319130/isa-sator" rel="noopener"><b>시장 평가</b><span>Artprice 프로필: 낙찰 기록 24건, 약력, 갤러리</span></a></li>
@@ -1225,6 +1254,30 @@ dialog canvas.trace{position:absolute;z-index:5}
   </div>
 </section>
 
+<section class="bande gouttiere" id="chanson" data-page="chanson" aria-labelledby="t-chanson">
+  <div class="dedans centre">
+    <div class="contact-deux">
+      <figure class="dedicace">
+        <img src="catalogue/TB26.jpg" alt="「여름」, 연작 「Le Temps des cerises」 중 한 점: 커다란 황금빛 나무 아래 꽃핀 정원의 플루트 연주자" width="760" height="570" loading="lazy">
+        <figcaption><b>Le Temps des cerises</b>한 곡의 노래에서 태어난 연작.</figcaption>
+      </figure>
+      <div>
+        <h2 class="titre" id="t-chanson">한 곡의 노래, 한 점의 그림</h2>
+        <p class="chapeau">가수, 음악가, 밴드 여러분, 여러분의 노래를 이자에게 맡겨 주세요. 그녀는 노래를 듣고, 그 안에 스며들어, 그림으로 그립니다.</p>
+        <p>이것은 삽화가 아니라 두 예술가의 만남입니다. 이자는 이미 노래 「Le Temps des cerises」를 주제로 사계절을 담은 네 점의 대형 캔버스 연작을 그렸습니다. 지금은 한 현대 작가의 시를 그리고 있습니다.</p>
+        <ol class="etapes-chanson">
+          <li>여러분의 노래와 그 노래가 여러분에게 어떤 의미인지 그녀에게 보냅니다.</li>
+          <li>이자가 노래를 듣고 예술가 대 예술가로 답합니다.</li>
+          <li>그녀가 스케치를 제안합니다.</li>
+          <li>그녀가 그림을 그리고, 친필 서명이 담긴 진품 증명서와 함께 전달합니다.</li>
+        </ol>
+        <p>이 그림은 앨범 커버나 뮤직비디오, 무대의 배경이 될 수 있습니다. 모든 것은 여러분과 이자가 직접 정하며, 모든 복제물에는 「이자 사토르 원작」이라는 표기가 들어갑니다.</p>
+        <p style="margin:1.4em 0 0"><button class="bouton" id="btn-chanson" type="button">이자에게 내 노래 제안하기</button></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="bande gouttiere" id="contact" data-page="contact" aria-labelledby="t-con">
   <div class="dedans centre">
     <div class="contact-deux">
@@ -1322,7 +1375,26 @@ dialog canvas.trace{position:absolute;z-index:5}
     <p class="ok" id="mesure-ok" hidden>요청이 작성된 상태로 메일 앱이 열립니다. 보내기만 하면 됩니다.</p>
   </form>
 </dialog>
-<template id="txt"><span data-k="panier">내 장바구니</span><span data-k="recherche">작품 검색</span><span data-k="fermer">닫기</span><span data-k="ajouter">장바구니에 담기</span><span data-k="ajoutee">장바구니에 담김</span><span data-k="retirer">빼기</span><span data-k="vide">장바구니가 비어 있습니다. 작품을 열고 ‘장바구니에 담기’를 누르세요.</span><span data-k="total">가격이 표시된 작품 합계</span><span data-k="surdemande">가격 및 구매 가능 여부 문의</span><span data-k="certif">모든 작품에는 이자가 직접 서명한 번호가 매겨진 진품 인증서가 함께 제공됩니다.</span><span data-k="intro">요청은 이메일로 아틀리에에 전달됩니다. 이자가 구매 가능 여부, 배송, 결제를 확인해 답장드립니다.</span><span data-k="nom">이름</span><span data-k="courriel">이메일</span><span data-k="ville">배송 도시 및 국가</span><span data-k="message">메시지</span><span data-k="livraison">수령 방법</span><span data-k="domicile">자택 배송</span><span data-k="atelier">아틀리에 방문 수령</span><span data-k="envoyer">구매 요청 보내기</span><span data-k="objet_achat">웹사이트에서 온 구매 요청</span><span data-k="oeuvres">작품</span><span data-k="envoyee">요청이 작성된 상태로 메일 앱이 열립니다. 보내기만 하면 됩니다.</span><span data-k="manque">이름과 올바른 이메일 주소를 입력하세요.</span><span data-k="motcle">제목, 연작, 연도, 번호…</span><span data-k="toutes">전체</span><span data-k="dispos">구매 가능</span><span data-k="catalogue">카탈로그</span><span data-k="format">크기</span><span data-k="tousformats">모든 크기</span><span data-k="petit">소형 (60 cm 이하)</span><span data-k="moyen">중형 (61~120 cm)</span><span data-k="grand">대형 (120 cm 초과)</span><span data-k="couleurs">색감</span><span data-k="touscouleurs">모든 색감</span><span data-k="chaudes">따뜻한 색</span><span data-k="froides">차가운 색</span><span data-k="melangees">혼합</span><span data-k="serie">연작</span><span data-k="touteseries">모든 연작</span><span data-k="prixmax">최고 가격</span><span data-k="sanslimite">제한 없음</span><span data-k="resultats">검색 결과:</span><span data-k="aucun">해당하는 작품이 없습니다. 다른 단어를 넣거나 조건을 줄여 보세요.</span><span data-k="disponible">구매 가능</span><span data-k="sanstitre">무제</span><span data-k="mesure">주문 제작 작품</span><span data-k="mesure_intro">색, 주제, 벽에 꼭 맞는 크기: 이자가 오직 당신을 위한 그림을 그려 드립니다.</span><span data-k="m_format">원하는 크기 (cm)</span><span data-k="m_piece">공간</span><span data-k="m_couleurs">색감과 분위기</span><span data-k="m_sujet">주제 또는 테마</span><span data-k="m_budget">예상 예산</span><span data-k="m_delai">희망 시기</span><span data-k="m_photo">이자의 이메일에 답장할 때 벽 사진을 첨부할 수 있습니다.</span><span data-k="m_envoyer">주문 제작 요청 보내기</span><span data-k="objet_mesure">주문 제작 작품 요청</span><span data-k="m_depuis">영감을 준 작품</span><span data-k="m_pourmur">이 벽을 위한 주문 제작</span><span data-k="m_contact">주문 제작 요청하기</span></template>
+<dialog class="tiroir" id="tiroir-chanson" aria-labelledby="tc-titre">
+  <div class="tiroir-tete"><h2 id="tc-titre">여러분의 노래를 위한 그림</h2><button type="button" class="fermer" data-ferme>닫기</button></div>
+  <p class="aide">이자가 예술가 대 예술가로 직접 답해 드립니다.</p>
+  <form class="formulaire" id="form-chanson" novalidate>
+    <label><span>곡 제목</span><input name="titre"></label>
+    <label><span>아티스트 또는 밴드</span><input name="artiste"></label>
+    <label><span>들어볼 수 있는 링크</span><input name="lien" type="url" inputmode="url"></label>
+    <label><span>노래의 언어</span><input name="langue"></label>
+    <label><span>노래가 들려주는 이야기</span><textarea name="recit" rows="3"></textarea></label>
+    <label><span>계획한 용도 (그림, 커버, 뮤직비디오, 무대…)</span><input name="usage"></label>
+    <label><span>희망 시기</span><input name="delai"></label>
+    <label><span>이름</span><input name="nom" autocomplete="name" required></label>
+    <label><span>이메일</span><input name="courriel" type="email" autocomplete="email" required></label>
+    <label><span>메시지</span><textarea name="message" rows="3"></textarea></label>
+    <p class="erreur" id="chanson-erreur" hidden>이름과 올바른 이메일 주소를 입력하세요.</p>
+    <button class="bouton" type="submit">이자에게 내 노래 보내기</button>
+    <p class="ok" id="chanson-ok" hidden>요청이 작성된 상태로 메일 앱이 열립니다. 보내기만 하면 됩니다.</p>
+  </form>
+</dialog>
+<template id="txt"><span data-k="objet_chanson">여러분의 노래를 위한 그림</span><span data-k="c_titre">곡 제목</span><span data-k="c_artiste">아티스트 또는 밴드</span><span data-k="c_lien">들어볼 수 있는 링크</span><span data-k="c_langue">노래의 언어</span><span data-k="c_recit">노래가 들려주는 이야기</span><span data-k="c_usage">계획한 용도 (그림, 커버, 뮤직비디오, 무대…)</span><span data-k="panier">내 장바구니</span><span data-k="recherche">작품 검색</span><span data-k="fermer">닫기</span><span data-k="ajouter">장바구니에 담기</span><span data-k="ajoutee">장바구니에 담김</span><span data-k="retirer">빼기</span><span data-k="vide">장바구니가 비어 있습니다. 작품을 열고 ‘장바구니에 담기’를 누르세요.</span><span data-k="total">가격이 표시된 작품 합계</span><span data-k="surdemande">가격 및 구매 가능 여부 문의</span><span data-k="certif">모든 작품에는 이자가 직접 서명한 번호가 매겨진 진품 인증서가 함께 제공됩니다.</span><span data-k="intro">요청은 이메일로 아틀리에에 전달됩니다. 이자가 구매 가능 여부, 배송, 결제를 확인해 답장드립니다.</span><span data-k="nom">이름</span><span data-k="courriel">이메일</span><span data-k="ville">배송 도시 및 국가</span><span data-k="message">메시지</span><span data-k="livraison">수령 방법</span><span data-k="domicile">자택 배송</span><span data-k="atelier">아틀리에 방문 수령</span><span data-k="envoyer">구매 요청 보내기</span><span data-k="objet_achat">웹사이트에서 온 구매 요청</span><span data-k="oeuvres">작품</span><span data-k="envoyee">요청이 작성된 상태로 메일 앱이 열립니다. 보내기만 하면 됩니다.</span><span data-k="manque">이름과 올바른 이메일 주소를 입력하세요.</span><span data-k="motcle">제목, 연작, 연도, 번호…</span><span data-k="toutes">전체</span><span data-k="dispos">구매 가능</span><span data-k="catalogue">카탈로그</span><span data-k="format">크기</span><span data-k="tousformats">모든 크기</span><span data-k="petit">소형 (60 cm 이하)</span><span data-k="moyen">중형 (61~120 cm)</span><span data-k="grand">대형 (120 cm 초과)</span><span data-k="couleurs">색감</span><span data-k="touscouleurs">모든 색감</span><span data-k="chaudes">따뜻한 색</span><span data-k="froides">차가운 색</span><span data-k="melangees">혼합</span><span data-k="serie">연작</span><span data-k="touteseries">모든 연작</span><span data-k="prixmax">최고 가격</span><span data-k="sanslimite">제한 없음</span><span data-k="resultats">검색 결과:</span><span data-k="aucun">해당하는 작품이 없습니다. 다른 단어를 넣거나 조건을 줄여 보세요.</span><span data-k="disponible">구매 가능</span><span data-k="sanstitre">무제</span><span data-k="mesure">주문 제작 작품</span><span data-k="mesure_intro">색, 주제, 벽에 꼭 맞는 크기: 이자가 오직 당신을 위한 그림을 그려 드립니다.</span><span data-k="m_format">원하는 크기 (cm)</span><span data-k="m_piece">공간</span><span data-k="m_couleurs">색감과 분위기</span><span data-k="m_sujet">주제 또는 테마</span><span data-k="m_budget">예상 예산</span><span data-k="m_delai">희망 시기</span><span data-k="m_photo">이자의 이메일에 답장할 때 벽 사진을 첨부할 수 있습니다.</span><span data-k="m_envoyer">주문 제작 요청 보내기</span><span data-k="objet_mesure">주문 제작 작품 요청</span><span data-k="m_depuis">영감을 준 작품</span><span data-k="m_pourmur">이 벽을 위한 주문 제작</span><span data-k="m_contact">주문 제작 요청하기</span></template>
 <dialog class="loupe" id="loupe">
   <canvas class="trace" aria-hidden="true"></canvas>
   <div class="boite">
@@ -2010,7 +2082,7 @@ if(!reduit){
 })();
 
 /* ---------- pages : sur ordinateur, une section à la fois ; sur téléphone, le fil continu ---------- */
-const PAGES={accueil:"accueil",portail:"accueil",artiste:"artiste",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",contact:"contact"};
+const PAGES={accueil:"accueil",portail:"accueil",artiste:"artiste",grands:"grands",oeuvres:"oeuvres",series:"series",catalogue:"catalogue",atelier:"atelier",actualite:"actualite",chanson:"chanson",contact:"contact"};
 const mqPages=matchMedia("(min-width:761px)");
 function montrePage(){
   const h=decodeURIComponent(location.hash.replace("#","")), page=PAGES[h]||"accueil", enPages=mqPages.matches;
@@ -2287,6 +2359,16 @@ document.getElementById("form-mesure").addEventListener("submit",e=>{
   L.push("",TX("nom")+" : "+v("nom"),TX("courriel")+" : "+v("courriel")); if(v("message")) L.push("",TX("message")+" :",v("message"));
   L.push("",TX("m_photo"));
   envoieCourriel(TX("objet_mesure"),L); document.getElementById("mesure-ok").hidden=false;
+});
+
+/* --- v48 : une chanson, une toile (demande du 07/11) --- */
+document.getElementById("btn-chanson").addEventListener("click",()=>{ document.getElementById("chanson-ok").hidden=true; document.getElementById("chanson-erreur").hidden=true; ouvreTiroir(document.getElementById("tiroir-chanson")); });
+document.getElementById("form-chanson").addEventListener("submit",e=>{
+  e.preventDefault(); const f=e.currentTarget, v=n=>(f.elements[n].value||"").trim();
+  const ok=v("nom")&&courrielOK(v("courriel")); document.getElementById("chanson-erreur").hidden=ok; if(!ok) return;
+  const L=[]; [["titre","c_titre"],["artiste","c_artiste"],["lien","c_lien"],["langue","c_langue"],["recit","c_recit"],["usage","c_usage"],["delai","m_delai"]].forEach(([n,k])=>{ if(v(n)) L.push(TX(k)+" : "+v(n)); });
+  L.push("",TX("nom")+" : "+v("nom"),TX("courriel")+" : "+v("courriel")); if(v("message")) L.push("",TX("message")+" :",v("message"));
+  envoieCourriel(TX("objet_chanson"),L); document.getElementById("chanson-ok").hidden=false;
 });
 
 </script>
